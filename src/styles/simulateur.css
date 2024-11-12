@@ -1,0 +1,294 @@
+/* styles/simulateur.css */
+
+
+.simulateur-container {
+  display: flex;
+  justify-content: space-between; /* Centre le contenu horizontalement */
+
+  padding: 0 10%; /* Ajoute des marges de 10% de chaque côté */
+}
+
+.form-section, .image-section {
+  width: 40%; /* Chaque section prend 40% de la largeur */
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px; /* Espace intérieur pour le formulaire */
+}
+
+.image-section img {
+  width: 100%; /* L'image prend toute la largeur de la section */
+  height: auto; /* Maintient le ratio de l'image */
+  border-radius: 8px; /* Ajoute un arrondi aux coins si désiré */
+}
+
+.container {
+    width: 80%;
+    /* Prend 80% de la largeur de la page */
+    margin: 0 auto;
+    /* Centrer le conteneur */
+    padding: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    /* Couleur de fond blanche */
+}
+
+h2 {
+    color: #333;
+    /* Couleur de texte foncé */
+    text-align: center;
+    /* Centrer le texte */
+    margin-bottom: 20px;
+    /* Espacement inférieur */
+}
+
+button {
+    width: 100%;
+    /* Boutons pleins */
+    padding: 15px;
+    margin: 10px 0;
+    /* Espacement autour des boutons */
+    border: none;
+    border-radius: 5px;
+    background-color: #AFC97E;
+    /* Couleur de fond du bouton */
+    color: white;
+    /* Couleur du texte du bouton */
+    font-size: 16px;
+    cursor: pointer;
+    /* Changer le curseur sur hover */
+    transition: background-color 0.3s;
+    /* Transition douce */
+}
+
+button:hover {
+    background-color: #45a049;
+    /* Couleur au survol */
+}
+.contact-form {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+.submit-btn {
+  background-color: #FFDF64;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #45a049;
+}
+
+.content {
+    display: flex; /* Utiliser Flexbox pour la mise en page */
+    justify-content: space-between; /* Espace entre les éléments */
+  }
+  
+  .choices {
+    flex: 1; /* Prendre toute la largeur disponible à gauche */
+    padding-right: 20px; /* Espacement entre les choix et l'image */
+  }
+  
+  .image {
+    flex: 1; /* Prendre toute la largeur disponible à droite */
+    display: flex; /* Flex pour centrer l'image */
+    align-items: center; /* Centrer verticalement */
+    justify-content: center; /* Centrer horizontalement */
+  }
+  
+  .image img {
+    max-width: 100%; /* L'image ne déborde pas */
+    height: auto; /* Conserver le ratio d'aspect */
+    border-radius: 10px; /* Coins arrondis pour l'image */
+  }
+
+  /* dashboard */
+
+  /* src/styles/dashboard.css */
+/* styles/simulateur.css */
+
+.dashboard-container {
+    display: flex;
+    flex-direction: row; /* Change l'orientation pour empiler les éléments */
+    align-items: center; /* Centre les éléments horizontalement */
+    padding: 20px; /* Ajoute du padding autour du conteneur */
+  }
+  
+  .card-dashboard {
+    display: flex;
+    flex-direction: column; /* Empile les informations verticalement */
+    background-color: #fff; /* Couleur de fond de la carte */
+    border-radius: 20px; /* Arrondir les coins de la carte */
+    padding: 20px; /* Ajoute du padding à l'intérieur de la carte */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre à la carte */
+    margin: 10px; /* Ajoute une marge entre les cartes */
+    width: 300px; /* Largeur fixe pour les cartes */
+  }
+  
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap; /* Permet aux cartes de passer à la ligne si l'espace est insuffisant */
+    gap: 20px; /* Espace entre les cartes */
+  }
+  
+  .dashboard-container {
+    display: flex;
+  }
+  
+  .sidebar {
+    width: 250px; /* Largeur de la sidebar */
+    background-color: #f4f4f4; /* Couleur de fond */
+    padding: 20px;
+    height: 100vh; /* Hauteur de la sidebar */
+    position: fixed; /* Position fixe */
+  }
+  
+  .main-content {
+    margin-left: 260px; /* Marge à gauche pour le contenu principal */
+    padding: 20px;
+    flex: 1; /* Prendre le reste de l'espace */
+  }
+  
+  .sidebar h2 {
+    font-size: 1.5em; /* Taille du titre */
+  }
+  
+  .sidebar ul {
+    list-style: none; /* Supprimer les puces */
+    padding: 0; /* Supprimer le padding */
+  }
+  
+  .sidebar li {
+    margin: 15px 0; /* Espacement entre les liens */
+  }
+  
+  .sidebar a {
+    text-decoration: none; /* Pas de soulignement */
+    color: #333; /* Couleur des liens */
+  }
+  
+  .sidebar a:hover {
+    text-decoration: underline; /* Soulignement au survol */
+  }
+  .blog-image {
+    max-width: 100%; /* Assure que l'image ne dépasse pas la largeur du conteneur */
+    height: auto; /* Garde les proportions de l'image */
+    border-radius: 24px; /* Ajoute un léger arrondi aux coins */
+    margin-bottom: 1rem; /* Ajoute un espacement en bas de l'image */
+  }
+/* src/styles/simulateur.css ou un autre fichier CSS */
+.create-blog-button {
+  background-color: #4CAF50; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  padding: 10px 20px; /* Espacement interne */
+  border: none; /* Pas de bordure */
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur pointer */
+  margin-bottom: 20px; /* Espacement en bas */
+  font-size: 16px; /* Taille de police */
+}
+
+.create-blog-button:hover {
+  background-color: #45a049; /* Couleur de fond au survol */
+}
+  
+
+.lead-list-container {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.lead-card {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.lead-card-header {
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.table-actions {
+  display: flex;
+  gap: 8px;
+}
+.lead-list-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashboard {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dashboard-card {
+  flex: 1;
+  padding: 16px;
+  text-align: center;
+}
+.progress-bar {
+  background-color: #e0e0e0;
+  border-radius: 5px;
+  height: 10px;
+  margin: 10px 0 20px;
+  overflow: hidden;
+}
+
+.progress {
+  background-color: #FFDF64;
+  height: 100%;
+  transition: width 0.4s ease;  
+}
+@media (max-width:576px) {
+  .simulateur-container{
+    display: grid;
+  }
+  .form-section{
+    width: 100%;
+  }
+}
