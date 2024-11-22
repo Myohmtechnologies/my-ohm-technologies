@@ -7,9 +7,17 @@
 
   padding: 0 10%; /* Ajoute des marges de 10% de chaque côté */
 }
+.logo img{
+  width: 190px;
+  padding: 15px;
+}
 
 .form-section, .image-section {
   width: 40%; /* Chaque section prend 40% de la largeur */
+}
+
+.image-section{
+  margin-top: 60px;
 }
 
 .form-section {
@@ -48,26 +56,76 @@ h2 {
 }
 
 button {
-    width: 100%;
-    /* Boutons pleins */
-    padding: 15px;
-    margin: 10px 0;
-    /* Espacement autour des boutons */
-    border: none;
-    border-radius: 5px;
-    background-color: #AFC97E;
-    /* Couleur de fond du bouton */
-    color: white;
-    /* Couleur du texte du bouton */
-    font-size: 16px;
-    cursor: pointer;
-    /* Changer le curseur sur hover */
-    transition: background-color 0.3s;
-    /* Transition douce */
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 30px;
+  background-color: #fff;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid black;
+  
+  /* Flexbox pour centrer l'image et le texte */
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  gap: 50px; /* Espacement entre l'image et le texte */
+}
+/* Ajustements de l'icône */
+.icon {
+  width: 40px;
+  height: 40px;
 }
 
+/* Ajustement spécifique pour l'icône flèche */
+.icon-arrow {
+  width: 25px;
+  height: 25px;
+  margin-left: auto; /* Pousse l'icône de flèche à l'extrême droite */
+}
+
+.energy-button {
+  width: 100%;
+  padding: 15px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 30px;
+  background-color: #fff;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Alignement vertical pour les montants mensuel et annuel */
+.monthly-amount {
+  font-weight: bold;
+}
+
+.annual-price {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+/* Positionnement de l'icône de flèche */
+.icon-arrow {
+  width: 25px;
+  height: 25px;
+  margin-left: auto; /* Pousse la flèche à l'extrême droite */
+}
+
+
 button:hover {
-    background-color: #45a049;
+    background-color: #d4e6b5;
     /* Couleur au survol */
 }
 .contact-form {
@@ -284,6 +342,280 @@ button:hover {
   height: 100%;
   transition: width 0.4s ease;  
 }
+
+
+/* Container principal */
+.merci-container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #00214d;
+  text-align: center;
+}
+
+/* Header */
+.merci-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.print-link {
+  color: #6a5bd9;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.phone-number {
+  color: #6a5bd9;
+  font-size: 14px;
+}
+
+/* Stepper */
+.stepper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.step.completed {
+  color: #00214d;
+  background-color: #e8f3ff;
+}
+
+.step.active {
+  color: #ffffff;
+  background-color: #FFDF64;
+}
+
+.step-number {
+  background-color: #e8f3ff;
+  color: #00214d;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Notification */
+.notification {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ 
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 70%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+.notification h3 {
+  color: #00214d;
+  font-size: 16px;
+}
+
+.notification p {
+  color: #555555;
+  font-size: 14px;
+}
+
+/* Address */
+.address {
+  background-color: #e8f3ff;
+  padding: 10px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #00214d;
+  font-size: 14px;
+}
+
+/* User Info */
+.user-info h1 {
+  color: #00214d;
+  font-size: 24px;
+  margin: 5px 0;
+}
+
+.user-info h2 {
+  color: #00214d;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.user-info p {
+  color: #6a5bd9;
+  font-size: 16px;
+}
+
+.solar-recommendation {
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.recommendation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4a90e2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.power {
+  color: #4a90e2;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.battery-option {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.recommendation-details {
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.recommendation-stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #333;
+  line-height: 2.5;
+}
+
+.recommendation-stat strong {
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+.recommendation-map {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.recommendation-map img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.see-sunlight {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.merci-info{
+  display: flex;
+  gap: 50px;
+}
+
+.autoconsommation-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.autoconsommation-text {
+  width: 50%;
+  font-size: 14px;
+  color: #333;
+}
+
+.autoconsommation-text h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.autoconsommation-text p {
+  margin-top: 10px;
+  color: #666;
+}
+
+.autoconsommation-graph {
+  width: 45%;
+  text-align: center;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: #666;
+}
+
+.legend .consumption {
+  color: #AFC97E;
+}
+
+.legend .production {
+  color: #FFDF64;
+}
+
+.graph-image {
+  width: 100%;
+  height: auto;
+  max-width: 500px;
+  margin-bottom: 10px;
+}
+
+.time-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #666;
+}
+
+
+
 @media (max-width:576px) {
   .simulateur-container{
     display: grid;
@@ -291,4 +623,30 @@ button:hover {
   .form-section{
     width: 100%;
   }
+  .logo{
+    width: 100px;
+    height: auto;
+  }
+  .print-link{
+    display: none;
+  }
+  .phone-number{
+    font-size: 20px;
+  }
+  .none{
+    display: none;
+  }
+  .merci-container{
+    width: 90%;
+  }
+  .recommendation-header h2, .recommendation-header span {
+    font-size: 16px;
+  }
+  .merci-info{
+    display: grid;
+  }
+  .autoconsommation-section{
+    display: grid;
+  }
 }
+

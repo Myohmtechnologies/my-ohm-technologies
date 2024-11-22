@@ -1,5 +1,7 @@
+"use client";
+
 // src/app/page.jsx
-import '../styles/globals.css'
+import '../styles/globals.css';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import CardsSection from './components/CardsSection';
@@ -18,9 +20,9 @@ async function fetchRealizations() {
   return data;
 }
 
+// Composant principal qui récupère les données directement
 export default async function HomePage() {
-  // Récupération des données
-  const realizations = await fetchRealizations();
+  const realizations = await fetchRealizations(); // Récupérer les données avant de rendre la page
 
   return (
     <div>

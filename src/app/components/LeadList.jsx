@@ -1,73 +1,58 @@
-// src/app/components/LeadList.jsx
+import React, { useState, useEffect } from "react";
+import LeadCard from "./LeadTable";
+import "../../styles/dashboard.css";
 
-import React from 'react';
-import { Card, CardContent, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, CardHeader } from '@mui/material';
+const LeadList = () => {
+  const [leads, setLeads] = useState([]);
 
-const LeadList = ({ submissions }) => {
-  // Calcul des statistiques pour le tableau de bord
-  const toContact = submissions.filter(submission => submission.status === "À contacter").length;
-  const contacted = submissions.filter(submission => submission.status === "Contacté").length;
-  const scheduled = submissions.filter(submission => submission.status === "RDV programmé").length;
+  // Récupérer les données des leads
+  useEffect(() => {
+    const fetchLeads = async () => {
+      try {
+        const response = await fetch("/api/get-submissions");
+        if (response.ok) {
+          const data = await response.json();
+          setLeads(data);
+        } else {
+          console.error("Erreur lors de la récupération des leads :", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erreur réseau :", error);
+      }
+    };
+
+    fetchLeads();
+  }, []);
+
+  const updateStep = async (leadId, stepIndex, data) => {
+    try {
+      const response = await fetch(`/api/leads/${leadId}/steps/${stepIndex}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const updatedLead = await response.json();
+        setLeads((prevLeads) =>
+          prevLeads.map((lead) => (lead._id === leadId ? updatedLead : lead))
+        );
+      } else {
+        console.error("Erreur lors de la mise à jour :", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erreur réseau :", error);
+    }
+  };
 
   return (
-    <div className="lead-list-container">
-      {/* Tableau de bord des prospects */}
-      <div className="dashboard">
-        <Card className="dashboard-card" style={{ backgroundColor: '#FFFBEA' }}>
-          <CardContent>
-            <Typography variant="h6">À contacter</Typography>
-            <Typography variant="h4">{toContact}</Typography>
-          </CardContent>
-        </Card>
-        <Card className="dashboard-card" style={{ backgroundColor: '#E7F3FF' }}>
-          <CardContent>
-            <Typography variant="h6">Contactés</Typography>
-            <Typography variant="h4">{contacted}</Typography>
-          </CardContent>
-        </Card>
-        <Card className="dashboard-card" style={{ backgroundColor: '#EAF8EA' }}>
-          <CardContent>
-            <Typography variant="h6">RDV programmés</Typography>
-            <Typography variant="h4">{scheduled}</Typography>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Liste des prospects */}
-      <Card className="lead-card">
-        <CardHeader title="Liste des Prospects" className="lead-card-header" />
-        <TableContainer>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Nom</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Téléphone</TableCell>
-                <TableCell>Statut résidentiel</TableCell>
-                <TableCell>Montant de la facture d'énergie</TableCell>
-                <TableCell>Date de la demande</TableCell>
-                <TableCell>Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {submissions.map((submission) => (
-                <TableRow key={submission._id}>
-                  <TableCell>{submission.name}</TableCell>
-                  <TableCell>{submission.email}</TableCell>
-                  <TableCell>{submission.phone}</TableCell>
-                  <TableCell>{submission.residentialStatus}</TableCell>
-                  <TableCell>{submission.energyBill}</TableCell>
-                  <TableCell>{new Date(submission.timestamp).toLocaleString()}</TableCell>
-                  <TableCell>
-                    <Button variant="outlined" color="primary" size="small">Suivi</Button>
-                    <Button variant="outlined" color="secondary" size="small" style={{ marginLeft: '8px' }}>RDV</Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Card>
+    <div className="lead-list">
+      {leads.length === 0 ? (
+        <p>Aucun lead disponible.</p>
+      ) : (
+        leads.map((lead) => (
+          <LeadCard key={lead._id} lead={lead} onUpdateStep={updateStep} />
+        ))
+      )}
     </div>
   );
 };

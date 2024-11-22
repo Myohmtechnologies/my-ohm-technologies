@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 // src/app/components/SolarOffer.jsx
 const SolarOffer = () => {
     return (
@@ -6,21 +8,35 @@ const SolarOffer = () => {
           <h2>Passez au solaire avec OHM Technologies</h2>
           <p>Sélectionnez votre situation pour voir vos économies:</p>
           <div className="options">
-            <div className="option-item">
-              <img className="icon" src="/images/svg/Group 2085663187.svg" alt="Maison Icon" />
-              <div className="option-props">
-                <span className="option-text">Locataire</span>
-                <span>suivant</span>
-              </div>
-            </div>
+         
+          <div className="option-item">
+          <img
+            className="icon"
+            src="/images/svg/Group 2085663187.svg"
+            alt="Maison Icon"
+          />
+          <div className="option-props">
+            <Link href="/simulateur?residential_status=RENTER" passHref>
+              <span className="option-text">Locataire</span>
+            </Link>
+            <span>suivant</span>
+          </div>
+        </div>
+         
   
-            <div className="option-item">
-              <img className="icon" src="/images/svg/Group 2085663187 (1).svg" alt="Appartement Icon" />
-              <div className="option-props">
-                <span className="option-text">Propriétaire</span>
-                <span>suivant</span>
-              </div>
-            </div>
+        <div className="option-item">
+          <img
+            className="icon"
+            src="/images/svg/Group 2085663187 (1).svg"
+            alt="Appartement Icon"
+          />
+          <div className="option-props">
+            <Link href="/simulateur?residential_status=OWNER" passHref>
+              <span className="option-text">Propriétaire</span>
+            </Link>
+            <span>suivant</span>
+          </div>
+        </div>
           </div>
           <div className="details">
             <span>✔ Estimation en 2 min</span>

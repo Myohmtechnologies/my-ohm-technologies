@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
     return (
       <footer>
@@ -12,9 +14,9 @@ const Footer = () => {
               Equiper votre maison de panneaux solaires vous permet de réduire votre facture d'électricité, et d'agir positivement pour la transition écologique.
             </p>
             <ul className="footer-links">
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms & Condition</a></li>
-              <li><a href="#">Cookies Policy</a></li>
+              <li><a href="/PrivacyPolicy">Politique de Confidentialité</a></li>
+              <li><a href="/TermsAndConditions">Termes et Conditions </a></li>
+              <li><a href="/CookiePolicy">Cookies Policy</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
             <p>&copy; 2023 My OHM Inc. All rights reserved.</p>
@@ -27,6 +29,7 @@ const Footer = () => {
                 placeholder="Email address"
                 className="email-input"
               />
+              <Link href="/simulateur" >
               <button className="button-yellow">
                 VOUS AVEZ UN PROJET
                 <img
@@ -35,6 +38,7 @@ const Footer = () => {
                   src="/images/svg/lets-icons_arrow-right.svg"
                 />
               </button>
+              </Link>
             </form>
             <div className="social-icons">
               <a href="#"><img src="/images/ri_facebook-fill.svg" alt="Facebook" /></a>

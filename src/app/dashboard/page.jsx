@@ -1,77 +1,78 @@
-"use client"; 
-import '../../styles/simulateur.css'; 
-import { useEffect, useState } from 'react';
-import Sidebar from '../components/Sidebar'; // Importer le composant Sidebar
-import LeadList from '../components/LeadList';
-import BlogForm from '../components/BlogForm'; 
-import BlogList from '../components/BlogList';
+"use client";
 
-const Dashboard = () => {
-  const [submissions, setSubmissions] = useState([]);
-  const [blogs, setBlogs] = useState([]);
-  const [currentSection, setCurrentSection] = useState('leads'); // Gérer la section active
+import React from "react";
+import FullCalendar from "@fullcalendar/react";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import googleCalendarPlugin from "@fullcalendar/google-calendar";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import Sidebar from "../components/Sidebar"; // Importation de la Sidebar
+import '../../styles/dashboard.css'
 
-  useEffect(() => {
-    const fetchSubmissions = async () => {
-      try {
-        const response = await fetch('/api/get-submissions');
-        if (!response.ok) {
-          throw new Error('Erreur lors de la récupération des soumissions');
-        }
-        const data = await response.json();
-        setSubmissions(data);
-      } catch (error) {
-        console.error('Erreur de récupération des données:', error);
-      }
-    };
-
-    const fetchBlogs = async () => {
-      try {
-        const response = await fetch('/api/blogs');
-        if (!response.ok) {
-          throw new Error('Erreur lors de la récupération des blogs');
-        }
-        const data = await response.json();
-        setBlogs(data);
-      } catch (error) {
-        console.error('Erreur de récupération des blogs:', error);
-      }
-    };
-
-    fetchSubmissions();
-    fetchBlogs();
-  }, []);
-
-  const handleBlogCreated = (newBlog) => {
-    setBlogs([newBlog, ...blogs]); // Ajouter le nouveau blog en haut de la liste
-  };
-
+const DashboardPage = () => {
   return (
-    <div className="dashboard-container">
+    <div className="flex h-screen bg-gray-100">
+      {/* Sidebar */}
+      <Sidebar />
 
-      
-      <div className="main-content">
-        <h1>Tableau de Bord</h1>
-
-        {/* Afficher la section actuelle */}
-        {currentSection === 'leads' && (
-          <>
-            <h2>Leads</h2>
-            <LeadList submissions={submissions} />
-          </>
-        )}
-
-        {currentSection === 'blogs' && (
-          <>
-            <h2>Créer un Nouvel Article de Blog</h2>
-            <BlogForm onBlogCreated={handleBlogCreated} />
-            <h2>Articles de Blog</h2>
-            <BlogList blogs={blogs} />
-          </>
-        )}
+      {/* Main Content */}
+      <div className="flex-1 p-6">
+        <div className="bg-white shadow-lg rounded-lg p-6 max-w-7xl mx-auto">
+          <h1 className="text-3xl font-bold text-gray-800 mb-6">
+            Calendrier des Rendez-vous
+          </h1>
+          <FullCalendar
+            plugins={[
+              timeGridPlugin,
+              googleCalendarPlugin,
+              dayGridPlugin,
+              interactionPlugin,
+            ]}
+            initialView="timeGridWeek"
+            slotDuration="02:00:00"
+            slotLabelInterval="02:00"
+            slotLabelFormat={{
+              hour: "numeric",
+              minute: "2-digit",
+              meridiem: false,
+              hourCycle: "h23",
+            }}
+            slotMinTime="08:00:00"
+            slotMaxTime="20:00:00"
+            height="auto"
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right: "timeGridWeek,dayGridMonth",
+            }}
+            googleCalendarApiKey="VOTRE_GOOGLE_CALENDAR_API_KEY"
+            events={{
+              googleCalendarId: "votre-calendar-id@group.calendar.google.com",
+            }}
+            eventClick={(info) => {
+              alert(
+                `Rendez-vous : ${info.event.title}\nDébut : ${info.event.start}`
+              );
+            }}
+            nowIndicator={true}
+            weekends={true}
+            views={{
+              timeGridWeek: {
+                titleFormat: {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                },
+              },
+            }}
+            dayHeaderClassNames="bg-blue-600 text-white"
+            contentHeight="auto"
+            dayMaxEvents={true}
+          />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default DashboardPage;

@@ -3,14 +3,14 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-  
+
     <header className="hero-header">
       {/* Logo à gauche */}
       <div className="logo" href="/">
         <a href="/">
-          <img src="/images/logo-my-ohm.png" alt="Logo MY OHM" />
+          <img src="/images/logo1.png" alt="Logo MY OHM" />
         </a>
-        
+
       </div>
 
       {/* Navigation */}
@@ -28,10 +28,14 @@ const Header = () => {
 
       {/* Call to Action (CTA) avec icône SVG */}
       <div className="cta-wrapper">
-        <div className="cta-button">
-          <span>Mon étude gratuite</span>
-          <img src="/images/svg/icons8-right-arrow-32.png" alt="Arrow Icon" />
-        </div>
+        <Link href="/simulateur">
+          <div className="cta-button">
+            <span>Mon étude gratuite</span>
+            <img src="/images/svg/icons8-right-arrow-32.png" alt="Arrow Icon" />
+          </div>
+        </Link>
+       
+
       </div>
 
       {/* Bouton pour ouvrir le menu */}

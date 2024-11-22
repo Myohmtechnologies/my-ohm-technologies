@@ -27,6 +27,9 @@
       ],
       "@models/*": [
         "./models/*"  // Ajoutez cette ligne pour définir l'alias @models
+      ],
+      "@/components/*": [
+        "./src/components/*" // Ajout de l'alias pour les composants
       ]
     },
     "target": "ES2017"
