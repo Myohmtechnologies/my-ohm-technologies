@@ -2411,9 +2411,12 @@ p {
     margin-bottom: 60px;
     width: 100%;
     max-width: fit-content;
-
   }
 
+  .hero-page-section img{
+    position: absolute;
+    height: 400px;
+  }
   .option {
     display: grid;
     justify-content: space-evenly;
@@ -2777,7 +2780,7 @@ p {
     width: 90%;
     margin: 40px auto;
     position: relative;
-    bottom: 10px;
+    top: 150px;
 
   }
 
