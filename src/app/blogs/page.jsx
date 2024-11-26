@@ -1,7 +1,6 @@
 "use client"; // Assurez-vous d'importer ce module en tant que composant client
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import "../../styles/globals.css"
 import BlogHeader from '../components/BlogHeader'
 import Header from '../components/Header';

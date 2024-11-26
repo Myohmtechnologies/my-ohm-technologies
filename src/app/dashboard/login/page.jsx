@@ -22,7 +22,7 @@ export default function LoginPage() {
 
     if (res.ok) {
       // Stocker le token dans localStorage (si nécessaire)
-      localStorage.setItem('token', data.token); 
+      localStorage.setItem('token', data.token);
 
       // Rediriger vers la page /dashboard après la connexion réussie
       router.push('/dashboard');
@@ -37,7 +37,7 @@ export default function LoginPage() {
       <h1>Connexion</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Nom d'utilisateur</label>
+          <label>Nom d&apos;utilisateur</label>
           <input
             type="text"
             value={username}

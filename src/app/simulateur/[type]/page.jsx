@@ -1,35 +1,31 @@
-// src/app/simulateur/[type]/page.jsx
-'use client';
+"use client";
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Autocomplete } from '@react-google-maps/api';
-import '../../../styles/simulateur.css';
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { LoadScript, Autocomplete } from "@react-google-maps/api";
+import Image from "next/image";
+import "../../../styles/simulateur.css";
 
 const SimulateurPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const residential_status = searchParams.get('residential_status');
+  const residential_status = searchParams.get("residential_status");
 
-  const [selectedOwnership, setSelectedOwnership] = useState('');
-  const [energyBill, setEnergyBill] = useState('');
+  const [energyBill, setEnergyBill] = useState("");
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+    name: "",
+    email: "",
+    phone: "",
   });
-
-  const [address, setAddress] = useState('');
   const [coordinates, setCoordinates] = useState(null);
-  const [mapLoaded, setMapLoaded] = useState(false);
 
-  // API Key pour Google Maps (assurez-vous de remplacer par votre propre clé)
-  const googleMapsApiKey = 'YOUR_GOOGLE_MAPS_API_KEY';
+  // API Key pour Google Maps (remplacez par votre clé réelle)
+  const googleMapsApiKey = "YOUR_GOOGLE_MAPS_API_KEY";
 
   // Vérifie si le statut résidentiel est défini
   useEffect(() => {
     if (!residential_status) {
-      router.push('/');
+      router.push("/");
     }
   }, [residential_status, router]);
 
@@ -42,23 +38,26 @@ const SimulateurPage = () => {
         lat: location.lat(),
         lng: location.lng(),
       });
-      setAddress(place.formatted_address);
     }
   };
 
   return (
     <div className="simulateur-container">
       {residential_status && (
-        <h1>{residential_status === 'OWNER' ? 'Vous êtes Propriétaire' : 'Vous êtes Locataire'}</h1>
+        <h1>
+          {residential_status === "OWNER"
+            ? "Vous êtes Propriétaire"
+            : "Vous êtes Locataire"}
+        </h1>
       )}
 
       {/* Étape de sélection du montant de la facture d'énergie */}
       {residential_status && (
         <div>
-          <h2>Quel est le montant de votre facture d'énergie ?</h2>
-          <button onClick={() => setEnergyBill('100')}>100€</button>
-          <button onClick={() => setEnergyBill('200')}>200€</button>
-          <button onClick={() => setEnergyBill('300')}>300€</button>
+          <h2>Quel est le montant de votre facture d&apos;énergie ?</h2>
+          <button onClick={() => setEnergyBill("100")}>100€</button>
+          <button onClick={() => setEnergyBill("200")}>200€</button>
+          <button onClick={() => setEnergyBill("300")}>300€</button>
         </div>
       )}
 
@@ -73,12 +72,16 @@ const SimulateurPage = () => {
       {energyBill && (
         <div>
           <h2>Entrez votre adresse pour la simulation</h2>
-          <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={['places']}>
-            <Autocomplete onLoad={(autocomplete) => setMapLoaded(true)} onPlaceChanged={() => handlePlaceSelected(autocomplete)}>
+          <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={["places"]}>
+            <Autocomplete
+              onPlaceChanged={() =>
+                handlePlaceSelected(window.google.maps.places.Autocomplete)
+              }
+            >
               <input
                 type="text"
                 placeholder="Entrez votre adresse"
-                style={{ width: '100%', padding: '10px', fontSize: '16px' }}
+                style={{ width: "100%", padding: "10px", fontSize: "16px" }}
               />
             </Autocomplete>
           </LoadScript>
@@ -89,10 +92,11 @@ const SimulateurPage = () => {
       {coordinates && (
         <div>
           <h3>Voici votre toit :</h3>
-          <img
+          <Image
             src={`https://maps.googleapis.com/maps/api/staticmap?center=${coordinates.lat},${coordinates.lng}&zoom=20&size=600x400&markers=color:red|${coordinates.lat},${coordinates.lng}&key=${googleMapsApiKey}`}
             alt="Toit de votre maison"
-            style={{ border: '1px solid #ddd', borderRadius: '8px', marginTop: '10px' }}
+            width={600}
+            height={400}
           />
         </div>
       )}

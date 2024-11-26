@@ -1,61 +1,70 @@
+import Image from "next/image";
+
 const CardsSection = () => {
-    return (
-      <section className="cards">
-        <div className="card-top-text">
-          <div className="left-text">
-            <h3 className="small-h3">ÉCONOMISEZ AUJOURD'HUI, PROTÉGEZ DEMAIN.</h3>
-          </div>
-          <div className="right-content">
-            <h2 className="title">Économique et écologique: votre avenir est solaire.</h2>
-            <p>
-              Équiper votre maison de panneaux solaires vous permet de réduire
-              votre facture d'électricité, et d'agir positivement pour la
-              transition écologique.
-            </p>
-          </div>
+  return (
+    <section className="cards">
+      <div className="card-top-text">
+        <div className="left-text">
+          <h3 className="small-h3">ÉCONOMISEZ AUJOURD&apos;HUI, PROTÉGEZ DEMAIN.</h3>
         </div>
-  
-        <div className="cards-container">
-          <div className="card">
-            <img
-              src="/images/svg/icone-soleil.svg"
-              alt="Icone Ensoleillement"
-              className="card-image"
-            />
-            <p className="card-text">Avec + 300 jours d'ensoleillements</p>
-          </div>
-          <div className="card">
-            <img
-              src="/images/svg/icone-portefeuille.svg"
-              data-color="special"
-              alt="Icone Economie"
-              className="card-image"
-            />
-            <p className="card-text">
-              Jusqu'à 80% d'économie sur vos factures d'électricité
-            </p>
-          </div>
-          <div className="card">
-            <img
-              src="/images/svg/icone-valorisation.svg"
-              alt="Icone Patrimoine"
-              className="card-image"
-            />
-            <p className="card-text">Valorisation de votre Patrimoine</p>
-          </div>
-          <div className="card">
-            <img
-              src="/images/svg/icone-energie.svg"
-              data-color="special"
-              alt="Icone Energie"
-              className="card-image"
-            />
-            <p className="card-text">Une énergie verte et renouvelable</p>
-          </div>
+        <div className="right-content">
+          <h2 className="title">Économique et écologique : votre avenir est solaire.</h2>
+          <p>
+            Équiper votre maison de panneaux solaires vous permet de réduire
+            votre facture d&apos;électricité, et d&apos;agir positivement pour la
+            transition écologique.
+          </p>
         </div>
-      </section>
-    );
-  };
-  
-  export default CardsSection;
-  
+      </div>
+
+      <div className="cards-container">
+        <div className="card">
+          <Image
+            src="/images/svg/icone-soleil.svg"
+            alt="Icône Ensoleillement"
+            width={100} // Remplacez par les dimensions réelles
+            height={100} // Remplacez par les dimensions réelles
+            className="card-image"
+          />
+          <p className="card-text">Avec + 300 jours d&apos;ensoleillements</p>
+        </div>
+        <div className="card">
+          <Image
+            src="/images/svg/icone-portefeuille.svg"
+            data-color="special"
+            alt="Icône Économie"
+            width={100} // Remplacez par les dimensions réelles
+            height={100} // Remplacez par les dimensions réelles
+            className="card-image"
+          />
+          <p className="card-text">
+            Jusqu&apos;à 80% d&apos;économie sur vos factures d&apos;électricité
+          </p>
+        </div>
+        <div className="card">
+          <Image
+            src="/images/svg/icone-valorisation.svg"
+            alt="Icône Patrimoine"
+            width={100} // Remplacez par les dimensions réelles
+            height={100} // Remplacez par les dimensions réelles
+            className="card-image"
+          />
+          <p className="card-text">Valorisation de votre Patrimoine</p>
+        </div>
+        <div className="card">
+          <Image
+            src="/images/svg/icone-energie.svg"
+            data-color="special"
+            alt="Icône Énergie"
+            width={100} // Remplacez par les dimensions réelles
+            height={100} // Remplacez par les dimensions réelles
+            className="card-image"
+          />
+          <p className="card-text">Une énergie verte et renouvelable</p>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default CardsSection;

@@ -1,16 +1,14 @@
-import Link from "next/link";
-
 const SimulationSection = () => {
   return (
     <section className="simulation-section">
       <div>
-        <p>Simuler votre projet en 2 minutes et obtenez votre</p>
-        <p>devis sous 24h Étude gratuite Avis d'experts</p>
+        <p>Simulez votre projet en 2 minutes et obtenez votre</p>
+        <p>
+          devis sous 24h &ndash; Étude gratuite &ndash; Avis d&apos;experts
+        </p>
       </div>
       <div>
-       
-          <a href="/simulateur">Accédez à Votre simulateur d'économie</a>
-    
+        <a href="/simulateur">Accédez à votre simulateur d&apos;économie</a>
       </div>
     </section>
   );

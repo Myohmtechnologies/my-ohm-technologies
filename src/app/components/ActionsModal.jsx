@@ -4,7 +4,7 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [date, setDate] = useState("");
   const [notes, setNotes] = useState("");
-  const [file, setFile] = useState(null);
+  const [ setFile] = useState(null);
 
   // Étapes et actions possibles
   const actionsByStatus = {

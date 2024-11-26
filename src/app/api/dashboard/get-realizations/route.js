@@ -2,7 +2,7 @@
 import { connectToDatabase } from '../../../lib/mongodb'; 
 import { NextResponse } from 'next/server';
 
-export async function GET(request) {
+export async function GET() {
   try {
     const { db } = await connectToDatabase();
 
