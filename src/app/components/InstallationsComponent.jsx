@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const InstallationsComponent = () => {
   return (
@@ -18,7 +19,12 @@ const InstallationsComponent = () => {
           <div>
             <Link href="#" className="details-button">
               Afficher les détails
-              <img src="images/svg/lets-icons_arrow-right.svg" alt="Flèche vers la droite" />
+              <Image
+                src="/images/svg/lets-icons_arrow-right.svg"
+                alt="Flèche vers la droite"
+                width={20} // Remplacez par la largeur réelle de l'image
+                height={20} // Remplacez par la hauteur réelle de l'image
+              />
             </Link>
           </div>
         </div>
