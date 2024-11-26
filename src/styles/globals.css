@@ -151,6 +151,7 @@ h2 {
   display: flex;
   gap: 30px;
   list-style-type: none;
+  
 }
 
 .nav-links a {
@@ -1270,7 +1271,10 @@ footer p {
 }
 
 .nav-toggle {
-  display: none;
+  display: none; /* Par défaut, le bouton est caché en version desktop */
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .tpilot-section-img {
@@ -2351,13 +2355,21 @@ p {
 @media (max-width:576px) {
 
   .hero-header {
-    padding: 20px;
+    padding: 0 20px;
   }
   .nav-toggle {
     display: block;
     margin-top: 10px;
     padding: 10px;
     border-radius: 50%;
+  }
+
+  .nav-toggle img{
+    width: 50px;
+    transition: transform 0.3s ease;
+  }
+  .nav-links.active ~ .nav-toggle img {
+    transform: rotate(180deg); /* Optionnel pour un effet visuel */
   }
 
   .cta-wrapper {
@@ -2368,17 +2380,47 @@ p {
     width: 200px;
   }
 
-  .nav-links ul {
+  .nav-links {
+    display: none; /* Cacher la navigation par défaut */
     flex-direction: column;
-    align-items: flex-start;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 10;
   }
 
-  #nav-links {
+  .nav-links.active {
+    display: flex; /* Montrer le menu quand l'état est actif */
+  }
+
+  .nav-links ul {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  
+
+  .cta-wrapper {
+    display: none; /* Si nécessaire, cacher d'autres éléments sur mobile */
+  }
+
+  .vertical-separator {
     display: none;
   }
 
-  .nav-links {
-    display: flex;
+  
+
+  .cta-wrapper {
+    display: none; /* Si nécessaire, cacher d'autres éléments sur mobile */
+  }
+
+  .vertical-separator {
+    display: none;
   }
 
   .hero {
@@ -2416,6 +2458,7 @@ p {
   .hero-page-section img{
     position: absolute;
     height: 400px;
+    z-index: 0;
   }
   .option {
     display: grid;

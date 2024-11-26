@@ -1,192 +1,182 @@
 import React, { useState } from "react";
 
 const ActionsModal = ({ lead, onClose, onSave }) => {
-  const [formData, setFormData] = useState({
-    date: "",
-    notes: "",
-    images: null, // Pour les images des étapes spécifiques
-    additionalField: "", // Champs supplémentaires pour certaines étapes
-  });
+  const [selectedAction, setSelectedAction] = useState("");
+  const [date, setDate] = useState("");
+  const [notes, setNotes] = useState("");
+  const [file, setFile] = useState(null);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  // Étapes et actions possibles
+  const actionsByStatus = {
+    Nouveau: [
+      { value: "RDV fixé", label: "Fixer un RDV", requires: ["date", "notes"] },
+      { value: "Replanifier un RDV", label: "Replanifier un RDV", requires: ["date", "notes"] },
+      { value: "Non intéressé", label: "Non intéressé", requires: ["notes"] },
+    ],
+    "RDV fixé": [
+      { value: "Devis signé", label: "Devis signé", requires: ["notes"] },
+      { value: "Deuxième RDV", label: "Deuxième RDV", requires: ["date", "notes"] },
+      { value: "Client non intéressé", label: "Client non intéressé", requires: ["notes"] },
+    ],
+    "Devis signé": [
+      { value: "Visite technique", label: "Planifier une visite technique", requires: ["date", "notes"] },
+    ],
+    "Visite technique": [
+      { value: "Problème technique", label: "Problème technique", requires: ["notes"] },
+      { value: "Démarches administratives", label: "Passer aux démarches administratives", requires: ["notes"] },
+    ],
+    "Démarches administratives": [
+      { value: "Démarche en cours", label: "Marquer comme en cours", requires: ["file", "notes"] },
+      { value: "Démarche réussie", label: "Démarche réussie", requires: ["notes"] },
+      { value: "Démarche échouée", label: "Démarche échouée", requires: ["notes"] },
+    ],
+    Pose: [
+      { value: "Pose à faire", label: "Planifier une pose", requires: ["date"] },
+      { value: "Pose réalisée", label: "Marquer la pose comme réalisée", requires: ["notes"] },
+    ],
+    Consuel: [
+      { value: "Demande consuel", label: "Demande consuel", requires: ["notes"] },
+      { value: "Consuel validé", label: "Consuel validé", requires: ["file", "notes"] },
+      { value: "Consuel échoué", label: "Consuel échoué", requires: ["notes"] },
+    ],
+    "Raccordement EDF": [
+      { value: "Demande raccordement", label: "Faire une demande de raccordement", requires: ["notes"] },
+      { value: "Raccordement réalisé", label: "Raccordement réalisé", requires: ["notes"] },
+    ],
+  };
+
+  const availableActions = actionsByStatus[lead.status] || [];
+
+  const handleActionChange = (e) => {
+    setSelectedAction(e.target.value);
+    setDate("");
+    setNotes("");
+    setFile(null);
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, images: e.target.files });
+    setFile(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSave({ ...formData, id: lead.id });
-    onClose();
-  };
-
-  const renderActions = () => {
-    switch (lead.status) {
-      case "Nouveau contact":
-        return (
-          <>
-            <label className="block mb-2">Action :</label>
-            <select
-              name="additionalField"
-              value={formData.additionalField}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg p-2 mb-4"
-            >
-              <option value="">Sélectionnez une action</option>
-              <option value="Rdv fixé">Rdv fixé</option>
-              <option value="Replanifier">Replanifier</option>
-              <option value="Non intéressé">Non intéressé</option>
-            </select>
-          </>
-        );
-      case "RDV Client":
-        return (
-          <>
-            <label className="block mb-2">Action :</label>
-            <select
-              name="additionalField"
-              value={formData.additionalField}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg p-2 mb-4"
-            >
-              <option value="">Sélectionnez une action</option>
-              <option value="Devis signé">Devis signé</option>
-              <option value="Deuxième RDV">Deuxième RDV</option>
-              <option value="Client pas intéressé">Client pas intéressé</option>
-            </select>
-          </>
-        );
-      case "Visite technique":
-        return (
-          <>
-            <label className="block mb-2">Action :</label>
-            <select
-              name="additionalField"
-              value={formData.additionalField}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg p-2 mb-4"
-            >
-              <option value="">Sélectionnez une action</option>
-              <option value="Visite technique OK">Visite technique OK</option>
-              <option value="Échec visite technique">Échec visite technique</option>
-            </select>
-          </>
-        );
-      case "Démarche administrative":
-        return (
-          <>
-            <label className="block mb-2">Action :</label>
-            <select
-              name="additionalField"
-              value={formData.additionalField}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg p-2 mb-4"
-            >
-              <option value="">Sélectionnez une action</option>
-              <option value="En cours (Mairie)">En cours (Mairie)</option>
-              <option value="Validé (Mairie)">Validé (Mairie)</option>
-              <option value="Échec (Mairie)">Échec (Mairie)</option>
-            </select>
-          </>
-        );
-      case "Pose":
-        return (
-          <>
-            <label className="block mb-2">Action :</label>
-            <select
-              name="additionalField"
-              value={formData.additionalField}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg p-2 mb-4"
-            >
-              <option value="">Sélectionnez une action</option>
-            
-              <option value="Définir date pose">Définir la date de la pose</option>
-            </select>
-          </>
-        );
-      case "CONSUEL":
-        return (
-          <>
-            <label className="block mb-2">Action :</label>
-            <select
-              name="additionalField"
-              value={formData.additionalField}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg p-2 mb-4"
-            >
-              <option value="">Sélectionnez une action</option>
-              <option value="Demande à faire">Demande à faire</option>
-              <option value="En cours">En cours</option>
-              <option value="Validé">Validé</option>
-            </select>
-          </>
-        );
-      default:
-        return null;
+  const handleSaveClick = () => {
+    if (!selectedAction) {
+      alert("Veuillez sélectionner une action.");
+      return;
     }
+
+    const requiredFields = availableActions.find((action) => action.value === selectedAction)?.requires || [];
+
+    if (requiredFields.includes("date") && !date) {
+      alert("Veuillez renseigner une date.");
+      return;
+    }
+
+    if (requiredFields.includes("notes") && !notes) {
+      alert("Veuillez renseigner un compte rendu.");
+      return;
+    }
+
+    const updatedLead = {
+      id: lead.id,
+      status: selectedAction,
+      notes: {
+        content: notes,
+        date: date,
+      },
+    };
+
+    console.log("Données envoyées au backend :", updatedLead); // LOG ICI
+    onSave(updatedLead);
   };
+
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white w-1/2 p-6 rounded-lg shadow-lg relative">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white rounded-lg shadow-lg p-6 w-1/3">
+        <h2 className="text-lg font-bold mb-4">Actions pour {lead.name}</h2>
+        {availableActions.length > 0 ? (
+          <>
+            <label htmlFor="action-select" className="block mb-2">
+              Sélectionnez une action :
+            </label>
+            <select
+              id="action-select"
+              className="border p-2 rounded w-full mb-4"
+              value={selectedAction}
+              onChange={handleActionChange}
+            >
+              <option value="">-- Choisir une action --</option>
+              {availableActions.map((action) => (
+                <option key={action.value} value={action.value}>
+                  {action.label}
+                </option>
+              ))}
+            </select>
+
+            {selectedAction &&
+              availableActions.find((action) => action.value === selectedAction)?.requires.includes("date") && (
+                <div className="mb-4">
+                  <label htmlFor="date" className="block mb-2">
+                    Date :
+                  </label>
+                  <input
+                    type="date"
+                    id="date"
+                    className="border p-2 rounded w-full"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />
+                </div>
+              )}
+
+            {selectedAction &&
+              availableActions.find((action) => action.value === selectedAction)?.requires.includes("notes") && (
+                <div className="mb-4">
+                  <label htmlFor="notes" className="block mb-2">
+                    Compte rendu :
+                  </label>
+                  <textarea
+                    id="notes"
+                    className="border p-2 rounded w-full"
+                    value={notes} // Assurez-vous que cet état est correctement mis à jour
+                    onChange={(e) => setNotes(e.target.value)}
+                    rows={4}
+                  />
+
+                </div>
+              )}
+
+            {selectedAction &&
+              availableActions.find((action) => action.value === selectedAction)?.requires.includes("file") && (
+                <div className="mb-4">
+                  <label htmlFor="file" className="block mb-2">
+                    Fichier :
+                  </label>
+                  <input
+                    type="file"
+                    id="file"
+                    className="border p-2 rounded w-full"
+                    onChange={handleFileChange}
+                  />
+                </div>
+              )}
+
+            <button
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              onClick={handleSaveClick}
+            >
+              Sauvegarder
+            </button>
+          </>
+        ) : (
+          <p className="text-gray-600">Aucune action disponible pour ce statut : {lead.status}.</p>
+        )}
         <button
+          className="mt-4 text-gray-500 underline"
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-600 hover:text-black"
         >
-          ✕
+          Annuler
         </button>
-        <h2 className="text-xl font-bold mb-4">Actions sur le client</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {renderActions()}
-          <div>
-            <label className="block text-gray-700">Date :</label>
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleInputChange}
-              className="w-full border border-gray-300 rounded-lg p-2"
-              required
-            />
-          </div>
-          <div>
-            <label className="block text-gray-700">Notes :</label>
-            <textarea
-              name="notes"
-              value={formData.notes}
-              onChange={handleInputChange}
-              rows={4}
-              className="w-full border border-gray-300 rounded-lg p-2"
-              required
-            ></textarea>
-          </div>
-          {lead.status === "Visite technique" &&
-            formData.additionalField === "Visite technique OK" && (
-              <div>
-                <label className="block text-gray-700">
-                  Charger des images (3 max) :
-                </label>
-                <input
-                  type="file"
-                  name="images"
-                  accept="image/*"
-                  multiple
-                  onChange={handleFileChange}
-                  className="w-full border border-gray-300 rounded-lg p-2"
-                />
-              </div>
-            )}
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-          >
-            Sauvegarder
-          </button>
-        </form>
       </div>
     </div>
   );

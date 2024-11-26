@@ -68,7 +68,7 @@ const SimulateurPage = () => {
     {/* Logo à gauche */}
     <div className="logo" href="/">
       <a href="/">
-        <img src="/images/logo-my-ohm.png" alt="Logo MY OHM" />
+        <img src="/images/logo.png" alt="Logo MY OHM" />
       </a>
     </div>
   </header>

@@ -57,14 +57,7 @@ const HeroSection = () => {
           </div>
 
           <div className="right-half">
-            <div className="top-quarter">
-              <img src="images/svg/Location.svg" alt="" />
-              <p>544 Av. Frédéric Mistral 04100 Manosque</p>
-            </div>
-            <div className="bottom-quarter">
-              <img src="images/svg/material-symbols_call.svg" alt="" />
-              <p>04 92 92 04 04</p>
-            </div>
+          
           </div>
         </div>
 

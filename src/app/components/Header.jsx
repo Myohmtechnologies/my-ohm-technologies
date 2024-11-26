@@ -1,20 +1,25 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Link from 'next/link';
 
 const Header = () => {
-  return (
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  return (
     <header className="hero-header">
       {/* Logo à gauche */}
-      <div className="logo" href="/">
+      <div className="logo">
         <a href="/">
-          <img src="/images/logo1.png" alt="Logo MY OHM" />
+          <img src="/images/logo.png" alt="Logo MY OHM" />
         </a>
-
       </div>
 
       {/* Navigation */}
-      <nav className="nav-links" id="nav-links">
+      <nav className={`nav-links ${isMobileMenuOpen ? 'active' : ''}`} id="nav-links">
         <ul>
           <li><a href="/panneaux-photovoltaiques">Panneaux photovoltaïques</a></li>
           <li><a href="/blogs">Blog</a></li>
@@ -34,14 +39,30 @@ const Header = () => {
             <img src="/images/svg/icons8-right-arrow-32.png" alt="Arrow Icon" />
           </div>
         </Link>
-       
-
       </div>
 
-      {/* Bouton pour ouvrir le menu */}
-      <button className="nav-toggle" id="nav-toggle" aria-label="Ouvrir le menu">
-        <img src="/images/svg/menu.svg" alt="Menu Icon" />
+      {/* Bouton pour ouvrir/fermer le menu */}
+      <button
+        className="nav-toggle"
+        id="nav-toggle"
+        aria-label={isMobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+        onClick={toggleMobileMenu}
+      >
+        {isMobileMenuOpen ? (
+          <img
+            key="close-icon"
+            src="/images/svg/icons8-effacer.svg"
+            alt="Close Icon"
+          />
+        ) : (
+          <img
+            key="menu-icon"
+            src="/images/svg/menu.svg"
+            alt="Menu Icon"
+          />
+        )}
       </button>
+
     </header>
   );
 };

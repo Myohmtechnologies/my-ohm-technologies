@@ -493,7 +493,7 @@ button:hover {
 }
 
 .power {
-  color: #4a90e2;
+  color: #AFC97E;
   font-size: 24px;
   font-weight: bold;
 }
@@ -522,7 +522,7 @@ button:hover {
 
 .recommendation-stat strong {
   font-weight: bold;
-  color: #4a90e2;
+  color: #FFDF64;
 }
 
 .recommendation-map {
@@ -647,6 +647,12 @@ button:hover {
   }
   .autoconsommation-section{
     display: grid;
+  }
+  .image-section img{
+    display: none;
+  }
+  .notification{
+    width: 90%;
   }
 }
 

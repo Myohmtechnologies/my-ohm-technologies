@@ -7,7 +7,7 @@ const MerciPage = () => {
       {/* Header */}
       <header className="merci-header">
       <a href="/">
-      <img href="/" src="/images/logo-my-ohm.png" alt="Logo My ohm technologies" className="logo" />
+      <img href="/" src="/images/logo.png" alt="Logo My ohm technologies" className="logo" />
       </a>
         
         <div className="header-actions">
