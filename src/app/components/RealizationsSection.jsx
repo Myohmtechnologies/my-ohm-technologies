@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const RealizationsSection = ({ blogs }) => {
   return (
@@ -14,7 +15,7 @@ const RealizationsSection = ({ blogs }) => {
               {blog.slug ? ( // Vérifiez que le slug est présent avant de créer le lien
                 <Link href={`/blogs/${blog.slug}`}>
                   {blog.imageUrl && (
-                    <img
+                    <Image
                       src={blog.imageUrl}
                       className="realization-image"
                       alt={blog.title}
