@@ -1,5 +1,7 @@
 // src/app/components/BlogSection.jsx
 
+import Image from "next/image";
+
 const BlogSection = ({ sections = [] }) => {
   return (
     <section className="blog-section">
@@ -29,12 +31,8 @@ const BlogSection = ({ sections = [] }) => {
           </div>
 
           <div className="call-to-action">
-            <img src="/images/svg/mingcute_ceiling-lamp-fill.svg" alt="Lamp Icon" />
-<<<<<<< HEAD
-            <h3>Prêt à passer à l'énergie solaire ?</h3>
-=======
+            <Image src="/images/svg/mingcute_ceiling-lamp-fill.svg" alt="Lamp Icon" width={30} height={30}/>
             <h3>Prêt à passer à l&apos;énergie solaire ?</h3>
->>>>>>> 642d8a2 (Réinitialisation du dépôt)
             <div className="details">
               <span>✔ Estimation en 2 min</span>
               <span>✔ Gratuit et sans engagement</span>
@@ -44,7 +42,7 @@ const BlogSection = ({ sections = [] }) => {
               <a href="#">
                 VOUS AVEZ UN PROJET
               </a>
-              <img src="/images/svg/lets-icons_arrow-right.svg" alt="Arrow Right" />
+              <Image src="/images/svg/lets-icons_arrow-right.svg" alt="Arrow Right" width={30} height={30}/>
             </button>
           </div>
 
@@ -55,7 +53,7 @@ const BlogSection = ({ sections = [] }) => {
               <a href="#">
                 MON ÉTUDE GRATUITE
               </a>
-              <img src="/images/svg/lets-icons_arrow-right.svg" alt="Arrow Right" />
+              <Image src="/images/svg/lets-icons_arrow-right.svg" alt="Arrow Right" width={30} height={30}/>
             </button>
           </div>
         </aside>
