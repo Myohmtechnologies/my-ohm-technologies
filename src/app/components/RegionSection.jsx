@@ -1,24 +1,23 @@
+import Image from "next/image";
+
 const RegionSection = () => {
     return (
       <section className="region-section">
         <div className="container">
           <div className="map-info">
             <div>
-              <img
+              <Image
                 src="/images/Capture_d_écran_2024-10-07_à_19.08.43-removebg-preview.png"
                 alt="Carte région PACA"
+                width={600}
+                height={600}
               />
             </div>
   
             <div className="map-description">
               <p>
-<<<<<<< HEAD
                 Avec 2 855 heures d&apos;ensoleillement par an, la Provence-Alpes-Côtes
                 d&apos;Azur est la deuxième région la plus ensoleillée de France ! Y
-=======
-                Avec 2 855 heures d&apos;ensoleillement par an, la Provence-Alpes-Côtes
-                d&apos;Azur est la deuxième région la plus ensoleillée de France ! Y
->>>>>>> 642d8a2 (Réinitialisation du dépôt)
                 installer des panneaux solaires est donc à la fois une démarche
                 écologique et un investissement rentable.
               </p>
