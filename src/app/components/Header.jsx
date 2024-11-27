@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Link from 'next/link';
+import Image from "next/image";
 
 const Header = () => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,7 +15,11 @@ const Header = () => {
       {/* Logo à gauche */}
       <div className="logo">
         <a href="/">
-          <img src="/images/logo.png" alt="Logo MY OHM" />
+           <Image src="/images/logo.png" 
+           alt="Logo MY OHM" 
+           width={150}
+           height={150}
+           />
         </a>
       </div>
 
@@ -36,7 +41,7 @@ const Header = () => {
         <Link href="/simulateur">
           <div className="cta-button">
             <span>Mon étude gratuite</span>
-            <img src="/images/svg/icons8-right-arrow-32.png" alt="Arrow Icon" />
+            <Image src="/images/svg/icons8-right-arrow-32.png" alt="Arrow Icon" width={30} height={30}/>
           </div>
         </Link>
       </div>
@@ -49,16 +54,20 @@ const Header = () => {
         onClick={toggleMobileMenu}
       >
         {isMobileMenuOpen ? (
-          <img
+          <Image
             key="close-icon"
             src="/images/svg/icons8-effacer.svg"
             alt="Close Icon"
+            width={50}
+            height={50}
           />
         ) : (
-          <img
+          <Image
             key="menu-icon"
             src="/images/svg/menu.svg"
             alt="Menu Icon"
+            width={50}
+            height={50}
           />
         )}
       </button>
