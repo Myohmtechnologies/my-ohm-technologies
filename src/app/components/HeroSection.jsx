@@ -1,5 +1,6 @@
 // src/app/components/HeroSection.jsx
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 const HeroSection = () => {
@@ -16,10 +17,13 @@ const HeroSection = () => {
             <div className="options">
 
               <div className="option-item">
-                <img
+                <Image
                   className="icon"
                   src="/images/svg/Group 2085663187.svg"
-                  alt="Maison Icon" />
+                  alt="Maison Icon" 
+                  width={150}
+                  height={150}
+                  />
                 <div className="option-props">
                   <Link href="/simulateur?residential_status=RENTER" passHref>
                     <span className="option-text">Locataire</span>
@@ -30,10 +34,13 @@ const HeroSection = () => {
 
 
               <div className="option-item">
-                <img
+                <Image
                   className="icon"
                   src="/images/svg/Group 2085663187 (1).svg"
-                  alt="Appartement Icon" />
+                  alt="Appartement Icon" 
+                  width={150}
+                  height={150}
+                  />
                 <div className="option-props">
                   <Link href="/simulateur?residential_status=OWNER" passHref>
                     <span className="option-text">Propriétaire</span>
