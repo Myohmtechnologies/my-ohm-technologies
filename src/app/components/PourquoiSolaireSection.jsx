@@ -4,22 +4,14 @@ export default function PourquoiSolaireSection() {
       <section className="container-pv">
         <div className="div-text">
           <p>Pourquoi le solaire</p>
-<<<<<<< HEAD
-          <h2>Pourquoi passer à l'énergie solaire :</h2>
-=======
           <h2>Pourquoi passer à l&apos;énergie solaire :</h2>
->>>>>>> 642d8a2 (Réinitialisation du dépôt)
         </div>
         <div className="why-div">
           <div>
             <img src="images/évolution-du-tarif-délectricité.png" alt="Évolution du tarif de l'électricité" />
             <h3 style={{ marginBottom: '10px' }}>Économies sur vos factures:</h3>
             <p>
-<<<<<<< HEAD
-              L'énergie solaire vous permet de réduire considérablement vos dépenses en électricité en produisant votre propre énergie
-=======
               L&apos;énergie solaire vous permet de réduire considérablement vos dépenses en électricité en produisant votre propre énergie
->>>>>>> 642d8a2 (Réinitialisation du dépôt)
               gratuitement à partir du soleil.
             </p>
           </div>
@@ -27,11 +19,7 @@ export default function PourquoiSolaireSection() {
             <img src="images/energie-verte-et-renouvelable.png" alt="Énergie verte et renouvelable" />
             <h3 style={{ marginBottom: '10px' }}>Énergie verte et renouvelable:</h3>
             <p>
-<<<<<<< HEAD
-              En utilisant le solaire, vous réduisez votre empreinte carbone et contribuez à la protection de l'environnement en optant
-=======
               En utilisant le solaire, vous réduisez votre empreinte carbone et contribuez à la protection de l&apos;environnement en optant
->>>>>>> 642d8a2 (Réinitialisation du dépôt)
               pour une énergie propre.
             </p>
           </div>
