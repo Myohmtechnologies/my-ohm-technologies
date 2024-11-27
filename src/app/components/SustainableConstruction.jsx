@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 // src/app/components/SustainableConstruction.jsx
 const SustainableConstruction = ({ title, content, imageUrl, datTime }) => {
   return (
@@ -12,9 +14,9 @@ const SustainableConstruction = ({ title, content, imageUrl, datTime }) => {
       </div>
       <div className="image-container">
         {imageUrl ? (
-          <img src={imageUrl} alt={title || "Image de construction"} />
+          <Image src={imageUrl} alt={title || "Image de construction"} />
         ) : (
-          <img src="/images/blog-header.png" alt="Panneaux solaires" />
+          <Image src="/images/blog-header.png" alt="Panneaux solaires" />
         )}
       </div>
     </section>
