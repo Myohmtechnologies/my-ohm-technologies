@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import Image from "next/image";
+>>>>>>> 642d8a2 (Réinitialisation du dépôt)
 import Link from "next/link";
 
 // src/app/components/SolarOffer.jsx
@@ -10,7 +14,11 @@ const SolarOffer = () => {
           <div className="options">
          
           <div className="option-item">
+<<<<<<< HEAD
           <img
+=======
+          <Image
+>>>>>>> 642d8a2 (Réinitialisation du dépôt)
             className="icon"
             src="/images/svg/Group 2085663187.svg"
             alt="Maison Icon"
@@ -25,7 +33,11 @@ const SolarOffer = () => {
          
   
         <div className="option-item">
+<<<<<<< HEAD
           <img
+=======
+          <Image
+>>>>>>> 642d8a2 (Réinitialisation du dépôt)
             className="icon"
             src="/images/svg/Group 2085663187 (1).svg"
             alt="Appartement Icon"

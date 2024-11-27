@@ -111,7 +111,11 @@ const MerciPage = () => {
           <div className="recommendation-map">
             <Image
               src="/images/simulation-google-maps.png"
+<<<<<<< HEAD
               alt="Localisation de l'installation"
+=======
+              alt="Localisation de l&apos;installation"
+>>>>>>> 642d8a2 (Réinitialisation du dépôt)
               width={500}
               height={300}
             />

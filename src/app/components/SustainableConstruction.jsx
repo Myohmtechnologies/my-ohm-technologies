@@ -6,7 +6,11 @@ const SustainableConstruction = ({ title, content, imageUrl, datTime }) => {
         <div className="label">
           <span>Innovations</span>
         </div>
+<<<<<<< HEAD
         <h1>{title || "L'Art de construire pour un avenir durable"}</h1>
+=======
+        <h1>{title || "L&apos;Art de construire pour un avenir durable"}</h1>
+>>>>>>> 642d8a2 (Réinitialisation du dépôt)
         <p>{content || "Dans le monde en constante évolution de la construction, il est essentiel de s'adapter aux nouvelles technologies, aux matériaux innovants et aux pratiques durables. Chez [Nom de l’Entreprise], nous croyons que bâtir pour l’avenir signifie non seulement créer des structures solides, mais aussi des solutions durables qui respectent l'environnement."}</p>
         <p className="author">Admin • {datTime}</p>
       </div>

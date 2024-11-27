@@ -37,7 +37,11 @@ export default function Simulation() {
 
   return (
     <><Header /><div>
+<<<<<<< HEAD
           <h1>Simulation d'Énergie</h1>
+=======
+          <h1>Simulation d&apos;Énergie</h1>
+>>>>>>> 642d8a2 (Réinitialisation du dépôt)
           <p>Merci de renseigner vos informations pour être contacté par un commercial.</p>
 
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', maxWidth: '400px' }}>

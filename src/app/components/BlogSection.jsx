@@ -30,7 +30,11 @@ const BlogSection = ({ sections = [] }) => {
 
           <div className="call-to-action">
             <img src="/images/svg/mingcute_ceiling-lamp-fill.svg" alt="Lamp Icon" />
+<<<<<<< HEAD
             <h3>Prêt à passer à l'énergie solaire ?</h3>
+=======
+            <h3>Prêt à passer à l&apos;énergie solaire ?</h3>
+>>>>>>> 642d8a2 (Réinitialisation du dépôt)
             <div className="details">
               <span>✔ Estimation en 2 min</span>
               <span>✔ Gratuit et sans engagement</span>
