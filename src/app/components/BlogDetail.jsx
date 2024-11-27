@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+import Image from "next/image";
 
 export default function BlogDetail() {
   const { slug } = useParams();
@@ -134,7 +135,7 @@ export default function BlogDetail() {
                 onChange={(e) => handleImageChange(index, e.target.files[0])}
               />
               {section.image && (
-                <img src={section.image} alt={`Section ${index + 1} image`} style={{ maxWidth: "100px", marginTop: "0.5em" }} />
+                <Image src={section.image} alt={`Section ${index + 1} image`} style={{ maxWidth: "100px", marginTop: "0.5em" }} />
               )}
               <button type="button" onClick={() => deleteSection(index)}>
                 Supprimer la section
