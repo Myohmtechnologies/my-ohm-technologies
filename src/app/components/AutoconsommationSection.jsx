@@ -6,11 +6,7 @@ export default function AutoconsommationSection() {
         <div>
           <Image 
           src="images/courbe-autoconsomation.png" 
-<<<<<<< HEAD
-          alt="Courbe d'autoconsommation"
-=======
           alt="Courbe d&apos;autoconsommation"
->>>>>>> 642d8a2 (Réinitialisation du dépôt)
           />
 
         </div>
