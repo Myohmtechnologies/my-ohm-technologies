@@ -1,9 +1,5 @@
 // next.config.mjs
 export default {
-<<<<<<< HEAD
-  // Tes configurations ici
-}
-=======
   reactStrictMode: true, // Facultatif, active le mode strict de React
 
   images: {
@@ -16,4 +12,3 @@ export default {
     ],
   },
 };
->>>>>>> 642d8a2 (Réinitialisation du dépôt)
