@@ -13,8 +13,8 @@ const RegionSection = () => {
             <div className="map-description">
               <p>
 <<<<<<< HEAD
-                Avec 2 855 heures d'ensoleillement par an, la Provence-Alpes-Côtes
-                d'Azur est la deuxième région la plus ensoleillée de France ! Y
+                Avec 2 855 heures d&apos;ensoleillement par an, la Provence-Alpes-Côtes
+                d&apos;Azur est la deuxième région la plus ensoleillée de France ! Y
 =======
                 Avec 2 855 heures d&apos;ensoleillement par an, la Provence-Alpes-Côtes
                 d&apos;Azur est la deuxième région la plus ensoleillée de France ! Y
