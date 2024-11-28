@@ -9,7 +9,7 @@ export default function PourquoiSolaireSection() {
         </div>
         <div className="why-div">
           <div>
-            <Image src="images/graphique-evolution-elec.png" alt="Évolution du tarif de l'électricité" width={500}
+            <Image src="images/evolution-prix-electrite-entre-2010-et-2040.png" alt="Évolution du tarif de l'électricité" width={500}
            height={150}/>
             <h3 style={{ marginBottom: '10px' }}>Économies sur vos factures:</h3>
             <p>
