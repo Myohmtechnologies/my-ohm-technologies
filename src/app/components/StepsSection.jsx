@@ -9,7 +9,7 @@ const StepsSection = () => {
             L&apos;ÉNERGIE SOLAIRE À VOTRE PORTÉE.
           </p>
           <h2 className=" text-3xl lg:text-6xl text-[#232323] text-center">
-            Les étapes clés d'une installation
+            Les étapes clés d&apos;une installation
           </h2>
         </div>
         <div className="steps relative w-full z-10">
