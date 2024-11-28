@@ -1,17 +1,15 @@
-// pages/simulation.js
-"use client"; // Ajoutez cette ligne en haut
+"use client";
 
+import React, { useState } from "react";
+import "../../styles/globals.css";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
-import { useState } from 'react';
-import '../../styles/globals.css'
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-
-export default function Simulation() {
+const Simulation = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
+    name: "",
+    email: "",
+    phone: "",
   });
 
   const handleChange = (e) => {
@@ -24,40 +22,77 @@ export default function Simulation() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logique d'envoi du formulaire
-    console.log('Informations de contact :', formData);
-    alert("Merci ! Nous avons reçu vos informations. Un commercial vous contactera bientôt.");
-    // Réinitialiser le formulaire après soumission
+    console.log("Informations de contact :", formData);
+    alert(
+      "Merci ! Nous avons reçu vos informations. Un commercial vous contactera bientôt."
+    );
+
+    // Réinitialisation du formulaire
     setFormData({
-      name: '',
-      email: '',
-      phone: '',
+      name: "",
+      email: "",
+      phone: "",
     });
   };
 
   return (
     <>
       <Header />
-      <div>
-        <h1>Simulation d&apos;Énergie</h1>
-        <p>Merci de renseigner vos informations pour être contacté par un commercial.</p>
+      <main className="simulation-container">
+        <h1 className="simulation-title">Simulation d&apos;Énergie</h1>
+        <p className="simulation-description">
+          Merci de renseigner vos informations pour être contacté par un
+          commercial.
+        </p>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', maxWidth: '400px' }}>
-          <label>Nom :</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+        <form className="simulation-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Nom :</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              placeholder="Entrez votre nom"
+            />
+          </div>
 
-          <label>Email :</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+          <div className="form-group">
+            <label htmlFor="email">Email :</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              placeholder="Entrez votre email"
+            />
+          </div>
 
-          <label>Téléphone :</label>
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+          <div className="form-group">
+            <label htmlFor="phone">Téléphone :</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              placeholder="Entrez votre numéro de téléphone"
+            />
+          </div>
 
-          <button type="submit" style={{ marginTop: '10px', padding: '10px', background: '#4CAF50', color: 'white' }}>
+          <button type="submit" className="submit-button">
             Envoyer
           </button>
         </form>
-      </div>
+      </main>
       <Footer />
     </>
   );
-}
+};
+
+export default Simulation;
