@@ -1,4 +1,5 @@
 // src/app/components/PourquoiSolaireSection.jsx
+import Image from "next/image";
 export default function PourquoiSolaireSection() {
     return (
       <section className="container-pv">
