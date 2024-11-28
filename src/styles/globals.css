@@ -1420,7 +1420,8 @@ p {
 
 /* Individual card style */
 .card-project {
-  height: 480.2px;
+  height: 480px;
+  width: 420px;
   object-fit: cover;
   position: relative;
   overflow: hidden;
@@ -1628,7 +1629,10 @@ p {
   height: 360px;
 }
 
-
+.avis-du-client{
+  width: 90%;
+  margin: 0 auto;
+}
 
 
 .avis-du-client h2 {
