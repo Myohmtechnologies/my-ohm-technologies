@@ -12,7 +12,7 @@ const BlogSection = ({ sections = [] }) => {
               <div key={index}>
                 <h2>{section.title}</h2>
                 <p>{section.content}</p>
-                {section.image && <img src={section.image} alt={`Image de la section ${index + 1}`} style={{ maxWidth: "400px" }} />}
+                {section.image && <Image src={section.image} alt={`Image de la section ${index + 1}`} style={{ maxWidth: "400px" }} />}
               </div>
             ))
           ) : (
