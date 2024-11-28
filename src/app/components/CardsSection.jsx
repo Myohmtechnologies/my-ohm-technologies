@@ -22,8 +22,8 @@ const CardsSection = () => {
           <Image
             src="/images/svg/icone-soleil.svg"
             alt="Icône Ensoleillement"
-            width={100} // Remplacez par les dimensions réelles
-            height={100} // Remplacez par les dimensions réelles
+            width={130} // Remplacez par les dimensions réelles
+            height={130} // Remplacez par les dimensions réelles
             className="card-image"
           />
           <p className="card-text">Avec + 300 jours d&apos;ensoleillements</p>
@@ -33,8 +33,8 @@ const CardsSection = () => {
             src="/images/svg/icone-portefeuille.svg"
             data-color="special"
             alt="Icône Économie"
-            width={100} // Remplacez par les dimensions réelles
-            height={100} // Remplacez par les dimensions réelles
+            width={130} // Remplacez par les dimensions réelles
+            height={130} // Remplacez par les dimensions réelles
             className="card-image"
           />
           <p className="card-text">
@@ -45,8 +45,8 @@ const CardsSection = () => {
           <Image
             src="/images/svg/icone-valorisation.svg"
             alt="Icône Patrimoine"
-            width={100} // Remplacez par les dimensions réelles
-            height={100} // Remplacez par les dimensions réelles
+            width={130} // Remplacez par les dimensions réelles
+            height={130} // Remplacez par les dimensions réelles
             className="card-image"
           />
           <p className="card-text">Valorisation de votre Patrimoine</p>
@@ -56,8 +56,8 @@ const CardsSection = () => {
             src="/images/svg/icone-energie.svg"
             data-color="special"
             alt="Icône Énergie"
-            width={100} // Remplacez par les dimensions réelles
-            height={100} // Remplacez par les dimensions réelles
+            width={130} // Remplacez par les dimensions réelles
+            height={130} // Remplacez par les dimensions réelles
             className="card-image"
           />
           <p className="card-text">Une énergie verte et renouvelable</p>
