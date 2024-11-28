@@ -1,6 +1,7 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton } from '@mui/material';
 import { FaEdit, FaTrash } from 'react-icons/fa'; // Icônes pour modifier et supprimer
+import Image from "next/image";
 
 const BlogList = ({ blogs, handleDelete }) => {
   return (
@@ -19,7 +20,7 @@ const BlogList = ({ blogs, handleDelete }) => {
               <TableRow key={blog._id}>
                 {/* Affichage de l'image */}
                 <TableCell>
-                  <img src={blog.imageUrl} alt={blog.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                  <Image src={blog.imageUrl} alt={blog.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
                 </TableCell>
                 {/* Affichage du titre */}
                 <TableCell>{blog.title}</TableCell>
