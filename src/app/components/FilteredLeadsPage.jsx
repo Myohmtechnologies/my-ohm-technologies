@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar"; // Votre composant Sidebar
 import LeadTable from "./LeadTable";
 import ActionsModal from "./ActionsModal";
 import Pagination from "./Pagination";
-import { toast, ToastContainer } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/dashboard.css";
 
