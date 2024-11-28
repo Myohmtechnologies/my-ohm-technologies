@@ -8,7 +8,7 @@ import CardsSection from "./components/CardsSection";
 import MaterialSection from "./components/MaterialSection";
 import ImageSection from "./components/ImageSection";
 import StepsSection from "./components/StepsSection";
-import StepsSection from "./components/Reviews";
+import Reviews from "./components/Reviews";
 import ClientReviews from "./components/ClientReviews";
 import RegionSection from "./components/RegionSection";
 import SimulationSection from "./components/SimulationSection";
@@ -47,7 +47,7 @@ export default function HomePage() {
       <MaterialSection />
       <ImageSection />
       <StepsSection />
-       <Reviews />
+      <Reviews />
       <ClientReviews realizations={realizations} limit={3} /> {/* Limite à 3 réalisations */}
       <RegionSection />
       <SimulationSection />
