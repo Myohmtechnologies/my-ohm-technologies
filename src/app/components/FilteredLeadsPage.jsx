@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 import Sidebar from "./Sidebar"; // Votre composant Sidebar
 import LeadTable from "./LeadTable";
 import ActionsModal from "./ActionsModal";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Assurez-vous que les styles sont importés
+
 import Pagination from "./Pagination";
 
 import "react-toastify/dist/ReactToastify.css";
