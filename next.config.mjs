@@ -11,4 +11,9 @@ export default {
       },
     ],
   },
+
+  // Ajoutez ceci pour rendre la variable d'environnement accessible au build
+  env: {
+    MONGODB_URI: process.env.MONGODB_URI,
+  },
 };
