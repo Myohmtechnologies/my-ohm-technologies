@@ -46,6 +46,7 @@ export default function HomePage() {
       <MaterialSection />
       <ImageSection />
       <StepsSection />
+       <Reviews />
       <ClientReviews realizations={realizations} limit={3} /> {/* Limite à 3 réalisations */}
       <RegionSection />
       <SimulationSection />
