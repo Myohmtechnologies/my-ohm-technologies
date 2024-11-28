@@ -161,7 +161,7 @@ export default function BlogDetail() {
               <div key={index}>
                 <h3>{section.title}</h3>
                 <p>{section.content}</p>
-                {section.image && <img src={section.image} alt={`Image de la section ${index + 1}`} style={{ maxWidth: "200px" }} />}
+                {section.image && <Image src={section.image} alt={`Image de la section ${index + 1}`} style={{ maxWidth: "200px" }} />}
               </div>
             ))}
           <button onClick={toggleEditMode}>Modifier</button>
