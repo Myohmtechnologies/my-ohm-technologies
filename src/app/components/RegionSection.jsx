@@ -7,7 +7,7 @@ const RegionSection = () => {
           <div className="map-info">
             <div>
               <Image
-                src="/images/Capture_d_écran_2024-10-07_à_19.08.43-removebg-preview.png"
+                src="/images/region-section.png"
                 alt="Carte région PACA"
                 width={600}
                 height={600}
