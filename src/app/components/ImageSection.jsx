@@ -42,7 +42,7 @@ const ImageSection = () => {
             height={100} // Remplacez par les dimensions réelles
           />
           <Image
-            src="/images/décinal.png"
+            src="/images/decinal.png"
             alt="Garantie Décennale"
             width={100} // Remplacez par les dimensions réelles
             height={100} // Remplacez par les dimensions réelles
