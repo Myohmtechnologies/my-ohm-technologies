@@ -6,7 +6,7 @@ const StepsSection = () => {
       <div className="hidden lg:block">
         <div className="flex flex-col justify-center items-center mb-10 ">
           <p className="text-xl uppercase underline text-center text-[#6C8D2F] ">
-            L'ÉNERGIE SOLAIRE À VOTRE PORTÉE.
+            L&apos;ÉNERGIE SOLAIRE À VOTRE PORTÉE.
           </p>
           <h2 className=" text-3xl lg:text-6xl text-[#232323] text-center">
             Les étapes clés d'une installation
