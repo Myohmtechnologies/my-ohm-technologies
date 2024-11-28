@@ -9,6 +9,11 @@ export default {
         hostname: "res.cloudinary.com",
         pathname: "/**", // Autorise toutes les images de ce domaine
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com", // Ajout du domaine Unsplash
+        pathname: "/**", // Autorise toutes les images de ce domaine
+      },
     ],
   },
 
