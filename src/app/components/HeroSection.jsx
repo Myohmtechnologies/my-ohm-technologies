@@ -7,7 +7,7 @@ const HeroSection = () => {
   return (
     <>
     <div className='hero-page-section'>
-      <img src="/images/hero/4.webp" alt="" />
+      <Image src="/images/hero/4.webp" alt="" />
     </div>
     <div className="hero">
         <div className="solar-offer-home">
