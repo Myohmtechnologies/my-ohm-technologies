@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+=======
+@font-face {
+  font-family: 'Sequel Sans';
+  src: url('/fonts/SequelSansVFBody.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+>>>>>>> 1cfc82d (Initial commit)
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +17,7 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+<<<<<<< HEAD
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -32,12 +44,37 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
+=======
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+>>>>>>> 1cfc82d (Initial commit)
     --radius: 0.5rem;
   }
 
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
+<<<<<<< HEAD
 
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
@@ -63,6 +100,30 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+=======
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+>>>>>>> 1cfc82d (Initial commit)
   }
 }
 
@@ -599,8 +660,13 @@ button a {
 }
 
 .container-material {
+<<<<<<< HEAD
   max-width: 1200px;
   margin: 0 auto;
+=======
+
+
+>>>>>>> 1cfc82d (Initial commit)
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -608,8 +674,12 @@ button a {
 }
 
 .image-content img {
+<<<<<<< HEAD
   max-width: 100%;
   height: auto;
+=======
+  width: 600px;
+>>>>>>> 1cfc82d (Initial commit)
   border-radius: 15px;
   transition: transform 0.5s ease;
 }
@@ -635,6 +705,10 @@ button a {
   font-size: 18px;
   color: #6c8d2f;
   font-family: 'Sequel Sans';
+<<<<<<< HEAD
+=======
+  margin-bottom: 50px;
+>>>>>>> 1cfc82d (Initial commit)
 }
 
 .container-img img {
@@ -936,7 +1010,11 @@ h2 {
   padding: 20px;
   background: rgba(0, 0, 0, 0.6);
   /* Fond semi-transparent */
+<<<<<<< HEAD
   color: black;
+=======
+  color: white;
+>>>>>>> 1cfc82d (Initial commit)
   font-size: 18px;
   text-align: center;
 }
@@ -1448,6 +1526,10 @@ p {
   bottom: 0;
   width: 100%;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+<<<<<<< HEAD
+=======
+  /* Fond semi-transparent */
+>>>>>>> 1cfc82d (Initial commit)
   color: white;
   padding: 20px;
   box-sizing: border-box;
@@ -2364,7 +2446,11 @@ p {
 @media (max-width:576px) {
 
   .hero-header {
+<<<<<<< HEAD
     padding: 0 20px;
+=======
+    padding: 10px 20px;
+>>>>>>> 1cfc82d (Initial commit)
   }
   .nav-toggle {
     display: block;
@@ -2542,7 +2628,11 @@ p {
   }
 
   .container-material {
+<<<<<<< HEAD
     max-width: 1450px;
+=======
+    width: 90%;
+>>>>>>> 1cfc82d (Initial commit)
     margin: 0 auto;
     flex-direction: column;
     text-align: center;
@@ -2836,6 +2926,7 @@ p {
 
   }
 
+<<<<<<< HEAD
 }
 
 
@@ -2906,5 +2997,204 @@ p {
 
   body {
     @apply bg-background text-foreground;
+=======
+  .steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .step {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .icon-circle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .icon-circle img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .step-desc {
+    font-size: 0.9rem;
+  }
+
+  .region-section {
+    padding: 20px 10px;
+  }
+
+  .map-info {
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .map-info img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .map-description {
+    padding: 0;
+  }
+
+  .map-description p {
+    font-size: 24px;
+    line-height: 32px;
+    margin-bottom: 20px;
+  }
+
+  .map-description h2 {
+    font-size: 20px;
+    line-height: 28px;
+    margin: 15px 0;
+  }
+
+  .regions {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .region-card {
+    width: calc(50% - 10px);
+    height: 120px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .region-card h3 {
+    margin-top: 0;
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .region-card p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+/* Material Section Styles */
+.section-material {
+  padding: 80px 0;
+  background-color: #fff;
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.container-material {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 0 80px;
+}
+
+.text-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.small-h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffdf64;
+  margin-bottom: 20px;
+  letter-spacing: 0.1em;
+}
+
+.text-content .title {
+  font-size: 40px;
+  line-height: 48px;
+  margin-bottom: 30px;
+  color: #232323;
+}
+
+.text-content .paragraph {
+  font-size: 16px;
+  line-height: 24px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.text-content .button-yellow {
+  background-color: #ffdf64;
+  color: #232323;
+  padding: 15px 30px;
+  border: none;
+  font-weight: 600;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.image-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+}
+
+.solar-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 576px) {
+  .section-material {
+    padding: 40px 0;
+  }
+
+  .container-material {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 15px;
+  }
+
+  .text-content {
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .text-content .title {
+    font-size: 28px;
+    line-height: 36px;
+    margin-bottom: 20px;
+  }
+
+  .text-content .paragraph {
+    font-size: 14px;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .text-content .button-yellow {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+  }
+
+  .image-content {
+    margin-top: 20px;
+    max-width: 100%;
+  }
+
+  .solar-image {
+    width: 100%;
+    max-height: 300px;
+>>>>>>> 1cfc82d (Initial commit)
   }
 }

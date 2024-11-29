@@ -4,12 +4,15 @@ import { MoreVertical } from "lucide-react"; // Icône burger
 const LeadTable = ({ leads = [], onActionClick }) => {
   const getStatusColor = (status) => {
     const colors = {
-      Nouveau: "bg-gray-500",
-      "RDV fixé": "bg-blue-500",
-      "Visite technique": "bg-yellow-500",
+      Nouveau: "bg-blue-500",
+      "RDV fixé": "bg-yellow-500",
+      "Visite technique": "bg-orange-500",
       "Démarche administrative": "bg-purple-500",
       Pose: "bg-green-500",
-      CONSUEL: "bg-red-500",
+      CONSUEL: "bg-indigo-500",
+      "Raccordement EDF": "bg-pink-500",
+      "Suivis": "bg-cyan-500",
+      "Archive": "bg-red-600", // Rouge plus foncé pour l'archive
     };
     return colors[status] || "bg-gray-500";
   };
@@ -45,7 +48,7 @@ const LeadTable = ({ leads = [], onActionClick }) => {
               {/* Statut */}
               <td className="p-4">
                 <span
-                  className={`px-2 py-1 rounded-full text-white text-sm ${getStatusColor(
+                  className={`px-3 py-1.5 rounded-full text-white text-sm font-medium ${getStatusColor(
                     lead.status
                   )}`}
                 >

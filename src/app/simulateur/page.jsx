@@ -3,72 +3,193 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from 'next/link';
 import "../../styles/simulateur.css";
+
+// Constantes pour les étapes et les factures d'énergie
+const STEPS = {
+  PROPERTY_TYPE: 1,
+  ENERGY_BILL: 2,
+  CONTACT_INFO: 3
+};
+
+const ENERGY_BILL_RANGES = [
+  { label: "moins de 80€ par mois", value: "<80€", annual: "960€ par an" },
+  { label: "de 85€ à 165€ par mois", value: "85€-165€", annual: "1020€ - 1980€ par an" },
+  { label: "plus de 165€ par mois", value: ">165€", annual: "1980€+ par an" },
+];
 
 const SimulateurPage = () => {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState(1);
-  const [residentialStatus, setResidentialStatus] = useState("");
-  const [ownershipType, setOwnershipType] = useState(null);
-  const [energyBill, setEnergyBill] = useState("");
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
+  const [currentStep, setCurrentStep] = useState(STEPS.PROPERTY_TYPE);
+  const [formState, setFormState] = useState({
+    residentialStatus: "",
+    ownershipType: "",
+    energyBill: "",
+    name: "",
+    email: "",
+    phone: "",
+    isSubmitting: false,
+    error: null
+  });
 
   useEffect(() => {
-    const status = new URLSearchParams(window.location.search).get(
-      "residential_status"
-    );
+    const status = new URLSearchParams(window.location.search).get("residential_status");
     if (status) {
-      setResidentialStatus(status); // Si le statut est présent, on le sauvegarde
+      setFormState(prev => ({ ...prev, residentialStatus: status }));
     }
-    // Si le statut est absent, aucune redirection n'a lieu
   }, []);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
-    const data = {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      residentialStatus,
-      ownershipType,
-      energyBill,
-    };
+    
+    setFormState(prev => ({ ...prev, isSubmitting: true, error: null }));
 
     try {
       const response = await fetch("/api/submit", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          phone: formState.phone,
+          residentialStatus: formState.residentialStatus,
+          ownershipType: formState.ownershipType,
+          energyBill: formState.energyBill,
+        }),
       });
 
-      if (response.ok) {
-        router.push("/merci");
-      } else {
-        console.error("Erreur lors de l'enregistrement des données");
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi du formulaire");
       }
+
+      router.push("/merci");
     } catch (error) {
-      console.error("Erreur de requête :", error);
+      console.error("Erreur:", error);
+      setFormState(prev => ({
+        ...prev,
+        error: "Une erreur est survenue lors de l'envoi du formulaire. Veuillez réessayer."
+      }));
+    } finally {
+      setFormState(prev => ({ ...prev, isSubmitting: false }));
     }
   };
 
-  const ENERGY_BILL_RANGES = [
-    { label: "moins de 80€ par mois", value: "<80€", annual: "960€ par an" },
-    { label: "de 85€ à 165€ par mois", value: "85€-165€", annual: "1020€ - 1980€ par an" },
-    { label: "plus de 165€ par mois", value: ">165€", annual: "1980€+ par an" },
-  ];
+  const handleNextStep = () => setCurrentStep(prev => prev + 1);
 
-  // Avancer à l'étape suivante
-  const handleNextStep = () => setCurrentStep(currentStep + 1);
+  const updateFormState = (key, value) => {
+    setFormState(prev => ({ ...prev, [key]: value }));
+  };
+
+  const renderProgressBar = () => (
+    <div className="progress-container">
+      <p className="step-indicator">Étape {currentStep}/3</p>
+      <div className="progress-bar">
+        <div
+          className="progress"
+          style={{ width: `${(currentStep / 3) * 100}%` }}
+        ></div>
+      </div>
+    </div>
+  );
+
+  const renderPropertyTypeStep = () => (
+    <div className="step-container property-type">
+      <h2>S&apos;agissant de votre logement, vous êtes ?</h2>
+      <div className="buttons-container">
+        {[
+          { type: "Propriétaire", icon: "/images/svg/Group 2085663187.svg" },
+          { type: "Locataire", icon: "/images/svg/Group 2085663187 (1).svg" }
+        ].map(({ type, icon }) => (
+          <button
+            key={type}
+            onClick={() => {
+              updateFormState("ownershipType", type);
+              handleNextStep();
+            }}
+            className="property-button"
+          >
+            <Image src={icon} alt={type} width={50} height={50} />
+            <span>{type}</span>
+            <Image
+              src="/images/svg/icons8-flèche-50.png"
+              alt="Flèche"
+              width={20}
+              height={20}
+              className="arrow-icon"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderEnergyBillStep = () => (
+    <div className="step-container energy-bill">
+      <h2>Quel est le montant de votre facture d&apos;énergie ?</h2>
+      <div className="energy-buttons-container">
+        {ENERGY_BILL_RANGES.map((range) => (
+          <button
+            key={range.value}
+            onClick={() => {
+              updateFormState("energyBill", range.value);
+              handleNextStep();
+            }}
+            className="energy-button"
+          >
+            <span className="monthly-amount">{range.label}</span>
+            <span className="annual-price">{range.annual}</span>
+            <Image
+              src="/images/svg/icons8-flèche-50.png"
+              alt="Flèche"
+              width={20}
+              height={20}
+              className="arrow-icon"
+            />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
+  const renderContactForm = () => (
+    <div className="step-container contact-form">
+      <h2>À qui devons-nous envoyer la simulation ?</h2>
+      <form onSubmit={handleFormSubmit}>
+        {formState.error && (
+          <div className="error-message">{formState.error}</div>
+        )}
+        {["name", "email", "phone"].map((field) => (
+          <div key={field} className="form-group">
+            <label htmlFor={field}>
+              {field === "name" ? "Nom" : field === "email" ? "Email" : "Téléphone"}
+            </label>
+            <input
+              id={field}
+              type={field === "email" ? "email" : field === "phone" ? "tel" : "text"}
+              value={formState[field]}
+              onChange={(e) => updateFormState(field, e.target.value)}
+              required
+              disabled={formState.isSubmitting}
+            />
+          </div>
+        ))}
+        <button
+          type="submit"
+          className="submit-button"
+          disabled={formState.isSubmitting}
+        >
+          {formState.isSubmitting ? "Envoi en cours..." : "Envoyer"}
+        </button>
+      </form>
+    </div>
+  );
 
   return (
-    <>
-      {/* Header */}
+    <div className="simulateur-page">
       <header className="hero-header">
         <div className="logo">
-          <a href="/">
+          <Link href="/">
             <Image
               src="/images/logo.png"
               alt="Logo MY OHM"
@@ -213,18 +334,44 @@ const SimulateurPage = () => {
               </form>
             </div>
           )}
+
+              priority
+            />
+          </Link>
+        </div>
+        <div className="phone-number">
+          <Image
+            src="/images/svg/material-symbols_call.svg"
+            alt="Téléphone"
+            width={24}
+            height={24}
+          />
+          <a href="tel:0184606125">01 84 60 61 25</a>
+        </div>
+      </header>
+
+      <main className="simulateur-container">
+        <div className="form-section">
+          <h1>Estimation de votre projet solaire en 1 minute</h1>
+          {renderProgressBar()}
+          
+          {currentStep === STEPS.PROPERTY_TYPE && renderPropertyTypeStep()}
+          {currentStep === STEPS.ENERGY_BILL && renderEnergyBillStep()}
+          {currentStep === STEPS.CONTACT_INFO && renderContactForm()}
+
         </div>
 
         <div className="image-section">
           <Image
             src="/images/right-simulation.png"
-            alt="Simulation d&apos;énergie solaire"
+            alt="Simulation d'énergie solaire"
             width={600}
             height={400}
+            priority
           />
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 };
 

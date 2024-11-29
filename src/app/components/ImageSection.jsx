@@ -6,7 +6,7 @@ const ImageSection = () => {
       <Image
         src="/images/IMG_5056.jpg"
         alt="Famille heureuse après une installation de panneaux solaires"
-        width={800} // Remplacez par les dimensions réelles
+        width={600} // Remplacez par les dimensions réelles
         height={400} // Remplacez par les dimensions réelles
       />
 
