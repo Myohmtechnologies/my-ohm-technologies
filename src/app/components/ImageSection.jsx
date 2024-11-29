@@ -4,7 +4,7 @@ const ImageSection = () => {
   return (
     <section className="container-img">
       <Image
-        src="/images/instal.jpg"
+        src="/images/IMG_5056.jpg.jpg"
         alt="Famille heureuse après une installation de panneaux solaires"
         width={800} // Remplacez par les dimensions réelles
         height={400} // Remplacez par les dimensions réelles
