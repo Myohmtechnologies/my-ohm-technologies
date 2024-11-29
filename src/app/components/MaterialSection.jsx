@@ -37,7 +37,7 @@ const MaterialSection = () => {
         {/* Image à droite avec logos et label */}
         <div className="image-content">
           <Image
-            src="/images/installation-panneaux-solaire-Sisteron.jpg"
+            src="/images/pv.png"
             alt="Panneaux solaires et logos"
             width={600}
             height={600}
