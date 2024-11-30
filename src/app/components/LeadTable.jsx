@@ -5,11 +5,11 @@ const LeadTable = ({ leads = [], onActionClick }) => {
   const getStatusColor = (status) => {
     const colors = {
       Nouveau: "bg-blue-500",
-      "RDV fixé": "bg-yellow-500",
+      "RDV fixé": "bg-yellow-300",
       "Visite technique": "bg-orange-500",
-      "Démarche administrative": "bg-purple-500",
+      "Démarche administrative": "bg-purple-900",
       Pose: "bg-green-500",
-      CONSUEL: "bg-indigo-500",
+      CONSUEL: "bg-indigo-400",
       "Raccordement EDF": "bg-pink-500",
       "Suivis": "bg-cyan-500",
       "Archive": "bg-red-600", // Rouge plus foncé pour l'archive
