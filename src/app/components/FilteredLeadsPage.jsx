@@ -68,8 +68,7 @@ const FilteredLeadsPage = ({ status }) => {
 
   const handleActionClick = (lead) => {
     setSelectedLead(lead);
-
-  }, [status, page, filters]);
+  };
 
   const handleFilterChange = (filterType, value) => {
     if (filterType === 'reset') {

@@ -1,7 +1,6 @@
 import { connectToDatabase } from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
 
-
 export async function PUT(request, { params }) {
   const { id } = params;
   const { status, notes, date, images, observation, bordereau } = await request.json();
@@ -47,6 +46,8 @@ export async function PUT(request, { params }) {
   } catch (error) {
     console.error("Erreur lors de la mise à jour du lead :", error);
     return new Response("Erreur interne", { status: 500 });
+  }
+}
 
 export async function PUT(request) {
   try {
@@ -119,6 +120,5 @@ export async function PUT(request) {
       status: 500,
       headers: { 'Content-Type': 'application/json' }
     });
- 1cfc82d (Initial commit)
   }
 }

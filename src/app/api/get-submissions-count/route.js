@@ -6,18 +6,7 @@ export async function GET() {
 
     // Agrégation pour compter le nombre de leads par statut
     const counts = await db.collection("leads").aggregate([
-
       { $group: { _id: "$status", count: { $sum: 1 } } },
-    ]).toArray();
-
-    return new Response(JSON.stringify(counts), {
-
-      {
-        $group: {
-          _id: "$status",
-          count: { $sum: 1 }
-        }
-      }
     ]).toArray();
 
     // Transformer le résultat en objet avec les noms de statut comme clés
@@ -41,9 +30,10 @@ export async function GET() {
     }, {});
 
     return new Response(JSON.stringify(statusCounts), {
- 1cfc82d (Initial commit)
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
   } catch (error) {
     console.error("Erreur lors de la récupération des comptes :", error);

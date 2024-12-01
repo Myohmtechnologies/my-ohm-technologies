@@ -186,17 +186,16 @@ const SimulateurPage = () => {
   );
 
   return (
-    <div className="simulateur-page">
+    <><div className="simulateur-page">
       <header className="hero-header">
         <div className="logo">
           <Link href="/">
             <Image
-              src="/images/logo.png"
-              alt="Logo MY OHM"
+              src="/images/logo-ohm.png"
+              alt="Logo OHM Technologies"
               width={150}
-              height={50}
-            />
-          </a>
+              height={50} />
+          </Link>
         </div>
       </header>
 
@@ -219,43 +218,39 @@ const SimulateurPage = () => {
               <h2>S&apos;agissant de votre logement, vous êtes ?</h2>
               <button
                 onClick={() => {
-                  setOwnershipType("Propriétaire");
+                  setFormState(prev => ({ ...prev, ownershipType: "Propriétaire" }));
                   handleNextStep();
-                }}
+                } }
               >
                 <Image
                   src="/images/svg/Group 2085663187.svg"
                   alt="Propriétaire"
                   width={50}
-                  height={50}
-                />
+                  height={50} />
                 Propriétaire
                 <Image
-                  src="/images/svg/icons8-flèche-50.png"
+                  src="/images/svg/icons8-flèche-50.png"
                   alt="Flèche"
                   width={20}
-                  height={20}
-                />
+                  height={20} />
               </button>
               <button
                 onClick={() => {
-                  setOwnershipType("Locataire");
+                  setFormState(prev => ({ ...prev, ownershipType: "Locataire" }));
                   handleNextStep();
-                }}
+                } }
               >
                 <Image
                   src="/images/svg/Group 2085663187 (1).svg"
                   alt="Locataire"
                   width={50}
-                  height={50}
-                />
+                  height={50} />
                 Locataire
                 <Image
-                  src="/images/svg/icons8-flèche-50.png"
+                  src="/images/svg/icons8-flèche-50.png"
                   alt="Flèche"
                   width={20}
-                  height={20}
-                />
+                  height={20} />
               </button>
             </div>
           )}
@@ -268,19 +263,18 @@ const SimulateurPage = () => {
                 <button
                   key={range.value}
                   onClick={() => {
-                    setEnergyBill(range.value);
+                    setFormState(prev => ({ ...prev, energyBill: range.value }));
                     handleNextStep();
-                  }}
+                  } }
                   className="energy-button"
                 >
                   <span className="monthly-amount">{range.label}</span>
                   <span className="annual-price">{range.annual}</span>
                   <Image
-                    src="/images/svg/icons8-flèche-50.png"
+                    src="/images/svg/icons8-flèche-50.png"
                     alt="Flèche"
                     width={20}
-                    height={20}
-                  />
+                    height={20} />
                 </button>
               ))}
             </div>
@@ -289,43 +283,34 @@ const SimulateurPage = () => {
           {/* Étape 3 : Formulaire de contact */}
           {currentStep === 3 && (
             <div>
-              <h3>Montant sélectionné : {energyBill}</h3>
+              <h3>Montant sélectionné : {formState.energyBill}</h3>
               <h2>À qui devons-nous envoyer la simulation ?</h2>
               <form onSubmit={handleFormSubmit} className="contact-form">
                 <div className="form-group">
                   <label>Nom</label>
                   <input
                     type="text"
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    required
-                  />
+                    value={formState.name}
+                    onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
+                    required />
                 </div>
 
                 <div className="form-group">
                   <label>Email</label>
                   <input
                     type="email"
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    required
-                  />
+                    value={formState.email}
+                    onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
+                    required />
                 </div>
 
                 <div className="form-group">
                   <label>Numéro de téléphone</label>
                   <input
                     type="tel"
-                    value={formData.phone}
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
-                    required
-                  />
+                    value={formState.phone}
+                    onChange={(e) => setFormState(prev => ({ ...prev, phone: e.target.value }))}
+                    required />
                 </div>
 
                 <button type="submit" className="submit-btn">
@@ -335,26 +320,23 @@ const SimulateurPage = () => {
             </div>
           )}
 
-              priority
-            />
-          </Link>
-        </div>
-        <div className="phone-number">
-          <Image
-            src="/images/svg/material-symbols_call.svg"
-            alt="Téléphone"
-            width={24}
-            height={24}
+          priority
           />
-          <a href="tel:0184606125">01 84 60 61 25</a>
-        </div>
-      </header>
-
-      <main className="simulateur-container">
+        </Link>
+      </div>
+      <div className="phone-number">
+        <Image
+          src="/images/svg/material-symbols_call.svg"
+          alt="Téléphone"
+          width={24}
+          height={24} />
+        <Link href="tel:0184606125">01 84 60 61 25</Link>
+      </div>
+    </header><main className="simulateur-container">
         <div className="form-section">
           <h1>Estimation de votre projet solaire en 1 minute</h1>
           {renderProgressBar()}
-          
+
           {currentStep === STEPS.PROPERTY_TYPE && renderPropertyTypeStep()}
           {currentStep === STEPS.ENERGY_BILL && renderEnergyBillStep()}
           {currentStep === STEPS.CONTACT_INFO && renderContactForm()}
@@ -367,10 +349,9 @@ const SimulateurPage = () => {
             alt="Simulation d'énergie solaire"
             width={600}
             height={400}
-            priority
-          />
+            priority />
         </div>
-      </main>
+      </main></>
     </div>
   );
 };
