@@ -25,7 +25,9 @@ export default {
   },
 
   experimental: {
-    serverActions: true,
+    serverActions: {
+      allowedOrigins: ['localhost:3000'],
+    }
   },
 
   async headers() {

@@ -1,16 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-
-import Sidebar from "./Sidebar"; // Votre composant Sidebar
-import LeadTable from "./LeadTable";
-import ActionsModal from "./ActionsModal";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Assurez-vous que les styles sont importés
-
-import Pagination from "./Pagination";
-
-
 import Sidebar from "./Sidebar";
 import LeadTable from "./LeadTable";
 import ActionsModal from "./ActionsModal";
@@ -18,19 +8,14 @@ import AdvancedFilters from "./AdvancedFilters";
 import ClientDetails from "./ClientDetails";
 import { ToastContainer } from 'react-toastify';
 import Pagination from "./Pagination";
-
 import "react-toastify/dist/ReactToastify.css";
 import "../../styles/dashboard.css";
 
 const FilteredLeadsPage = ({ status }) => {
   const [leads, setLeads] = useState([]);
   const [selectedLead, setSelectedLead] = useState(null);
-
   const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
-
   const [showDetails, setShowDetails] = useState(false);
-  const [page, setPage] = useState(1);
   const [filters, setFilters] = useState({
     dateFrom: "",
     dateTo: "",
@@ -39,16 +24,10 @@ const FilteredLeadsPage = ({ status }) => {
     search: "",
   });
 
-
   const limit = 10;
 
   useEffect(() => {
     const fetchLeads = async () => {
-
-      const response = await fetch(
-        `/api/get-submissions?status=${status}&page=${page}&limit=${limit}&search=${search}`
-      );
-
       const queryParams = new URLSearchParams({
         status,
         page,
@@ -57,18 +36,12 @@ const FilteredLeadsPage = ({ status }) => {
       }).toString();
 
       const response = await fetch(`/api/get-submissions?${queryParams}`);
-
       const data = await response.json();
       setLeads(data.leads || []);
     };
 
     fetchLeads();
-
-  }, [status, page, search]);
-
-  const handleActionClick = (lead) => {
-    setSelectedLead(lead);
-  };
+  }, [status, page, filters]);
 
   const handleFilterChange = (filterType, value) => {
     if (filterType === 'reset') {
@@ -101,7 +74,6 @@ const FilteredLeadsPage = ({ status }) => {
   const handleRowClick = (lead) => {
     setSelectedLead(lead);
     setShowDetails(true);
-
   };
 
   const handleSave = async (updatedData) => {
@@ -142,39 +114,6 @@ const FilteredLeadsPage = ({ status }) => {
       alert("Une erreur est survenue lors de la mise à jour");
     }
   };
-  
-  
-
-
-      if (!response.ok) {
-        const errorMessage = await response.text();
-        console.error("Erreur lors de la mise à jour :", errorMessage);
-        throw new Error("Erreur lors de la mise à jour du lead");
-      }
-
-      const result = await response.json();
-      console.log("Lead mis à jour avec succès :", result);
-
-      // Rafraîchir la liste des leads
-      const queryParams = new URLSearchParams({
-        status,
-        page,
-        limit,
-        ...filters,
-      }).toString();
-
-      const refreshResponse = await fetch(`/api/get-submissions?${queryParams}`);
-      const refreshData = await refreshResponse.json();
-      setLeads(refreshData.leads || []);
-
-      // Fermer la modal
-      setSelectedLead(null);
-    } catch (error) {
-      console.error("Erreur :", error);
-      alert("Une erreur est survenue lors de la mise à jour");
-    }
-  };
-
 
   return (
     <div className="dashboard-container flex h-screen bg-gray-100">
@@ -192,7 +131,6 @@ const FilteredLeadsPage = ({ status }) => {
         />
 
         <div className="flex gap-6">
-          {/* Table des leads */}
           <div className={`${showDetails ? 'w-1/2' : 'w-full'} transition-all duration-300`}>
             <div className="bg-white shadow-md rounded-lg p-4">
               {leads.length > 0 ? (
@@ -202,38 +140,34 @@ const FilteredLeadsPage = ({ status }) => {
                   onRowClick={handleRowClick}
                 />
               ) : (
-                <div className="text-gray-600 text-center py-8">
-                  Aucun lead trouvé.
-                </div>
+                <p>Aucun lead trouvé</p>
               )}
             </div>
             <Pagination
               currentPage={page}
-              itemsPerPage={limit}
-              totalItems={leads.length}
               onPageChange={setPage}
+              totalItems={leads.length}
+              itemsPerPage={limit}
             />
           </div>
 
-          {/* Détails du client */}
           {showDetails && selectedLead && (
             <div className="w-1/2">
-              <ClientDetails lead={selectedLead} />
+              <ClientDetails lead={selectedLead} onClose={() => setShowDetails(false)} />
             </div>
           )}
         </div>
-      </div>
 
-      {/* Modal d'actions */}
-      {selectedLead && !showDetails && (
-        <ActionsModal
-          lead={selectedLead}
-          onClose={() => setSelectedLead(null)}
-          onSave={handleSave}
-        />
-      )}
-      
-      <ToastContainer />
+        {selectedLead && !showDetails && (
+          <ActionsModal
+            lead={selectedLead}
+            onClose={() => setSelectedLead(null)}
+            onSave={handleSave}
+          />
+        )}
+
+        <ToastContainer />
+      </div>
     </div>
   );
 };

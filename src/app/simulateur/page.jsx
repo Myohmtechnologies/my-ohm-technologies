@@ -185,6 +185,19 @@ const SimulateurPage = () => {
     </div>
   );
 
+  const renderCurrentStep = () => {
+    switch (currentStep) {
+      case STEPS.PROPERTY_TYPE:
+        return renderPropertyTypeStep();
+      case STEPS.ENERGY_BILL:
+        return renderEnergyBillStep();
+      case STEPS.CONTACT_INFO:
+        return renderContactForm();
+      default:
+        return null;
+    }
+  };
+
   return (
     <><div className="simulateur-page">
       <header className="hero-header">
@@ -344,23 +357,18 @@ const SimulateurPage = () => {
         <div className="form-section">
           <h1>Estimation de votre projet solaire en 1 minute</h1>
           {renderProgressBar()}
-
-          {currentStep === STEPS.PROPERTY_TYPE && renderPropertyTypeStep()}
-          {currentStep === STEPS.ENERGY_BILL && renderEnergyBillStep()}
-          {currentStep === STEPS.CONTACT_INFO && renderContactForm()}
-
+          {renderCurrentStep()}
         </div>
-
         <div className="image-section">
           <Image
             src="/images/right-simulation.png"
             alt="Simulation d'énergie solaire"
             width={600}
-            height={400} 
-            priority 
+            height={400}
+            priority
           />
         </div>
-      </main></>
+      </main>
     </div>
   );
 };
