@@ -5,7 +5,6 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [notes, setNotes] = useState("");
-  const [file, setFile] = useState(null);
 
   // Étapes et actions possibles
   const actionsByStatus = {
@@ -27,7 +26,7 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
       { value: "Démarches administratives", label: "Passer aux démarches administratives", requires: ["notes"] },
     ],
     "Démarches administratives": [
-      { value: "Démarche en cours", label: "Marquer comme en cours", requires: ["file", "notes"] },
+      { value: "Démarche en cours", label: "Marquer comme en cours", requires: ["notes"] },
       { value: "Démarche réussie", label: "Démarche réussie", requires: ["notes"] },
       { value: "Démarche échouée", label: "Démarche échouée", requires: ["notes"] },
     ],
@@ -37,7 +36,7 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
     ],
     Consuel: [
       { value: "Demande consuel", label: "Demande consuel", requires: ["notes"] },
-      { value: "Consuel validé", label: "Consuel validé", requires: ["file", "notes"] },
+      { value: "Consuel validé", label: "Consuel validé", requires: ["notes"] },
       { value: "Consuel échoué", label: "Consuel échoué", requires: ["notes"] },
     ],
     "Raccordement EDF": [
@@ -82,11 +81,6 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
     setDate("");
     setTime("");
     setNotes("");
-    setFile(null);
-  };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
   };
 
   const handleSaveClick = async () => {
@@ -262,20 +256,6 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
                   onChange={(e) => setNotes(e.target.value)}
                   rows={4}
                   placeholder={selectedAction === "Archive" ? "Veuillez indiquer la raison de l'archivage..." : "Ajoutez vos notes..."}
-                />
-              </div>
-            )}
-
-            {selectedAction && availableActions.find((action) => action.value === selectedAction)?.requires.includes("file") && (
-              <div className="mb-4">
-                <label htmlFor="file" className="block mb-2">
-                  Fichier :
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  className="border p-2 rounded w-full"
-                  onChange={handleFileChange}
                 />
               </div>
             )}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, Home, Calendar, FileText, Clock } from 'lucide-react';
+import { Phone, Mail, Home, Calendar, FileText } from 'lucide-react';
 
 const ClientDetails = ({ lead }) => {
   const statusSteps = [
