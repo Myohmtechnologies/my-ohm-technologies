@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .lead-list {
     display: flex;
     flex-wrap: wrap;
@@ -118,9 +117,6 @@
     background-color: #3498db;
     border-radius: 4px;
   }
-<<<<<<< HEAD
-  
-=======
 
 /* Styles du calendrier */
 .calendar-container {
@@ -219,4 +215,3 @@
     font-size: 0.875rem !important;
   }
 }
->>>>>>> 1cfc82d (Initial commit)
