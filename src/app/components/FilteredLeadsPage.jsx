@@ -107,34 +107,38 @@ const FilteredLeadsPage = ({ status }) => {
   const handleSave = async (updatedData) => {
     try {
 
-      const response = await fetch(`/api/get-submissions/${updatedData.id}`, {
-
-      console.log("Mise à jour du lead :", updatedData);
-      
-      // Mise à jour du lead
       const response = await fetch(`/api/leads/${updatedData.id}`, {
-
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(updatedData),
       });
 
-  
       if (!response.ok) {
-        // Récupérez l'erreur du serveur si la réponse n'est pas OK
-        const errorMessage = await response.text();
-        console.error("Erreur du backend :", errorMessage); // Erreurs côté serveur
-        throw new Error(errorMessage); // Laissez Next.js gérer si critique
+        throw new Error('Erreur lors de la mise à jour');
       }
-  
+
       const result = await response.json();
       console.log("Réponse du backend :", result);
+
+      // Rafraîchir la liste des leads
+      const queryParams = new URLSearchParams({
+        status,
+        page,
+        limit,
+        ...filters,
+      }).toString();
+
+      const refreshResponse = await fetch(`/api/get-submissions?${queryParams}`);
+      const refreshData = await refreshResponse.json();
+      setLeads(refreshData.leads || []);
+
+      // Fermer la modal
+      setSelectedLead(null);
     } catch (error) {
-      // Log contrôlé pour éviter les traces inutiles
-      if (process.env.NODE_ENV === "development") {
-        console.error("Erreur lors de la mise à jour :", error.message);
-      }
-      alert("Une erreur est survenue. Veuillez réessayer."); // Message utilisateur
+      console.error("Erreur :", error);
+      alert("Une erreur est survenue lors de la mise à jour");
     }
   };
   

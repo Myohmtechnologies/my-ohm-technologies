@@ -1,5 +1,4 @@
-git remote add origin URL_DE_VOTRE_REPO
-git push -u origin main'use client';
+'use client';
 import '../../../styles/dashboard.css'
 import { useEffect, useState } from 'react';
 
