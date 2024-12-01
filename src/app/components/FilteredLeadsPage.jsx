@@ -106,7 +106,6 @@ const FilteredLeadsPage = ({ status }) => {
 
   const handleSave = async (updatedData) => {
     try {
-
       const response = await fetch(`/api/leads/${updatedData.id}`, {
         method: 'PUT',
         headers: {
@@ -116,11 +115,13 @@ const FilteredLeadsPage = ({ status }) => {
       });
 
       if (!response.ok) {
-        throw new Error('Erreur lors de la mise à jour');
+        const errorMessage = await response.text();
+        console.error("Erreur lors de la mise à jour :", errorMessage);
+        throw new Error("Erreur lors de la mise à jour du lead");
       }
 
       const result = await response.json();
-      console.log("Réponse du backend :", result);
+      console.log("Lead mis à jour avec succès :", result);
 
       // Rafraîchir la liste des leads
       const queryParams = new URLSearchParams({

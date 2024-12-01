@@ -194,7 +194,8 @@ const SimulateurPage = () => {
               src="/images/logo-ohm.png"
               alt="Logo OHM Technologies"
               width={150}
-              height={50} />
+              height={50} 
+            />
           </Link>
         </div>
       </header>
@@ -226,13 +227,15 @@ const SimulateurPage = () => {
                   src="/images/svg/Group 2085663187.svg"
                   alt="Propriétaire"
                   width={50}
-                  height={50} />
+                  height={50} 
+                />
                 Propriétaire
                 <Image
                   src="/images/svg/icons8-flèche-50.png"
                   alt="Flèche"
                   width={20}
-                  height={20} />
+                  height={20} 
+                />
               </button>
               <button
                 onClick={() => {
@@ -244,13 +247,15 @@ const SimulateurPage = () => {
                   src="/images/svg/Group 2085663187 (1).svg"
                   alt="Locataire"
                   width={50}
-                  height={50} />
+                  height={50} 
+                />
                 Locataire
                 <Image
                   src="/images/svg/icons8-flèche-50.png"
                   alt="Flèche"
                   width={20}
-                  height={20} />
+                  height={20} 
+                />
               </button>
             </div>
           )}
@@ -274,7 +279,8 @@ const SimulateurPage = () => {
                     src="/images/svg/icons8-flèche-50.png"
                     alt="Flèche"
                     width={20}
-                    height={20} />
+                    height={20} 
+                  />
                 </button>
               ))}
             </div>
@@ -292,7 +298,8 @@ const SimulateurPage = () => {
                     type="text"
                     value={formState.name}
                     onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
-                    required />
+                    required 
+                  />
                 </div>
 
                 <div className="form-group">
@@ -301,7 +308,8 @@ const SimulateurPage = () => {
                     type="email"
                     value={formState.email}
                     onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
-                    required />
+                    required 
+                  />
                 </div>
 
                 <div className="form-group">
@@ -310,7 +318,8 @@ const SimulateurPage = () => {
                     type="tel"
                     value={formState.phone}
                     onChange={(e) => setFormState(prev => ({ ...prev, phone: e.target.value }))}
-                    required />
+                    required 
+                  />
                 </div>
 
                 <button type="submit" className="submit-btn">
@@ -320,19 +329,18 @@ const SimulateurPage = () => {
             </div>
           )}
 
-          priority
-          />
-        </Link>
+          <div className="phone-number">
+            <Image
+              src="/images/svg/material-symbols_call.svg"
+              alt="Téléphone"
+              width={24}
+              height={24} 
+            />
+            <Link href="tel:0184606125">01 84 60 61 25</Link>
+          </div>
+        </div>
       </div>
-      <div className="phone-number">
-        <Image
-          src="/images/svg/material-symbols_call.svg"
-          alt="Téléphone"
-          width={24}
-          height={24} />
-        <Link href="tel:0184606125">01 84 60 61 25</Link>
-      </div>
-    </header><main className="simulateur-container">
+      <main className="simulateur-container">
         <div className="form-section">
           <h1>Estimation de votre projet solaire en 1 minute</h1>
           {renderProgressBar()}
@@ -348,8 +356,9 @@ const SimulateurPage = () => {
             src="/images/right-simulation.png"
             alt="Simulation d'énergie solaire"
             width={600}
-            height={400}
-            priority />
+            height={400} 
+            priority 
+          />
         </div>
       </main></>
     </div>
