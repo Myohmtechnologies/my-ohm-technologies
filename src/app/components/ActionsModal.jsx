@@ -3,18 +3,13 @@ import React, { useState } from "react";
 const ActionsModal = ({ lead, onClose, onSave }) => {
   const [selectedAction, setSelectedAction] = useState("");
   const [date, setDate] = useState("");
-
+  const [time, setTime] = useState("");
   const [notes, setNotes] = useState("");
-  const [ setFile] = useState(null);
-
-  const [time, setTime] = useState(""); // Ajout du champ heure
-  const [notes, setNotes] = useState("");
- 1cfc82d (Initial commit)
+  const [file, setFile] = useState(null);
 
   // Étapes et actions possibles
   const actionsByStatus = {
     Nouveau: [
-
       { value: "RDV fixé", label: "Fixer un RDV", requires: ["date", "notes"] },
       { value: "Replanifier un RDV", label: "Replanifier un RDV", requires: ["date", "notes"] },
       { value: "Non intéressé", label: "Non intéressé", requires: ["notes"] },
@@ -48,7 +43,6 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
     "Raccordement EDF": [
       { value: "Demande raccordement", label: "Faire une demande de raccordement", requires: ["notes"] },
       { value: "Raccordement réalisé", label: "Raccordement réalisé", requires: ["notes"] },
-
       { value: "RDV fixé", label: "Fixer un RDV", requires: ["date", "time", "notes"] },
       { value: "Archive", label: "Archiver (Non intéressé)", requires: ["notes"] },
     ],
@@ -78,7 +72,6 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
     ],
     "Suivis": [
       { value: "Archive", label: "Archiver le dossier", requires: ["notes"] },
-     1cfc82d (Initial commit)
     ],
   };
 
@@ -87,50 +80,13 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
   const handleActionChange = (e) => {
     setSelectedAction(e.target.value);
     setDate("");
-
+    setTime("");
     setNotes("");
     setFile(null);
   };
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
-  };
-
-  const handleSaveClick = () => {
-    if (!selectedAction) {
-      alert("Veuillez sélectionner une action.");
-      return;
-    }
-
-    const requiredFields = availableActions.find((action) => action.value === selectedAction)?.requires || [];
-
-    if (requiredFields.includes("date") && !date) {
-      alert("Veuillez renseigner une date.");
-      return;
-    }
-
-    if (requiredFields.includes("notes") && !notes) {
-      alert("Veuillez renseigner un compte rendu.");
-      return;
-    }
-
-    const updatedLead = {
-      id: lead.id,
-      status: selectedAction,
-      notes: {
-        content: notes,
-        date: date,
-      },
-    };
-
-    console.log("Données envoyées au backend :", updatedLead); // LOG ICI
-    onSave(updatedLead);
-  };
-
-
-
-    setTime("");
-    setNotes("");
   };
 
   const handleSaveClick = async () => {
@@ -241,7 +197,6 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
     }
   };
 
-  1cfc82d (Initial commit)
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white rounded-lg shadow-lg p-6 w-1/3">
@@ -259,68 +214,71 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
             >
               <option value="">-- Choisir une action --</option>
               {availableActions.map((action) => (
-
-                <option key={action.value} value={action.value}>
-
-                <option 
-                  key={action.value} 
-                  value={action.value}
-                  className={action.value === "Archive" ? "text-red-600" : ""}
-                >
-
+                <option key={action.value} value={action.value} className={action.value === "Archive" ? "text-red-600" : ""}>
                   {action.label}
                 </option>
               ))}
             </select>
 
+            {selectedAction && availableActions.find((action) => action.value === selectedAction)?.requires.includes("date") && (
+              <div className="mb-4">
+                <label htmlFor="date" className="block mb-2">
+                  Date :
+                </label>
+                <input
+                  type="date"
+                  id="date"
+                  className="border p-2 rounded w-full"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </div>
+            )}
 
-            {selectedAction &&
-              availableActions.find((action) => action.value === selectedAction)?.requires.includes("date") && (
-                <div className="mb-4">
-                  <label htmlFor="date" className="block mb-2">
-                    Date :
-                  </label>
-                  <input
-                    type="date"
-                    id="date"
-                    className="border p-2 rounded w-full"
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
-                  />
-                </div>
-              )}
+            {selectedAction && availableActions.find((action) => action.value === selectedAction)?.requires.includes("time") && (
+              <div className="mb-4">
+                <label htmlFor="time" className="block mb-2">
+                  Heure :
+                </label>
+                <input
+                  type="time"
+                  id="time"
+                  className="border p-2 rounded w-full"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                />
+              </div>
+            )}
 
-            {selectedAction &&
-              availableActions.find((action) => action.value === selectedAction)?.requires.includes("notes") && (
-                <div className="mb-4">
-                  <label htmlFor="notes" className="block mb-2">
-                    Compte rendu :
-                  </label>
-                  <textarea
-                    id="notes"
-                    className="border p-2 rounded w-full"
-                    value={notes} // Assurez-vous que cet état est correctement mis à jour
-                    onChange={(e) => setNotes(e.target.value)}
-                    rows={4}
-                  />
+            {selectedAction && availableActions.find((action) => action.value === selectedAction)?.requires.includes("notes") && (
+              <div className="mb-4">
+                <label htmlFor="notes" className="block mb-2">
+                  {selectedAction === "Archive" ? "Raison de l'archivage :" : "Compte rendu :"}
+                </label>
+                <textarea
+                  id="notes"
+                  className="border p-2 rounded w-full"
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  rows={4}
+                  placeholder={selectedAction === "Archive" ? "Veuillez indiquer la raison de l'archivage..." : "Ajoutez vos notes..."}
+                />
+              </div>
+            )}
 
-                </div>
-              )}
-
-            {selectedAction &&
-              availableActions.find((action) => action.value === selectedAction)?.requires.includes("file") && (
-                <div className="mb-4">
-                  <label htmlFor="file" className="block mb-2">
-                    Fichier :
-                  </label>
-                  <input
-                    type="file"
-                    id="file"
-                    className="border p-2 rounded w-full"
-                    onChange={handleFileChange}
-                  />
-                </div>
-              )}
+            {selectedAction && availableActions.find((action) => action.value === selectedAction)?.requires.includes("file") && (
+              <div className="mb-4">
+                <label htmlFor="file" className="block mb-2">
+                  Fichier :
+                </label>
+                <input
+                  type="file"
+                  id="file"
+                  className="border p-2 rounded w-full"
+                  onChange={handleFileChange}
+                />
+              </div>
+            )}
 
             <button
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
@@ -338,81 +296,6 @@ const ActionsModal = ({ lead, onClose, onSave }) => {
         >
           Annuler
         </button>
-
-            {selectedAction && (
-              <div className="space-y-4">
-                {availableActions.find((action) => action.value === selectedAction)?.requires.includes("date") && (
-                  <div className="flex gap-4">
-                    <div className="flex-1">
-                      <label htmlFor="date" className="block mb-2">
-                        Date :
-                      </label>
-                      <input
-                        type="date"
-                        id="date"
-                        className="border p-2 rounded w-full"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <label htmlFor="time" className="block mb-2">
-                        Heure :
-                      </label>
-                      <input
-                        type="time"
-                        id="time"
-                        className="border p-2 rounded w-full"
-                        value={time}
-                        onChange={(e) => setTime(e.target.value)}
-                      />
-                    </div>
-                  </div>
-                )}
-
-                {availableActions.find((action) => action.value === selectedAction)?.requires.includes("notes") && (
-                  <div>
-                    <label htmlFor="notes" className="block mb-2">
-                      {selectedAction === "Archive" ? "Raison de l'archivage :" : "Compte rendu :"}
-                    </label>
-                    <textarea
-                      id="notes"
-                      className="border p-2 rounded w-full"
-                      value={notes}
-                      onChange={(e) => setNotes(e.target.value)}
-                      rows={4}
-                      placeholder={selectedAction === "Archive" ? "Veuillez indiquer la raison de l'archivage..." : "Ajoutez vos notes..."}
-                    />
-                  </div>
-                )}
-              </div>
-            )}
-
-            <div className="flex justify-end gap-2 mt-6">
-              <button
-                onClick={onClose}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800"
-              >
-                Annuler
-              </button>
-              <button
-                onClick={handleSaveClick}
-                className={`px-4 py-2 rounded-md text-white ${
-                  selectedAction === "Archive"
-                    ? "bg-red-600 hover:bg-red-700"
-                    : "bg-blue-600 hover:bg-blue-700"
-                }`}
-              >
-                {selectedAction === "Archive" ? "Archiver" : "Enregistrer"}
-              </button>
-            </div>
-          </>
-        ) : (
-          <div className="text-gray-600 text-center py-4">
-            Aucune action disponible pour ce statut.
-          </div>
-        )}
-         1cfc82d (Initial commit)
       </div>
     </div>
   );

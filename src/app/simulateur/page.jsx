@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -199,160 +199,29 @@ const SimulateurPage = () => {
   };
 
   return (
-    <><div className="simulateur-page">
+    <div className="simulateur-page">
       <header className="hero-header">
-        <div className="logo">
+        <div className="logo-container">
           <Link href="/">
             <Image
               src="/images/logo-ohm.png"
               alt="Logo OHM Technologies"
               width={150}
-              height={50} 
+              height={50}
             />
           </Link>
         </div>
+        <div className="phone-number">
+          <Image
+            src="/images/svg/material-symbols_call.svg"
+            alt="Téléphone"
+            width={24}
+            height={24}
+          />
+          <Link href="tel:0184606125">01 84 60 61 25</Link>
+        </div>
       </header>
 
-      <div className="simulateur-container">
-        <div className="form-section">
-          <h3>Estimation de votre projet solaire en 1 minute</h3>
-          <p>Étape {currentStep}/3</p>
-
-          {/* Barre de progression */}
-          <div className="progress-bar">
-            <div
-              style={{ width: `${(currentStep / 3) * 100}%` }}
-              className="progress"
-            ></div>
-          </div>
-
-          {/* Étape 1 : Sélection du type de propriété */}
-          {currentStep === 1 && (
-            <div>
-              <h2>S&apos;agissant de votre logement, vous êtes ?</h2>
-              <button
-                onClick={() => {
-                  setFormState(prev => ({ ...prev, ownershipType: "Propriétaire" }));
-                  handleNextStep();
-                } }
-              >
-                <Image
-                  src="/images/svg/Group 2085663187.svg"
-                  alt="Propriétaire"
-                  width={50}
-                  height={50} 
-                />
-                Propriétaire
-                <Image
-                  src="/images/svg/icons8-flèche-50.png"
-                  alt="Flèche"
-                  width={20}
-                  height={20} 
-                />
-              </button>
-              <button
-                onClick={() => {
-                  setFormState(prev => ({ ...prev, ownershipType: "Locataire" }));
-                  handleNextStep();
-                } }
-              >
-                <Image
-                  src="/images/svg/Group 2085663187 (1).svg"
-                  alt="Locataire"
-                  width={50}
-                  height={50} 
-                />
-                Locataire
-                <Image
-                  src="/images/svg/icons8-flèche-50.png"
-                  alt="Flèche"
-                  width={20}
-                  height={20} 
-                />
-              </button>
-            </div>
-          )}
-
-          {/* Étape 2 : Sélection du montant de la facture d'énergie */}
-          {currentStep === 2 && (
-            <div>
-              <h3>Quel est le montant de votre facture d&apos;énergie ?</h3>
-              {ENERGY_BILL_RANGES.map((range) => (
-                <button
-                  key={range.value}
-                  onClick={() => {
-                    setFormState(prev => ({ ...prev, energyBill: range.value }));
-                    handleNextStep();
-                  } }
-                  className="energy-button"
-                >
-                  <span className="monthly-amount">{range.label}</span>
-                  <span className="annual-price">{range.annual}</span>
-                  <Image
-                    src="/images/svg/icons8-flèche-50.png"
-                    alt="Flèche"
-                    width={20}
-                    height={20} 
-                  />
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* Étape 3 : Formulaire de contact */}
-          {currentStep === 3 && (
-            <div>
-              <h3>Montant sélectionné : {formState.energyBill}</h3>
-              <h2>À qui devons-nous envoyer la simulation ?</h2>
-              <form onSubmit={handleFormSubmit} className="contact-form">
-                <div className="form-group">
-                  <label>Nom</label>
-                  <input
-                    type="text"
-                    value={formState.name}
-                    onChange={(e) => setFormState(prev => ({ ...prev, name: e.target.value }))}
-                    required 
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    value={formState.email}
-                    onChange={(e) => setFormState(prev => ({ ...prev, email: e.target.value }))}
-                    required 
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Numéro de téléphone</label>
-                  <input
-                    type="tel"
-                    value={formState.phone}
-                    onChange={(e) => setFormState(prev => ({ ...prev, phone: e.target.value }))}
-                    required 
-                  />
-                </div>
-
-                <button type="submit" className="submit-btn">
-                  j&apos;obtiens ma simulation personnalisée
-                </button>
-              </form>
-            </div>
-          )}
-
-          <div className="phone-number">
-            <Image
-              src="/images/svg/material-symbols_call.svg"
-              alt="Téléphone"
-              width={24}
-              height={24} 
-            />
-            <Link href="tel:0184606125">01 84 60 61 25</Link>
-          </div>
-        </div>
-      </div>
       <main className="simulateur-container">
         <div className="form-section">
           <h1>Estimation de votre projet solaire en 1 minute</h1>
