@@ -1,8 +1,5 @@
-"use client";
-
+"use client"
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
-import Link from 'next/link';
 
 const PromoBanner = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -10,21 +7,22 @@ const PromoBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-[#AFC97E] w-full">
-      <div className="max-w-7xl mx-auto px-4 py-2 md:py-3">
-        <div className="flex items-center justify-center text-center w-full relative">
-          <p className="text-black text-xs sm:text-sm md:text-base font-medium pr-8 md:pr-10">
+    <div className="bg-[#AFC97E] text-black py-3 px-4 relative">
+      <div className="container mx-auto">
+        <div className="flex justify-between items-center">
+          <p className="text-sm sm:text-base flex-grow text-center">
             <span className="hidden sm:inline">🌟 </span>
             Profitez de -15% sur l&apos;installation 
             <span className="hidden sm:inline"> de vos panneaux solaires</span> jusqu&apos;au 31 janvier ! 
-            
           </p>
           <button 
             onClick={() => setIsVisible(false)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 p-1.5 hover:bg-black/10 rounded-full transition-colors"
+            className="ml-4 p-1 hover:bg-[#9DB96E] rounded-full transition-colors"
             aria-label="Fermer la bannière promotionnelle"
           >
-            <X size={16} className="text-black" />
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
       </div>
