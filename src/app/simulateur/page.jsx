@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from 'next/link';
-import "../../styles/simulateur.css";
+import Header from "../components/Header";
+import "../styles/simulateur.css";
 
 // Constantes pour les étapes et les factures d'énergie
 const STEPS = {
@@ -200,44 +201,22 @@ const SimulateurPage = () => {
 
   return (
     <div className="simulateur-page">
-      <header className="hero-header">
+      <Header />
+      <div className="simulateur-container">
         <div className="logo-container">
           <Link href="/">
-            <Image
-              src="/images/logo-ohm.png"
-              alt="Logo OHM Technologies"
-              width={150}
-              height={50}
+            <Image 
+              src="/images/logo.png" 
+              alt="Logo MY OHM" 
+              width={150} 
+              height={150}
+              priority 
             />
           </Link>
         </div>
-        <div className="phone-number">
-          <Image
-            src="/images/svg/material-symbols_call.svg"
-            alt="Téléphone"
-            width={24}
-            height={24}
-          />
-          <Link href="tel:0184606125">01 84 60 61 25</Link>
-        </div>
-      </header>
-
-      <main className="simulateur-container">
-        <div className="form-section">
-          <h1>Estimation de votre projet solaire en 1 minute</h1>
-          {renderProgressBar()}
-          {renderCurrentStep()}
-        </div>
-        <div className="image-section">
-          <Image
-            src="/images/right-simulation.png"
-            alt="Simulation d'énergie solaire"
-            width={600}
-            height={400}
-            priority
-          />
-        </div>
-      </main>
+        {renderProgressBar()}
+        {renderCurrentStep()}
+      </div>
     </div>
   );
 };
