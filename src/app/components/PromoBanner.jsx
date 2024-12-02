@@ -11,7 +11,7 @@ const PromoBanner = () => {
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <p className="text-sm sm:text-base flex-grow text-center">
-            <span className="hidden sm:inline">🌟 </span>
+            <span className="hidden sm:inline"> </span>
             Profitez de -15% sur l&apos;installation 
             <span className="hidden sm:inline"> de vos panneaux solaires</span> jusqu&apos;au 31 janvier ! 
           </p>
