@@ -85,7 +85,7 @@ const MerciPage = () => {
                   priority 
                 />
               </div>
-              Les aides de l'État disponibles pour votre projet
+              Les aides de l&apos;État disponibles pour votre projet
             </li>
             <li>
               <div className="check-icon">
