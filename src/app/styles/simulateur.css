@@ -1,6 +1,65 @@
 .simulateur-page {
   min-height: 100vh;
   background-color: #fff;
+  background-image: linear-gradient(to bottom right, rgba(175, 201, 126, 0.1), rgba(175, 201, 126, 0.05));
+}
+
+.sim-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo-container img {
+  max-width: 120px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.logo-container img:hover {
+  transform: scale(1.05);
+}
+
+.phone-number {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.phone-number:hover {
+  background-color: #AFC97E;
+}
+
+.phone-number img {
+  width: 24px;
+  height: 24px;
+}
+
+.phone-number a {
+  color: #4b5563;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.phone-number:hover a {
+  color: white;
+}
+
+.phone-number:hover img {
+  filter: brightness(0) invert(1);
 }
 
 .simulateur-container {
@@ -9,17 +68,7 @@
   padding: 2rem;
 }
 
-.logo-container {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0;
-}
-
-.logo-container img {
-  max-width: 150px;
-  height: auto;
-}
-
+/* Progress Bar Styles */
 .progress-container {
   max-width: 600px;
   margin: 2rem auto;
@@ -37,21 +86,42 @@
   background-color: #e5e7eb;
   border-radius: 4px;
   overflow: hidden;
+  margin-bottom: 1rem;
 }
 
 .progress {
   height: 100%;
   background-color: #AFC97E;
-  transition: width 0.3s ease;
+  transition: width 0.5s ease;
 }
 
+.step-titles {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding: 0 0.5rem;
+}
+
+.step-titles span {
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: color 0.3s ease;
+}
+
+.step-titles span.active {
+  color: #AFC97E;
+  font-weight: 600;
+}
+
+/* Step Container Styles */
 .step-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 2rem;
   background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .step-container h2 {
@@ -62,6 +132,7 @@
   font-weight: 600;
 }
 
+/* Button Styles */
 .buttons-container,
 .energy-buttons-container {
   display: flex;
@@ -74,38 +145,89 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1.25rem;
   background-color: #fff;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  transition: all 0.2s ease;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .property-button:hover,
 .energy-button:hover {
   border-color: #AFC97E;
-  background-color: #f8f9fa;
+  background-color: rgba(175, 201, 126, 0.05);
+  transform: translateY(-2px);
 }
 
-.property-button img,
-.energy-button img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+.button-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.button-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.button-title {
+  font-weight: 600;
+  color: #333;
+}
+
+.button-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.energy-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.monthly-amount {
+  font-weight: 600;
+  color: #333;
+}
+
+.annual-price {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.savings-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.savings-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
 }
 
 .arrow-icon {
   width: 20px;
   height: 20px;
   opacity: 0.5;
+  transition: opacity 0.3s ease;
 }
 
-.contact-form {
-  max-width: 500px;
-  margin: 0 auto;
+.property-button:hover .arrow-icon,
+.energy-button:hover .arrow-icon {
+  opacity: 1;
 }
 
+/* Form Styles */
 .form-group {
   margin-bottom: 1.5rem;
 }
@@ -120,36 +242,72 @@
 .form-group input {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 6px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .form-group input:focus {
   outline: none;
   border-color: #AFC97E;
+  box-shadow: 0 0 0 3px rgba(175, 201, 126, 0.2);
+}
+
+.form-group input.filled {
+  border-color: #AFC97E;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  color: #4b5563;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  border-color: #AFC97E;
+  color: #AFC97E;
 }
 
 .submit-button {
-  width: 100%;
-  padding: 1rem;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
   background-color: #AFC97E;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 .submit-button:hover {
   background-color: #9eb86d;
+  transform: translateY(-1px);
 }
 
 .submit-button:disabled {
   background-color: #e5e7eb;
   cursor: not-allowed;
+  transform: none;
 }
 
 .error-message {
@@ -157,9 +315,58 @@
   margin-bottom: 1rem;
   padding: 0.75rem;
   background-color: #fee2e2;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 0.875rem;
 }
 
+/* Animation Styles */
+.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* Spinner Animation */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Styles */
 @media (max-width: 768px) {
   .simulateur-container {
     padding: 1rem;
@@ -171,16 +378,27 @@
 
   .property-button,
   .energy-button {
-    padding: 0.75rem;
+    padding: 1rem;
   }
 
-  .property-button img,
-  .energy-button img {
-    width: 30px;
-    height: 30px;
+  .button-content {
+    gap: 0.75rem;
   }
 
-  .step-container h2 {
-    font-size: 1.25rem;
+  .button-text {
+    font-size: 0.875rem;
+  }
+
+  .savings-info {
+    font-size: 0.75rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .back-button,
+  .submit-button {
+    width: 100%;
   }
 }

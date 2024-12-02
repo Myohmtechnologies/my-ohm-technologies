@@ -2,46 +2,49 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link"; // Utilisation de Link pour la navigation Next.js
-import "../../styles/simulateur.css";
+import Link from "next/link";
+import "../styles/merci.css";
 
 const MerciPage = () => {
   return (
     <div className="merci-container">
-      {/* Header */}
       <header className="merci-header">
         <Link href="/">
           <Image
             src="/images/logo.png"
             alt="Logo My ohm technologies"
-            className="logo"
             width={150}
             height={50}
+            priority
           />
         </Link>
         <div className="header-actions">
-          <Link href="#" className="print-link">
+          <Link href="#" className="print-link" onClick={() => window.print()}>
+            <Image
+              src="/images/svg/print.svg"
+              alt="Print Icon"
+              width={20}
+              height={20}
+            />
             Imprimer votre simulation
           </Link>
-          <span className="phone-number">
+          <Link href="tel:0184606125" className="phone-number">
             <Image
-              src="/images/svg/material-symbols_call.svg"
+              src="/images/svg/phone-icon.svg"
               alt="Phone Icon"
               width={20}
               height={20}
             />
-            09 75 66 68 58
-          </span>
+            01 84 60 61 25
+          </Link>
         </div>
       </header>
 
-      {/* Notification Section */}
       <section className="notification">
-        {/* Stepper */}
         <div className="stepper">
           <div className="step completed">
-            <span className="step-icon">✔️</span>
-            <span className="none">Simulation réalisée</span>
+            <span className="step-icon">✓</span>
+            <span>Simulation réalisée</span>
           </div>
           <hr />
           <div className="step active">
@@ -51,7 +54,7 @@ const MerciPage = () => {
           <hr />
           <div className="step">
             <span className="step-number">3</span>
-            <span className="none">RDV chez vous</span>
+            <span>RDV chez vous</span>
           </div>
         </div>
         <h3>Notre conseiller expert va vous contacter dans les 24h</h3>
@@ -62,30 +65,27 @@ const MerciPage = () => {
         </p>
       </section>
 
-      {/* Address Section */}
       <section className="address">
         <span>📍 544 Av. Frédéric Mistral 04100 Manosque, France</span>
       </section>
 
-      {/* User Info Section */}
       <section className="user-info">
-        <h1>Youcef Mahieddine</h1>
+        <h1>Votre Simulation Solaire</h1>
         <h2>Voici votre potentiel solaire</h2>
-        <p>Après analyse de votre profil de consommation énergétique</p>
+        <p>Basé sur votre profil de consommation énergétique</p>
       </section>
 
-      {/* Solar Recommendation Section */}
       <section className="merci-info">
         <div className="solar-recommendation">
           <div className="recommendation-header">
-            <h2>Recommandé</h2>
+            <h2>Solution Recommandée</h2>
             <span className="power">3 kWc</span>
           </div>
 
           <div className="recommendation-details">
             <div className="recommendation-stat">
-              <span>Quantité</span>
-              <strong>6 panneaux</strong>
+              <span>Installation</span>
+              <strong>6 panneaux solaires</strong>
             </div>
             <div className="recommendation-stat">
               <span>Type d&apos;onduleur</span>
@@ -95,50 +95,33 @@ const MerciPage = () => {
               <span>Production annuelle</span>
               <strong>4 380 kWh</strong>
             </div>
-            <hr />
             <div className="recommendation-stat">
-              <span>Prix de votre électricité solaire</span>
+              <span>Prix de l&apos;électricité solaire</span>
               <strong>0,07 € / kWh</strong>
             </div>
-            <div className="recommendation-stat">
-              <span>Réduction de votre facture</span>
-              <strong>74%</strong>
-            </div>
-            <div className="recommendation-stat">
-              <span>Empreinte carbone (Émissions CO2)</span>
-              <strong>16 grammes par kWh</strong>
+          </div>
+
+          <div className="savings-info">
+            <h3>Vos économies estimées</h3>
+            <div className="savings-grid">
+              <div className="savings-item">
+                <span>Économies mensuelles</span>
+                <strong>95 €</strong>
+              </div>
+              <div className="savings-item">
+                <span>Économies annuelles</span>
+                <strong>1 140 €</strong>
+              </div>
+              <div className="savings-item">
+                <span>Réduction CO2</span>
+                <strong>1 200 kg/an</strong>
+              </div>
+              <div className="savings-item">
+                <span>Retour sur investissement</span>
+                <strong>6-8 ans</strong>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="recommendation-map">
-          <Image
-            src="/images/simulation-google-maps.png"
-            alt="Localisation de l'installation"
-            width={500}
-            height={300}
-          />
-        </div>
-      </section>
-
-      {/* Autoconsommation Section */}
-      <section className="autoconsommation-section">
-        <div className="autoconsommation-text">
-          <h3>Réduisez votre facture grâce à l&apos;autoconsommation solaire.</h3>
-          <p>
-            L&apos;autoconsommation représente la part de l&apos;électricité
-            produite par vos panneaux solaires que vous consommez directement.
-            Utiliser votre électricité solaire en journée augmente sensiblement
-            la rentabilité de votre projet !
-          </p>
-        </div>
-        <div className="autoconsommation-graph">
-          <Image
-            src="/images/courbe-autoconsomation.png"
-            alt="Courbe de consommation et de production"
-            className="graph-image"
-            width={500}
-            height={300}
-          />
         </div>
       </section>
     </div>
