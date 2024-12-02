@@ -21,7 +21,7 @@ const CookieConsent = () => {
             try {
                 const savedPreferences = JSON.parse(consent);
                 setPreferences(savedPreferences);
-            } catch (e) {
+            } catch {
                 setShowBanner(true);
             }
         }
@@ -196,7 +196,7 @@ const CookieConsent = () => {
                         )}
                         <button
                             onClick={handleAcceptAll}
-                            className="px-4 py-2 text-sm text-white bg-customGreen rounded-md hover:bg-blue-700 transition-all duration-200"
+                            className="px-4 py-2 text-sm text-white bg-customGreen rounded-md hover:bg-customGreen/90 transition-all duration-200"
                         >
                             Tout accepter
                         </button>
