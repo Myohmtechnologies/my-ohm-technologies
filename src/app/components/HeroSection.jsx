@@ -13,7 +13,7 @@ const HeroSection = () => {
     <div className="hero">
         <div className="solar-offer-home">
           <div className="solar-content">
-            <h2>Passez au solaire avec OHM Technologies</h2>
+            <h2>Passez au solaire avec My Ohm Technologies</h2>
             <p>Sélectionnez votre situation pour voir vos économies:</p>
             <div className="options">
 

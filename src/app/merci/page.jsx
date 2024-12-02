@@ -16,25 +16,27 @@ const MerciPage = () => {
           <Image
             src="/images/logo.png"
             alt="Logo My ohm technologies"
-            width={150}
-            height={50}
+            width={170}
+            height={70}
             priority
           />
         </Link>
         <div className="header-actions">
-          <Link href="#" className="print-link" onClick={() => window.print()}>
-            <div className="print-icon">
-              <Image
-                src="/images/svg/print.svg"
-                alt="Print Icon"
-                width={20}
-                height={20}
-                priority
-              />
-            </div>
-            Imprimer votre simulation
-          </Link>
-          <Link href="tel:0184606125" className="phone-number">
+          <button 
+            className="print-button" 
+            onClick={() => window.print()}
+            title="Imprimer votre simulation"
+          >
+            <Image
+              src="/images/svg/print-icon.svg"
+              alt="Imprimer"
+              width={24}
+              height={24}
+              priority
+            />
+            <span>Imprimer votre simulation</span>
+          </button>
+          <Link href="tel:+33 04 92 76 68 58" className="phone-number">
             <div className="phone-icon">
               <Image
                 src="/images/svg/phone-icon.svg"
@@ -44,7 +46,7 @@ const MerciPage = () => {
                 priority
               />
             </div>
-            01 84 60 61 25
+            04 92 76 68 58
           </Link>
         </div>
       </header>

@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ohm Technologies Panneaux Solaires',
+        alt: 'My Ohm Technologies Panneaux Solaires',
       }
     ],
   },
@@ -44,14 +44,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
       <head>
         <GoogleTagManagerHead />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <GoogleTagManagerBody />
         <GoogleAnalytics />
         <main>

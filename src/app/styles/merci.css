@@ -377,6 +377,40 @@ hr {
   border-radius: 2px;
 }
 
+.print-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background-color: white;
+  border: 2px solid #AFC97E;
+  border-radius: 8px;
+  color: #4a5568;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.print-button:hover {
+  background-color: #AFC97E;
+  color: white;
+}
+
+.print-button:hover img {
+  filter: brightness(0) invert(1);
+}
+
+.print-button span {
+  white-space: nowrap;
+}
+
+@media print {
+  .print-button {
+    display: none;
+  }
+}
+
 /* Responsive styles */
 @media (max-width: 768px) {
   .merci-header {

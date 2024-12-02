@@ -62,6 +62,16 @@ const CardsSection = () => {
           />
           <p className="card-text">Une énergie verte et renouvelable</p>
         </div>
+        <div className="card">
+          <Image
+            src="/images/svg/energy-savings-icon.svg"
+            alt="Icône Économies d'Énergie"
+            width={130}
+            height={130}
+            className="card-image"
+          />
+          <p className="card-text">Devenez Autonome Jusqu&apos;à 80%</p>
+        </div>
       </div>
     </section>
   );

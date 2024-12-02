@@ -57,7 +57,7 @@ const StepsSection = () => {
                   height={150}
                 />
               </div>
-              <p className="step-title">STEP {step.number}</p>
+              <p className="step-title">ÉTAPE {step.number}</p>
               <p className="step-desc">{step.title}</p>
             </div>
           ))}
