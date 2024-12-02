@@ -30,7 +30,7 @@ const Header = () => {
             <Image 
               src="/images/logo.png" 
               alt="Logo MY OHM" 
-              width={150}
+              width={190}
               height={150}
               className="w-28 md:w-36"
               priority
@@ -113,8 +113,8 @@ const Header = () => {
                   <Image 
                     src="/images/logo.png" 
                     alt="Logo MY OHM" 
-                    width={120}
-                    height={120}
+                    width={170}
+                    height={150}
                     className="w-28"
                     priority
                   />
