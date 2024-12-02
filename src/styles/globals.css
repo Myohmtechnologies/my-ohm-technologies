@@ -1446,7 +1446,7 @@ p {
 /* Individual card style */
 .card-project {
   height: 480px;
-  width: 420px;
+  width: 95%;
   object-fit: cover;
   position: relative;
   overflow: hidden;
@@ -1675,7 +1675,7 @@ p {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin: 0 40px;
+  
 
 }
 
