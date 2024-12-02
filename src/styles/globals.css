@@ -3076,3 +3076,43 @@ p {
 .promo-banner-visible {
   margin-top: 48px;
 }
+
+/* Client Reviews Section */
+.avis-du-client {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+
+.btn-nos-instal h2 {
+  margin: 0;
+}
+
+.card-project {
+  height: 100%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-project:hover {
+  transform: translateY(-4px);
+}
+
+.card-project img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .avis-du-client {
+    margin-bottom: 2rem;
+  }
+  
+  .btn-nos-instal {
+    text-align: center;
+  }
+  
+  .btn-nos-instal h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
