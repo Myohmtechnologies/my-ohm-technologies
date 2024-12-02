@@ -1,5 +1,6 @@
 import { GoogleTagManagerHead, GoogleTagManagerBody } from './components/GoogleTagManager'
 import GoogleAnalytics from './components/GoogleAnalytics'
+import CookieConsent from './components/CookieConsent'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function RootLayout({
         <GoogleTagManagerBody />
         <GoogleAnalytics />
         {children}
+        <CookieConsent />
       </body>
     </html>
   )
