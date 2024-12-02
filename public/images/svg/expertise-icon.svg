@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cercle extérieur -->
+    <circle cx="40" cy="40" r="38" stroke="#AFC97E" stroke-width="3"/>
+    
+    <!-- Badge/Certificat -->
+    <path d="M30 25H50C51.1046 25 52 25.8954 52 27V43C52 44.1046 51.1046 45 50 45H30C28.8954 45 28 44.1046 28 43V27C28 25.8954 28.8954 25 30 25Z" fill="#AFC97E"/>
+    
+    <!-- Étoile -->
+    <path d="M40 32L42.5 37.5L48 38.2L44 42.4L45 48L40 45.3L35 48L36 42.4L32 38.2L37.5 37.5L40 32Z" fill="white"/>
+    
+    <!-- Ruban -->
+    <path d="M36 45L40 55L44 45" stroke="#AFC97E" stroke-width="2"/>
+</svg>

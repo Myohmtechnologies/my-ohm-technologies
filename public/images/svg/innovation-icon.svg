@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cercle extérieur -->
+    <circle cx="40" cy="40" r="38" stroke="#AFC97E" stroke-width="3"/>
+    
+    <!-- Ampoule -->
+    <path d="M40 20C33.4 20 28 25.4 28 32C28 36.4 30.4 40.2 34 42.2V46C34 47.1 34.9 48 36 48H44C45.1 48 46 47.1 46 46V42.2C49.6 40.2 52 36.4 52 32C52 25.4 46.6 20 40 20Z" fill="#AFC97E"/>
+    
+    <!-- Filament -->
+    <path d="M37 48V52M43 48V52" stroke="#AFC97E" stroke-width="2"/>
+    
+    <!-- Base -->
+    <rect x="35" y="52" width="10" height="4" rx="1" fill="#AFC97E"/>
+    
+    <!-- Rayons lumineux -->
+    <path d="M40 15V18M55 32H52M28 32H25M51 21L49 23M29 21L31 23" stroke="#AFC97E" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -50,7 +50,9 @@ const Sidebar = () => {
   return (
     <div className="h-screen w-64 bg-white text-black flex flex-col p-4">
       <div className="flex items-center justify-center mb-6">
-        <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
+        <Link href="/dashboard">
+          <Image src="/images/logo1.png" alt="Logo" width={200} height={100} />
+        </Link>
       </div>
       
       {error && (

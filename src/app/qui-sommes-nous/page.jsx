@@ -13,13 +13,7 @@ export default function AboutUs() {
         {/* Hero Section avec style similaire aux autres pages */}
         <section className="relative h-[50vh] min-h-[400px] bg-[#AFC97E] flex items-center">
           <div className="absolute inset-0 bg-black/40 z-10"></div>
-          <Image
-            src="/images/solar-panels-hero.jpg"
-            alt="Panneaux solaires"
-            fill
-            style={{ objectFit: "cover" }}
-            priority
-          />
+          
           <div className="container mx-auto px-4 relative z-20">
             <div className="text-center">
               <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
@@ -38,7 +32,7 @@ export default function AboutUs() {
             <div className="grid md:grid-cols-2 gap-16 items-center">
               <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src="/images/mission-image.jpg"
+                  src="/images/hero/5.webp"
                   alt="Installation de panneaux solaires"
                   fill
                   style={{ objectFit: "cover" }}

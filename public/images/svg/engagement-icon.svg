@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Cercle extérieur -->
+    <circle cx="40" cy="40" r="38" stroke="#AFC97E" stroke-width="3"/>
+    
+    <!-- Mains qui se serrent -->
+    <path d="M25 40C25 40 30 35 40 35C50 35 55 40 55 40" stroke="#AFC97E" stroke-width="3" stroke-linecap="round"/>
+    <path d="M25 45C25 45 30 50 40 50C50 50 55 45 55 45" stroke="#AFC97E" stroke-width="3" stroke-linecap="round"/>
+    
+    <!-- Cercle central -->
+    <circle cx="40" cy="40" r="8" fill="#AFC97E"/>
+    
+    <!-- Étoile centrale -->
+    <path d="M40 34L42 38L46 38.5L43 41.5L44 45.5L40 43.5L36 45.5L37 41.5L34 38.5L38 38L40 34Z" fill="white"/>
+</svg>

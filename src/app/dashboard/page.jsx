@@ -6,6 +6,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import Sidebar from "../components/Sidebar";
+import NewContactForm from "../components/NewContactForm";
 import '../../styles/dashboard.css';
 
 // Mapping des couleurs par statut
@@ -24,6 +25,7 @@ const statusColors = {
 const DashboardPage = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showNewContactForm, setShowNewContactForm] = useState(false);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -85,13 +87,24 @@ const DashboardPage = () => {
       
       <div className="flex-1 overflow-auto">
         <div className="p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">
-              Calendrier des Rendez-vous
-            </h1>
-            <p className="text-gray-600 mt-2">
-              Gérez vos rendez-vous et consultez votre planning
-            </p>
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">
+                Calendrier des Rendez-vous
+              </h1>
+              <p className="text-gray-600 mt-2">
+                Gérez vos rendez-vous et consultez votre planning
+              </p>
+            </div>
+            <button
+              onClick={() => setShowNewContactForm(true)}
+              className="px-6 py-3 bg-customGreen text-white rounded-lg hover:bg-opacity-90 flex items-center"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+              </svg>
+              Nouveau Contact
+            </button>
           </div>
 
           <div className="bg-white rounded-xl shadow-sm border border-gray-100">
@@ -154,6 +167,10 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
+
+      {showNewContactForm && (
+        <NewContactForm onClose={() => setShowNewContactForm(false)} />
+      )}
     </div>
   );
 };

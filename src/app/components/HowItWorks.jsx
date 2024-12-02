@@ -10,12 +10,14 @@ export default function HowItWorks() {
         </div>
         <div className="pv-ccm">
           <Image
-            src="images/panneaux-photovoltaique-comment-ca-marche.png"
+            src="/images/panneaux-photovoltaique-comment-ca-marche.png"
             alt="Comment ça marche"
             width={600}
+            height={400}
+            priority
           />
         </div>
-  
+
         <div className="comment-ca-marche-cards">
           <div className="comment-ca-marche-card">
             <div className="comment-ca-marche-circle">1</div>
@@ -25,7 +27,7 @@ export default function HowItWorks() {
               cette lumière pour la transformer en énergie : le courant continu.
             </p>
           </div>
-  
+
           <div className="comment-ca-marche-card">
             <div className="comment-ca-marche-circle second">2</div>
             <p>
@@ -38,4 +40,3 @@ export default function HowItWorks() {
       </section>
     );
   }
-  

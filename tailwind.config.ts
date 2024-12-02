@@ -24,6 +24,7 @@ const config: Config = {
   				foreground: 'hsl(var(--card-foreground))'
   			},
 			  customGreen: '#AFC97E',
+			  customYellow: '#ffdf64',
   			popover: {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
