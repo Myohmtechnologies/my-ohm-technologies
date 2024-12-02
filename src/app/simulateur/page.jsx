@@ -43,6 +43,7 @@ const SimulateurPage = () => {
   const [formState, setFormState] = useState({
     residentialStatus: "",
     ownershipType: "",
+    logementType: "",
     energyBill: "",
     name: "",
     email: "",
@@ -75,6 +76,7 @@ const SimulateurPage = () => {
           phone: formState.phone,
           residentialStatus: formState.residentialStatus,
           ownershipType: formState.ownershipType,
+          logementType: formState.logementType,
           energyBill: formState.energyBill,
         }),
       });
@@ -158,11 +160,11 @@ const SimulateurPage = () => {
 
   const renderPropertyTypeStep = () => (
     <div className={`step-container property-type ${isAnimating ? 'fade-out' : 'fade-in'}`}>
-      <h2>S&apos;agissant de votre logement, vous êtes ?</h2>
+      <h2>Vous habitez dans...</h2>
       <div className="buttons-container">
         {[
-          { type: "Propriétaire", icon: "/images/svg/Group 2085663187.svg", description: "Propriétaire de votre logement" },
-          { type: "Locataire", icon: "/images/svg/Group 2085663187 (1).svg", description: "Locataire de votre logement" }
+          { type: "Maison", icon: "/images/svg/Group 2085663187.svg", description: "Une maison individuelle" },
+          { type: "Appartement", icon: "/images/svg/Group 2085663187 (1).svg", description: "Un appartement" }
         ].map(({ type, icon, description }) => (
           <button
             key={type}
@@ -335,7 +337,7 @@ const SimulateurPage = () => {
             width={24}
             height={24}
           />
-          <Link href="tel:0184606125">01 84 60 61 25</Link>
+          <Link href="tel:+33 04 92 76 68 58">04 92 76 68 58</Link>
         </div>
       </div>
       <div className="simulateur-container">

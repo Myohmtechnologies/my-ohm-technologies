@@ -1,11 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import "../styles/merci.css";
 
 const MerciPage = () => {
+  const [showMicroInverterInfo, setShowMicroInverterInfo] = useState(false);
+  const [showPanelInfo, setShowPanelInfo] = useState(false);
+
   return (
     <div className="merci-container">
       <header className="merci-header">
@@ -20,21 +23,27 @@ const MerciPage = () => {
         </Link>
         <div className="header-actions">
           <Link href="#" className="print-link" onClick={() => window.print()}>
-            <Image
-              src="/images/svg/print.svg"
-              alt="Print Icon"
-              width={20}
-              height={20}
-            />
+            <div className="print-icon">
+              <Image
+                src="/images/svg/print.svg"
+                alt="Print Icon"
+                width={20}
+                height={20}
+                priority
+              />
+            </div>
             Imprimer votre simulation
           </Link>
           <Link href="tel:0184606125" className="phone-number">
-            <Image
-              src="/images/svg/phone-icon.svg"
-              alt="Phone Icon"
-              width={20}
-              height={20}
-            />
+            <div className="phone-icon">
+              <Image
+                src="/images/svg/phone-icon.svg"
+                alt="Phone Icon"
+                width={20}
+                height={20}
+                priority
+              />
+            </div>
             01 84 60 61 25
           </Link>
         </div>
@@ -63,6 +72,47 @@ const MerciPage = () => {
           Un conseiller expert va vous contacter dans les plus brefs délais
           pour discuter de votre projet et répondre à toutes vos questions.
         </p>
+        <div className="benefits-box">
+          <h4>Lors de votre RDV téléphonique, notre expert vous présentera :</h4>
+          <ul>
+            <li>
+              <div className="check-icon">
+                <Image 
+                  src="/images/svg/check-circle.svg" 
+                  alt="Check" 
+                  width={24} 
+                  height={24}
+                  priority 
+                />
+              </div>
+              Les aides de l'État disponibles pour votre projet
+            </li>
+            <li>
+              <div className="check-icon">
+                <Image 
+                  src="/images/svg/check-circle.svg" 
+                  alt="Check" 
+                  width={24} 
+                  height={24}
+                  priority 
+                />
+              </div>
+              Le détail de vos économies potentielles
+            </li>
+            <li>
+              <div className="check-icon">
+                <Image 
+                  src="/images/svg/check-circle.svg" 
+                  alt="Check" 
+                  width={24} 
+                  height={24}
+                  priority 
+                />
+              </div>
+              Les solutions de financement adaptées à votre situation
+            </li>
+          </ul>
+        </div>
       </section>
 
       <section className="address">
@@ -84,12 +134,74 @@ const MerciPage = () => {
 
           <div className="recommendation-details">
             <div className="recommendation-stat">
-              <span>Installation</span>
+              <div className="stat-header">
+                <span>Installation</span>
+                <div className="info-icon">
+                  <button 
+                    className="info-button"
+                    onClick={() => setShowPanelInfo(!showPanelInfo)}
+                  >
+                    <Image 
+                      src="/images/svg/info-circle.svg" 
+                      alt="Info" 
+                      width={24} 
+                      height={24}
+                      priority 
+                    />
+                  </button>
+                </div>
+              </div>
               <strong>6 panneaux solaires</strong>
+              {showPanelInfo && (
+                <div className="info-popup">
+                  <p>
+                    <Image 
+                      src="/images/svg/france-flag.svg" 
+                      alt="Drapeau français" 
+                      width={24} 
+                      height={24}
+                      className="flag"
+                      priority 
+                    />
+                    Panneaux solaires fabriqués en France
+                  </p>
+                </div>
+              )}
             </div>
             <div className="recommendation-stat">
-              <span>Type d&apos;onduleur</span>
+              <div className="stat-header">
+                <span>Type d&apos;onduleur</span>
+                <div className="info-icon">
+                  <button 
+                    className="info-button"
+                    onClick={() => setShowMicroInverterInfo(!showMicroInverterInfo)}
+                  >
+                    <Image 
+                      src="/images/svg/info-circle.svg" 
+                      alt="Info" 
+                      width={24} 
+                      height={24}
+                      priority 
+                    />
+                  </button>
+                </div>
+              </div>
               <strong>Micro-onduleur</strong>
+              {showMicroInverterInfo && (
+                <div className="info-popup">
+                  <p>
+                    <Image 
+                      src="/images/svg/usa-flag.svg" 
+                      alt="Drapeau USA" 
+                      width={24} 
+                      height={24}
+                      className="flag"
+                      priority 
+                    />
+                    Micro-onduleurs Made in USA - Les meilleurs du marché
+                  </p>
+                </div>
+              )}
             </div>
             <div className="recommendation-stat">
               <span>Production annuelle</span>

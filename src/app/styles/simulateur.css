@@ -163,23 +163,28 @@
 .button-content {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
+  flex: 1;
 }
 
 .button-text {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
+  text-align: left;
 }
 
 .button-title {
-  font-weight: 600;
-  color: #333;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  letter-spacing: -0.3px;
 }
 
 .button-description {
-  font-size: 0.875rem;
-  color: #6b7280;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #4a5568;
 }
 
 .energy-info {
@@ -401,4 +406,102 @@
   .submit-button {
     width: 100%;
   }
+}
+
+.property-type {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.property-type h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.5rem;
+  background-color: white;
+  color: #4a5568;
+  font-size: 1rem;
+  transition: all 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%234A5568' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+}
+
+.form-group select:focus {
+  outline: none;
+  border-color: #AFC97E;
+  box-shadow: 0 0 0 3px rgba(175, 201, 126, 0.2);
+}
+
+.form-group select:hover {
+  border-color: #CBD5E0;
+}
+
+.next-button {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #AFC97E;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.next-button:hover {
+  background-color: #9AB568;
+}
+
+.next-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(175, 201, 126, 0.4);
+}
+
+.property-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.property-button:hover {
+  border-color: #AFC97E;
+  background-color: #f7f9f4;
+  transform: translateY(-2px);
+}
+
+.property-button:hover .button-title {
+  color: #AFC97E;
 }
