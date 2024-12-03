@@ -45,10 +45,10 @@ export default function ImageSection() {
           <div className="space-y-8">
             <div>
               <h2 className="text-[#AFC97E] font-medium mb-4">
-                L'ÉNERGIE SOLAIRE À VOTRE PORTÉE.
+                L&apos;ÉNERGIE SOLAIRE À VOTRE PORTÉE.
               </h2>
               <h3 className="text-3xl sm:text-4xl font-semibold text-gray-900 mb-6">
-                Profitez d'une installation de panneaux solaires à prix accessible partout en France
+                Profitez d&apos;une installation de panneaux solaires à prix accessible partout en France
               </h3>
               <p className="text-gray-600">
                 Nous proposons des solutions solaires abordables avec des panneaux et des batteries de haute qualité. 
@@ -77,7 +77,7 @@ export default function ImageSection() {
                 href="/attestation.pdf"
                 className="inline-flex items-center px-6 py-3 bg-[#fef9c3] text-gray-900 rounded-full hover:bg-[#fef08a] transition-colors duration-200"
               >
-                TÉLÉCHARGEZ L'ATTESTATION D'ASSURANCE
+                TÉLÉCHARGEZ L&apos;ATTESTATION D&apos;ASSURANCE
                 <svg
                   className="w-4 h-4 ml-2"
                   fill="none"
