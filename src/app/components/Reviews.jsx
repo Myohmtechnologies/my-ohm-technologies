@@ -2,6 +2,7 @@
 
 import { StarIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 
 const GoogleIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
@@ -18,8 +19,6 @@ const PagesJaunesIcon = () => (
     <path d="M5 7h14v2H5zm0 4h14v2H5zm0 4h14v2H5z" fill="#000"/>
   </svg>
 );
-
-
 
 const reviews = [
   {
@@ -45,115 +44,126 @@ const reviews = [
   }
 ];
 
-export default function Reviews() {
+const ReviewsComponent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const interval = setInterval(() => {
+      if (mounted) {
+        handleNextReview();
+      }
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      setMounted(false);
+    };
+  }, [currentIndex]);
+
+  const handleNextReview = () => {
+    if (!isTransitioning) {
       setIsTransitioning(true);
       setTimeout(() => {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
         setIsTransitioning(false);
       }, 500);
-    }, 5000); // Change slide every 5 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const visibleReviews = () => {
-    const numVisible = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
-    const indices = [];
-    for (let i = 0; i < numVisible; i++) {
-      indices.push((currentIndex + i) % reviews.length);
     }
-    return indices.map(index => reviews[index]);
   };
 
-  return (
-    <div className="bg-white py-24 sm:py-32" id="testimonials">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Ce que nos clients disent de nous
-          </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Découvrez les avis de nos clients satisfaits
-          </p>
-          
-          <div className="mt-8 flex flex-wrap justify-center items-center gap-8">
-            <div className="flex items-center gap-2">
-              <GoogleIcon />
-              <div className="flex flex-col items-start">
-                <div className="flex items-center">
-                  <StarIcon className="h-5 w-5 text-yellow-400" />
-                  <span className="ml-1 font-semibold">5.0</span>
-                </div>
-                <span className="text-sm text-gray-600">sur Google</span>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-2">
-              <PagesJaunesIcon />
-              <div className="flex flex-col items-start">
-                <div className="flex items-center">
-                  <StarIcon className="h-5 w-5 text-yellow-400" />
-                  <span className="ml-1 font-semibold">5.0</span>
-                </div>
-                <span className="text-sm text-gray-600">sur Pages Jaunes</span>
-              </div>
-            </div>
+  const handlePrevReview = () => {
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+        setIsTransitioning(false);
+      }, 500);
+    }
+  };
 
-            
+  if (!mounted) {
+    return null;
+  }
+
+  return (
+    <section className="reviews-section">
+      <div className="reviews-container">
+        <div className="reviews-header">
+          <div className="reviews-title">
+            <h2>Avis clients</h2>
+            <p>Ce que nos clients disent de nous</p>
+          </div>
+          <div className="rating-badges">
+            <div className="rating-badge">
+              <GoogleIcon />
+              <div className="rating-info">
+                <div className="stars">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon key={i} className="h-4 w-4 text-yellow-400" />
+                  ))}
+                </div>
+                <span>5/5 sur Google</span>
+              </div>
+            </div>
+            <div className="rating-badge">
+              <PagesJaunesIcon />
+              <div className="rating-info">
+                <div className="stars">
+                  {[...Array(5)].map((_, i) => (
+                    <StarIcon key={i} className="h-4 w-4 text-yellow-400" />
+                  ))}
+                </div>
+                <span>5/5 sur Pages Jaunes</span>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <div className="relative mt-16">
-          <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 transition-opacity duration-500 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
-            {visibleReviews().map((review) => (
-              <article key={review.id} className="flex flex-col justify-between rounded-2xl bg-white p-8 ring-1 ring-gray-200 xl:p-10 h-full">
-                <div>
-                  <div className="flex items-center gap-x-4 mb-8">
-                    <div className="h-12 w-12 rounded-full bg-[#AFC97E] flex items-center justify-center text-white text-xl font-semibold">
-                      {review.author.charAt(0)}
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold leading-6 text-gray-900">{review.author}</h3>
-                      <p className="text-sm leading-6 text-gray-600">{review.date}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex gap-x-1 mb-6">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <StarIcon key={i} className="h-5 w-5 text-yellow-400" aria-hidden="true" />
-                    ))}
-                  </div>
-                  
-                  <p className="text-gray-600 text-sm leading-6">{review.content}</p>
-                </div>
-              </article>
-            ))}
+
+        <div className="reviews-slider">
+          <div className={`review-card ${isTransitioning ? 'transitioning' : ''}`}>
+            <div className="review-content">
+              <p>{reviews[currentIndex].content}</p>
+            </div>
+            <div className="review-author">
+              <div className="stars">
+                {[...Array(reviews[currentIndex].rating)].map((_, i) => (
+                  <StarIcon key={i} className="h-4 w-4 text-yellow-400" />
+                ))}
+              </div>
+              <p className="author-name">{reviews[currentIndex].author}</p>
+              <p className="review-date">{reviews[currentIndex].date}</p>
+            </div>
           </div>
 
-          <div className="flex justify-center gap-2 mt-8">
-            {reviews.map((_, index) => (
-              <button
-                key={index}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex ? 'bg-[#AFC97E] w-4' : 'bg-gray-300'
-                }`}
-                onClick={() => {
-                  setIsTransitioning(true);
-                  setTimeout(() => {
-                    setCurrentIndex(index);
-                    setIsTransitioning(false);
-                  }, 500);
-                }}
-              />
-            ))}
+          <div className="review-navigation">
+            <button onClick={handlePrevReview} className="nav-button prev">
+              ←
+            </button>
+            <div className="review-dots">
+              {reviews.map((_, index) => (
+                <span
+                  key={index}
+                  className={`dot ${index === currentIndex ? 'active' : ''}`}
+                  onClick={() => {
+                    if (!isTransitioning) {
+                      setCurrentIndex(index);
+                    }
+                  }}
+                />
+              ))}
+            </div>
+            <button onClick={handleNextReview} className="nav-button next">
+              →
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+export default dynamic(() => Promise.resolve(ReviewsComponent), {
+  ssr: false
+});

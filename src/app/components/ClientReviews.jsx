@@ -1,5 +1,17 @@
 import Image from "next/image";
 
+const formatDate = (dateString) => {
+  try {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  } catch (error) {
+    return dateString;
+  }
+};
+
 const ClientReviews = ({ realizations, limit }) => {
   const displayedRealizations = limit ? realizations.slice(0, limit) : realizations;
 
@@ -38,7 +50,7 @@ const ClientReviews = ({ realizations, limit }) => {
                       {realisation.puissanceMax} kWc
                     </div>
                     <span className="date text-sm text-gray-600">
-                      {new Date(realisation.date).toLocaleDateString("fr-FR")}
+                      {formatDate(realisation.date)}
                     </span>
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-3 line-clamp-2">{realisation.title}</h3>
