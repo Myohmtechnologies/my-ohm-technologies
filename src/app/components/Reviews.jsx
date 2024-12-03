@@ -48,9 +48,17 @@ const ReviewsComponent = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
     const interval = setInterval(() => {
       if (mounted) {
         handleNextReview();
@@ -59,6 +67,7 @@ const ReviewsComponent = () => {
 
     return () => {
       clearInterval(interval);
+      window.removeEventListener('resize', checkMobile);
       setMounted(false);
     };
   }, [currentIndex]);
@@ -83,79 +92,117 @@ const ReviewsComponent = () => {
     }
   };
 
+  const getVisibleReviews = () => {
+    if (isMobile) {
+      return [reviews[currentIndex]];
+    } else {
+      return [
+        reviews[currentIndex],
+        reviews[(currentIndex + 1) % reviews.length],
+        reviews[(currentIndex + 2) % reviews.length]
+      ];
+    }
+  };
+
   if (!mounted) {
     return null;
   }
 
   return (
-    <section className="reviews-section">
-      <div className="reviews-container">
-        <div className="reviews-header">
-          <div className="reviews-title">
-            <h2>Avis clients</h2>
-            <p>Ce que nos clients disent de nous</p>
-          </div>
-          <div className="rating-badges">
-            <div className="rating-badge">
+    <section className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-4">
+            Ce que nos clients disent de nous
+          </h2>
+          <div className="flex flex-wrap justify-center items-center gap-8 mt-8">
+            <div className="flex items-center gap-4 bg-white rounded-lg shadow-sm px-4 py-3">
               <GoogleIcon />
-              <div className="rating-info">
-                <div className="stars">
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="h-4 w-4 text-yellow-400" />
+                    <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
                   ))}
                 </div>
-                <span>5/5 sur Google</span>
+                <span className="text-sm text-gray-600">5/5 sur Google</span>
               </div>
             </div>
-            <div className="rating-badge">
+            <div className="flex items-center gap-4 bg-white rounded-lg shadow-sm px-4 py-3">
               <PagesJaunesIcon />
-              <div className="rating-info">
-                <div className="stars">
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} className="h-4 w-4 text-yellow-400" />
+                    <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
                   ))}
                 </div>
-                <span>5/5 sur Pages Jaunes</span>
+                <span className="text-sm text-gray-600">5/5 sur Pages Jaunes</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="reviews-slider">
-          <div className={`review-card ${isTransitioning ? 'transitioning' : ''}`}>
-            <div className="review-content">
-              <p>{reviews[currentIndex].content}</p>
-            </div>
-            <div className="review-author">
-              <div className="stars">
-                {[...Array(reviews[currentIndex].rating)].map((_, i) => (
-                  <StarIcon key={i} className="h-4 w-4 text-yellow-400" />
-                ))}
+        <div className="relative">
+          <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} gap-6 transition-all duration-500 ${
+            isTransitioning ? 'opacity-0' : 'opacity-100'
+          }`}>
+            {getVisibleReviews().map((review, idx) => (
+              <div
+                key={`${review.id}-${idx}`}
+                className="bg-white rounded-xl shadow-lg p-8 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center gap-1 mb-4">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <StarIcon key={i} className="h-5 w-5 text-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 text-lg leading-relaxed italic mb-6">
+                    "{review.content}"
+                  </p>
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">{review.author}</p>
+                  <p className="text-sm text-gray-500">{review.date}</p>
+                </div>
               </div>
-              <p className="author-name">{reviews[currentIndex].author}</p>
-              <p className="review-date">{reviews[currentIndex].date}</p>
-            </div>
+            ))}
           </div>
 
-          <div className="review-navigation">
-            <button onClick={handlePrevReview} className="nav-button prev">
-              ←
+          <div className="flex items-center justify-between mt-8">
+            <button 
+              onClick={handlePrevReview}
+              className="p-2 rounded-full bg-white shadow-md hover:bg-gray-50 transition-colors"
+            >
+              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
             </button>
-            <div className="review-dots">
+            
+            <div className="flex items-center gap-2">
               {reviews.map((_, index) => (
-                <span
+                <button
                   key={index}
-                  className={`dot ${index === currentIndex ? 'active' : ''}`}
                   onClick={() => {
                     if (!isTransitioning) {
                       setCurrentIndex(index);
                     }
                   }}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex 
+                      ? 'bg-[#AFC97E] w-6'
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
                 />
               ))}
             </div>
-            <button onClick={handleNextReview} className="nav-button next">
-              →
+
+            <button 
+              onClick={handleNextReview}
+              className="p-2 rounded-full bg-white shadow-md hover:bg-gray-50 transition-colors"
+            >
+              <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </button>
           </div>
         </div>
