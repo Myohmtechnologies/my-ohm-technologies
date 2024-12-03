@@ -20,7 +20,28 @@ const BlogList = ({ blogs, handleDelete }) => {
               <TableRow key={blog._id}>
                 {/* Affichage de l'image */}
                 <TableCell>
-                  <Image src={blog.imageUrl} alt={blog.title} style={{ width: '50px', height: '50px', objectFit: 'cover' }} />
+                  <div style={{ position: 'relative', width: '50px', height: '50px' }}>
+                    {blog.imageUrl ? (
+                      <Image 
+                        src={blog.imageUrl} 
+                        alt={blog.title}
+                        width={50}
+                        height={50}
+                        className="object-cover"
+                        onError={(e) => {
+                          e.target.src = "/images/blog-header.png";
+                        }}
+                      />
+                    ) : (
+                      <Image 
+                        src="/images/blog-header.png"
+                        alt="Image par défaut"
+                        width={50}
+                        height={50}
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
                 </TableCell>
                 {/* Affichage du titre */}
                 <TableCell>{blog.title}</TableCell>

@@ -12,7 +12,15 @@ const BlogSection = ({ sections = [] }) => {
               <div key={index}>
                 <h2>{section.title}</h2>
                 <p>{section.content}</p>
-                {section.image && <Image src={section.image} alt={`Image de la section ${index + 1}`} style={{ maxWidth: "400px" }} />}
+                {section.image && (
+                  <Image 
+                    src={section.image} 
+                    alt={`Image de la section ${index + 1}`}
+                    width={800}
+                    height={500}
+                    className="w-full max-w-[400px] h-auto object-cover"
+                  />
+                )}
               </div>
             ))
           ) : (
@@ -31,7 +39,12 @@ const BlogSection = ({ sections = [] }) => {
           </div>
 
           <div className="call-to-action">
-            <Image src="/images/svg/mingcute_ceiling-lamp-fill.svg" alt="Lamp Icon" width={30} height={30}/>
+            <Image 
+              src="/images/svg/mingcute_ceiling-lamp-fill.svg" 
+              alt="Lamp Icon" 
+              width={30} 
+              height={30}
+            />
             <h3>Prêt à passer à l&apos;énergie solaire ?</h3>
             <div className="details">
               <span>✔ Estimation en 2 min</span>
@@ -42,7 +55,12 @@ const BlogSection = ({ sections = [] }) => {
               <a href="#">
                 VOUS AVEZ UN PROJET
               </a>
-              <Image src="/images/svg/lets-icons_arrow-right.svg" alt="Arrow Right" width={30} height={30}/>
+              <Image 
+                src="/images/svg/lets-icons_arrow-right.svg" 
+                alt="Arrow Right" 
+                width={30} 
+                height={30}
+              />
             </button>
           </div>
 
@@ -53,7 +71,12 @@ const BlogSection = ({ sections = [] }) => {
               <a href="#">
                 MON ÉTUDE GRATUITE
               </a>
-              <Image src="/images/svg/lets-icons_arrow-right.svg" alt="Arrow Right" width={30} height={30}/>
+              <Image 
+                src="/images/svg/lets-icons_arrow-right.svg" 
+                alt="Arrow Right" 
+                width={30} 
+                height={30}
+              />
             </button>
           </div>
         </aside>

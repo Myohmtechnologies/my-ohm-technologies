@@ -135,7 +135,15 @@ export default function BlogDetail() {
                 onChange={(e) => handleImageChange(index, e.target.files[0])}
               />
               {section.image && (
-                <Image src={section.image} alt={`Section ${index + 1} image`} style={{ maxWidth: "100px", marginTop: "0.5em" }} />
+                <div style={{ position: 'relative', width: '100px', height: '100px' }}>
+                  <Image 
+                    src={section.image} 
+                    alt={`Section ${index + 1} image`}
+                    width={100}
+                    height={100}
+                    className="object-cover"
+                  />
+                </div>
               )}
               <button type="button" onClick={() => deleteSection(index)}>
                 Supprimer la section
@@ -156,15 +164,26 @@ export default function BlogDetail() {
       ) : (
         <div>
           <p>{blog.content}</p>
-          {blog.sections &&
-            blog.sections.map((section, index) => (
-              <div key={index}>
-                <h3>{section.title}</h3>
-                <p>{section.content}</p>
-                {section.image && <Image src={section.image} alt={`Image de la section ${index + 1}`} style={{ maxWidth: "200px" }} />}
-              </div>
-            ))}
-          <button onClick={toggleEditMode}>Modifier</button>
+          {blog.sections?.map((section, index) => (
+            <div key={index}>
+              <h2>{section.title}</h2>
+              <p>{section.content}</p>
+              {section.image && (
+                <div style={{ position: 'relative', width: '400px', height: '300px' }}>
+                  <Image 
+                    src={section.image} 
+                    alt={`Section ${index + 1} image`}
+                    width={400}
+                    height={300}
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+          <button type="button" onClick={toggleEditMode}>
+            Modifier
+          </button>
         </div>
       )}
     </div>
