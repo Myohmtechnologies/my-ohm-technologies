@@ -32,7 +32,7 @@ const Header = () => {
               alt="Logo MY OHM" 
               width={190}
               height={150}
-              className="w-28 md:w-36"
+              className="w-34 md:w-46"
               priority
             />
           </Link>
@@ -115,7 +115,7 @@ const Header = () => {
                     alt="Logo MY OHM" 
                     width={170}
                     height={150}
-                    className="w-28"
+                    className="w-34 md:w-46"
                     priority
                   />
                 </Link>

@@ -8,9 +8,9 @@ const PromoBanner = () => {
 
   return (
     <div className="bg-[#AFC97E] text-black py-2 sm:py-3">
-      <div className="container mx-auto px-3 sm:px-4">
-        <div className="flex justify-between items-center">
-          <p className="text-xs sm:text-sm md:text-base flex-grow text-center pr-2">
+      <div className="max-w-[1300px] mx-auto">
+        <div className="flex items-center gap-2">
+          <p className="text-xs sm:text-sm md:text-base flex-1 text-center">
             <span className="hidden sm:inline"> </span>
             Profitez de -15% sur l&apos;installation 
             <span className="hidden sm:inline"> de vos panneaux solaires</span> jusqu&apos;au 31 janvier ! 

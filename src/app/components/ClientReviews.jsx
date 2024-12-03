@@ -4,7 +4,7 @@ const ClientReviews = ({ realizations, limit }) => {
   const displayedRealizations = limit ? realizations.slice(0, limit) : realizations;
 
   return (
-    <section className="w-full overflow-hidden">
+    <section className="w-full overflow-hidden mt-[50px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="btn-nos-instal flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
           <h2 className="text-2xl md:text-3xl">Voir plus d&apos;installations</h2>
@@ -41,7 +41,7 @@ const ClientReviews = ({ realizations, limit }) => {
                       {new Date(realisation.date).toLocaleDateString("fr-FR")}
                     </span>
                   </div>
-                  <h3 className="text-lg font-semibold mb-3 line-clamp-2">{realisation.title}</h3>
+                  <h3 className="text-lg font-semibold text-white mb-3 line-clamp-2">{realisation.title}</h3>
                   <a
                     href={`/installations-details/${realisation.slug}`}
                     className="details-link inline-flex items-center text-[#AFC97E] hover:text-[#9DB96E] transition-colors"
