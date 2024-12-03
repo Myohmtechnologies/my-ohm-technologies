@@ -10,6 +10,7 @@ import ImageSection from "./components/ImageSection";
 import StepsSection from "./components/StepsSection";
 import PromoBanner from "./components/PromoBanner";
 import ClientReviews from "./components/ClientReviews";
+import Reviews from "./components/Reviews";
 import RegionSection from "./components/RegionSection";
 import SimulationSection from "./components/SimulationSection";
 import Footer from "./components/Footer";
@@ -83,6 +84,7 @@ export default function HomePage() {
         <MaterialSection />
         <ImageSection />
         <StepsSection />
+        <Reviews/>
         <ClientReviews realizations={realizations} limit={3} />
         <RegionSection />
         <SimulationSection />
