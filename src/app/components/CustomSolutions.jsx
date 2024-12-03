@@ -51,7 +51,7 @@ const CustomSolutions = ({ installation }) => {
         <p className="text-lg max-w-2xl mb-12 text-white">
           Chez OHM Technologies, nous concevons et installons des systèmes énergétiques sur mesure qui
           répondent aux besoins spécifiques de nos clients. De la conception initiale à la mise en service finale,
-          chaque projet est géré avec un engagement total envers la qualité et l'innovation.
+          chaque projet est géré avec un engagement total envers la qualité et l&apos;innovation.
         </p>
 
         {/* Caractéristiques */}

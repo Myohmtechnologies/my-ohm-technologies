@@ -19,7 +19,7 @@ const BlogHeader = () => {
               NOTRE BLOG
             </p>
             <h1 className="text-xl md:text-3xl lg:text-5xl font-bold leading-tight md:leading-snug px-2 md:px-4 mx-auto max-w-[90%] md:max-w-full">
-              Le Blog de l&apos;énergie photovoltaïque
+              Le Blog de l'énergie photovoltaïque
             </h1>
             <p className="mt-3 md:mt-4 text-sm md:text-lg text-gray-600 max-w-2xl mx-auto px-4">
               Découvrez nos derniers articles sur l'énergie solaire, les innovations technologiques et les solutions durables.
