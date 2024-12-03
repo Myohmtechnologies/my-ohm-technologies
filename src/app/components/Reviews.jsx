@@ -1,7 +1,7 @@
 'use client';
 
 import { StarIcon } from '@heroicons/react/24/solid';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 
 const GoogleIcon = () => (
@@ -50,6 +50,26 @@ const ReviewsComponent = () => {
   const [mounted, setMounted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  const handleNextReview = useCallback(() => {
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+        setIsTransitioning(false);
+      }, 500);
+    }
+  }, [isTransitioning]);
+
+  const handlePrevReview = useCallback(() => {
+    if (!isTransitioning) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+        setIsTransitioning(false);
+      }, 500);
+    }
+  }, [isTransitioning]);
+
   useEffect(() => {
     setMounted(true);
     const checkMobile = () => {
@@ -70,27 +90,7 @@ const ReviewsComponent = () => {
       window.removeEventListener('resize', checkMobile);
       setMounted(false);
     };
-  }, [currentIndex]);
-
-  const handleNextReview = () => {
-    if (!isTransitioning) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-        setIsTransitioning(false);
-      }, 500);
-    }
-  };
-
-  const handlePrevReview = () => {
-    if (!isTransitioning) {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
-        setIsTransitioning(false);
-      }, 500);
-    }
-  };
+  }, [handleNextReview, mounted]);
 
   const getVisibleReviews = () => {
     if (isMobile) {
@@ -157,7 +157,7 @@ const ReviewsComponent = () => {
                     ))}
                   </div>
                   <p className="text-gray-700 text-lg leading-relaxed italic mb-6">
-                    "{review.content}"
+                    &ldquo;{review.content}&rdquo;
                   </p>
                 </div>
                 <div>

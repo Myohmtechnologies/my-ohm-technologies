@@ -4,10 +4,10 @@ const formatDate = (dateString) => {
   try {
     const date = new Date(dateString);
     const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const month = new Intl.DateTimeFormat('fr-FR', { month: 'long' }).format(date);
     const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  } catch (error) {
+    return `${day} ${month} ${year}`;
+  } catch {
     return dateString;
   }
 };
