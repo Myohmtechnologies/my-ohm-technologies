@@ -5,7 +5,7 @@ export default function HowItWorks() {
     return (
       <section className="container-pv">
         <div className="div-text">
-          <p>Comment ça marche</p>
+          <p>Comment Produire de l&apos;énergie solaire?</p>
           <h2>Comment ça marche</h2>
         </div>
         <div className="pv-ccm">
