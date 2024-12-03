@@ -5,13 +5,14 @@ const RegionSection = () => {
     <section className="region-section py-16">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-          <div className="map-container relative">
+          <div className="map-container relative w-full h-[400px] lg:h-[600px]">
             <Image
               src="/images/region-section.png"
               alt="Carte région PACA"
-              width={600}
-              height={600}
-             
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-contain"
+              priority
             />
           </div>
 
@@ -27,23 +28,23 @@ const RegionSection = () => {
               Pour vous aider à profiter au mieux du soleil, demandez conseils à un :
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="region-card w-full sm:w-1/2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="region-card p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
                 <h3 className="text-xl font-semibold mb-2">Bouches-du-Rhône</h3>
                 <p>Installateur de panneaux solaires dans les</p>
               </div>
 
-              <div className="region-card w-full sm:w-1/2">
+              <div className="region-card p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
                 <h3 className="text-xl font-semibold mb-2">Alpes-de-Haute-Provence</h3>
                 <p>Installateur de panneaux solaires dans les</p>
               </div>
 
-              <div className="region-card w-full sm:w-1/2">
+              <div className="region-card p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
                 <h3 className="text-xl font-semibold mb-2">Var</h3>
                 <p>Installateur de panneaux solaires dans les</p>
               </div>
 
-              <div className="region-card w-full sm:w-1/2">
+              <div className="region-card p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
                 <h3 className="text-xl font-semibold mb-2">Vaucluse</h3>
                 <p>Installateur de panneaux solaires dans les</p>
               </div>
