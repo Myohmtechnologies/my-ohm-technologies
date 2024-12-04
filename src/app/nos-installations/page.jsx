@@ -1,14 +1,9 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import '@/styles/globals.css'; // Importation du fichier CSS global
+import '@/styles/globals.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import InstallationsSection from '../components/InstallationsSection';
-<<<<<<< HEAD
-
-=======
-import InstallationsComponent from '../components/InstallationsComponent';
->>>>>>> origin/main
 import ClientReviews from '../components/ClientReviews';
 
 const NosInstallations = () => {
@@ -39,13 +34,8 @@ const NosInstallations = () => {
       <Header />
       <main>
         <InstallationsSection />
-        <ClientReviews realizations={realizations} /> {/* Passer les réalisations ici */}
+        <ClientReviews realizations={realizations} />
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-<<<<<<< HEAD
-        
-=======
-        <InstallationsComponent />
->>>>>>> origin/main
       </main>
       <Footer />
     </>
