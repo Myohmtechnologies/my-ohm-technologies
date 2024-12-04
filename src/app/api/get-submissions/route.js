@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import { connectToDatabase } from '../../../app/lib/mongodb';
-=======
 import { connectToDatabase } from '../../lib/mongodb';
->>>>>>> origin/main
 import { ObjectId } from 'mongodb';
-
 
 export async function GET(request) {
   try {
@@ -57,8 +52,6 @@ export async function GET(request) {
   }
 }
 
-
-
 export async function POST(request) {
   try {
     const { db } = await connectToDatabase();
@@ -77,8 +70,6 @@ export async function POST(request) {
     });
   }
 }
-
-// Nouvelle méthode PUT
 
 export async function PUT(request) {
   try {
@@ -130,7 +121,3 @@ export async function PUT(request) {
     return new Response("Erreur serveur", { status: 500 });
   }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main

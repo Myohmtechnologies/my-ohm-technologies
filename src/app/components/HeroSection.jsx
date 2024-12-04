@@ -22,13 +22,8 @@ const HeroSection = () => {
                   className="icon"
                   src="/images/svg/Group 2085663187.svg"
                   alt="Maison Icon" 
-<<<<<<< HEAD
-                  width={80}
-                  height={80}
-=======
                   width={150}
                   height={150}
->>>>>>> origin/main
                   />
                 <div className="option-props">
                   <Link href="/simulateur?residential_status=RENTER" passHref>
@@ -44,13 +39,8 @@ const HeroSection = () => {
                   className="icon"
                   src="/images/svg/Group 2085663187 (1).svg"
                   alt="Appartement Icon" 
-<<<<<<< HEAD
-                  width={80}
-                  height={80}
-=======
                   width={150}
                   height={150}
->>>>>>> origin/main
                   />
                 <div className="option-props">
                   <Link href="/simulateur?residential_status=OWNER" passHref>

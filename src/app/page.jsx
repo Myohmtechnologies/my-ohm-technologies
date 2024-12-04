@@ -18,18 +18,7 @@ import Footer from "./components/Footer";
 // Fonction pour récupérer les données avec gestion d'erreur améliorée
 async function fetchRealizations() {
   try {
-<<<<<<< HEAD
-    const response = await fetch('/api/dashboard/get-realizations');
-    if (!response.ok) {
-      throw new Error("Erreur lors de la récupération des réalisations");
-    }
-    const data = await response.json();
-    console.log("Données récupérées :", data);
-    return data;
-  } catch (error) {
-    console.error("Erreur :", error);
-=======
-    // Vérifier si l'API est disponible
+    console.log("Début de la récupération des réalisations...");
     const response = await fetch("/api/dashboard/get-realizations", {
       method: 'GET',
       headers: {
@@ -66,11 +55,10 @@ async function fetchRealizations() {
     }
 
     const data = await response.json();
+    console.log("Données récupérées :", data);
     return data;
   } catch (error) {
-    console.warn("Erreur lors de la récupération des réalisations:", error);
-    // Retourner un tableau vide en cas d'erreur
->>>>>>> origin/main
+    console.error("Erreur lors de la récupération des réalisations:", error);
     return [];
   }
 }
@@ -80,7 +68,6 @@ export default function HomePage() {
 
   useEffect(() => {
     const loadRealizations = async () => {
-<<<<<<< HEAD
       try {
         console.log("Début de la récupération des réalisations...");
         const data = await fetchRealizations();
@@ -88,11 +75,8 @@ export default function HomePage() {
         setRealizations(data);
       } catch (error) {
         console.error("Erreur dans HomePage:", error);
+        setRealizations([]);
       }
-=======
-      const data = await fetchRealizations();
-      setRealizations(data);
->>>>>>> origin/main
     };
     loadRealizations();
   }, []);

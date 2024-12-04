@@ -1,54 +1,94 @@
 import { NextResponse } from 'next/server';
-<<<<<<< HEAD
-import { google } from 'googleapis';
-import clientPromise from '../../../app/lib/mongodb';
-=======
 import clientPromise from '../../lib/mongodb';
->>>>>>> origin/main
 import { ObjectId } from 'mongodb';
 
 export async function GET() {
   try {
-    console.log('Récupération des événements du calendrier...');
     const client = await clientPromise;
-    const db = client.db("ohm");
-    const events = await db.collection("calendar_events").find({}).toArray();
-    
-    console.log(`${events.length} événements trouvés:`, events);
-    return NextResponse.json(events);
+    const db = client.db();
+    const events = await db.collection('calendar_events').find({}).toArray();
+
+    if (!events || events.length === 0) {
+      return NextResponse.json(
+        { message: 'Aucun événement trouvé.' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(events, { status: 200 });
   } catch (error) {
     console.error('Erreur lors de la récupération des événements:', error);
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Erreur lors de la récupération des événements.', details: error.message },
+      { status: 500 }
+    );
   }
 }
 
 export async function POST(request) {
   try {
-    console.log('Création d\'un nouvel événement...');
+    const data = await request.json();
     const client = await clientPromise;
-    const db = client.db("ohm");
-    const eventData = await request.json();
-    console.log('Données reçues:', eventData);
+    const db = client.db();
 
-    // Convertir les chaînes de date en objets Date
-    eventData.start = new Date(eventData.start);
-    eventData.end = new Date(eventData.end);
-    
-    // Convertir leadId en ObjectId
-    if (eventData.leadId) {
-      eventData.leadId = new ObjectId(eventData.leadId);
+    if (!data.title || !data.start || !data.end) {
+      return NextResponse.json(
+        { error: 'Le titre, la date de début et la date de fin sont requis.' },
+        { status: 400 }
+      );
     }
 
-    console.log('Données formatées:', eventData);
-    const result = await db.collection("calendar_events").insertOne(eventData);
-    console.log('Événement créé avec l\'ID:', result.insertedId);
-    
-    return NextResponse.json({ 
-      success: true, 
-      eventId: result.insertedId 
-    });
+    const newEvent = {
+      ...data,
+      createdAt: new Date()
+    };
+
+    const result = await db.collection('calendar_events').insertOne(newEvent);
+    return NextResponse.json(
+      { message: 'Événement créé avec succès', id: result.insertedId },
+      { status: 201 }
+    );
   } catch (error) {
     console.error('Erreur lors de la création de l\'événement:', error);
-    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Erreur lors de la création de l\'événement.', details: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get('id');
+
+    if (!id) {
+      return NextResponse.json(
+        { error: 'L\'ID de l\'événement est requis.' },
+        { status: 400 }
+      );
+    }
+
+    const client = await clientPromise;
+    const db = client.db();
+    const result = await db.collection('calendar_events').deleteOne({ _id: new ObjectId(id) });
+
+    if (result.deletedCount === 0) {
+      return NextResponse.json(
+        { error: 'Événement non trouvé.' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: 'Événement supprimé avec succès.' },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error('Erreur lors de la suppression de l\'événement:', error);
+    return NextResponse.json(
+      { error: 'Erreur lors de la suppression de l\'événement.', details: error.message },
+      { status: 500 }
+    );
   }
 }

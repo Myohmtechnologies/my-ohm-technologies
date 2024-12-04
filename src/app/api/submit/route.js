@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { connectToDatabase } from '../../../app/lib/mongodb'; // Vérifiez que le chemin est correct
-=======
 import { connectToDatabase } from '../../lib/mongodb'; // Vérifiez que le chemin est correct
->>>>>>> origin/main
 
 export async function POST(request) {
   try {
@@ -25,7 +21,7 @@ export async function POST(request) {
 
     return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
-    console.error('Error connecting to the database:', error);
-    return new Response('Error connecting to the database', { status: 500 });
+    console.error('Error:', error);
+    return new Response('Error', { status: 500 });
   }
 }

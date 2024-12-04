@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { connectToDatabase } from '../../../app/lib/mongodb';
-=======
 import { connectToDatabase } from '../../lib/mongodb';
->>>>>>> origin/main
 import { ObjectId } from 'mongodb';
 
 export async function PUT(request, { params }) {
@@ -32,7 +28,3 @@ export async function PUT(request, { params }) {
         return new Response("Erreur serveur", { status: 500 });
     }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main

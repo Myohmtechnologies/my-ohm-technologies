@@ -1,9 +1,5 @@
 // src/app/api/blogs/route.js
-<<<<<<< HEAD
-import { connectToDatabase } from '../../../app/lib/mongodb';
-=======
 import { connectToDatabase } from '../../lib/mongodb';
->>>>>>> origin/main
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import { ObjectId } from 'mongodb';
@@ -63,18 +59,17 @@ export async function POST(request) {
 
     return NextResponse.json({ message: 'Blog created', blog: { _id: result.insertedId, ...newBlog } });
   } catch (error) {
-    console.error('Error creating blog:', error.message);
-    return NextResponse.json({ error: 'Error creating blog' }, { status: 500 });
+    console.error('Error creating blog:', error);
+    return NextResponse.json({ error: 'Error creating blog', details: error.message }, { status: 500 });
   }
 }
 
-
 // Endpoint pour récupérer tous les blogs ou un blog spécifique
 export async function GET(req) {
-  const { searchParams } = new URL(req.url);
-  const id = searchParams.get('id');
-
   try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get('id');
+
     const { db } = await connectToDatabase();
 
     // Si un ID est fourni, récupérer un blog spécifique
@@ -107,24 +102,27 @@ export async function GET(req) {
       slug: blog.slug, // Inclure le slug ici
     }));
 
-    return NextResponse.json(blogsWithId);
+    if (!blogs || blogs.length === 0) {
+      return NextResponse.json({ message: 'Aucun article de blog trouvé.' }, { status: 404 });
+    }
+
+    return NextResponse.json(blogsWithId, { status: 200 });
   } catch (error) {
     console.error('Erreur lors de la récupération des blogs:', error);
-    return NextResponse.json({ error: 'Erreur lors de la récupération des blogs' }, { status: 500 });
+    return NextResponse.json({ error: 'Erreur lors de la récupération des blogs.', details: error.message }, { status: 500 });
   }
 }
 
-
 // Endpoint pour supprimer un blog
 export async function DELETE(req) {
-  const { searchParams } = new URL(req.url);
-  const id = searchParams.get("id");
-
-  if (!id) {
-    return NextResponse.json({ error: "L'ID du blog est requis" }, { status: 400 });
-  }
-
   try {
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ error: "L'ID du blog est requis" }, { status: 400 });
+    }
+
     const { db } = await connectToDatabase();
     const result = await db.collection("blogs").deleteOne({ _id: new ObjectId(id) });
 
@@ -135,19 +133,19 @@ export async function DELETE(req) {
     return NextResponse.json({ message: "Blog supprimé avec succès" });
   } catch (error) {
     console.error("Erreur lors de la suppression du blog :", error);
-    return NextResponse.json({ error: "Erreur lors de la suppression du blog" }, { status: 500 });
+    return NextResponse.json({ error: "Erreur lors de la suppression du blog.", details: error.message }, { status: 500 });
   }
 }
 
 // Endpoint pour mettre à jour une section d'un blog
 export async function PATCH(req) {
-  const { id, title, content, sections } = await req.json();
-
-  if (!id) {
-    return NextResponse.json({ error: "L'ID du blog est requis" }, { status: 400 });
-  }
-
   try {
+    const { id, title, content, sections } = await req.json();
+
+    if (!id) {
+      return NextResponse.json({ error: "L'ID du blog est requis" }, { status: 400 });
+    }
+
     const { db } = await connectToDatabase();
     const updateData = {};
 
@@ -171,6 +169,6 @@ export async function PATCH(req) {
     return NextResponse.json({ message: "Blog mis à jour avec succès" });
   } catch (error) {
     console.error("Erreur lors de la mise à jour du blog :", error);
-    return NextResponse.json({ error: "Erreur lors de la mise à jour du blog" }, { status: 500 });
+    return NextResponse.json({ error: "Erreur lors de la mise à jour du blog.", details: error.message }, { status: 500 });
   }
 }
