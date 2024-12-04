@@ -4,7 +4,11 @@ import '@/styles/globals.css'; // Importation du fichier CSS global
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import InstallationsSection from '../components/InstallationsSection';
+<<<<<<< HEAD
 
+=======
+import InstallationsComponent from '../components/InstallationsComponent';
+>>>>>>> origin/main
 import ClientReviews from '../components/ClientReviews';
 
 const NosInstallations = () => {
@@ -37,7 +41,11 @@ const NosInstallations = () => {
         <InstallationsSection />
         <ClientReviews realizations={realizations} /> {/* Passer les réalisations ici */}
         {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+<<<<<<< HEAD
         
+=======
+        <InstallationsComponent />
+>>>>>>> origin/main
       </main>
       <Footer />
     </>

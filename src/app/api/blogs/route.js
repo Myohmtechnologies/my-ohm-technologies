@@ -1,5 +1,9 @@
 // src/app/api/blogs/route.js
+<<<<<<< HEAD
 import { connectToDatabase } from '../../../app/lib/mongodb';
+=======
+import { connectToDatabase } from '../../lib/mongodb';
+>>>>>>> origin/main
 import { NextResponse } from 'next/server';
 import cloudinary from 'cloudinary';
 import { ObjectId } from 'mongodb';

@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
+<<<<<<< HEAD
 import { google } from 'googleapis';
 import clientPromise from '../../../app/lib/mongodb';
+=======
+import clientPromise from '../../lib/mongodb';
+>>>>>>> origin/main
 import { ObjectId } from 'mongodb';
 
 export async function GET() {

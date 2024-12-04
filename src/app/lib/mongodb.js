@@ -30,6 +30,7 @@ clientPromise
   .catch(err => console.error('Erreur de connexion MongoDB:', err));
 
 export async function connectToDatabase(dbName = 'your-database-name') {
+<<<<<<< HEAD
   try {
     console.log('Tentative de connexion à MongoDB...');
     const client = await clientPromise;
@@ -40,6 +41,11 @@ export async function connectToDatabase(dbName = 'your-database-name') {
     console.error('Erreur de connexion à la base de données:', error);
     throw error;
   }
+=======
+  const client = await clientPromise;
+  const db = client.db(dbName);
+  return { client, db };
+>>>>>>> origin/main
 }
 
 export default clientPromise;

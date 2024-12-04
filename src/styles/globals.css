@@ -6,6 +6,7 @@
   font-display: swap;
 }
 
+<<<<<<< HEAD
 @font-face {
   font-family: var(--font-montserrat);
   src: local('Montserrat');
@@ -18,6 +19,8 @@
   font-display: swap;
 }
 
+=======
+>>>>>>> origin/main
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -85,8 +88,12 @@
   }
 
   body {
+<<<<<<< HEAD
     font-family: var(--font-opensans), system-ui, sans-serif;
     color: #232323;
+=======
+    @apply bg-background text-foreground;
+>>>>>>> origin/main
   }
 }
 
@@ -97,9 +104,15 @@
   box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-montserrat), system-ui, sans-serif;
   font-weight: 600;
+=======
+body {
+  font-family: 'Sequel Sans', sans-serif;
+  color: #232323;
+>>>>>>> origin/main
 }
 
 /* Hero Section */
@@ -128,7 +141,11 @@ h2 {
   font-size: 32px;
   letter-spacing: -0.01em;
   line-height: 32px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
   margin-top: 40px;
   text-align: left;
@@ -236,7 +253,11 @@ h2 {
 }
 
 .cta-button span {
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: "Sequel Sans";
+>>>>>>> origin/main
   font-size: 14px;
   color: #232323;
 }
@@ -258,7 +279,11 @@ h2 {
   text-align: left;
   font-size: 70px;
   color: #fff;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   animation: fadeIn 1s ease-in-out forwards;
   width: 55%;
   margin-left: 60px;
@@ -270,7 +295,11 @@ h2 {
   animation: fadeIn 1s ease-in-out forwards;
   letter-spacing: -0.01em;
   line-height: 32px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #ffdf64;
   margin-left: 60px;
 }
@@ -367,7 +396,11 @@ h2 {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #6c8d2f;
   text-align: left;
 }
@@ -375,8 +408,13 @@ h2 {
 .paragrhe {
   font-size: 18px;
   line-height: 26px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
   color: #444444;
+=======
+  font-family: 'Sequel Sans';
+  color: #6f6f6f;
+>>>>>>> origin/main
   text-align: left;
 }
 
@@ -384,7 +422,11 @@ h2 {
   font-size: 60px;
   letter-spacing: -0.01em;
   line-height: 60px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   text-align: left;
   color: #232323;
 }
@@ -484,7 +526,11 @@ h1 {
   font-size: 26px;
   letter-spacing: -0.01em;
   line-height: 32px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #0c1a26;
   text-align: center;
   margin-top: 10px;
@@ -520,7 +566,11 @@ h1 {
 }
 
 .left-text p {
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #6c8d2f;
 }
 
@@ -546,7 +596,11 @@ h1 {
   margin-bottom: 20px;
   letter-spacing: -0.01em;
   line-height: 60px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
 }
 
 .card-image[data-color="special"] {
@@ -556,9 +610,15 @@ h1 {
 .right-content p {
   font-size: 18px;
   line-height: 1.6;
+<<<<<<< HEAD
   color: #444444;
   max-width: 600px;
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  color: #666;
+  max-width: 600px;
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
 }
 
 .bottom-cordonner {
@@ -674,7 +734,11 @@ button a {
   text-align: left;
   font-size: 18px;
   color: #6c8d2f;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   margin-bottom: 50px;
 }
 
@@ -729,7 +793,11 @@ h1 {
   font-size: 24px;
   letter-spacing: -0.01em;
   line-height: 24px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
 }
 
@@ -742,7 +810,11 @@ h1 {
   font-size: 60px;
   letter-spacing: -0.01em;
   line-height: 60px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
   margin-bottom: 24pxs;
 }
@@ -754,7 +826,11 @@ h1 {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
 
 }
 
@@ -777,7 +853,11 @@ h2 {
   font-size: 60px;
   letter-spacing: -0.01em;
   line-height: 60px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
   margin-bottom: 40px;
 }
@@ -826,14 +906,22 @@ h2 {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #6c8d2f;
 }
 
 .step-desc {
   font-size: 20px;
   line-height: 28px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #2a2a2b;
 }
 
@@ -870,7 +958,11 @@ h2 {
   font-size: 40px;
   letter-spacing: -0.01em;
   line-height: 50px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
 
 }
@@ -881,7 +973,11 @@ h2 {
   font-size: 40px;
   letter-spacing: -0.01em;
   line-height: 50px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
   text-align: left;
 }
@@ -1033,7 +1129,11 @@ h2 {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #ffdf64;
   text-align: left;
 }
@@ -1043,7 +1143,11 @@ h2 {
   letter-spacing: -0.01em;
   line-height: 72px;
   text-transform: capitalize;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   text-align: left;
 }
@@ -1066,7 +1170,11 @@ h2 {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #6c8d2f;
 }
 
@@ -1074,7 +1182,11 @@ h2 {
   font-size: 60px;
   letter-spacing: -0.01em;
   line-height: 60px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
 }
 
@@ -1108,7 +1220,11 @@ h2 {
   font-size: 26px;
   letter-spacing: -0.01em;
   line-height: 32px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #0c1a26;
 }
 
@@ -1148,7 +1264,11 @@ h2 {
   margin-top: 20px;
   font-size: 34px;
   line-height: 40px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
   text-align: center;
 }
@@ -1168,7 +1288,11 @@ h2 {
   font-size: 60px;
   letter-spacing: -0.01em;
   line-height: 60px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
   text-align: left;
 }
@@ -1176,8 +1300,13 @@ h2 {
 .autoconso-div p {
   font-size: 18px;
   line-height: 26px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
   color: #444444;
+=======
+  font-family: 'Sequel Sans';
+  color: #6f6f6f;
+>>>>>>> origin/main
   text-align: left;
   margin-bottom: 12px;
 }
@@ -1207,7 +1336,11 @@ h2 {
 .simulation-section p {
   font-size: 54px;
   line-height: 46px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: black;
   text-align: center;
 }
@@ -1255,7 +1388,11 @@ footer {
 .footer-left p {
   font-size: 18px;
   line-height: 26px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   margin-bottom: 55px;
 }
@@ -1276,7 +1413,11 @@ footer {
   font-size: 14px;
   line-height: 20px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   text-decoration: none;
 }
@@ -1290,7 +1431,11 @@ footer {
   letter-spacing: -0.01em;
   line-height: 40px;
   text-transform: capitalize;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   margin-bottom: 24px;
 }
@@ -1309,7 +1454,11 @@ footer {
   text-align: left;
   font-size: 18px;
   color: #fff;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   margin-bottom: 20px;
 }
 
@@ -1409,22 +1558,35 @@ footer p {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #ffdf64;
 }
 
 h2 {
   font-size: 32px;
   line-height: 38.82px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
 }
 
 p {
   font-size: 18px;
   line-height: 26px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
   color: #444444;
+=======
+  font-family: 'Sequel Sans';
+  color: #fff;
+>>>>>>> origin/main
 }
 
 .details-button {
@@ -1462,7 +1624,11 @@ p {
   font-size: 70px;
   letter-spacing: -0.01em;
   line-height: 72px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   margin-left: 40px;
 }
@@ -1470,7 +1636,11 @@ p {
 .top-cover-nos-realisation p {
   font-size: 18px;
   line-height: 26px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   margin: left 40px;
 
@@ -1486,8 +1656,13 @@ p {
 
 /* Individual card style */
 .card-project {
+<<<<<<< HEAD
   width: 100%;
   height: 100%;
+=======
+  height: 480px;
+  width: 95%;
+>>>>>>> origin/main
   object-fit: cover;
   position: relative;
   overflow: hidden;
@@ -1531,7 +1706,11 @@ p {
   text-decoration: underline;
   line-height: 20px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #ffdf64;
 }
 
@@ -1599,7 +1778,11 @@ p {
   font-size: 70px;
   letter-spacing: -0.01em;
   line-height: 72px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   text-align: left;
 }
@@ -1607,7 +1790,11 @@ p {
 .section-header .description {
   font-size: 18px;
   line-height: 26px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #fff;
   text-align: left;
 }
@@ -1634,7 +1821,11 @@ p {
   font-size: 20px;
   letter-spacing: -0.01em;
   line-height: 20px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #ffdf64;
 }
 
@@ -1802,7 +1993,11 @@ p {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #6c8d2f;
 }
 
@@ -1837,15 +2032,24 @@ p {
 .main-content h2 {
   font-size: 30px;
   line-height: 38px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #0c1a26;
 }
 
 .main-content p {
   font-size: 18px;
   line-height: 30px;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
   color: #444444;
+=======
+  font-family: 'Sequel Sans';
+  color: #6f6f6f;
+>>>>>>> origin/main
 }
 
 .main-content img {
@@ -1871,7 +2075,11 @@ p {
 .sidebar h3 {
   font-size: 20px;
   line-height: 32px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #6c8d2f;
 }
 
@@ -1924,7 +2132,11 @@ p {
   padding: 10px 20px;
   font-size: 16px;
   color: #475467;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -1970,7 +2182,11 @@ p {
   font-size: 48px;
   letter-spacing: -0.01em;
   line-height: 56px;
+<<<<<<< HEAD
   font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #232323;
 }
 
@@ -2040,7 +2256,11 @@ p {
   letter-spacing: 0.04em;
   line-height: 26px;
   text-transform: uppercase;
+<<<<<<< HEAD
   font-family: var(--font-opensans), system-ui, sans-serif;
+=======
+  font-family: 'Sequel Sans';
+>>>>>>> origin/main
   color: #6c8d2f;
 }
 
@@ -2522,7 +2742,11 @@ p {
     line-height: 35px;
     text-align: left;
     color: #fff;
+<<<<<<< HEAD
     font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+    font-family: 'Sequel Sans';
+>>>>>>> origin/main
     margin-bottom: 60px;
     width: 100%;
     max-width: fit-content;
@@ -2599,7 +2823,11 @@ p {
     font-size: 30px;
     letter-spacing: -0.01em;
     line-height: 40px;
+<<<<<<< HEAD
     font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+    font-family: 'Sequel Sans';
+>>>>>>> origin/main
     color: #232323;
     text-align: left;
   }
@@ -2684,7 +2912,11 @@ p {
     font-size: 30px;
     line-height: 30px;
     text-transform: capitalize;
+<<<<<<< HEAD
     font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+    font-family: 'Sequel Sans';
+>>>>>>> origin/main
     color: #0c1a26;
     text-align: center;
   }
@@ -3031,7 +3263,11 @@ p {
 .text-content .paragraph {
   font-size: 16px;
   line-height: 24px;
+<<<<<<< HEAD
   color: #444444;
+=======
+  color: #666;
+>>>>>>> origin/main
   margin-bottom: 20px;
 }
 
@@ -3073,7 +3309,11 @@ p {
     font-size: 30px;
     letter-spacing: -0.01em;
     line-height: 30px;
+<<<<<<< HEAD
     font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+    font-family: 'Sequel Sans';
+>>>>>>> origin/main
     color: #232323;
     margin-bottom: 24pxs;
   }
@@ -3082,7 +3322,11 @@ p {
     font-size: 30px;
     letter-spacing: -0.01em;
     line-height: 30px;
+<<<<<<< HEAD
     font-family: var(--font-montserrat), system-ui, sans-serif;
+=======
+    font-family: 'Sequel Sans';
+>>>>>>> origin/main
     color: #232323;
     margin-bottom: 24pxs;
   }
@@ -3253,7 +3497,10 @@ p {
 
   .region-section .region-card {
     padding: 16px;
+<<<<<<< HEAD
     width: 95%;
+=======
+>>>>>>> origin/main
   }
 
   .region-section h2 {

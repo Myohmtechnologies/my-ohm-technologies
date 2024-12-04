@@ -65,10 +65,13 @@ const config: Config = {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+<<<<<<< HEAD
       fontFamily: {
         sans: ['Open Sans', 'system-ui', 'sans-serif'],
         montserrat: ['Montserrat', 'sans-serif'],
       },
+=======
+>>>>>>> origin/main
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

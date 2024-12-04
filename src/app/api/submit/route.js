@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { connectToDatabase } from '../../../app/lib/mongodb'; // Vérifiez que le chemin est correct
+=======
+import { connectToDatabase } from '../../lib/mongodb'; // Vérifiez que le chemin est correct
+>>>>>>> origin/main
 
 export async function POST(request) {
   try {

@@ -18,6 +18,7 @@ import Footer from "./components/Footer";
 // Fonction pour récupérer les données avec gestion d'erreur améliorée
 async function fetchRealizations() {
   try {
+<<<<<<< HEAD
     const response = await fetch('/api/dashboard/get-realizations');
     if (!response.ok) {
       throw new Error("Erreur lors de la récupération des réalisations");
@@ -27,6 +28,49 @@ async function fetchRealizations() {
     return data;
   } catch (error) {
     console.error("Erreur :", error);
+=======
+    // Vérifier si l'API est disponible
+    const response = await fetch("/api/dashboard/get-realizations", {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      console.warn("API non disponible, utilisation des données de test");
+      // Retourner des données de test si l'API n'est pas disponible
+      return [
+        {
+          id: 1,
+          title: "Installation Résidentielle",
+          description: "Installation de panneaux solaires pour une maison familiale",
+          location: "Lyon",
+          date: "2023"
+        },
+        {
+          id: 2,
+          title: "Projet Commercial",
+          description: "Système solaire pour une entreprise locale",
+          location: "Paris",
+          date: "2023"
+        },
+        {
+          id: 3,
+          title: "Installation Agricole",
+          description: "Solution énergétique pour une exploitation agricole",
+          location: "Bordeaux",
+          date: "2023"
+        }
+      ];
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.warn("Erreur lors de la récupération des réalisations:", error);
+    // Retourner un tableau vide en cas d'erreur
+>>>>>>> origin/main
     return [];
   }
 }
@@ -36,6 +80,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const loadRealizations = async () => {
+<<<<<<< HEAD
       try {
         console.log("Début de la récupération des réalisations...");
         const data = await fetchRealizations();
@@ -44,6 +89,10 @@ export default function HomePage() {
       } catch (error) {
         console.error("Erreur dans HomePage:", error);
       }
+=======
+      const data = await fetchRealizations();
+      setRealizations(data);
+>>>>>>> origin/main
     };
     loadRealizations();
   }, []);

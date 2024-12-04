@@ -35,8 +35,13 @@ const ClientReviews = ({ realizations, limit }) => {
         <div className="projects-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedRealizations.length > 0 ? (
             displayedRealizations.map((realisation) => (
+<<<<<<< HEAD
               <div key={realisation._id} className="card-project bg-white rounded-lg overflow-hidden shadow-md h-[400px] flex flex-col">
                 <div className="relative h-[250px]">
+=======
+              <div key={realisation._id} className="card-project bg-white rounded-lg overflow-hidden shadow-md">
+                <div className="relative aspect-[4/3]">
+>>>>>>> origin/main
                   <Image
                     src={realisation.mainImage || "/images/placeholder-image.png"}
                     alt={`Installation panneaux solaires - ${realisation.title}`}
@@ -44,7 +49,11 @@ const ClientReviews = ({ realizations, limit }) => {
                     className="object-cover"
                   />
                 </div>
+<<<<<<< HEAD
                 <div className="card-content p-4 flex-1">
+=======
+                <div className="card-content p-4">
+>>>>>>> origin/main
                   <div className="flex items-center justify-between mb-3">
                     <div className="badge bg-[#AFC97E] text-white px-3 py-1 rounded-full text-sm">
                       {realisation.puissanceMax} kWc

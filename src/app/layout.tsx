@@ -2,7 +2,10 @@ import { GoogleTagManagerHead, GoogleTagManagerBody } from './components/GoogleT
 import GoogleAnalytics from './components/GoogleAnalytics'
 import CookieConsent from './components/CookieConsent'
 import { Metadata } from 'next'
+<<<<<<< HEAD
 import { Montserrat, Open_Sans } from 'next/font/google'
+=======
+>>>>>>> origin/main
 
 export const metadata: Metadata = {
   title: 'My Ohm Technologies - Installation de Panneaux Solaires dans la region PACA',
@@ -39,6 +42,7 @@ export const metadata: Metadata = {
   }
 }
 
+<<<<<<< HEAD
 const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap',
@@ -51,20 +55,30 @@ const openSans = Open_Sans({
   variable: '--font-opensans',
 })
 
+=======
+>>>>>>> origin/main
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
+<<<<<<< HEAD
     <html lang="fr">
+=======
+    <html lang="fr" suppressHydrationWarning>
+>>>>>>> origin/main
       <head>
         <GoogleTagManagerHead />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
       </head>
+<<<<<<< HEAD
       <body className={`${montserrat.variable} ${openSans.variable} font-sans`}>
+=======
+      <body suppressHydrationWarning>
+>>>>>>> origin/main
         <GoogleTagManagerBody />
         <GoogleAnalytics />
         <main>

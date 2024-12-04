@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { connectToDatabase } from '../../../app/lib/mongodb';
+=======
+import { connectToDatabase } from '../../lib/mongodb';
+>>>>>>> origin/main
 
 export async function GET() {
   try {
