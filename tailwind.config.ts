@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'light-yellow': '#fefce8',
+        'light-yellow': '#fafaf9',
       },
       fontFamily: {
         montserrat: ['var(--font-montserrat)', 'sans-serif'],

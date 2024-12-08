@@ -21,7 +21,7 @@ const StepsSection = () => {
             <div className="w-32 h-32 flex items-center justify-center rounded-full bg-[#FFDF64] mb-4">
               <Image src="/images/icone-telephone.svg" alt="Prise de contact" width={70} height={70} />
             </div>
-            <h3 className="font-bold text-gray-900">STEP 01</h3>
+            <h3 className="font-bold text-gray-900">Étape 01</h3>
             <p className="text-gray-600">Prise de contact</p>
           </div>
 
@@ -30,7 +30,7 @@ const StepsSection = () => {
             <div className="w-32 h-32 flex items-center justify-center rounded-full bg-[#AFC97E] mb-4">
               <Image src="/images/Visite-technique.svg" alt="Visite technique" width={70} height={70} />
             </div>
-            <h3 className="font-bold text-gray-900">STEP 02</h3>
+            <h3 className="font-bold text-gray-900">Étape 02</h3>
             <p className="text-gray-600">Visite technique</p>
           </div>
 
@@ -39,7 +39,7 @@ const StepsSection = () => {
             <div className="w-32 h-32 flex items-center justify-center rounded-full bg-[#FFDF64] mb-4">
               <Image src="/images/dossier-administratif.svg" alt="Gestion administrative" width={70} height={70} />
             </div>
-            <h3 className="font-bold text-gray-900">STEP 03</h3>
+            <h3 className="font-bold text-gray-900">Étape 03</h3>
             <p className="text-gray-600">Gestion administrative, de A à Z</p>
           </div>
 
@@ -48,7 +48,7 @@ const StepsSection = () => {
             <div className="w-32 h-32 flex items-center justify-center rounded-full bg-[#AFC97E] mb-4">
               <Image src="/images/installation.svg" alt="Installation panneaux" width={70} height={70} />
             </div>
-            <h3 className="font-bold text-gray-900">STEP 04</h3>
+            <h3 className="font-bold text-gray-900">Étape 04</h3>
             <p className="text-gray-600">Installation des panneaux photovoltaïques</p>
           </div>
 
@@ -57,7 +57,7 @@ const StepsSection = () => {
             <div className="w-32 h-32 flex items-center justify-center rounded-full bg-[#FFDF64] mb-4">
               <Image src="/images/autoconsomation.svg" alt="Autoconsommation" width={70} height={70} />
             </div>
-            <h3 className="font-bold text-gray-900">STEP 05</h3>
+            <h3 className="font-bold text-gray-900">Étape 05</h3>
             <p className="text-gray-600">Autoconsommation et économies</p>
           </div>
         </div>
