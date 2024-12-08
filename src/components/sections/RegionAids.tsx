@@ -3,49 +3,60 @@
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { RegionData } from '@/config/seo';
-import { DocumentCheckIcon } from '@heroicons/react/24/outline';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
 interface Props {
   region: RegionData;
 }
 
 const RegionAids = ({ region }: Props) => {
+  const allAids = [...region.aids.regional, ...region.aids.local];
+
+  if (allAids.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Aides Financières dans le {region.name}
-            </h2>
-            <p className="text-gray-800 text-lg mb-8">
-              Découvrez les aides disponibles dans votre département pour 
-              l&apos;installation de panneaux solaires.
-            </p>
-            
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900">
+                Aides disponibles en {region.name}
+              </h2>
+              <p className="mt-4 text-lg text-gray-600">
+                Découvrez les aides régionales et locales pour votre installation solaire
+              </p>
+            </div>
+
             <div className="space-y-6">
-              {region.aids.map((aid, index) => (
+              {allAids.map((aid, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.2 }}
+                  transition={{ delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-gray-50 p-6 rounded-xl"
+                  className="bg-gray-50 p-6 rounded-lg shadow-sm"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#FFDF64]">
-                        <DocumentCheckIcon className="w-6 h-6 text-gray-900" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{aid.name}</h3>
-                      <p className="text-gray-800 mb-3">{aid.description}</p>
-                      <div className="inline-flex items-center px-3 py-1 bg-[#AFC97E] text-white rounded-full text-sm font-medium">
-                        {aid.amount}
-                      </div>
-                    </div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    {aid.title}
+                  </h3>
+                  <p className="text-gray-700 mb-4">{aid.description}</p>
+                  <div className="bg-green-100 text-green-800 inline-block px-3 py-1 rounded-full text-sm font-medium mb-4">
+                    Montant: {aid.amount}
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="font-medium text-gray-900">Conditions d&apos;éligibilité:</h4>
+                    <ul className="space-y-2">
+                      {aid.conditions.map((condition, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <CheckCircleIcon className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                          <span className="text-gray-700">{condition}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </motion.div>
               ))}

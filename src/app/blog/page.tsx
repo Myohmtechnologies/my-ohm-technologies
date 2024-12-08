@@ -5,9 +5,15 @@ import BlogHeader from '@/components/sections/BlogHeader';
 import BlogCard from '@/components/sections/BlogCard';
 import { useEffect, useState } from 'react';
 import SolarChoiceSection from '@/components/sections/SolarChoiceSection';
+import type { BlogPost } from '@/services/blogService';
+
+interface BlogWithId extends BlogPost {
+  _id: string;
+  slug: string;
+}
 
 export default function BlogPage() {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState<BlogWithId[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,8 +34,6 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-     
-      
       <main className="flex-grow">
         <div className="-mt-4">
           <BlogHeader />
@@ -49,18 +53,18 @@ export default function BlogPage() {
                   description={blog.description}
                   image={blog.mainImage || '/placeholder-blog.jpg'}
                   category={blog.category}
-                  author={blog.author || 'My Ohm Technologies'}
-                  date={new Date(blog.createdAt).toLocaleDateString('fr-FR')}
-                  link={`/blog/${blog.slug}`}
+                  slug={blog.slug}
                 />
               ))}
             </div>
           ) : (
             <div className="text-center py-12">
-              <h3 className="text-xl text-gray-600">Aucun article trouvé</h3>
+              <h2 className="text-2xl font-semibold text-gray-600">Aucun article disponible pour le moment</h2>
+              <p className="mt-2 text-gray-500">Revenez bientôt pour découvrir nos nouveaux articles !</p>
             </div>
           )}
         </div>
+        
         <SolarChoiceSection />
       </main>
     </div>

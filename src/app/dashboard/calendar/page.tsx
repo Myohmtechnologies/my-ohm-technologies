@@ -6,69 +6,90 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
+import { DateSelectArg, EventClickArg } from '@fullcalendar/core';
 import './calendar.css';
 
-const eventTypes = [
+interface EventType {
+  id: string;
+  label: string;
+  color: string;
+}
+
+interface CalendarEvent {
+  title: string;
+  start: string;
+  end: string;
+  className: string;
+  extendedProps: {
+    type: string;
+    client: string;
+    phone: string;
+    address: string;
+  };
+}
+
+const eventTypes: EventType[] = [
   { id: 'rdv-commercial', label: 'RDV Commercial', color: '#6C8D2F' },
   { id: 'visite-technique', label: 'Visite Technique', color: '#4B5563' },
   { id: 'installation', label: 'Installation', color: '#2563EB' },
   { id: 'validation', label: 'Validation', color: '#9333EA' },
 ];
 
-export default function CalendarPage() {
-  const [events, setEvents] = useState([
-    {
-      title: 'RDV Commercial - Jean Dupont',
-      start: '2024-01-15T10:00:00',
-      end: '2024-01-15T11:30:00',
-      className: 'event-rdv-commercial',
-      extendedProps: {
-        type: 'rdv-commercial',
-        client: 'Jean Dupont',
-        phone: '06 12 34 56 78',
-        address: '123 rue de Paris',
-      },
+const initialEvents: CalendarEvent[] = [
+  {
+    title: 'RDV Commercial - Jean Dupont',
+    start: '2024-01-15T10:00:00',
+    end: '2024-01-15T11:30:00',
+    className: 'event-rdv-commercial',
+    extendedProps: {
+      type: 'rdv-commercial',
+      client: 'Jean Dupont',
+      phone: '06 12 34 56 78',
+      address: '123 rue de Paris',
     },
-    {
-      title: 'Visite Technique - Marie Martin',
-      start: '2024-01-16T14:00:00',
-      end: '2024-01-16T15:30:00',
-      className: 'event-visite-technique',
-      extendedProps: {
-        type: 'visite-technique',
-        client: 'Marie Martin',
-        phone: '06 98 76 54 32',
-        address: '456 avenue des Fleurs',
-      },
+  },
+  {
+    title: 'Visite Technique - Marie Martin',
+    start: '2024-01-16T14:00:00',
+    end: '2024-01-16T15:30:00',
+    className: 'event-visite-technique',
+    extendedProps: {
+      type: 'visite-technique',
+      client: 'Marie Martin',
+      phone: '06 98 76 54 32',
+      address: '456 avenue des Fleurs',
     },
-  ]);
+  },
+];
 
-  const handleDateSelect = (selectInfo: any) => {
+export default function CalendarPage() {
+  const [events, setEvents] = useState<CalendarEvent[]>(initialEvents);
+
+  const handleDateSelect = (selectInfo: DateSelectArg) => {
     const type = prompt('Type d\'événement (rdv-commercial, visite-technique, installation, validation):');
     const client = prompt('Nom du client:');
-    const phone = prompt('Téléphone:');
-    const address = prompt('Adresse:');
+    const phone = prompt('Téléphone:') || 'Non renseigné';
+    const address = prompt('Adresse:') || 'Non renseignée';
     
     if (type && client) {
-      setEvents([
-        ...events,
-        {
-          title: `${eventTypes.find(t => t.id === type)?.label || type} - ${client}`,
-          start: selectInfo.startStr,
-          end: selectInfo.endStr,
-          className: `event-${type}`,
-          extendedProps: {
-            type,
-            client,
-            phone,
-            address,
-          },
+      const newEvent: CalendarEvent = {
+        title: `${eventTypes.find(t => t.id === type)?.label || type} - ${client}`,
+        start: selectInfo.startStr,
+        end: selectInfo.endStr,
+        className: `event-${type}`,
+        extendedProps: {
+          type,
+          client,
+          phone,
+          address,
         },
-      ]);
+      };
+      
+      setEvents([...events, newEvent]);
     }
   };
 
-  const handleEventClick = (clickInfo: any) => {
+  const handleEventClick = (clickInfo: EventClickArg) => {
     const event = clickInfo.event;
     const props = event.extendedProps;
     
@@ -82,7 +103,12 @@ export default function CalendarPage() {
     `;
     
     if (confirm(details)) {
-      clickInfo.event.remove();
+      const updatedEvents = events.filter(e => 
+        e.start !== event.startStr || 
+        e.end !== event.endStr || 
+        e.title !== event.title
+      );
+      setEvents(updatedEvents);
     }
   };
 
@@ -100,7 +126,7 @@ export default function CalendarPage() {
           {eventTypes.map((type) => (
             <div key={type.id} className="flex items-center gap-2">
               <div 
-                className="w-3 h-3 rounded-full" 
+                className="w-4 h-4 rounded-full" 
                 style={{ backgroundColor: type.color }}
               />
               <span className="text-sm text-gray-600">{type.label}</span>
@@ -109,15 +135,15 @@ export default function CalendarPage() {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="bg-white rounded-lg shadow p-6">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
           headerToolbar={{
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
           }}
-          initialView="timeGridWeek"
+          initialView="dayGridMonth"
           editable={true}
           selectable={true}
           selectMirror={true}
@@ -127,19 +153,14 @@ export default function CalendarPage() {
           select={handleDateSelect}
           eventClick={handleEventClick}
           locale={frLocale}
+          allDaySlot={false}
           slotMinTime="08:00:00"
           slotMaxTime="19:00:00"
-          allDaySlot={false}
-          height="calc(100vh - 250px)"
-          expandRows={true}
-          stickyHeaderDates={true}
           businessHours={{
             daysOfWeek: [1, 2, 3, 4, 5],
             startTime: '08:00',
             endTime: '19:00',
           }}
-          slotDuration="00:30:00"
-          nowIndicator={true}
         />
       </div>
     </div>

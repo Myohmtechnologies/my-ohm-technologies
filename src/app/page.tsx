@@ -6,6 +6,7 @@ import SolarInstallationSection from '@/components/sections/SolarInstallationSec
 import RegionSolarInstallationSection from '@/components/sections/RegionSolarInstallationSection';
 import ProjectSimulationSection from '@/components/sections/ProjectSimulationSection';
 import ReviewsSection from '@/components/sections/ReviewsSection';
+import { defaultRegion } from '@/config/seo';
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       <PremiumMaterialSection />
       <StepsSection />
       <SolarInstallationSection />
-      <RegionSolarInstallationSection />
+      <RegionSolarInstallationSection region={defaultRegion} />
       <ReviewsSection />
       <ProjectSimulationSection />
     </main>

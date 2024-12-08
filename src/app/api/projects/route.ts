@@ -18,7 +18,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
   try {
-    const projects = await ProjectService.getAllProjects();
+    const projects = await ProjectService.getProjects();
     return NextResponse.json(projects);
   } catch (error) {
     console.error('Error in GET /api/projects:', error);

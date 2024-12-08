@@ -50,10 +50,16 @@ export default async function BlogDetailPage({ params }: Props) {
       id: `section-${index}`,
     })) || [];
 
+    // Adapter les sections pour correspondre au type Section
+    const adaptedSections = blog.sections?.map(section => ({
+      title: section.title,
+      description: section.description,
+      content: section.description, // Utiliser la description comme contenu
+      image: section.imageUrl || undefined // Convertir null en undefined
+    })) || [];
+
     return (
       <div className="min-h-screen flex flex-col bg-white">
-    
-        
         <main className="flex-grow">
           <BlogHead 
             title={blog.title}
@@ -67,7 +73,7 @@ export default async function BlogDetailPage({ params }: Props) {
               <span className="inline-block bg-[#6C8D2F] text-white px-4 py-1 rounded-full text-sm">
                 {blog.category}
               </span>
-              <span>{blog.author || 'My Ohm Technologies'}</span>
+              <span>My Ohm Technologies</span>
               <span>•</span>
               <span>{new Date(blog.createdAt).toLocaleDateString('fr-FR')}</span>
             </div>
@@ -75,7 +81,7 @@ export default async function BlogDetailPage({ params }: Props) {
 
           {/* Blog Content with Sections */}
           <BlogSection 
-            sections={blog.sections || []}
+            sections={adaptedSections}
             tableOfContents={tableOfContents}
           />
         </main>

@@ -41,7 +41,7 @@ export default function RegionsPage() {
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <div className="flex items-center gap-2 text-white mb-2">
                     <MapPinIcon className="w-5 h-5" />
-                    <span>Département {region.department}</span>
+                    <span>{region.departments.length} départements</span>
                   </div>
                   
                   <h2 className="text-2xl font-bold text-white mb-2">
@@ -50,13 +50,13 @@ export default function RegionsPage() {
                   
                   <div className="flex items-center gap-2 text-white/90">
                     <SunIcon className="w-5 h-5" />
-                    <span>{region.statistics.sunshineHours}h d&apos;ensoleillement/an</span>
+                    <span>{region.sunshineHours}h d&apos;ensoleillement/an</span>
                   </div>
                 </div>
               </div>
 
               <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium text-blue-600">
-                {region.cities.length} villes couvertes
+                {region.stats.installedCapacity} MW installés
               </div>
             </Link>
           ))}

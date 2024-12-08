@@ -1,80 +1,103 @@
 'use client';
 
-import { useState } from 'react';
 import { RegionData } from '@/config/seo';
-import { motion, AnimatePresence } from 'framer-motion';
+import { Disclosure, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/outline';
+import { motion } from 'framer-motion';
 
 interface Props {
   region: RegionData;
 }
 
 const RegionFAQ = ({ region }: Props) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const allAids = [...region.aids.regional, ...region.aids.local];
+  const aidsList = allAids.map(aid => aid.title).join(', ');
 
-  const faqs = [
+  const defaultQuestions = [
     {
-      question: `Quel est le temps d'installation moyen dans le ${region.name} ?`,
-      answer: 'L\'installation complète prend généralement entre 1 et 2 jours, selon la complexité du projet et les conditions météorologiques.'
+      question: `Pourquoi installer des panneaux solaires dans le ${region.name} ?`,
+      answer: `Le ${region.name} bénéficie de ${region.sunshineHours} heures d'ensoleillement par an, ce qui en fait une région idéale pour l'installation de panneaux solaires. C'est le ${region.sunshineRank} département le plus ensoleillé de France.`
     },
     {
       question: `Quelles sont les aides disponibles dans le ${region.name} ?`,
-      answer: `Plusieurs aides sont disponibles : ${region.aids.map(aid => aid.name).join(', ')}. Contactez-nous pour une estimation personnalisée.`
+      answer: aidsList 
+        ? `Plusieurs aides sont disponibles : ${aidsList}. Contactez-nous pour une estimation personnalisée.`
+        : `Plusieurs aides nationales et locales sont disponibles. Contactez-nous pour connaître les aides spécifiques à votre situation.`
     },
     {
       question: `Quelle production puis-je espérer dans le ${region.name} ?`,
-      answer: `Avec ${region.statistics.sunshineHours}h d'ensoleillement par an, vous pouvez espérer une production moyenne de ${region.statistics.averageProduction} kWh/kWc/an.`
+      answer: `Avec un ensoleillement moyen de ${region.sunshineHours} heures par an, une installation solaire bien dimensionnée peut couvrir une part significative de votre consommation électrique. La consommation moyenne dans la région est de ${region.stats.averageConsumption} kWh/an.`
     },
     {
-      question: 'Quelles sont les garanties proposées ?',
-      answer: 'Nous offrons une garantie de 20 ans sur les panneaux, 10 ans sur l\'installation, et un suivi de production pendant 2 ans.'
-    },
-    {
-      question: 'Comment se déroule le processus d\'installation ?',
-      answer: 'Le processus comprend une étude technique, une proposition personnalisée, les démarches administratives, l\'installation, et la mise en service avec formation.'
+      question: `Combien coûte une installation solaire dans le ${region.name} ?`,
+      answer: `Le coût d'une installation solaire dépend de plusieurs facteurs : la puissance souhaitée, le type de panneaux, la complexité de l'installation... Nous vous proposons une étude gratuite et personnalisée pour déterminer la solution la plus adaptée à votre situation.`
     }
   ];
 
+  const questions = [...defaultQuestions, ...region.faq];
+
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-gray-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-center mb-12">
-          Questions Fréquentes - {region.name}
-        </h2>
+        <div className="text-center mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-gray-900"
+          >
+            Questions Fréquentes
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="mt-4 text-lg text-gray-600"
+          >
+            Tout ce que vous devez savoir sur l&apos;installation de panneaux solaires dans le {region.name}
+          </motion.p>
+        </div>
 
         <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
+          {questions.map((faq, index) => (
+            <motion.div
               key={index}
-              className="border border-gray-200 rounded-lg overflow-hidden"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
-              <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 transition-colors"
-              >
-                <span className="font-medium text-gray-900">{faq.question}</span>
-                <ChevronDownIcon
-                  className={`w-5 h-5 text-gray-700 transition-transform ${
-                    openIndex === index ? 'transform rotate-180' : ''
-                  }`}
-                />
-              </button>
+              <Disclosure>
+                {({ open }) => (
+                  <div className="bg-white rounded-lg shadow-sm">
+                    <Disclosure.Button className="w-full px-4 py-4 text-left flex justify-between items-center">
+                      <span className="text-lg font-medium text-gray-900">
+                        {faq.question}
+                      </span>
+                      <ChevronDownIcon
+                        className={`${
+                          open ? 'transform rotate-180' : ''
+                        } w-5 h-5 text-gray-500 transition-transform duration-200`}
+                      />
+                    </Disclosure.Button>
 
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <div className="p-4 bg-gray-50 text-gray-800">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
+                    <Transition
+                      enter="transition duration-100 ease-out"
+                      enterFrom="transform scale-95 opacity-0"
+                      enterTo="transform scale-100 opacity-100"
+                      leave="transition duration-75 ease-out"
+                      leaveFrom="transform scale-100 opacity-100"
+                      leaveTo="transform scale-95 opacity-0"
+                    >
+                      <Disclosure.Panel className="px-4 pb-4 text-gray-700">
+                        {faq.answer}
+                      </Disclosure.Panel>
+                    </Transition>
+                  </div>
                 )}
-              </AnimatePresence>
-            </div>
+              </Disclosure>
+            </motion.div>
           ))}
         </div>
       </div>

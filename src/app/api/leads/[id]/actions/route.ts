@@ -52,8 +52,8 @@ export async function POST(
       );
     }
     
-    // Créer l'action
-    const action: LeadAction = {
+    // Créer l'action sans le champ _id
+    const { _id, ...actionData }: LeadAction = {
       leadId: params.id,
       type,
       status: 'COMPLETED',
@@ -62,7 +62,10 @@ export async function POST(
       nextAction
     };
     
-    const result = await db.collection('lead_actions').insertOne(action);
+    const result = await db.collection('lead_actions').insertOne(actionData);
+    
+    // Créer l'action complète avec l'ID généré
+    const action = { ...actionData, _id: result.insertedId.toString() };
     
     // Mettre à jour le statut du lead si nécessaire
     const currentStatus = lead.status as LeadStatus;
@@ -94,7 +97,7 @@ export async function POST(
     // Ajouter d'autres conditions pour les autres types d'actions
     
     return NextResponse.json({ 
-      action: { ...action, _id: result.insertedId },
+      action,
       message: 'Action created successfully'
     });
   } catch (error) {

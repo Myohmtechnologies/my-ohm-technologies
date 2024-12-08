@@ -10,7 +10,7 @@ export async function GET(request: Request) {
       search: searchParams.get('search') || undefined,
       category: searchParams.get('category') || undefined,
       tags: searchParams.get('tags')?.split(',') || undefined,
-      status: searchParams.get('status') || 'published',
+      status: (searchParams.get('status') as 'draft' | 'published' | 'archived') || 'published',
       page: Number(searchParams.get('page')) || 1,
       limit: Number(searchParams.get('limit')) || 10,
       sortBy: searchParams.get('sortBy') || 'createdAt',

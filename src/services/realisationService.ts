@@ -1,10 +1,10 @@
-import { ObjectId } from 'mongodb';
-import clientPromise from '@/lib/mongodb';
-import type { Realisation } from '@/types';
+import { MongoClient, ObjectId } from 'mongodb';
+import { Realisation } from '@/types';
+import { clientPromise } from '@/lib/mongodb';
 
 export class RealisationService {
   private static async getCollection() {
-    const client = await clientPromise;
+    const client = await clientPromise as MongoClient;
     const db = client.db('myohm');
     return db.collection('realisations');
   }
@@ -13,7 +13,7 @@ export class RealisationService {
     city?: string;
     type?: string;
     year?: number;
-  }) {
+  }): Promise<{ realisations: Realisation[], pagination: { total: number, page: number, pages: number } }> {
     const collection = await this.getCollection();
     
     // Construire la requête en fonction des filtres
@@ -23,12 +23,16 @@ export class RealisationService {
     if (filter?.year) query.year = filter.year;
 
     const total = await collection.countDocuments(query);
-    const realisations = await collection
+    const realisations = (await collection
       .find(query)
       .sort({ date: -1 })
       .skip((page - 1) * limit)
       .limit(limit)
-      .toArray();
+      .toArray()).map(doc => ({
+        ...doc,
+        _id: doc._id.toString(),
+        date: new Date(doc.date)
+      })) as Realisation[];
 
     return {
       realisations,
@@ -40,12 +44,19 @@ export class RealisationService {
     };
   }
 
-  static async getRealisationById(id: string) {
+  static async getRealisationById(id: string): Promise<Realisation | null> {
     const collection = await this.getCollection();
-    return collection.findOne({ _id: new ObjectId(id) });
+    const doc = await collection.findOne({ _id: new ObjectId(id) });
+    if (!doc) return null;
+    
+    return {
+      ...doc,
+      _id: doc._id.toString(),
+      date: new Date(doc.date)
+    } as Realisation;
   }
 
-  static async createRealisation(realisation: Omit<Realisation, 'id'>) {
+  static async createRealisation(realisation: Omit<Realisation, '_id'>): Promise<Realisation> {
     const collection = await this.getCollection();
     
     const result = await collection.insertOne({
@@ -56,11 +67,12 @@ export class RealisationService {
     });
 
     return {
-      id: result.insertedId
-    };
+      ...realisation,
+      _id: result.insertedId.toString(),
+    } as Realisation;
   }
 
-  static async updateRealisation(id: string, updates: Partial<Realisation>) {
+  static async updateRealisation(id: string, updates: Partial<Realisation>): Promise<boolean> {
     const collection = await this.getCollection();
     
     const result = await collection.updateOne(
@@ -73,16 +85,21 @@ export class RealisationService {
       }
     );
 
-    return result.matchedCount > 0;
+    return result.modifiedCount > 0;
   }
 
-  static async deleteRealisation(id: string) {
+  static async deleteRealisation(id: string): Promise<boolean> {
     const collection = await this.getCollection();
     const result = await collection.deleteOne({ _id: new ObjectId(id) });
     return result.deletedCount > 0;
   }
 
-  static async getStats() {
+  static async getStats(): Promise<{
+    totalRealisations: number,
+    cities: string[],
+    types: string[],
+    yearlyStats: { year: number, count: number, totalPower: number }[]
+  }> {
     const collection = await this.getCollection();
     
     const [totalCount, cities, types, yearlyStats] = await Promise.all([
@@ -113,33 +130,45 @@ export class RealisationService {
     };
   }
 
-  static async getFeaturedRealisations(limit = 3) {
+  static async getFeaturedRealisations(limit = 6): Promise<Realisation[]> {
     const collection = await this.getCollection();
     
-    return collection
+    const docs = await collection
       .find({ featured: true })
       .sort({ date: -1 })
       .limit(limit)
       .toArray();
+
+    return docs.map(doc => ({
+      ...doc,
+      _id: doc._id.toString(),
+      date: new Date(doc.date)
+    })) as Realisation[];
   }
 
-  static async searchRealisations(query: string) {
+  static async searchRealisations(query: string): Promise<Realisation[]> {
     const collection = await this.getCollection();
     
-    return collection
+    const docs = await collection
       .find({
         $or: [
-          { city: { $regex: query, $options: 'i' } },
+          { title: { $regex: query, $options: 'i' } },
+          { description: { $regex: query, $options: 'i' } },
           { type: { $regex: query, $options: 'i' } },
-          { description: { $regex: query, $options: 'i' } }
+          { city: { $regex: query, $options: 'i' } }
         ]
       })
       .sort({ date: -1 })
-      .limit(10)
       .toArray();
+
+    return docs.map(doc => ({
+      ...doc,
+      _id: doc._id.toString(),
+      date: new Date(doc.date)
+    })) as Realisation[];
   }
 
-  static async toggleFeatured(id: string) {
+  static async toggleFeatured(id: string): Promise<boolean> {
     const collection = await this.getCollection();
     const realisation = await this.getRealisationById(id);
     
@@ -155,6 +184,6 @@ export class RealisationService {
       }
     );
 
-    return result.matchedCount > 0;
+    return result.modifiedCount > 0;
   }
 }

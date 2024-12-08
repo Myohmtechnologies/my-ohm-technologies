@@ -1,5 +1,5 @@
 export interface Realisation {
-  id: string;
+  _id?: string;
   title: string;
   description: string;
   images: string[];
@@ -11,6 +11,10 @@ export interface Realisation {
     surface: number;
     economie: number;
   };
+  featured?: boolean;
+  region?: string;
+  city?: string;
+  type?: string;
 }
 
 export interface BlogPost {
@@ -96,38 +100,28 @@ export interface Lead {
   };
 }
 
-export enum ResidentialStatus {
-  OWNER = 'OWNER',
-  TENANT = 'TENANT'
-}
-
-export enum LogementType {
-  HOUSE = 'HOUSE',
-  APARTMENT = 'APARTMENT'
-}
-
 // Mapping des statuts aux étapes suivantes possibles
 export const STATUS_TRANSITIONS: Record<LeadStatus, LeadStatus[]> = {
-  NEW: ['CONTACTED', 'NOT_INTERESTED'],
-  CONTACTED: ['MEETING_SCHEDULED', 'NOT_INTERESTED'],
-  MEETING_SCHEDULED: ['TECHNICAL_VISIT', 'NOT_INTERESTED'],
-  TECHNICAL_VISIT: ['CONTRACT_SIGNED', 'NOT_INTERESTED'],
-  CONTRACT_SIGNED: ['INSTALLATION'],
-  INSTALLATION: ['COMPLETED'],
-  COMPLETED: [],
-  NOT_INTERESTED: []
+  [LeadStatus.NEW]: [LeadStatus.CONTACTED, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.CONTACTED]: [LeadStatus.MEETING_SCHEDULED, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.MEETING_SCHEDULED]: [LeadStatus.TECHNICAL_VISIT, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.TECHNICAL_VISIT]: [LeadStatus.CONTRACT_SIGNED, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.CONTRACT_SIGNED]: [LeadStatus.INSTALLATION],
+  [LeadStatus.INSTALLATION]: [LeadStatus.COMPLETED],
+  [LeadStatus.COMPLETED]: [],
+  [LeadStatus.NOT_INTERESTED]: []
 };
 
 // Configuration des actions requises pour chaque transition
 export const REQUIRED_ACTIONS: Record<LeadStatus, string[]> = {
-  NEW: ['CALL', 'EMAIL'],
-  CONTACTED: ['MEETING'],
-  MEETING_SCHEDULED: ['TECHNICAL_VISIT'],
-  TECHNICAL_VISIT: ['CONTRACT'],
-  CONTRACT_SIGNED: ['INSTALLATION'],
-  INSTALLATION: [],
-  COMPLETED: [],
-  NOT_INTERESTED: []
+  [LeadStatus.NEW]: ['CALL', 'EMAIL'],
+  [LeadStatus.CONTACTED]: ['MEETING'],
+  [LeadStatus.MEETING_SCHEDULED]: ['TECHNICAL_VISIT'],
+  [LeadStatus.TECHNICAL_VISIT]: ['CONTRACT'],
+  [LeadStatus.CONTRACT_SIGNED]: ['INSTALLATION'],
+  [LeadStatus.INSTALLATION]: [],
+  [LeadStatus.COMPLETED]: [],
+  [LeadStatus.NOT_INTERESTED]: []
 };
 
 export interface StageAction {
@@ -137,4 +131,13 @@ export interface StageAction {
   date?: Date;
   note?: string;
   nextStage?: StageType;
+}
+
+export interface Testimonial {
+  name: string;
+  city: string;
+  rating: number;
+  installationType: string;
+  text: string;
+  date: string;
 }

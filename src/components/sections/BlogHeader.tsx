@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 interface BlogHeaderProps {
@@ -11,7 +11,7 @@ interface BlogHeaderProps {
 const BlogHeader = ({ onSearch, onCategorySelect }: BlogHeaderProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: FormEvent) => {
     e.preventDefault();
     if (onSearch) {
       onSearch(searchTerm);
@@ -52,19 +52,19 @@ const BlogHeader = ({ onSearch, onCategorySelect }: BlogHeaderProps) => {
           />
           <button
             type="submit"
-            className="absolute top-1/2 transform -translate-y-1/2 right-4 bg-[#FFDF64] rounded-full p-2"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2"
           >
-            <FaSearch className="text-gray-700 w-5 h-5" />
+            <FaSearch className="text-gray-500" />
           </button>
         </form>
 
         {/* Categories */}
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="flex flex-wrap justify-center gap-3">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => onCategorySelect?.(category)}
-              className="bg-white text-gray-800 font-medium py-2 px-4 rounded-full shadow-md hover:shadow-lg transition-shadow hover:bg-gray-50"
+              className="px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
             >
               {category}
             </button>

@@ -5,15 +5,13 @@ interface BlogCardProps {
   title: string;
   description: string;
   image: string;
-  category: string;
-  author: string;
-  date: string;
-  link: string;
+  category?: string;
+  slug: string;
 }
 
-const BlogCard = ({ title, description, image, category, author, date, link }: BlogCardProps) => {
+const BlogCard = ({ title, description, image, category = 'Blog', slug }: BlogCardProps) => {
   return (
-    <Link href={link} className="block">
+    <Link href={`/blog/${slug}`} className="block">
       <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
         {/* Image Section */}
         <div className="relative w-full h-48">
@@ -37,14 +35,6 @@ const BlogCard = ({ title, description, image, category, author, date, link }: B
           <p className="text-sm text-gray-700 mb-6">
             {description.length > 100 ? description.slice(0, 100) + '...' : description}
           </p>
-
-          {/* Footer */}
-          <div className="flex justify-between items-center">
-            <p className="text-xs text-gray-600">
-              PAR <span className="font-semibold text-[#6C8D2F]">{author}</span>
-            </p>
-            <p className="text-xs text-gray-600">{date}</p>
-          </div>
 
           {/* Read More */}
           <div className="mt-4">

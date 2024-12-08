@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { LoadScript, Autocomplete } from "@react-google-maps/api";
 
 const SimulateurPage = () => {
   const router = useRouter();
@@ -18,9 +17,6 @@ const SimulateurPage = () => {
   });
   const [coordinates, setCoordinates] = useState(null);
 
-  // API Key pour Google Maps (remplacez par votre clé réelle)
-  const googleMapsApiKey = "YOUR_GOOGLE_MAPS_API_KEY";
-
   // Vérifie si le statut résidentiel est défini
   useEffect(() => {
     if (!residential_status) {
@@ -28,16 +24,11 @@ const SimulateurPage = () => {
     }
   }, [residential_status, router]);
 
-  // Fonction pour gérer la sélection d'adresse
-  const handlePlaceSelected = (autocomplete) => {
-    const place = autocomplete.getPlace();
-    const location = place.geometry?.location;
-    if (location) {
-      setCoordinates({
-        lat: location.lat(),
-        lng: location.lng(),
-      });
-    }
+  // Fonction pour gérer la saisie d'adresse
+  const handleAddressInput = (address: string) => {
+    // Vous pouvez implémenter ici une logique simple de validation d'adresse
+    // ou simplement stocker l'adresse saisie
+    console.log("Adresse saisie:", address);
   };
 
   return (
@@ -67,35 +58,15 @@ const SimulateurPage = () => {
         </div>
       )}
 
-      {/* Nouvelle étape : Saisie de l'adresse avec autosaisie */}
+      {/* Nouvelle étape : Saisie de l'adresse */}
       {energyBill && (
         <div>
           <h2>Entrez votre adresse pour la simulation</h2>
-          <LoadScript googleMapsApiKey={googleMapsApiKey} libraries={["places"]}>
-            <Autocomplete
-              onPlaceChanged={() =>
-                handlePlaceSelected(window.google.maps.places.Autocomplete)
-              }
-            >
-              <input
-                type="text"
-                placeholder="Entrez votre adresse"
-                style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-              />
-            </Autocomplete>
-          </LoadScript>
-        </div>
-      )}
-
-      {/* Affichage de l'image du toit avec une flèche */}
-      {coordinates && (
-        <div>
-          <h3>Voici votre toit :</h3>
-          <Image
-            src={`https://maps.googleapis.com/maps/api/staticmap?center=${coordinates.lat},${coordinates.lng}&zoom=20&size=600x400&markers=color:red|${coordinates.lat},${coordinates.lng}&key=${googleMapsApiKey}`}
-            alt="Toit de votre maison"
-            width={600}
-            height={400}
+          <input
+            type="text"
+            placeholder="Entrez votre adresse"
+            onChange={(e) => handleAddressInput(e.target.value)}
+            style={{ width: "100%", padding: "10px", fontSize: "16px" }}
           />
         </div>
       )}

@@ -3,11 +3,13 @@
 import { StageType } from '@/types';
 import { useState } from 'react';
 
+type ColorType = 'blue' | 'purple' | 'yellow' | 'orange' | 'green' | 'pink' | 'indigo';
+
 interface StageButton {
   stage: StageType;
   label: string;
   count: number;
-  color: string;
+  color: ColorType;
 }
 
 const stageButtons: StageButton[] = [
@@ -55,7 +57,7 @@ const stageButtons: StageButton[] = [
   }
 ];
 
-const colorClasses = {
+const colorClasses: Record<ColorType, string> = {
   blue: 'bg-blue-100 text-blue-800 ring-blue-600/20 hover:bg-blue-200',
   purple: 'bg-purple-100 text-purple-800 ring-purple-600/20 hover:bg-purple-200',
   yellow: 'bg-yellow-100 text-yellow-800 ring-yellow-600/20 hover:bg-yellow-200',

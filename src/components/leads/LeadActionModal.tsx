@@ -3,8 +3,9 @@
 import { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Lead, LeadAction } from '@/types';
-import { addHours } from 'date-fns';
+import { Lead, LeadAction, LeadStatus } from '@/types';
+import { addHours, parseISO } from 'date-fns';
+import { createCalendarEvent } from '@/utils/calendar';
 
 interface LeadActionModalProps {
   isOpen: boolean;
@@ -43,7 +44,7 @@ export default function LeadActionModal({
 }: LeadActionModalProps) {
   const [notes, setNotes] = useState('');
   const [nextActionDate, setNextActionDate] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState(lead.status);
+  const [selectedStatus, setSelectedStatus] = useState<LeadStatus>(lead.status);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [address, setAddress] = useState({
@@ -116,10 +117,18 @@ export default function LeadActionModal({
 
       const updatedLead = await response.json();
 
-      // Si c'est un rendez-vous, créer l'événement dans le calendrier
+      // Créer un événement dans le calendrier si nécessaire
       if ((selectedStatus === 'MEETING_SCHEDULED' || selectedStatus === 'TECHNICAL_VISIT') && nextActionDate) {
         try {
-          await createCalendarEvent(selectedStatus, nextActionDate);
+          const actionDate = parseISO(nextActionDate);
+          const formattedAddress = `${address.street}, ${address.postalCode} ${address.city}${address.additionalInfo ? ` - ${address.additionalInfo}` : ''}`;
+          
+          await createCalendarEvent(
+            selectedStatus,
+            actionDate,
+            lead.email,
+            formattedAddress
+          );
         } catch (calendarError) {
           console.error('Error creating calendar event:', calendarError);
           // On continue même si la création de l'événement calendrier échoue
@@ -198,9 +207,11 @@ export default function LeadActionModal({
                             Nouveau statut
                           </label>
                           <select
+                            id="status"
+                            name="status"
                             className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500 sm:text-sm"
                             value={selectedStatus}
-                            onChange={(e) => setSelectedStatus(e.target.value)}
+                            onChange={(e) => setSelectedStatus(e.target.value as LeadStatus)}
                             required
                           >
                             <option value="">Sélectionner un statut</option>

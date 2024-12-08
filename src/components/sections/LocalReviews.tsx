@@ -9,6 +9,10 @@ interface Props {
 }
 
 const LocalReviews = ({ region }: Props) => {
+  if (!region.testimonials?.length) {
+    return null; // Don't render the section if there are no testimonials
+  }
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -49,23 +53,16 @@ const LocalReviews = ({ region }: Props) => {
 
               {/* Type d'installation */}
               <div className="mb-4">
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
+                <span className="inline-block bg-green-100 text-green-800 text-xs px-2.5 py-0.5 rounded-full">
                   {testimonial.installationType}
                 </span>
               </div>
 
-              {/* Commentaire */}
-              <p className="text-gray-800 mb-4">
-                {testimonial.comment}
-              </p>
+              {/* Contenu du témoignage */}
+              <p className="text-gray-700">{testimonial.text}</p>
 
               {/* Date */}
-              <div className="text-sm text-gray-700">
-                {new Date(testimonial.date).toLocaleDateString('fr-FR', {
-                  year: 'numeric',
-                  month: 'long'
-                })}
-              </div>
+              <p className="mt-4 text-sm text-gray-500">{testimonial.date}</p>
             </motion.div>
           ))}
         </div>
