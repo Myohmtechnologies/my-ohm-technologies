@@ -151,18 +151,32 @@ export class BlogService {
 
   static async createBlog(blogData: BlogPost) {
     try {
+      console.log('Creating blog with data:', blogData);
       await dbConnect();
-      
+
+      // Validation explicite
+      if (!blogData.mainImage) {
+        console.error('Main image is missing');
+        throw new Error('L\'image principale est requise');
+      }
+
+      if (!blogData.title || !blogData.description) {
+        console.error('Title or description is missing');
+        throw new Error('Le titre et la description sont requis');
+      }
+
+      // Création du blog avec les données validées
       const blog = new Blog({
         ...blogData,
-        sections: blogData.sections.map((section, index) => ({
-          ...section,
-          order: index
-        }))
+        status: blogData.status || 'draft',
+        createdAt: new Date()
       });
 
-      await blog.save();
-      return blog.toObject();
+      console.log('Saving blog to database...');
+      const savedBlog = await blog.save();
+      console.log('Blog saved successfully:', savedBlog);
+      
+      return savedBlog;
     } catch (error) {
       console.error('BlogService: Erreur lors de la création du blog:', error);
       throw error;

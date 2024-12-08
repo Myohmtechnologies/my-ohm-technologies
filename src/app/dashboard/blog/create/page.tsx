@@ -62,11 +62,20 @@ export default function CreateBlogPostPage() {
 
   const handleMainImageUpload = async (file: File) => {
     try {
-      const imagePath = await uploadImageToCloud(file);
-      setMainImage(imagePath);
+      setError(null);
+      console.log('Uploading main image...');
+      const imageUrl = await uploadImageToCloud(file);
+      console.log('Image uploaded successfully:', imageUrl);
+      if (imageUrl) {
+        setMainImage(imageUrl);
+        console.log('Main image state updated:', imageUrl);
+      } else {
+        throw new Error('No image URL returned from upload');
+      }
     } catch (err) {
       console.error('Error uploading main image:', err);
       setError('Erreur lors du téléchargement de l\'image principale');
+      throw err;
     }
   };
 
@@ -128,31 +137,41 @@ export default function CreateBlogPostPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!mainImage) {
-      setError('L\'image principale est requise');
-      return;
-    }
-
-    if (formData.sections.some(section => !section.title || !section.description)) {
-      setError('Tous les champs des sections sont requis');
-      return;
-    }
-    
     try {
       setLoading(true);
       setError(null);
-      
+
+      console.log('Current main image state:', mainImage);
+
+      if (!mainImage) {
+        setError('L\'image principale est requise');
+        setLoading(false);
+        return;
+      }
+
+      if (!formData.title.trim() || !formData.description.trim()) {
+        setError('Le titre et la description sont requis');
+        setLoading(false);
+        return;
+      }
+
       const blogPost = {
-        title: formData.title,
-        description: formData.description,
-        mainImage,
-        category: formData.category,
+        title: formData.title.trim(),
+        description: formData.description.trim(),
+        mainImage: mainImage,
+        category: formData.category || categories[0],
         tags: selectedTags,
-        sections: formData.sections,
+        sections: formData.sections.map(section => ({
+          ...section,
+          title: section.title.trim(),
+          description: section.description.trim()
+        })),
         status: 'draft'
       };
 
-      const response = await fetch('/api/test-blog', {
+      console.log('Submitting blog post with data:', blogPost);
+
+      const response = await fetch('/api/blog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -161,12 +180,16 @@ export default function CreateBlogPostPage() {
       });
 
       if (!response.ok) {
-        const data = await response.json();
-        throw new Error(data.error || 'Error creating blog post');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error creating blog post');
       }
+
+      const result = await response.json();
+      console.log('Blog post created successfully:', result);
 
       router.push('/dashboard/blog');
     } catch (err) {
+      console.error('Error submitting blog post:', err);
       setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     } finally {
       setLoading(false);
