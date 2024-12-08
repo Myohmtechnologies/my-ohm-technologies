@@ -17,18 +17,12 @@ const HeroSection = () => {
         <Image 
           src="/images/hero-bg.webp" 
           alt="Installation panneaux solaires"
-          width={800}
-          height={550}
+          width={3840}
+          height={2160}
           className="object-cover w-full h-full"
           priority
-          srcSet="/images/hero-bg.webp 640w,
-                  /images/hero-bg.webp 750w,
-                  /images/hero-bg.webp 828w,
-                  /images/hero-bg.webp 1080w,
-                  /images/hero-bg.webp 1200w,
-                  /images/hero-bg.webp 1920w,
-                  /images/hero-bg.webp 2048w,
-                  /images/hero-bg.webp 3840w"
+          sizes="100vw"
+          quality={75}
         />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
