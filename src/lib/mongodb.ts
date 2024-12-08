@@ -15,6 +15,10 @@ let clientPromise: Promise<MongoClient>;
 
 declare global {
   var _mongoClientPromise: Promise<MongoClient> | undefined;
+  var mongoose: {
+    conn: typeof mongoose | null;
+    promise: Promise<typeof mongoose> | null;
+  } | undefined;
 }
 
 try {
@@ -36,10 +40,15 @@ try {
 export { clientPromise };
 
 // Mongoose connection
-let cached = global.mongoose;
+interface MongooseCache {
+  conn: typeof mongoose | null;
+  promise: Promise<typeof mongoose> | null;
+}
+
+let cached = (global as any).mongoose as MongooseCache;
 
 if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
+  cached = (global as any).mongoose = { conn: null, promise: null };
 }
 
 async function dbConnect() {
