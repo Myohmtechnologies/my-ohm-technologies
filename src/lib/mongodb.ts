@@ -2,7 +2,7 @@ import { MongoClient } from 'mongodb';
 import mongoose from 'mongoose';
 
 if (!process.env.MONGODB_URI) {
-  throw new Error('Please add your Mongo URI to .env.local');
+  throw new Error('MongoDB URI is not defined. Please add MONGODB_URI to your environment variables.');
 }
 
 const uri = process.env.MONGODB_URI;
@@ -10,43 +10,50 @@ const options = {
   maxPoolSize: 10,
 };
 
-// Configuration MongoDB native pour les opérations directes
-let client;
+let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-if (process.env.NODE_ENV === 'development') {
-  let globalWithMongo = global as typeof globalThis & {
-    _mongoClientPromise?: Promise<MongoClient>;
-  };
-
-  if (!globalWithMongo._mongoClientPromise) {
-    client = new MongoClient(uri, options);
-    globalWithMongo._mongoClientPromise = client.connect();
-  }
-  clientPromise = globalWithMongo._mongoClientPromise;
-} else {
-  client = new MongoClient(uri, options);
-  clientPromise = client.connect();
+declare global {
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
-// Configuration Mongoose pour les modèles et schémas
-async function dbConnect() {
-  try {
-    if (mongoose.connection.readyState >= 1) {
-      return;
+try {
+  if (process.env.NODE_ENV === 'development') {
+    if (!global._mongoClientPromise) {
+      client = new MongoClient(uri, options);
+      global._mongoClientPromise = client.connect();
     }
-
-    return mongoose.connect(uri, {
-      maxPoolSize: 10,
-    });
-  } catch (error) {
-    console.error('MongoDB connection error:', error);
-    throw error;
+    clientPromise = global._mongoClientPromise;
+  } else {
+    client = new MongoClient(uri, options);
+    clientPromise = client.connect();
   }
+} catch (error) {
+  console.error('Failed to connect to MongoDB:', error);
+  throw new Error('Failed to establish MongoDB connection. Please check your connection string and network connectivity.');
 }
 
-// Export pour MongoDB native (utilisé pour les leads et leurs actions)
 export { clientPromise };
 
-// Export pour Mongoose (utilisé pour les blogs et réalisations)
+// Mongoose connection
+let cached = global.mongoose;
+
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+async function dbConnect() {
+  if (cached.conn) {
+    return cached.conn;
+  }
+
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(uri).then((mongoose) => {
+      return mongoose;
+    });
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
+
 export default dbConnect;
