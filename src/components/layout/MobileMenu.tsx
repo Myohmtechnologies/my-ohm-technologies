@@ -84,7 +84,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           <ul className="space-y-2 px-4">
             <li>
               <Link 
-                href="/panneaux-photovoltaiques" 
+                href="/panneaux-solaire" 
                 className="block px-4 py-4 text-gray-700 hover:bg-gray-50 rounded-lg font-medium text-base transition-colors"
                 onClick={onClose}
               >
@@ -102,7 +102,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             </li>
             <li>
               <Link 
-                href="/blogs" 
+                href="/blog" 
                 className="block px-4 py-4 text-gray-700 hover:bg-gray-50 rounded-lg font-medium text-base transition-colors"
                 onClick={onClose}
               >
@@ -120,7 +120,7 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
             </li>
             <li>
               <Link 
-                href="/nos-installations" 
+                href="/nos-realisation" 
                 className="block px-4 py-4 text-gray-700 hover:bg-gray-50 rounded-lg font-medium text-base transition-colors"
                 onClick={onClose}
               >
