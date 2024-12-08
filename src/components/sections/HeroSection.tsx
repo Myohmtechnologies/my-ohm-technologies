@@ -11,9 +11,9 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex flex-col md:block">
       {/* Image de fond */}
-      <div className='relative h-screen min-h-[600px] w-full'>
+      <div className='relative h-[60vh] md:h-screen min-h-[400px] w-full'>
         <Image 
           src="/images/hero-bg.webp" 
           alt="Installation panneaux solaires"
@@ -28,8 +28,8 @@ const HeroSection = () => {
       </div>
 
       {/* Contenu principal */}
-      <div className="absolute inset-0 flex items-center px-4 md:px-8 lg:px-12">
-        <div className="bg-white/95 rounded-2xl p-6 md:p-8 max-w-xl backdrop-blur-sm ml-4 md:ml-[5%]">
+      <div className="relative bg-white md:bg-transparent flex items-center px-4 md:px-8 lg:px-12 py-6 md:py-0 md:absolute md:inset-0">
+        <div className="bg-light-yellow rounded-2xl p-6 md:p-8 max-w-xl backdrop-blur-sm w-full md:ml-[5%]">
           <div className="text-center mb-6">
             <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
               Passez au solaire avec My Ohm Technologies
