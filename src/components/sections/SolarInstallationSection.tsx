@@ -6,17 +6,17 @@ import { motion } from 'framer-motion';
 
 const stats = [
   {
-    value: '1500+',
+    value: '15+',
     label: 'Installations réalisées',
     icon: '🏠'
   },
   {
-    value: '98%',
+    value: '100%',
     label: 'Clients satisfaits',
     icon: '⭐'
   },
   {
-    value: '15+',
+    value: '5+',
     label: "Années d'expérience",
     icon: '📅'
   }
@@ -130,7 +130,7 @@ const SolarInstallationSection = () => {
             <div className="flex flex-wrap items-center gap-6 mb-8">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="bg-white p-3 rounded-lg shadow-md"
+                className="bg-white p-2 rounded-lg shadow-md"
               >
                 <Image
                   src="/images/qualipv.png"
@@ -142,7 +142,7 @@ const SolarInstallationSection = () => {
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="bg-white p-3 rounded-lg shadow-md"
+                className="bg-white p-2 rounded-lg shadow-md"
               >
                 <Image
                   src="/images/decinal.png"
@@ -154,7 +154,7 @@ const SolarInstallationSection = () => {
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="bg-white p-3 rounded-lg shadow-md"
+                className="bg-white p-2 rounded-lg shadow-md"
               >
                 <Image
                   src="/images/syndicat.png"
