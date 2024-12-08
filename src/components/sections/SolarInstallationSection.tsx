@@ -191,7 +191,7 @@ const SolarInstallationSection = () => {
               
               <Link
                 href="/contact"
-                className="group inline-flex items-center bg-white text-gray-900 font-medium py-3 px-6 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
+                className="group inline-flex items-center bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-full shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 hover:border-gray-300"
               >
                 NOUS CONTACTER
                 <svg
