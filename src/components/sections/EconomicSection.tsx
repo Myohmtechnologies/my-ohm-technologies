@@ -119,10 +119,10 @@ const EconomicSection = () => {
                   />
                 </div>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3 min-h-[3.5rem]">
+              <h3 className="text-lg font-semibold text-center text-gray-900 mb-3 min-h-[3.5rem]">
                 {card.title}
               </h3>
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-sm text-center">
                 {card.description}
               </p>
             </motion.div>

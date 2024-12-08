@@ -9,30 +9,7 @@ export const metadata = {
 const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-white">
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <Link href="/" className="flex-shrink-0">
-            <Image
-              src="/images/dark-logo.png"
-              alt="Logo My ohm technologies"
-              width={100}
-              height={50}
-              className="h-12 w-auto"
-              priority
-            />
-          </Link>
-
-          <div className="flex items-center gap-2">
-            <Image
-              src="/images/svg/material-symbols_call.svg"
-              alt="phone"
-              width={24}
-              height={24}
-            />
-            <span className="text-gray-900 font-medium">09 75 66 68 58</span>
-          </div>
-        </div>
-      </header>
+    
 
       <main className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
         <div className="prose prose-lg max-w-none text-gray-900">

@@ -19,7 +19,7 @@ const RegionHero = ({ region }: Props) => {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/solar-panels-hero.jpg"
+          src="/images/region-sud.webp"
           alt="Installation de panneaux solaires"
           fill
           className="object-cover"

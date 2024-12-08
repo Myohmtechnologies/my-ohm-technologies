@@ -102,27 +102,48 @@ export interface RegionData {
 export const defaultRegion: RegionData = {
   name: 'France',
   slug: 'france',
-  mapImage: '/images/regions/france.svg',
+  mapImage: '/images/regions/map-default.jpg',
   sunshineHours: 1800,
   sunshineRank: '1er',
-  departments: [],
+  departments: [
+    {
+      name: 'Bouches-du-Rhône',
+      code: '13',
+      population: 2034469
+    },
+    {
+      name: 'Var',
+      code: '83',
+      population: 1076711
+    },
+    {
+      name: 'Alpes-Maritimes',
+      code: '06',
+      population: 1094283
+    },
+    {
+      name: 'Alpes-de-Haute-Provence',
+      code: '04',
+      population: 163915
+    }
+  ],
   meta: {
     title: 'Installation de Panneaux Solaires en France | MyOhm Technologies',
     description: 'Découvrez les solutions d\'installation de panneaux solaires en France. Profitez d\'une énergie propre et économique avec MyOhm Technologies.',
-    keywords: ['panneaux solaires', 'installation solaire', 'énergie solaire', 'France'],
+    keywords: ['panneaux solaires', 'installation solaire', 'énergie solaire', 'France']
   },
   stats: {
     population: 67390000,
     solarPotential: 11000,
     installedCapacity: 13200,
-    averageConsumption: 4679,
+    averageConsumption: 4679
   },
   aids: {
     regional: [],
-    local: [],
+    local: []
   },
   faq: [],
-  testimonials: [],
+  testimonials: []
 };
 
 export const regions: RegionData[] = [
@@ -138,18 +159,18 @@ export const regions: RegionData[] = [
       { name: 'Var', code: '83', population: 1076711 },
       { name: 'Vaucluse', code: '84', population: 561469 },
       { name: 'Alpes-Maritimes', code: '06', population: 1094283 },
-      { name: 'Hautes-Alpes', code: '05', population: 141756 },
+      { name: 'Hautes-Alpes', code: '05', population: 141756 }
     ],
     meta: {
       title: 'Installation Panneaux Solaires en PACA | MY OHM Technologies',
       description: 'Expert en installation de panneaux solaires en région PACA. Profitez du fort ensoleillement et des aides régionales. Devis gratuit et accompagnement personnalisé.',
-      keywords: ['panneaux solaires PACA', 'installation photovoltaïque PACA', 'énergie solaire Provence', 'aide panneau solaire PACA'],
+      keywords: ['panneaux solaires PACA', 'installation photovoltaïque PACA', 'énergie solaire Provence', 'aide panneau solaire PACA']
     },
     stats: {
       population: 5081101,
       solarPotential: 1800,
       installedCapacity: 1500,
-      averageConsumption: 6500,
+      averageConsumption: 6500
     },
     aids: {
       regional: [
@@ -160,9 +181,9 @@ export const regions: RegionData[] = [
           conditions: [
             'Être propriétaire occupant',
             'Installation réalisée par un professionnel RGE',
-            'Puissance minimale de 3 kWc',
-          ],
-        },
+            'Puissance minimale de 3 kWc'
+          ]
+        }
       ],
       local: [
         {
@@ -171,22 +192,13 @@ export const regions: RegionData[] = [
           amount: 'Jusqu\'à 2000€',
           conditions: [
             'Résider dans les Bouches-du-Rhône',
-            'Revenus modestes selon les plafonds de l\'Anah',
-          ],
-        },
-      ],
+            'Revenus modestes selon les plafonds de l\'Anah'
+          ]
+        }
+      ]
     },
-    faq: [
-      {
-        question: 'Quel est le potentiel solaire en PACA ?',
-        answer: 'La région PACA bénéficie d\'un ensoleillement exceptionnel avec plus de 2800 heures de soleil par an, ce qui en fait l\'une des régions les plus propices à l\'installation de panneaux solaires en France.',
-      },
-      {
-        question: 'Quelles sont les aides disponibles en PACA ?',
-        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), la région PACA propose des aides spécifiques pouvant aller jusqu\'à 3000€. Certains départements, comme les Bouches-du-Rhône, proposent également des aides complémentaires.',
-      },
-    ],
-    testimonials: [],
+    faq: [],
+    testimonials: []
   },
   {
     name: 'Bouches-du-Rhône',
@@ -200,13 +212,13 @@ export const regions: RegionData[] = [
     meta: {
       title: 'Installation Panneaux Solaires Bouches-du-Rhône (13) | MY OHM Technologies',
       description: 'Expert en installation de panneaux solaires dans les Bouches-du-Rhône. Profitez de 2800h d\'ensoleillement par an. Devis gratuit et aides régionales disponibles.',
-      keywords: ['panneaux solaires Bouches-du-Rhône', 'installation photovoltaïque Bouches-du-Rhône', 'énergie solaire Marseille', 'aide panneau solaire Bouches-du-Rhône'],
+      keywords: ['panneaux solaires Bouches-du-Rhône', 'installation photovoltaïque Bouches-du-Rhône', 'énergie solaire Marseille', 'aide panneau solaire Bouches-du-Rhône']
     },
     stats: {
       population: 2043110,
       solarPotential: 1700,
       installedCapacity: 1200,
-      averageConsumption: 6000,
+      averageConsumption: 6000
     },
     aids: {
       regional: [
@@ -217,9 +229,9 @@ export const regions: RegionData[] = [
           conditions: [
             'Être propriétaire occupant',
             'Installation réalisée par un professionnel RGE',
-            'Puissance minimale de 3 kWc',
-          ],
-        },
+            'Puissance minimale de 3 kWc'
+          ]
+        }
       ],
       local: [
         {
@@ -228,22 +240,22 @@ export const regions: RegionData[] = [
           amount: 'Jusqu\'à 2000€',
           conditions: [
             'Résider dans les Bouches-du-Rhône',
-            'Revenus modestes selon les plafonds de l\'Anah',
-          ],
-        },
-      ],
+            'Revenus modestes selon les plafonds de l\'Anah'
+          ]
+        }
+      ]
     },
     faq: [
       {
         question: 'Quel est le potentiel solaire dans les Bouches-du-Rhône ?',
-        answer: 'Les Bouches-du-Rhône bénéficient d\'un ensoleillement important avec plus de 2800 heures de soleil par an, ce qui en fait un département propice à l\'installation de panneaux solaires.',
+        answer: 'Les Bouches-du-Rhône bénéficient d\'un ensoleillement important avec plus de 2800 heures de soleil par an, ce qui en fait un département propice à l\'installation de panneaux solaires.'
       },
       {
         question: 'Quelles sont les aides disponibles dans les Bouches-du-Rhône ?',
-        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département des Bouches-du-Rhône propose des aides spécifiques pouvant aller jusqu\'à 2000€.',
-      },
+        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département des Bouches-du-Rhône propose des aides spécifiques pouvant aller jusqu\'à 2000€.'
+      }
     ],
-    testimonials: [],
+    testimonials: []
   },
   {
     name: 'Alpes-de-Haute-Provence',
@@ -257,13 +269,13 @@ export const regions: RegionData[] = [
     meta: {
       title: 'Installation Panneaux Solaires Alpes-de-Haute-Provence (04) | MY OHM Technologies',
       description: 'Installation de panneaux solaires dans les Alpes-de-Haute-Provence. Profitez d\'un ensoleillement exceptionnel en altitude. Solutions adaptées au climat montagnard.',
-      keywords: ['panneaux solaires Alpes-de-Haute-Provence', 'installation photovoltaïque Alpes-de-Haute-Provence', 'énergie solaire Digne', 'aide panneau solaire Alpes-de-Haute-Provence'],
+      keywords: ['panneaux solaires Alpes-de-Haute-Provence', 'installation photovoltaïque Alpes-de-Haute-Provence', 'énergie solaire Digne', 'aide panneau solaire Alpes-de-Haute-Provence']
     },
     stats: {
       population: 165197,
       solarPotential: 1600,
       installedCapacity: 1000,
-      averageConsumption: 5500,
+      averageConsumption: 5500
     },
     aids: {
       regional: [
@@ -274,9 +286,9 @@ export const regions: RegionData[] = [
           conditions: [
             'Être propriétaire occupant',
             'Installation réalisée par un professionnel RGE',
-            'Puissance minimale de 3 kWc',
-          ],
-        },
+            'Puissance minimale de 3 kWc'
+          ]
+        }
       ],
       local: [
         {
@@ -285,22 +297,22 @@ export const regions: RegionData[] = [
           amount: 'Jusqu\'à 1500€',
           conditions: [
             'Résider dans les Alpes-de-Haute-Provence',
-            'Revenus modestes selon les plafonds de l\'Anah',
-          ],
-        },
-      ],
+            'Revenus modestes selon les plafonds de l\'Anah'
+          ]
+        }
+      ]
     },
     faq: [
       {
         question: 'Quel est le potentiel solaire dans les Alpes-de-Haute-Provence ?',
-        answer: 'Les Alpes-de-Haute-Provence bénéficient d\'un ensoleillement important en altitude, ce qui en fait un département propice à l\'installation de panneaux solaires.',
+        answer: 'Les Alpes-de-Haute-Provence bénéficient d\'un ensoleillement important en altitude, ce qui en fait un département propice à l\'installation de panneaux solaires.'
       },
       {
         question: 'Quelles sont les aides disponibles dans les Alpes-de-Haute-Provence ?',
-        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département des Alpes-de-Haute-Provence propose des aides spécifiques pouvant aller jusqu\'à 1500€.',
-      },
+        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département des Alpes-de-Haute-Provence propose des aides spécifiques pouvant aller jusqu\'à 1500€.'
+      }
     ],
-    testimonials: [],
+    testimonials: []
   },
   {
     name: 'Var',
@@ -314,13 +326,13 @@ export const regions: RegionData[] = [
     meta: {
       title: 'Installation Panneaux Solaires Var (83) | MY OHM Technologies',
       description: 'Expert en installation de panneaux solaires dans le Var. Profitez du climat méditerranéen idéal pour le photovoltaïque. Installation professionnelle et service premium.',
-      keywords: ['panneaux solaires Var', 'installation photovoltaïque Var', 'énergie solaire Toulon', 'aide panneau solaire Var'],
+      keywords: ['panneaux solaires Var', 'installation photovoltaïque Var', 'énergie solaire Toulon', 'aide panneau solaire Var']
     },
     stats: {
       population: 1076711,
       solarPotential: 1550,
       installedCapacity: 900,
-      averageConsumption: 5000,
+      averageConsumption: 5000
     },
     aids: {
       regional: [
@@ -331,9 +343,9 @@ export const regions: RegionData[] = [
           conditions: [
             'Être propriétaire occupant',
             'Installation réalisée par un professionnel RGE',
-            'Puissance minimale de 3 kWc',
-          ],
-        },
+            'Puissance minimale de 3 kWc'
+          ]
+        }
       ],
       local: [
         {
@@ -342,22 +354,22 @@ export const regions: RegionData[] = [
           amount: 'Jusqu\'à 1200€',
           conditions: [
             'Résider dans le Var',
-            'Revenus modestes selon les plafonds de l\'Anah',
-          ],
-        },
-      ],
+            'Revenus modestes selon les plafonds de l\'Anah'
+          ]
+        }
+      ]
     },
     faq: [
       {
         question: 'Quel est le potentiel solaire dans le Var ?',
-        answer: 'Le Var bénéficie d\'un climat méditerranéen idéal pour le photovoltaïque, ce qui en fait un département propice à l\'installation de panneaux solaires.',
+        answer: 'Le Var bénéficie d\'un climat méditerranéen idéal pour le photovoltaïque, ce qui en fait un département propice à l\'installation de panneaux solaires.'
       },
       {
         question: 'Quelles sont les aides disponibles dans le Var ?',
-        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département du Var propose des aides spécifiques pouvant aller jusqu\'à 1200€.',
-      },
+        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département du Var propose des aides spécifiques pouvant aller jusqu\'à 1200€.'
+      }
     ],
-    testimonials: [],
+    testimonials: []
   },
   {
     name: 'Vaucluse',
@@ -371,13 +383,13 @@ export const regions: RegionData[] = [
     meta: {
       title: 'Installation Panneaux Solaires Vaucluse (84) | MY OHM Technologies',
       description: 'Installation de panneaux solaires dans le Vaucluse. Bénéficiez du climat provençal idéal pour maximiser votre production solaire. Expertise locale et accompagnement personnalisé.',
-      keywords: ['panneaux solaires Vaucluse', 'installation photovoltaïque Vaucluse', 'énergie solaire Avignon', 'aide panneau solaire Vaucluse'],
+      keywords: ['panneaux solaires Vaucluse', 'installation photovoltaïque Vaucluse', 'énergie solaire Avignon', 'aide panneau solaire Vaucluse']
     },
     stats: {
       population: 561469,
       solarPotential: 1500,
       installedCapacity: 800,
-      averageConsumption: 4500,
+      averageConsumption: 4500
     },
     aids: {
       regional: [
@@ -388,9 +400,9 @@ export const regions: RegionData[] = [
           conditions: [
             'Être propriétaire occupant',
             'Installation réalisée par un professionnel RGE',
-            'Puissance minimale de 3 kWc',
-          ],
-        },
+            'Puissance minimale de 3 kWc'
+          ]
+        }
       ],
       local: [
         {
@@ -399,21 +411,21 @@ export const regions: RegionData[] = [
           amount: 'Jusqu\'à 1000€',
           conditions: [
             'Résider dans le Vaucluse',
-            'Revenus modestes selon les plafonds de l\'Anah',
-          ],
-        },
-      ],
+            'Revenus modestes selon les plafonds de l\'Anah'
+          ]
+        }
+      ]
     },
     faq: [
       {
         question: 'Quel est le potentiel solaire dans le Vaucluse ?',
-        answer: 'Le Vaucluse bénéficie d\'un climat provençal idéal pour maximiser votre production solaire, ce qui en fait un département propice à l\'installation de panneaux solaires.',
+        answer: 'Le Vaucluse bénéficie d\'un climat provençal idéal pour maximiser votre production solaire, ce qui en fait un département propice à l\'installation de panneaux solaires.'
       },
       {
         question: 'Quelles sont les aides disponibles dans le Vaucluse ?',
-        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département du Vaucluse propose des aides spécifiques pouvant aller jusqu\'à 1000€.',
-      },
+        answer: 'En plus des aides nationales (MaPrimeRénov\', CEE), le département du Vaucluse propose des aides spécifiques pouvant aller jusqu\'à 1000€.'
+      }
     ],
-    testimonials: [],
-  },
+    testimonials: []
+  }
 ];

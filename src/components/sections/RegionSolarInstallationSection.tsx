@@ -13,7 +13,7 @@ const RegionSolarInstallationSection = ({ region }: RegionSolarInstallationSecti
           {/* Map Section */}
           <div className="lg:w-1/2 mb-8 lg:mb-0">
             <Image
-              src={region.mapImage || '/images/map-default.png'}
+              src={region.mapImage || '/images/regions/map-default.jpg'}
               alt={`Carte de ${region.name}`}
               width={600}
               height={500}
