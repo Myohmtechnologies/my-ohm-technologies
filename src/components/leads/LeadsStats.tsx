@@ -1,6 +1,6 @@
 'use client';
 
-import { Lead } from '@/types';
+import { Lead, LeadStatus } from '@/types';
 
 interface LeadsStatsProps {
   leads: Lead[];
@@ -9,9 +9,9 @@ interface LeadsStatsProps {
 export default function LeadsStats({ leads }: LeadsStatsProps) {
   const stats = {
     total: leads.length,
-    new: leads.filter(lead => lead.status === 'NEW').length,
-    contacted: leads.filter(lead => lead.status === 'CONTACTED').length,
-    meetingScheduled: leads.filter(lead => lead.status === 'MEETING_SCHEDULED').length,
+    new: leads.filter(lead => lead.status === LeadStatus.NEW).length,
+    contacted: leads.filter(lead => lead.status === LeadStatus.CONTACTED).length,
+    meetingScheduled: leads.filter(lead => lead.status === LeadStatus.RDV_SCHEDULED).length,
   };
 
   return (
