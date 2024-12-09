@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
+import { contactFormEvents } from '@/utils/analytics';
 
 interface ContactFormData {
   name: string;
@@ -29,6 +30,10 @@ const ContactForm = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    // Track when user starts filling the form
+    if (Object.values(formData).every(val => val === '')) {
+      contactFormEvents.formStart();
+    }
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -49,6 +54,9 @@ const ContactForm = () => {
 
       if (!response.ok) throw new Error('Failed to send message');
 
+      // Track successful form submission
+      contactFormEvents.formSubmit(true, formData.subject);
+      
       setSubmitStatus('success');
       setFormData({
         name: '',
@@ -58,6 +66,9 @@ const ContactForm = () => {
         message: ''
       });
     } catch (error) {
+      // Track form submission error
+      contactFormEvents.formSubmit(false, formData.subject);
+      contactFormEvents.formError('api_error');
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);

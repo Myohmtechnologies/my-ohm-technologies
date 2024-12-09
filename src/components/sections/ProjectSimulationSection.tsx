@@ -2,8 +2,13 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { simulatorEvents } from '@/utils/analytics';
 
 const SimulationSection = () => {
+  const handleSimulatorClick = () => {
+    simulatorEvents.simulatorStart('homepage_cta');
+  };
+
   return (
     <section className="bg-[#FFDF64] py-16 px-4" aria-label="Simulation de projet solaire">
       <motion.div 
@@ -28,6 +33,7 @@ const SimulationSection = () => {
         >
           <Link 
             href="/simulateur"
+            onClick={handleSimulatorClick}
             className="bg-[#15171A] text-white px-4 md:px-8 py-3 md:py-4 rounded font-bold hover:bg-opacity-90 transition-all uppercase text-sm md:text-base w-full md:w-auto inline-block mx-4"
             role="button"
             aria-label="Accéder au simulateur d'économie"
