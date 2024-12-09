@@ -156,7 +156,12 @@ export default function BlogDashboardPage() {
                 </div>
                 <div className="flex items-center gap-1">
                   <ClockIcon className="h-4 w-4" />
-                  <span>{new Date(post.createdAt).toLocaleDateString()}</span>
+                  <span>
+                    {post.createdAt 
+                      ? new Date(post.createdAt).toLocaleDateString()
+                      : 'Date non disponible'
+                    }
+                  </span>
                 </div>
               </div>
 

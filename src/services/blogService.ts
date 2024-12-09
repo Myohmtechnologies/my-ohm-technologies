@@ -9,6 +9,7 @@ export interface BlogSection {
 }
 
 export interface BlogPost {
+  _id?: string;
   title: string;
   description: string;
   mainImage: string;
@@ -18,7 +19,8 @@ export interface BlogPost {
   status?: 'draft' | 'published' | 'archived';
   slug?: string;
   author?: string;
-  createdAt?: Date;
+  createdAt?: string | Date;
+  updatedAt?: string | Date;
 }
 
 export interface BlogQuery {
