@@ -32,7 +32,7 @@ const SimulationSection = () => {
           whileTap={{ scale: 0.95 }}
         >
           <Link 
-            href="/simulateur"
+            href="/simulator"
             onClick={handleSimulatorClick}
             className="bg-[#15171A] text-white px-4 md:px-8 py-3 md:py-4 rounded font-bold hover:bg-opacity-90 transition-all uppercase text-sm md:text-base w-full md:w-auto inline-block mx-4"
             role="button"
