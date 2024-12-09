@@ -149,34 +149,41 @@ export class BlogService {
     }
   }
 
-  static async createBlog(blogData: BlogPost) {
+  static async createBlog(blogData: Omit<BlogPost, 'id'>) {
     try {
-      console.log('Creating blog with data:', blogData);
       await dbConnect();
-
-      // Validation explicite
+      
+      console.log('Creating blog with data:', blogData);
+      
+      // Vérifier si l'image principale est fournie
       if (!blogData.mainImage) {
-        console.error('Main image is missing');
+        console.error('Main image is missing in blogData');
         throw new Error('L\'image principale est requise');
       }
 
-      if (!blogData.title || !blogData.description) {
-        console.error('Title or description is missing');
-        throw new Error('Le titre et la description sont requis');
-      }
+      // Générer un slug de base à partir du titre
+      let baseSlug = blogData.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)+/g, '');
 
-      // Création du blog avec les données validées
+      // Vérifier si le slug existe déjà et générer un slug unique si nécessaire
+      const existingBlog = await Blog.findOne({ slug: baseSlug });
+      const finalSlug = existingBlog ? `${baseSlug}-${Date.now()}` : baseSlug;
+
+      console.log('Generated slug:', finalSlug);
+
       const blog = new Blog({
         ...blogData,
+        slug: finalSlug,
         status: blogData.status || 'draft',
         createdAt: new Date()
       });
 
-      console.log('Saving blog to database...');
-      const savedBlog = await blog.save();
-      console.log('Blog saved successfully:', savedBlog);
-      
-      return savedBlog;
+      console.log('Saving blog with data:', blog);
+
+      await blog.save();
+      return blog;
     } catch (error) {
       console.error('BlogService: Erreur lors de la création du blog:', error);
       throw error;
@@ -189,16 +196,12 @@ export class BlogService {
       
       const blog = await Blog.findOneAndUpdate(
         { slug },
-        {
+        { 
           ...blogData,
-          sections: blogData.sections?.map((section, index) => ({
-            ...section,
-            order: index
-          })),
           updatedAt: new Date()
         },
         { new: true }
-      ).lean();
+      );
 
       if (!blog) {
         throw new Error('Blog non trouvé');
@@ -214,8 +217,13 @@ export class BlogService {
   static async deleteBlog(slug: string) {
     try {
       await dbConnect();
-      const result = await Blog.findOneAndDelete({ slug });
-      return result !== null;
+      const blog = await Blog.findOneAndDelete({ slug });
+      
+      if (!blog) {
+        throw new Error('Blog non trouvé');
+      }
+
+      return blog;
     } catch (error) {
       console.error('BlogService: Erreur lors de la suppression du blog:', error);
       throw error;

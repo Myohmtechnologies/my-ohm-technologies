@@ -63,12 +63,12 @@ export default function CreateBlogPostPage() {
   const handleMainImageUpload = async (file: File) => {
     try {
       setError(null);
-      console.log('Uploading main image...');
+      console.log('Starting main image upload...');
       const imageUrl = await uploadImageToCloud(file);
-      console.log('Image uploaded successfully:', imageUrl);
+      console.log('Image uploaded successfully, URL:', imageUrl);
       if (imageUrl) {
         setMainImage(imageUrl);
-        console.log('Main image state updated:', imageUrl);
+        console.log('Main image state updated to:', imageUrl);
       } else {
         throw new Error('No image URL returned from upload');
       }
@@ -82,9 +82,11 @@ export default function CreateBlogPostPage() {
   const handleSectionImageUpload = async (file: File, sectionIndex: number) => {
     try {
       const imagePath = await uploadImageToCloud(file);
-      const newSections = [...formData.sections];
-      newSections[sectionIndex].imageUrl = imagePath;
-      setFormData({ ...formData, sections: newSections });
+      if (imagePath) {
+        const newSections = [...formData.sections];
+        newSections[sectionIndex].imageUrl = imagePath;
+        setFormData({ ...formData, sections: newSections });
+      }
     } catch (err) {
       console.error('Error uploading section image:', err);
       setError('Erreur lors du téléchargement de l\'image de section');
@@ -141,15 +143,25 @@ export default function CreateBlogPostPage() {
       setLoading(true);
       setError(null);
 
-      console.log('Current main image state:', mainImage);
+      console.log('Form submission started');
+      console.log('Current form state:', {
+        title: formData.title,
+        description: formData.description,
+        mainImage,
+        category: formData.category,
+        tags: selectedTags,
+        sections: formData.sections
+      });
 
       if (!mainImage) {
+        console.error('Main image is missing');
         setError('L\'image principale est requise');
         setLoading(false);
         return;
       }
 
       if (!formData.title.trim() || !formData.description.trim()) {
+        console.error('Title or description is missing');
         setError('Le titre et la description sont requis');
         setLoading(false);
         return;
@@ -158,14 +170,16 @@ export default function CreateBlogPostPage() {
       const blogPost = {
         title: formData.title.trim(),
         description: formData.description.trim(),
-        mainImage: mainImage,
+        mainImage,
         category: formData.category || categories[0],
         tags: selectedTags,
-        sections: formData.sections.map(section => ({
-          ...section,
-          title: section.title.trim(),
-          description: section.description.trim()
-        })),
+        sections: formData.sections
+          .map(section => ({
+            ...section,
+            title: section.title.trim(),
+            description: section.description.trim()
+          }))
+          .filter(section => section.title || section.description || section.imageUrl),
         status: 'draft'
       };
 
@@ -181,6 +195,7 @@ export default function CreateBlogPostPage() {
 
       if (!response.ok) {
         const errorData = await response.json();
+        console.error('Server error response:', errorData);
         throw new Error(errorData.error || 'Error creating blog post');
       }
 

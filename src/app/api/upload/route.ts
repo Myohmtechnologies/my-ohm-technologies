@@ -6,7 +6,7 @@ export async function POST(request: Request) {
   try {
     const data = await request.formData();
     
-    const uploadDir = join(process.cwd(), 'public', 'uploads', 'realisation');
+    const uploadDir = join(process.cwd(), 'public', 'uploads', 'blog');
     
     // S'assurer que le dossier existe
     const fs = require('fs');
@@ -14,42 +14,27 @@ export async function POST(request: Request) {
       fs.mkdirSync(uploadDir, { recursive: true });
     }
 
-    // Upload de l'image principale
-    const mainImageFile = data.get('mainImage') as File;
-    let mainImagePath = '';
+    const file = data.get('file') as File;
+    if (!file) {
+      return NextResponse.json(
+        { error: 'No file provided' },
+        { status: 400 }
+      );
+    }
+
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const filename = `${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
+    const filepath = join(uploadDir, filename);
     
-    if (mainImageFile) {
-      const mainImageBytes = await mainImageFile.arrayBuffer();
-      const mainImageBuffer = Buffer.from(mainImageBytes);
-      const mainImageFilename = `main-${Date.now()}-${mainImageFile.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
-      const mainImageFilepath = join(uploadDir, mainImageFilename);
-      
-      await writeFile(mainImageFilepath, mainImageBuffer);
-      mainImagePath = `/uploads/realisation/${mainImageFilename}`;
-    }
+    await writeFile(filepath, buffer);
+    const path = `/uploads/blog/${filename}`;
 
-    // Upload des images secondaires
-    const secondaryImageFiles = data.getAll('secondaryImages');
-    const secondaryImagePaths: string[] = [];
-
-    for (const file of secondaryImageFiles as File[]) {
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
-      const filename = `secondary-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.]/g, '_')}`;
-      const filepath = join(uploadDir, filename);
-      
-      await writeFile(filepath, buffer);
-      secondaryImagePaths.push(`/uploads/realisation/${filename}`);
-    }
-
-    return NextResponse.json({
-      mainImage: mainImagePath,
-      secondaryImages: secondaryImagePaths,
-    });
+    return NextResponse.json({ path });
   } catch (error) {
-    console.error('Error uploading files:', error);
+    console.error('Error uploading file:', error);
     return NextResponse.json(
-      { error: 'Error uploading files' },
+      { error: 'Failed to upload file' },
       { status: 500 }
     );
   }
