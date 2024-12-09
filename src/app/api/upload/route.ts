@@ -5,6 +5,7 @@ export async function POST(request: Request) {
   try {
     const data = await request.formData();
     const file = data.get('file') as File;
+    const folder = data.get('folder') as string || 'blog';
     
     if (!file) {
       return NextResponse.json(
@@ -18,7 +19,7 @@ export async function POST(request: Request) {
     const buffer = Buffer.from(bytes);
 
     // Upload vers Cloudinary
-    const imageUrl = await uploadToCloudinary(buffer);
+    const imageUrl = await uploadToCloudinary(buffer, folder);
 
     return NextResponse.json({ path: imageUrl });
   } catch (error) {

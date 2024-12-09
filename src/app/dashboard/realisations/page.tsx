@@ -12,11 +12,12 @@ const mockRealisations: Realisation[] = [
     _id: '1',
     title: 'Installation Résidentielle - Marseille',
     description: 'Installation de panneaux solaires sur une maison individuelle',
-    mainImage: '/images/realisations/real1.jpg',
+    mainImage: '/images/pv1.png',
     region: 'Provence-Alpes-Côte d\'Azur',
     city: 'Marseille',
     type: 'Résidentiel',
     year: 2023,
+    date: new Date('2023-11-15').toISOString(),
     createdAt: new Date('2023-11-15').toISOString(),
     updatedAt: new Date('2023-11-15').toISOString()
   },
@@ -24,11 +25,12 @@ const mockRealisations: Realisation[] = [
     _id: '2',
     title: 'Installation Commerciale - Aix-en-Provence',
     description: 'Installation de panneaux solaires sur un bâtiment commercial',
-    mainImage: '/images/realisations/real2.jpg',
+    mainImage: '/images/pv.png',
     region: 'Provence-Alpes-Côte d\'Azur',
     city: 'Aix-en-Provence',
     type: 'Commercial',
     year: 2023,
+    date: new Date('2023-10-20').toISOString(),
     createdAt: new Date('2023-10-20').toISOString(),
     updatedAt: new Date('2023-10-20').toISOString()
   },
@@ -36,11 +38,12 @@ const mockRealisations: Realisation[] = [
     _id: '3',
     title: 'Installation Agricole - Avignon',
     description: 'Installation de panneaux solaires sur un hangar agricole',
-    mainImage: '/images/realisations/real3.jpg',
+    mainImage: '/images/solar-worker.jpg',
     region: 'Provence-Alpes-Côte d\'Azur',
     city: 'Avignon',
     type: 'Agricole',
     year: 2023,
+    date: new Date('2023-09-05').toISOString(),
     createdAt: new Date('2023-09-05').toISOString(),
     updatedAt: new Date('2023-09-05').toISOString()
   }
@@ -74,7 +77,7 @@ export default function RealisationsPage() {
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold text-gray-900">Nos Réalisations</h1>
         <Link
-          href="/dashboard/realisations/new"
+          href="/dashboard/realisations/create"
           className="inline-flex items-center px-4 py-2 bg-[#AFC97E] text-white rounded-lg hover:bg-[#AFC97E]/90 transition-colors"
         >
           <PlusIcon className="w-5 h-5 mr-2" />

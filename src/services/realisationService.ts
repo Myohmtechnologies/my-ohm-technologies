@@ -29,9 +29,18 @@ export class RealisationService {
       .skip((page - 1) * limit)
       .limit(limit)
       .toArray()).map(doc => ({
-        ...doc,
         _id: doc._id.toString(),
-        date: new Date(doc.date)
+        title: doc.title || '',
+        description: doc.description || '',
+        mainImage: doc.mainImage || '',
+        secondaryImage: doc.secondaryImage,
+        region: doc.region || '',
+        city: doc.city || '',
+        type: doc.type || '',
+        year: doc.year || new Date().getFullYear(),
+        date: doc.date ? new Date(doc.date).toISOString() : new Date().toISOString(),
+        createdAt: doc.createdAt || new Date().toISOString(),
+        updatedAt: doc.updatedAt || new Date().toISOString()
       })) as Realisation[];
 
     return {
@@ -50,25 +59,45 @@ export class RealisationService {
     if (!doc) return null;
     
     return {
-      ...doc,
       _id: doc._id.toString(),
-      date: new Date(doc.date)
+      title: doc.title || '',
+      description: doc.description || '',
+      mainImage: doc.mainImage || '',
+      secondaryImage: doc.secondaryImage,
+      region: doc.region || '',
+      city: doc.city || '',
+      type: doc.type || '',
+      year: doc.year || new Date().getFullYear(),
+      date: doc.date ? new Date(doc.date).toISOString() : new Date().toISOString(),
+      createdAt: doc.createdAt || new Date().toISOString(),
+      updatedAt: doc.updatedAt || new Date().toISOString()
     } as Realisation;
   }
 
   static async createRealisation(realisation: Omit<Realisation, '_id'>): Promise<Realisation> {
     const collection = await this.getCollection();
-    
+    const now = new Date();
+
     const result = await collection.insertOne({
       ...realisation,
-      date: new Date(realisation.date),
-      createdAt: new Date(),
-      updatedAt: new Date()
+      date: realisation.date || now.toISOString(),
+      createdAt: now.toISOString(),
+      updatedAt: now.toISOString()
     });
 
     return {
-      ...realisation,
       _id: result.insertedId.toString(),
+      title: realisation.title || '',
+      description: realisation.description || '',
+      mainImage: realisation.mainImage || '',
+      secondaryImage: realisation.secondaryImage,
+      region: realisation.region || '',
+      city: realisation.city || '',
+      type: realisation.type || '',
+      year: realisation.year || now.getFullYear(),
+      date: realisation.date || now.toISOString(),
+      createdAt: now.toISOString(),
+      updatedAt: now.toISOString()
     } as Realisation;
   }
 
@@ -140,9 +169,18 @@ export class RealisationService {
       .toArray();
 
     return docs.map(doc => ({
-      ...doc,
       _id: doc._id.toString(),
-      date: new Date(doc.date)
+      title: doc.title || '',
+      description: doc.description || '',
+      mainImage: doc.mainImage || '',
+      secondaryImage: doc.secondaryImage,
+      region: doc.region || '',
+      city: doc.city || '',
+      type: doc.type || '',
+      year: doc.year || new Date().getFullYear(),
+      date: doc.date ? new Date(doc.date).toISOString() : new Date().toISOString(),
+      createdAt: doc.createdAt || new Date().toISOString(),
+      updatedAt: doc.updatedAt || new Date().toISOString()
     })) as Realisation[];
   }
 
@@ -162,9 +200,18 @@ export class RealisationService {
       .toArray();
 
     return docs.map(doc => ({
-      ...doc,
       _id: doc._id.toString(),
-      date: new Date(doc.date)
+      title: doc.title || '',
+      description: doc.description || '',
+      mainImage: doc.mainImage || '',
+      secondaryImage: doc.secondaryImage,
+      region: doc.region || '',
+      city: doc.city || '',
+      type: doc.type || '',
+      year: doc.year || new Date().getFullYear(),
+      date: doc.date ? new Date(doc.date).toISOString() : new Date().toISOString(),
+      createdAt: doc.createdAt || new Date().toISOString(),
+      updatedAt: doc.updatedAt || new Date().toISOString()
     })) as Realisation[];
   }
 
@@ -185,5 +232,51 @@ export class RealisationService {
     );
 
     return result.modifiedCount > 0;
+  }
+
+  static async getRealisationsByRegion(region: string): Promise<Realisation[]> {
+    const collection = await this.getCollection();
+    const docs = await collection
+      .find({ region })
+      .sort({ date: -1 })
+      .toArray();
+
+    return docs.map(doc => ({
+      _id: doc._id.toString(),
+      title: doc.title || '',
+      description: doc.description || '',
+      mainImage: doc.mainImage || '',
+      secondaryImage: doc.secondaryImage,
+      region: doc.region || '',
+      city: doc.city || '',
+      type: doc.type || '',
+      year: doc.year || new Date().getFullYear(),
+      date: doc.date ? new Date(doc.date).toISOString() : new Date().toISOString(),
+      createdAt: doc.createdAt || new Date().toISOString(),
+      updatedAt: doc.updatedAt || new Date().toISOString()
+    })) as Realisation[];
+  }
+
+  static async getRealisationsByCity(city: string): Promise<Realisation[]> {
+    const collection = await this.getCollection();
+    const docs = await collection
+      .find({ city })
+      .sort({ date: -1 })
+      .toArray();
+
+    return docs.map(doc => ({
+      _id: doc._id.toString(),
+      title: doc.title || '',
+      description: doc.description || '',
+      mainImage: doc.mainImage || '',
+      secondaryImage: doc.secondaryImage,
+      region: doc.region || '',
+      city: doc.city || '',
+      type: doc.type || '',
+      year: doc.year || new Date().getFullYear(),
+      date: doc.date ? new Date(doc.date).toISOString() : new Date().toISOString(),
+      createdAt: doc.createdAt || new Date().toISOString(),
+      updatedAt: doc.updatedAt || new Date().toISOString()
+    })) as Realisation[];
   }
 }

@@ -18,12 +18,14 @@ export default function CreateRealisationPage() {
     if (!files) return;
 
     if (type === 'main') {
+      setMainImage(files[0]);
       const reader = new FileReader();
       reader.onloadend = () => {
         setMainImagePreview(reader.result as string);
       };
       reader.readAsDataURL(files[0]);
     } else {
+      setSecondaryImage(files[0]);
       Array.from(files).forEach(file => {
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -41,69 +43,86 @@ export default function CreateRealisationPage() {
     try {
       const formData = new FormData(e.currentTarget);
       
-      // Upload des images
-      const imageFormData = new FormData();
-      
-      const mainImageFile = formData.get('mainImage') as File;
-      if (mainImageFile) {
-        imageFormData.append('mainImage', mainImageFile);
-      }
-
-      // Ajouter les images secondaires
-      const secondaryImageFiles = formData.getAll('secondaryImages');
-      secondaryImageFiles.forEach((file) => {
-        imageFormData.append('secondaryImages', file as File);
-      });
-
-      // Upload des images
-      const uploadResponse = await fetch('/api/upload', {
-        method: 'POST',
-        body: imageFormData,
-      });
-
-      if (!uploadResponse.ok) {
-        throw new Error('Erreur lors de l\'upload des images');
-      }
-
-      const { mainImage, secondaryImages } = await uploadResponse.json();
-
-      // Création du projet avec les chemins des images
+      // Vérification des champs requis
       const title = formData.get('title') as string;
-      const projectData = {
-        title,
-        slug: title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-'),
-        description: formData.get('description'),
-        location: formData.get('location'),
-        mainImage,
-        secondaryImages,
-        powerCapacity: Number(formData.get('puissance')),
-        clientType: formData.get('clientType') || 'Particulier',
-        completionDate: formData.get('completionDate'),
-        specifications: {
-          surface: formData.get('surface'),
-          orientation: formData.get('orientation'),
-          panneaux: formData.get('pannels'),
-          production: formData.get('production'),
+      const description = formData.get('description') as string;
+      const location = formData.get('location') as string;
+      const clientType = formData.get('clientType') as string;
+      const completionDate = formData.get('completionDate') as string;
+
+      if (!title || !description || !location || !clientType || !completionDate || !mainImage) {
+        throw new Error('Veuillez remplir tous les champs requis et ajouter une image principale');
+      }
+
+      let mainImageUrl = '';
+      let secondaryImageUrls: string[] = [];
+
+      // Upload de l'image principale
+      const mainImageFormData = new FormData();
+      mainImageFormData.append('file', mainImage);
+      mainImageFormData.append('folder', 'realisations');
+
+      const mainImageRes = await fetch('/api/upload', {
+        method: 'POST',
+        body: mainImageFormData,
+      });
+
+      if (!mainImageRes.ok) {
+        throw new Error('Erreur lors de l\'upload de l\'image principale');
+      }
+
+      const mainImageData = await mainImageRes.json();
+      mainImageUrl = mainImageData.path;
+
+      // Upload de l'image secondaire si elle existe
+      if (secondaryImage) {
+        const secondaryImageFormData = new FormData();
+        secondaryImageFormData.append('file', secondaryImage);
+        secondaryImageFormData.append('folder', 'realisations');
+
+        const secondaryImageRes = await fetch('/api/upload', {
+          method: 'POST',
+          body: secondaryImageFormData,
+        });
+
+        if (!secondaryImageRes.ok) {
+          throw new Error('Erreur lors de l\'upload de l\'image secondaire');
         }
+
+        const secondaryImageData = await secondaryImageRes.json();
+        secondaryImageUrls.push(secondaryImageData.path);
+      }
+
+      // Création de la réalisation avec les URLs des images
+      const realisationData = {
+        title,
+        description,
+        region: 'Provence-Alpes-Côte d\'Azur',
+        city: location,
+        type: clientType,
+        year: new Date(completionDate).getFullYear(),
+        date: completionDate,
+        mainImage: mainImageUrl,
+        secondaryImage: secondaryImageUrls[0] || '',
       };
 
-      const response = await fetch('/api/projects', {
+      const response = await fetch('/api/realisations', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(projectData),
+        body: JSON.stringify(realisationData),
       });
 
       if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Erreur lors de la création du projet');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Erreur lors de la création de la réalisation');
       }
 
       router.push('/dashboard/realisations');
     } catch (error) {
       console.error('Erreur lors de la création:', error);
-      alert('Une erreur est survenue lors de la création de la réalisation');
+      alert(error instanceof Error ? error.message : 'Une erreur est survenue lors de la création de la réalisation');
     } finally {
       setIsSubmitting(false);
     }

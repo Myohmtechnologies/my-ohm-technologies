@@ -75,6 +75,8 @@ export interface Realisation {
   city: string;
   type: string;
   year: number;
+  date: string;
+  featured?: boolean;
   createdAt: string;
   updatedAt: string;
 }
