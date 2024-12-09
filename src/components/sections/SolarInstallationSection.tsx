@@ -28,12 +28,12 @@ const SolarInstallationSection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.4, ease: "easeOut" }
     }
   };
 
   return (
-    <section className="relative bg-gray-50 py-16 sm:py-20 overflow-x-hidden">
+    <section className="relative bg-gray-50 py-16 sm:py-20">
       {/* Décoration d'arrière-plan */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#AFC97E] rounded-full blur-3xl"></div>
@@ -47,7 +47,7 @@ const SolarInstallationSection = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="w-full lg:w-1/2"
           >
             <div className="relative w-full">
@@ -66,8 +66,8 @@ const SolarInstallationSection = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ delay: 0.2, duration: 0.4 }}
                 className="absolute -bottom-6 right-2 sm:right-4 lg:-right-6 bg-white p-2.5 sm:p-3 md:p-4 rounded-xl shadow-lg"
               >
                 <div className="flex items-center gap-2 sm:gap-3">
@@ -90,7 +90,7 @@ const SolarInstallationSection = () => {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.1 }}
             className="lg:w-1/2 w-full px-2 sm:px-0"
           >
             <p className="text-[#AFC97E] font-medium mb-4 tracking-wider">
@@ -114,8 +114,8 @@ const SolarInstallationSection = () => {
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  transition={{ delay: index * 0.1, duration: 0.4 }}
                   className="text-center p-2 sm:p-4 bg-white rounded-xl shadow-md"
                 >
                   <div className="text-xl sm:text-2xl mb-1">{stat.icon}</div>
@@ -169,7 +169,7 @@ const SolarInstallationSection = () => {
             {/* CTA */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/certifications"
+                href="#"
                 className="group inline-flex items-center bg-[#FFDF64] text-gray-900 font-medium py-3 px-6 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
               >
                 VOIR NOS CERTIFICATIONS
