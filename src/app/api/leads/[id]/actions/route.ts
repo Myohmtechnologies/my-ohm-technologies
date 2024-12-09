@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { clientPromise } from '@/lib/mongodb';
-import { LeadAction, LeadStatus, STATUS_TRANSITIONS } from '@/types';
+import { LeadAction, LeadStatus } from '@/types';
 import { ObjectId } from 'mongodb';
 
 // GET /api/leads/[id]/actions
@@ -38,7 +38,7 @@ export async function POST(
     const db = client.db('myohm');
     
     const body = await request.json();
-    const { type, notes, nextAction } = body;
+    const { type, status, notes, nextAction } = body;
     
     // Vérifier si le lead existe
     const lead = await db
@@ -51,12 +51,12 @@ export async function POST(
         { status: 404 }
       );
     }
-    
-    // Créer l'action sans le champ _id
-    const { _id, ...actionData }: LeadAction = {
+
+    // Créer l'action
+    const actionData: Omit<LeadAction, '_id'> = {
       leadId: params.id,
       type,
-      status: 'COMPLETED',
+      status,
       date: new Date().toISOString(),
       notes,
       nextAction
@@ -67,41 +67,25 @@ export async function POST(
     // Créer l'action complète avec l'ID généré
     const action = { ...actionData, _id: result.insertedId.toString() };
     
-    // Mettre à jour le statut du lead si nécessaire
-    const currentStatus = lead.status as LeadStatus;
-    const possibleNextStatuses = STATUS_TRANSITIONS[currentStatus];
-    
-    if (type === 'CALL' && currentStatus === 'NEW') {
-      await db.collection('leads').updateOne(
-        { _id: new ObjectId(params.id) },
-        {
-          $set: {
-            status: 'CONTACTED',
-            lastAction: action,
-            nextAction: nextAction
-          }
+    // Mettre à jour le lead avec le nouveau statut et la prochaine action
+    await db.collection('leads').updateOne(
+      { _id: new ObjectId(params.id) },
+      {
+        $set: {
+          status,
+          lastAction: action,
+          nextAction: nextAction || null
         }
-      );
-    } else if (type === 'MEETING' && currentStatus === 'CONTACTED') {
-      await db.collection('leads').updateOne(
-        { _id: new ObjectId(params.id) },
-        {
-          $set: {
-            status: 'MEETING_SCHEDULED',
-            lastAction: action,
-            nextAction: nextAction
-          }
-        }
-      );
-    }
-    // Ajouter d'autres conditions pour les autres types d'actions
+      }
+    );
     
     return NextResponse.json({ 
       action,
       message: 'Action created successfully'
     });
+    
   } catch (error) {
-    console.error('Database Error:', error);
+    console.error('Error creating action:', error);
     return NextResponse.json(
       { error: 'Failed to create action' },
       { status: 500 }
