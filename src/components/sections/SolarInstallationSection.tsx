@@ -91,7 +91,7 @@ const SolarInstallationSection = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:w-1/2"
+            className="lg:w-1/2 w-full px-2 sm:px-0"
           >
             <p className="text-[#AFC97E] font-medium mb-4 tracking-wider">
               L'ÉNERGIE SOLAIRE À VOTRE PORTÉE
@@ -108,7 +108,7 @@ const SolarInstallationSection = () => {
             </p>
 
             {/* Statistiques */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 mb-8">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -116,58 +116,58 @@ const SolarInstallationSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
-                  className="text-center p-4 bg-white rounded-xl shadow-md"
+                  className="text-center p-2 sm:p-4 bg-white rounded-xl shadow-md"
                 >
-                  <div className="text-2xl mb-1">{stat.icon}</div>
-                  <div className="font-bold text-xl text-gray-900">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
+                  <div className="text-xl sm:text-2xl mb-1">{stat.icon}</div>
+                  <div className="font-bold text-lg sm:text-xl text-gray-900">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-gray-600">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
 
             {/* Certifications */}
             <p className="text-gray-800 font-semibold mb-4">Nos certifications :</p>
-            <div className="flex flex-wrap items-center gap-6 mb-8">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-8">
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="bg-white p-2 rounded-lg shadow-md"
+                className="bg-white p-1.5 sm:p-2 rounded-lg shadow-md"
               >
                 <Image
                   src="/images/qualipv.png"
                   alt="Certification QualiPv"
                   width={100}
                   height={40}
-                  className="h-auto"
+                  className="h-auto w-20 sm:w-[100px]"
                 />
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="bg-white p-2 rounded-lg shadow-md"
+                className="bg-white p-1.5 sm:p-2 rounded-lg shadow-md"
               >
                 <Image
                   src="/images/decinal.png"
                   alt="Garantie Décennale"
                   width={100}
                   height={40}
-                  className="h-auto"
+                  className="h-auto w-20 sm:w-[100px]"
                 />
               </motion.div>
               <motion.div
                 whileHover={{ scale: 1.05 }}
-                className="bg-white p-2 rounded-lg shadow-md"
+                className="bg-white p-1.5 sm:p-2 rounded-lg shadow-md"
               >
                 <Image
                   src="/images/syndicat.png"
                   alt="Syndicat des énergies renouvelables"
                   width={100}
                   height={40}
-                  className="h-auto"
+                  className="h-auto w-20 sm:w-[100px]"
                 />
               </motion.div>
             </div>
 
             {/* CTA */}
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/certifications"
                 className="group inline-flex items-center bg-[#FFDF64] text-gray-900 font-medium py-3 px-6 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
