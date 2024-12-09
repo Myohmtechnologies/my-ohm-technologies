@@ -31,11 +31,18 @@ export async function createCalendarEvent(
       }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
       throw new Error('Failed to create calendar event');
     }
 
-    return await response.json();
+    // Si l'API renvoie un avertissement, on le propage
+    if (data.warning) {
+      console.warn('Calendar warning:', data.warning);
+    }
+
+    return data;
   } catch (error) {
     console.error('Error creating calendar event:', error);
     throw error;

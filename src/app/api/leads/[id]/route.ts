@@ -46,7 +46,7 @@ export async function PUT(
       _id: new ObjectId(id)
     });
 
-    return NextResponse.json(updatedLead);
+    return NextResponse.json({ lead: updatedLead });
   } catch (error) {
     console.error('Error updating lead:', error);
     return NextResponse.json(
@@ -77,7 +77,7 @@ export async function GET(
       );
     }
 
-    return NextResponse.json(lead);
+    return NextResponse.json({ lead });
   } catch (error) {
     console.error('Error fetching lead:', error);
     return NextResponse.json(

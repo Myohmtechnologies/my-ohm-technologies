@@ -18,6 +18,15 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { summary, description, startDateTime, endDateTime, attendeeEmail, location } = body;
 
+    // Vérifier si les identifiants Google sont configurés
+    if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET || !process.env.GOOGLE_REFRESH_TOKEN) {
+      console.warn('Google Calendar credentials are not properly configured');
+      return NextResponse.json({ 
+        success: true, 
+        warning: 'Calendar integration is not configured, event was not created'
+      });
+    }
+
     const event = {
       summary,
       description,
@@ -56,6 +65,15 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.error('Error creating calendar event:', error);
+    
+    // Gérer spécifiquement l'erreur d'authentification
+    if (error.response?.data?.error === 'invalid_grant') {
+      return NextResponse.json({ 
+        success: true,
+        warning: 'Could not create calendar event due to authentication issue'
+      });
+    }
+    
     return NextResponse.json(
       { error: 'Failed to create calendar event' },
       { status: 500 }
