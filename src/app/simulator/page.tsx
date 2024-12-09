@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from 'next/link';
+import { simulatorEvents } from '@/utils/analytics';
 
 // Constantes pour les étapes et les factures d'énergie
 const STEPS = {
@@ -114,6 +115,8 @@ const SimulateurPage = () => {
 
   // Préchargement des images
   useEffect(() => {
+    simulatorEvents.simulatorStart('direct');
+    simulatorEvents.stepView('property_type');
     const preloadImage = (src: string) => {
       const link = document.createElement('link');
       link.rel = 'preload';
@@ -131,7 +134,9 @@ const SimulateurPage = () => {
 
   const handlePropertyTypeSelect = (type: string) => {
     setFormState(prev => ({ ...prev, logementType: type }));
+    simulatorEvents.stepComplete('property_type', { property_type: type });
     setCurrentStep(STEPS.ENERGY_BILL);
+    simulatorEvents.stepView('energy_bill');
   };
 
   const toggleEquipment = (equipmentId: string) => {
@@ -143,17 +148,22 @@ const SimulateurPage = () => {
       } else {
         equipment.splice(index, 1);
       }
+      simulatorEvents.equipmentSelected(equipment);
       return { ...prev, equipment };
     });
   };
 
   const handleEquipmentNext = () => {
+    simulatorEvents.stepComplete('equipment', { equipment: formState.equipment });
     setCurrentStep(STEPS.CONTACT_INFO);
+    simulatorEvents.stepView('contact');
   };
 
   const handleEnergyBillSelect = (range: string) => {
     setFormState(prev => ({ ...prev, energyBill: range }));
+    simulatorEvents.stepComplete('energy_bill', { energy_bill: range });
     setCurrentStep(STEPS.EQUIPMENT);
+    simulatorEvents.stepView('equipment');
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -55,7 +55,7 @@ export const contactFormEvents = {
 };
 
 // 4. Événements du simulateur
-export type SimulatorStep = 'consommation' | 'region' | 'contact';
+export type SimulatorStep = 'property_type' | 'energy_bill' | 'equipment' | 'contact';
 
 export const simulatorEvents = {
   simulatorStart: (source: string) => trackEvent('simulator_start', {
@@ -75,9 +75,15 @@ export const simulatorEvents = {
     step_name: step,
     timestamp: new Date().toISOString(),
   }),
+  equipmentSelected: (equipment: string[]) => trackEvent('simulator_equipment_selected', {
+    equipment_list: equipment,
+    equipment_count: equipment.length,
+    timestamp: new Date().toISOString(),
+  }),
   simulatorComplete: (data: {
-    consommation: number,
-    region: string,
+    property_type: string,
+    energy_bill: string,
+    equipment: string[],
     success: boolean
   }) => trackEvent('simulator_complete', {
     ...data,
