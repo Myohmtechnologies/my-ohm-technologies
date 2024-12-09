@@ -63,3 +63,17 @@ export interface BlogPost {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface Realisation {
+  _id: string;
+  title: string;
+  description: string;
+  mainImage: string;
+  secondaryImage?: string;
+  region: string;
+  city: string;
+  type: string;
+  year: number;
+  createdAt: string;
+  updatedAt: string;
+}
