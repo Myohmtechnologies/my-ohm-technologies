@@ -11,7 +11,7 @@ interface Props {
 
 async function getBlogPost(params: Promise<{ slug: string }>) {
   const resolvedParams = await params;
-  return BlogService.getPostBySlug(resolvedParams.slug);
+  return BlogService.getBlogBySlug(resolvedParams.slug);
 }
 
 export async function generateMetadata(
