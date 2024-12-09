@@ -12,52 +12,37 @@ const mockRealisations: Realisation[] = [
     _id: '1',
     title: 'Installation Résidentielle - Marseille',
     description: 'Installation de panneaux solaires sur une maison individuelle',
-    images: ['/images/realisations/real1.jpg'],
-    date: new Date('2023-11-15'),
-    location: 'Marseille',
-    specifications: {
-      puissance: 6,
-      pannels: 15,
-      surface: 30,
-      economie: 60
-    },
+    mainImage: '/images/realisations/real1.jpg',
     region: 'Provence-Alpes-Côte d\'Azur',
     city: 'Marseille',
-    type: 'Résidentiel'
+    type: 'Résidentiel',
+    year: 2023,
+    createdAt: new Date('2023-11-15').toISOString(),
+    updatedAt: new Date('2023-11-15').toISOString()
   },
   {
     _id: '2',
     title: 'Installation Commerciale - Aix-en-Provence',
     description: 'Installation de panneaux solaires sur un bâtiment commercial',
-    images: ['/images/realisations/real2.jpg'],
-    date: new Date('2023-10-20'),
-    location: 'Aix-en-Provence',
-    specifications: {
-      puissance: 15,
-      pannels: 40,
-      surface: 80,
-      economie: 75
-    },
+    mainImage: '/images/realisations/real2.jpg',
     region: 'Provence-Alpes-Côte d\'Azur',
     city: 'Aix-en-Provence',
-    type: 'Commercial'
+    type: 'Commercial',
+    year: 2023,
+    createdAt: new Date('2023-10-20').toISOString(),
+    updatedAt: new Date('2023-10-20').toISOString()
   },
   {
     _id: '3',
     title: 'Installation Agricole - Avignon',
     description: 'Installation de panneaux solaires sur un hangar agricole',
-    images: ['/images/realisations/real3.jpg'],
-    date: new Date('2023-09-05'),
-    location: 'Avignon',
-    specifications: {
-      puissance: 20,
-      pannels: 50,
-      surface: 100,
-      economie: 80
-    },
+    mainImage: '/images/realisations/real3.jpg',
     region: 'Provence-Alpes-Côte d\'Azur',
     city: 'Avignon',
-    type: 'Agricole'
+    type: 'Agricole',
+    year: 2023,
+    createdAt: new Date('2023-09-05').toISOString(),
+    updatedAt: new Date('2023-09-05').toISOString()
   }
 ];
 
@@ -109,7 +94,7 @@ export default function RealisationsPage() {
             >
               <div className="relative h-48">
                 <Image
-                  src={realisation.images[0] || '/images/placeholder.jpg'}
+                  src={realisation.mainImage || '/images/placeholder.jpg'}
                   alt={realisation.title}
                   fill
                   className="object-cover"
@@ -124,12 +109,12 @@ export default function RealisationsPage() {
                 </p>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-gray-500">Puissance:</span>
-                    <span className="ml-2 text-gray-900">{realisation.specifications.puissance} kWc</span>
+                    <span className="text-gray-500">Année:</span>
+                    <span className="ml-2 text-gray-900">{realisation.year}</span>
                   </div>
                   <div>
-                    <span className="text-gray-500">Surface:</span>
-                    <span className="ml-2 text-gray-900">{realisation.specifications.surface} m²</span>
+                    <span className="text-gray-500">Région:</span>
+                    <span className="ml-2 text-gray-900">{realisation.region}</span>
                   </div>
                 </div>
               </div>
