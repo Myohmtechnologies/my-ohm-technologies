@@ -15,49 +15,49 @@ interface LeadActionModalProps {
 }
 
 const STATUS_LABELS = {
-  NEW: 'Nouveau',
-  CONTACTED: 'Contacté',
-  RDV_SCHEDULED: 'RDV Fixé',
-  TECHNICAL_VISIT: 'Visite Technique',
-  DEMARCHE_ADMINISTRATIF: 'Démarche Administrative',
-  INSTALLATION: 'Installation',
-  CONSUAL: 'Consuel',
-  RACORDEMENT_EDF: 'Raccordement EDF',
-  COMPLETED: 'Terminé',
-  NOT_INTERESTED: 'Pas Intéressé',
+  [LeadStatus.NEW]: 'Nouveau',
+  [LeadStatus.CONTACTED]: 'Contacté',
+  [LeadStatus.RDV_SCHEDULED]: 'RDV Fixé',
+  [LeadStatus.TECHNICAL_VISIT]: 'Visite Technique',
+  [LeadStatus.DEMARCHE_ADMINISTRATIF]: 'Démarche Administrative',
+  [LeadStatus.INSTALLATION]: 'Installation',
+  [LeadStatus.CONSUAL]: 'Consuel',
+  [LeadStatus.RACORDEMENT_EDF]: 'Raccordement EDF',
+  [LeadStatus.COMPLETED]: 'Terminé',
+  [LeadStatus.NOT_INTERESTED]: 'Pas Intéressé',
 };
 
 const STATUS_COLORS = {
-  NEW: 'bg-blue-100 text-blue-800',
-  CONTACTED: 'bg-yellow-100 text-yellow-800',
-  RDV_SCHEDULED: 'bg-purple-100 text-purple-800',
-  TECHNICAL_VISIT: 'bg-indigo-100 text-indigo-800',
-  DEMARCHE_ADMINISTRATIF: 'bg-orange-100 text-orange-800',
-  INSTALLATION: 'bg-green-100 text-green-800',
-  CONSUAL: 'bg-pink-100 text-pink-800',
-  RACORDEMENT_EDF: 'bg-cyan-100 text-cyan-800',
-  COMPLETED: 'bg-gray-100 text-gray-800',
-  NOT_INTERESTED: 'bg-red-100 text-red-800',
+  [LeadStatus.NEW]: 'bg-blue-100 text-blue-800',
+  [LeadStatus.CONTACTED]: 'bg-yellow-100 text-yellow-800',
+  [LeadStatus.RDV_SCHEDULED]: 'bg-purple-100 text-purple-800',
+  [LeadStatus.TECHNICAL_VISIT]: 'bg-indigo-100 text-indigo-800',
+  [LeadStatus.DEMARCHE_ADMINISTRATIF]: 'bg-orange-100 text-orange-800',
+  [LeadStatus.INSTALLATION]: 'bg-green-100 text-green-800',
+  [LeadStatus.CONSUAL]: 'bg-pink-100 text-pink-800',
+  [LeadStatus.RACORDEMENT_EDF]: 'bg-cyan-100 text-cyan-800',
+  [LeadStatus.COMPLETED]: 'bg-gray-100 text-gray-800',
+  [LeadStatus.NOT_INTERESTED]: 'bg-red-100 text-red-800',
 };
 
 const STATUS_TRANSITIONS: Record<LeadStatus, LeadStatus[]> = {
-  NEW: ['CONTACTED', 'NOT_INTERESTED'],
-  CONTACTED: ['RDV_SCHEDULED', 'NOT_INTERESTED'],
-  RDV_SCHEDULED: ['TECHNICAL_VISIT', 'NOT_INTERESTED'],
-  TECHNICAL_VISIT: ['DEMARCHE_ADMINISTRATIF', 'NOT_INTERESTED'],
-  DEMARCHE_ADMINISTRATIF: ['INSTALLATION', 'NOT_INTERESTED'],
-  INSTALLATION: ['CONSUAL', 'NOT_INTERESTED'],
-  CONSUAL: ['RACORDEMENT_EDF', 'NOT_INTERESTED'],
-  RACORDEMENT_EDF: ['COMPLETED', 'NOT_INTERESTED'],
-  COMPLETED: [],
-  NOT_INTERESTED: [],
+  [LeadStatus.NEW]: [LeadStatus.CONTACTED, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.CONTACTED]: [LeadStatus.RDV_SCHEDULED, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.RDV_SCHEDULED]: [LeadStatus.TECHNICAL_VISIT, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.TECHNICAL_VISIT]: [LeadStatus.DEMARCHE_ADMINISTRATIF, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.DEMARCHE_ADMINISTRATIF]: [LeadStatus.INSTALLATION, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.INSTALLATION]: [LeadStatus.CONSUAL, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.CONSUAL]: [LeadStatus.RACORDEMENT_EDF, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.RACORDEMENT_EDF]: [LeadStatus.COMPLETED, LeadStatus.NOT_INTERESTED],
+  [LeadStatus.COMPLETED]: [],
+  [LeadStatus.NOT_INTERESTED]: []
 };
 
 // Statuts qui nécessitent une date et une adresse
-const REQUIRES_APPOINTMENT = ['RDV_SCHEDULED', 'TECHNICAL_VISIT'];
+const REQUIRES_APPOINTMENT = [LeadStatus.RDV_SCHEDULED, LeadStatus.TECHNICAL_VISIT];
 
 // Statuts qui nécessitent une date de suivi
-const REQUIRES_FOLLOWUP = ['DEMARCHE_ADMINISTRATIF', 'INSTALLATION', 'CONSUAL', 'RACORDEMENT_EDF'];
+const REQUIRES_FOLLOWUP = [LeadStatus.DEMARCHE_ADMINISTRATIF, LeadStatus.INSTALLATION, LeadStatus.CONSUAL, LeadStatus.RACORDEMENT_EDF];
 
 export default function LeadActionModal({ isOpen, onClose, lead, onStatusChange }: LeadActionModalProps) {
   const [selectedStatus, setSelectedStatus] = useState<LeadStatus | null>(null);
@@ -78,13 +78,13 @@ export default function LeadActionModal({ isOpen, onClose, lead, onStatusChange 
 
   const getStatusDescription = (status: LeadStatus) => {
     switch(status) {
-      case 'DEMARCHE_ADMINISTRATIF':
+      case LeadStatus.DEMARCHE_ADMINISTRATIF:
         return 'Démarche administrative en cours';
-      case 'INSTALLATION':
+      case LeadStatus.INSTALLATION:
         return 'Installation planifiée';
-      case 'CONSUAL':
+      case LeadStatus.CONSUAL:
         return 'Demande Consuel en cours';
-      case 'RACORDEMENT_EDF':
+      case LeadStatus.RACORDEMENT_EDF:
         return 'Raccordement EDF en cours';
       default:
         return '';
@@ -113,7 +113,7 @@ export default function LeadActionModal({ isOpen, onClose, lead, onStatusChange 
       return false;
     }
 
-    if (selectedStatus === 'NOT_INTERESTED' && !notes.trim()) {
+    if (selectedStatus === LeadStatus.NOT_INTERESTED && !notes.trim()) {
       setError('Veuillez indiquer la raison du désintérêt');
       return false;
     }
@@ -330,7 +330,7 @@ export default function LeadActionModal({ isOpen, onClose, lead, onStatusChange 
 
                       <div>
                         <label htmlFor="notes" className="block text-sm font-medium text-gray-700">
-                          {selectedStatus === 'NOT_INTERESTED' ? 'Raison du désintérêt' : 'Notes'}
+                          {selectedStatus === LeadStatus.NOT_INTERESTED ? 'Raison du désintérêt' : 'Notes'}
                         </label>
                         <div className="mt-2">
                           <textarea
@@ -340,8 +340,8 @@ export default function LeadActionModal({ isOpen, onClose, lead, onStatusChange 
                             value={notes}
                             onChange={(e) => setNotes(e.target.value)}
                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6"
-                            placeholder={selectedStatus === 'NOT_INTERESTED' ? 'Expliquez pourquoi le client n\'est pas intéressé' : 'Notes additionnelles...'}
-                            required={selectedStatus === 'NOT_INTERESTED'}
+                            placeholder={selectedStatus === LeadStatus.NOT_INTERESTED ? 'Expliquez pourquoi le client n\'est pas intéressé' : 'Notes additionnelles...'}
+                            required={selectedStatus === LeadStatus.NOT_INTERESTED}
                           />
                         </div>
                       </div>
