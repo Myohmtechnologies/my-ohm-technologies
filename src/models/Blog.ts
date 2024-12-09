@@ -9,7 +9,7 @@ const BlogSectionSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'Please provide a title for this section'],
-    maxlength: [60, 'Title cannot be more than 60 characters']
+    maxlength: [100, 'Title cannot be more than 100 characters']
   },
   description: {
     type: String,
@@ -30,7 +30,7 @@ const BlogSchema = new mongoose.Schema({
   title: {
     type: String,
     required: [true, 'Please provide a title for this blog post'],
-    maxlength: [60, 'Title cannot be more than 60 characters']
+    maxlength: [100, 'Title cannot be more than 100 characters']
   },
   description: {
     type: String,

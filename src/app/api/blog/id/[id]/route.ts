@@ -1,11 +1,10 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { BlogService } from '@/services/blogService';
-import type { BlogPost } from '@/types';
 
 interface Params {
   params: {
-    slug: string;
+    id: string;
   };
 }
 
@@ -15,7 +14,7 @@ const isDashboardRequest = (request: NextRequest) => {
   return referer?.includes('/dashboard');
 };
 
-// GET /api/blog/[slug]
+// GET /api/blog/id/[id]
 export async function GET(
   request: NextRequest,
   { params }: Params
@@ -28,7 +27,7 @@ export async function GET(
   }
 
   try {
-    const blog = await BlogService.getBlogBySlug(params.slug);
+    const blog = await BlogService.getBlogById(params.id);
     if (!blog) {
       return NextResponse.json(
         { error: 'Blog not found' },
@@ -37,7 +36,7 @@ export async function GET(
     }
     return NextResponse.json(blog);
   } catch (error) {
-    console.error('Error in getBlogBySlug:', error);
+    console.error('Error in getBlogById:', error);
     return NextResponse.json(
       { error: 'Failed to fetch blog' },
       { status: 500 }
@@ -45,7 +44,7 @@ export async function GET(
   }
 }
 
-// PUT /api/blog/[slug]
+// PUT /api/blog/id/[id]
 export async function PUT(
   request: NextRequest,
   { params }: Params
@@ -59,27 +58,18 @@ export async function PUT(
 
   try {
     const body = await request.json();
-    const blog = await BlogService.updateBlog(params.slug, body);
-    return NextResponse.json({ 
-      message: 'Article mis à jour avec succès',
-      blog 
-    });
+    const updatedBlog = await BlogService.updateBlog(params.id, body);
+    return NextResponse.json(updatedBlog);
   } catch (error) {
     console.error('Error in updateBlog:', error);
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 400 }
-      );
-    }
     return NextResponse.json(
-      { error: 'Une erreur est survenue lors de la mise à jour de l\'article' },
+      { error: 'Failed to update blog' },
       { status: 500 }
     );
   }
 }
 
-// DELETE /api/blog/[slug]
+// DELETE /api/blog/id/[id]
 export async function DELETE(
   request: NextRequest,
   { params }: Params
@@ -92,20 +82,12 @@ export async function DELETE(
   }
 
   try {
-    await BlogService.deleteBlog(params.slug);
-    return NextResponse.json({ 
-      message: 'Article supprimé avec succès' 
-    });
+    await BlogService.deleteBlog(params.id);
+    return NextResponse.json({ message: 'Blog deleted successfully' });
   } catch (error) {
     console.error('Error in deleteBlog:', error);
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 400 }
-      );
-    }
     return NextResponse.json(
-      { error: 'Une erreur est survenue lors de la suppression de l\'article' },
+      { error: 'Failed to delete blog' },
       { status: 500 }
     );
   }

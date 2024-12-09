@@ -13,18 +13,20 @@ const HeroSection = () => {
   return (
     <div className="relative flex flex-col md:block">
       {/* Image de fond */}
-      <div className='relative h-[60vh] md:h-screen min-h-[400px] w-full'>
-        <Image 
-          src="/images/hero-bg.webp" 
-          alt="Installation panneaux solaires"
-          width={3840}
-          height={2160}
-          className="object-cover w-full h-full"
-          priority
-          sizes="100vw"
-          quality={75}
-        />
-        <div className="absolute inset-0 bg-black/40"></div>
+      <div className='relative h-[60vh] md:h-screen min-h-[400px] w-full overflow-hidden'>
+        <div className="absolute inset-0 rounded-b-[50px] overflow-hidden">
+          <Image 
+            src="/images/hero-bg.webp" 
+            alt="Installation panneaux solaires"
+            width={3840}
+            height={2160}
+            className="object-cover w-full h-full"
+            priority
+            sizes="100vw"
+            quality={75}
+          />
+          <div className="absolute inset-0 bg-black/40"></div>
+        </div>
       </div>
 
       {/* Contenu principal */}

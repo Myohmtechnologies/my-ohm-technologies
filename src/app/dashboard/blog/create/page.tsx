@@ -138,73 +138,40 @@ export default function CreateBlogPostPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+    setLoading(true);
+    setError(null);
+
     try {
-      setLoading(true);
-      setError(null);
-
-      console.log('Form submission started');
-      console.log('Current form state:', {
-        title: formData.title,
-        description: formData.description,
-        mainImage,
-        category: formData.category,
-        tags: selectedTags,
-        sections: formData.sections
-      });
-
       if (!mainImage) {
-        console.error('Main image is missing');
-        setError('L\'image principale est requise');
-        setLoading(false);
-        return;
+        throw new Error('Veuillez ajouter une image principale');
       }
 
-      if (!formData.title.trim() || !formData.description.trim()) {
-        console.error('Title or description is missing');
-        setError('Le titre et la description sont requis');
-        setLoading(false);
-        return;
-      }
-
-      const blogPost = {
-        title: formData.title.trim(),
-        description: formData.description.trim(),
+      const postData = {
+        ...formData,
         mainImage,
-        category: formData.category || categories[0],
         tags: selectedTags,
-        sections: formData.sections
-          .map(section => ({
-            ...section,
-            title: section.title.trim(),
-            description: section.description.trim()
-          }))
-          .filter(section => section.title || section.description || section.imageUrl),
-        status: 'draft'
+        slug: formData.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/(^-|-$)/g, '')
       };
-
-      console.log('Submitting blog post with data:', blogPost);
 
       const response = await fetch('/api/blog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(blogPost),
+        body: JSON.stringify(postData),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Server error response:', errorData);
-        throw new Error(errorData.error || 'Error creating blog post');
+        throw new Error(errorData.error || 'Erreur lors de la création de l\'article');
       }
-
-      const result = await response.json();
-      console.log('Blog post created successfully:', result);
 
       router.push('/dashboard/blog');
     } catch (err) {
-      console.error('Error submitting blog post:', err);
+      console.error('Error creating blog post:', err);
       setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     } finally {
       setLoading(false);
@@ -212,272 +179,276 @@ export default function CreateBlogPostPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 divide-y divide-gray-200 max-w-5xl mx-auto px-4 py-8">
-      <div className="space-y-8 divide-y divide-gray-200">
-        <div>
-          <div>
-            <h3 className="text-2xl font-semibold leading-6 text-gray-900">
-              Nouvel Article
-            </h3>
-            <p className="mt-1 text-sm text-gray-500">
-              Créez un nouvel article pour votre blog
-            </p>
+    <div className="container mx-auto px-4 py-8 bg-white min-h-screen">
+      <form onSubmit={handleSubmit} className="max-w-4xl mx-auto">
+        <h1 className="text-2xl font-bold mb-8 text-gray-900">Créer un nouvel article</h1>
+        
+        {error && (
+          <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+            {error}
           </div>
+        )}
 
-          {error && (
-            <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
-            </div>
-          )}
-
-          <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
-            <div className="sm:col-span-4">
-              <label 
-                htmlFor="title" 
-                className="block text-sm font-medium text-gray-700"
-              >
-                Titre
-              </label>
-              <div className="mt-1">
-                <input
-                  type="text"
-                  name="title"
-                  id="title"
-                  required
-                  value={formData.title}
-                  onChange={(e) => setFormData({
-                    ...formData,
-                    title: e.target.value
-                  })}
-                  className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
-                />
-              </div>
+        <div className="space-y-8 divide-y divide-gray-200">
+          <div>
+            <div>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Informations de base
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Entrez les informations de base de votre article
+              </p>
             </div>
 
-            <div className="sm:col-span-6">
-              <label 
-                htmlFor="description" 
-                className="block text-sm font-medium text-gray-700"
-              >
-                Description
-              </label>
-              <div className="mt-1">
-                <textarea
-                  id="description"
-                  name="description"
-                  rows={3}
-                  required
-                  value={formData.description}
-                  onChange={(e) => setFormData({
-                    ...formData,
-                    description: e.target.value
-                  })}
-                  className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-3">
-              <label 
-                htmlFor="category" 
-                className="block text-sm font-medium text-gray-700"
-              >
-                Catégorie
-              </label>
-              <div className="mt-1">
-                <select
-                  id="category"
-                  name="category"
-                  value={formData.category}
-                  onChange={(e) => setFormData({
-                    ...formData,
-                    category: e.target.value
-                  })}
-                  className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+            <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+              <div className="sm:col-span-4">
+                <label 
+                  htmlFor="title" 
+                  className="block text-sm font-medium text-gray-700"
                 >
-                  {categories.map((category) => (
-                    <option key={category} value={category}>
-                      {category.charAt(0).toUpperCase() + category.slice(1)}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className="sm:col-span-6">
-              <label className="block text-sm font-medium text-gray-700">
-                Image Principale
-              </label>
-              <div className="mt-1">
-                <ImageUpload
-                  onUpload={handleMainImageUpload}
-                  value={mainImage}
-                  loading={isUploading}
-                />
-              </div>
-            </div>
-
-            <div className="sm:col-span-6">
-              <label className="block text-sm font-medium text-gray-700">
-                Tags
-              </label>
-              <div className="mt-2">
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {selectedTags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#6C8D2F] text-white"
-                    >
-                      {tag}
-                      <button
-                        type="button"
-                        onClick={() => handleTagRemove(tag)}
-                        className="ml-2 inline-flex items-center"
-                      >
-                        <XMarkIcon className="h-4 w-4" />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-2">
+                  Titre
+                </label>
+                <div className="mt-1">
                   <input
                     type="text"
-                    value={newTag}
-                    onChange={(e) => setNewTag(e.target.value)}
-                    placeholder="Ajouter un tag"
+                    name="title"
+                    id="title"
+                    required
+                    value={formData.title}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      title: e.target.value
+                    })}
                     className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
                   />
-                  <button
-                    type="button"
-                    onClick={() => handleTagAdd(newTag)}
-                    disabled={selectedTags.length >= 5}
-                    className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
-                  >
-                    <PlusIcon className="h-4 w-4 mr-2" />
-                    Ajouter
-                  </button>
                 </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label 
+                  htmlFor="description" 
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Description
+                </label>
+                <div className="mt-1">
+                  <textarea
+                    id="description"
+                    name="description"
+                    rows={3}
+                    required
+                    value={formData.description}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      description: e.target.value
+                    })}
+                    className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-3">
+                <label 
+                  htmlFor="category" 
+                  className="block text-sm font-medium text-gray-700"
+                >
+                  Catégorie
+                </label>
+                <div className="mt-1">
+                  <select
+                    id="category"
+                    name="category"
+                    value={formData.category}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      category: e.target.value
+                    })}
+                    className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                  >
+                    {categories.map((category) => (
+                      <option key={category} value={category}>
+                        {category.charAt(0).toUpperCase() + category.slice(1)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label className="block text-sm font-medium text-gray-700">
+                  Image Principale
+                </label>
+                <div className="mt-1">
+                  <ImageUpload
+                    onUpload={handleMainImageUpload}
+                    value={mainImage}
+                    loading={isUploading}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:col-span-6">
+                <label className="block text-sm font-medium text-gray-700">
+                  Tags
+                </label>
                 <div className="mt-2">
-                  <p className="text-sm text-gray-500">Tags suggérés:</p>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {commonTags.map((tag) => (
-                      <button
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {selectedTags.map((tag) => (
+                      <span
                         key={tag}
-                        type="button"
-                        onClick={() => handleTagAdd(tag)}
-                        disabled={selectedTags.includes(tag) || selectedTags.length >= 5}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200"
+                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#6C8D2F] text-white"
                       >
                         {tag}
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => handleTagRemove(tag)}
+                          className="ml-2 inline-flex items-center"
+                        >
+                          <XMarkIcon className="h-4 w-4" />
+                        </button>
+                      </span>
                     ))}
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="pt-8">
-          <div>
-            <h3 className="text-lg font-medium leading-6 text-gray-900">
-              Sections
-            </h3>
-            <p className="mt-1 text-sm text-gray-500">
-              Ajoutez des sections à votre article
-            </p>
-          </div>
-
-          <div className="mt-6 space-y-6">
-            {formData.sections.map((section, index) => (
-              <div key={index} className="border border-gray-200 rounded-lg p-4">
-                <div className="flex justify-between items-center mb-4">
-                  <h4 className="text-lg font-medium">Section {index + 1}</h4>
-                  {index > 0 && (
-                    <button
-                      type="button"
-                      onClick={() => removeSection(index)}
-                      className="inline-flex items-center text-red-600 hover:text-red-800"
-                    >
-                      <TrashIcon className="h-5 w-5 mr-1" />
-                      Supprimer
-                    </button>
-                  )}
-                </div>
-
-                <div className="grid grid-cols-1 gap-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                      Titre de la section
-                    </label>
+                  <div className="flex gap-2">
                     <input
                       type="text"
-                      required
-                      value={section.title}
-                      onChange={(e) => updateSection(index, 'title', e.target.value)}
-                      className="mt-1 shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                      value={newTag}
+                      onChange={(e) => setNewTag(e.target.value)}
+                      placeholder="Ajouter un tag"
+                      className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
                     />
+                    <button
+                      type="button"
+                      onClick={() => handleTagAdd(newTag)}
+                      disabled={selectedTags.length >= 5}
+                      className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+                    >
+                      <PlusIcon className="h-4 w-4 mr-2" />
+                      Ajouter
+                    </button>
                   </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                      Description de la section
-                    </label>
-                    <textarea
-                      required
-                      rows={4}
-                      value={section.description}
-                      onChange={(e) => updateSection(index, 'description', e.target.value)}
-                      className="mt-1 shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">
-                      Image de la section (optionnelle)
-                    </label>
-                    <ImageUpload
-                      onUpload={(file) => handleSectionImageUpload(file, index)}
-                      value={section.imageUrl}
-                      loading={isUploading}
-                    />
+                  <div className="mt-2">
+                    <p className="text-sm text-gray-500">Tags suggérés:</p>
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {commonTags.map((tag) => (
+                        <button
+                          key={tag}
+                          type="button"
+                          onClick={() => handleTagAdd(tag)}
+                          disabled={selectedTags.includes(tag) || selectedTags.length >= 5}
+                          className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gray-100 text-gray-800 hover:bg-gray-200"
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+          </div>
 
-            <div className="mt-4">
-              <button
-                type="button"
-                onClick={addSection}
-                className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
-              >
-                <PlusIcon className="h-4 w-4 mr-2" />
-                Ajouter une section
-              </button>
+          <div className="pt-8">
+            <div>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">
+                Sections
+              </h3>
+              <p className="mt-1 text-sm text-gray-500">
+                Ajoutez des sections à votre article
+              </p>
+            </div>
+
+            <div className="mt-6 space-y-6">
+              {formData.sections.map((section, index) => (
+                <div key={index} className="border border-gray-200 rounded-lg p-4">
+                  <div className="flex justify-between items-center mb-4">
+                    <h4 className="text-lg font-medium">Section {index + 1}</h4>
+                    {index > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => removeSection(index)}
+                        className="inline-flex items-center text-red-600 hover:text-red-800"
+                      >
+                        <TrashIcon className="h-5 w-5 mr-1" />
+                        Supprimer
+                      </button>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-y-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Titre de la section
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={section.title}
+                        onChange={(e) => updateSection(index, 'title', e.target.value)}
+                        className="mt-1 shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Description de la section
+                      </label>
+                      <textarea
+                        required
+                        rows={4}
+                        value={section.description}
+                        onChange={(e) => updateSection(index, 'description', e.target.value)}
+                        className="mt-1 shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Image de la section (optionnelle)
+                      </label>
+                      <ImageUpload
+                        onUpload={(file) => handleSectionImageUpload(file, index)}
+                        value={section.imageUrl}
+                        loading={isUploading}
+                      />
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={addSection}
+                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+                >
+                  <PlusIcon className="h-4 w-4 mr-2" />
+                  Ajouter une section
+                </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="pt-5">
-        <div className="flex justify-end">
-          <button
-            type="button"
-            onClick={() => router.push('/dashboard/blog')}
-            className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
-          >
-            Annuler
-          </button>
-          <button
-            type="submit"
-            disabled={loading}
-            className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F] disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {loading ? 'Création...' : 'Créer l\'article'}
-          </button>
+        <div className="pt-5">
+          <div className="flex justify-end">
+            <button
+              type="button"
+              onClick={() => router.push('/dashboard/blog')}
+              className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+            >
+              Annuler
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loading ? 'Création...' : 'Créer l\'article'}
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 }

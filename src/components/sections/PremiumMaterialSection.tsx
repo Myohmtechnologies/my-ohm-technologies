@@ -96,7 +96,7 @@ const PremiumMaterialSection = () => {
             </div>
 
             <Link
-              href="/simulateur"
+              href="/simulator"
               className="group inline-flex items-center bg-[#FFDF64] text-gray-900 font-medium py-3 px-8 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
             >
               SIMULER VOTRE PROJET

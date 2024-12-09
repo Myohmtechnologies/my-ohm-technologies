@@ -3,6 +3,7 @@
 import { StarIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 const GoogleIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" className="flex-shrink-0">
@@ -14,10 +15,7 @@ const GoogleIcon = () => (
 );
 
 const PagesJaunesIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-    <rect width="24" height="24" fill="#FFDE00"/>
-    <path d="M5 7h14v2H5zm0 4h14v2H5zm0 4h14v2H5z" fill="#000"/>
-  </svg>
+  <Image src="/images/pagesjaunes-logo-icone.png" alt="Pages Jaunes" width={25} height={25} />
 );
 
 const reviews = [

@@ -21,6 +21,7 @@ export default function BlogPage() {
       try {
         const response = await fetch('/api/blog');
         const data = await response.json();
+        console.log('API Response:', data); // Ajouter ce log
         setBlogs(data.blogs || []); // Accéder au tableau blogs dans la réponse
       } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -51,7 +52,7 @@ export default function BlogPage() {
                   key={blog._id}
                   title={blog.title}
                   description={blog.description}
-                  image={blog.mainImage || '/placeholder-blog.jpg'}
+                  image={blog.mainImage}
                   category={blog.category}
                   slug={blog.slug}
                 />

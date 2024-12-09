@@ -149,44 +149,49 @@ export class BlogService {
     }
   }
 
-  static async createBlog(blogData: Omit<BlogPost, 'id'>) {
+  static async getBlogById(id: string) {
     try {
       await dbConnect();
-      
-      console.log('Creating blog with data:', blogData);
-      
-      // Vérifier si l'image principale est fournie
+      return await Blog.findById(id).lean();
+    } catch (error) {
+      console.error('BlogService: Erreur lors de la récupération du blog:', error);
+      throw error;
+    }
+  }
+
+  static async createBlog(blogData: BlogPost) {
+    try {
+      await dbConnect();
+
+      // Validation des données requises
+      if (!blogData.title) {
+        throw new Error('Le titre est requis');
+      }
+      if (!blogData.description) {
+        throw new Error('La description est requise');
+      }
       if (!blogData.mainImage) {
-        console.error('Main image is missing in blogData');
         throw new Error('L\'image principale est requise');
       }
 
-      // Générer un slug de base à partir du titre
-      let baseSlug = blogData.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)+/g, '');
+      // Création du slug unique
+      const slug = await this.generateUniqueSlug(blogData.title);
 
-      // Vérifier si le slug existe déjà et générer un slug unique si nécessaire
-      const existingBlog = await Blog.findOne({ slug: baseSlug });
-      const finalSlug = existingBlog ? `${baseSlug}-${Date.now()}` : baseSlug;
-
-      console.log('Generated slug:', finalSlug);
-
-      const blog = new Blog({
+      // Création du blog avec les données validées
+      const blog = await Blog.create({
         ...blogData,
-        slug: finalSlug,
+        slug,
         status: blogData.status || 'draft',
         createdAt: new Date()
       });
 
-      console.log('Saving blog with data:', blog);
-
-      await blog.save();
       return blog;
     } catch (error) {
-      console.error('BlogService: Erreur lors de la création du blog:', error);
-      throw error;
+      console.error('Error in createBlog:', error);
+      if (error instanceof Error) {
+        throw new Error(`Erreur lors de la création du blog: ${error.message}`);
+      }
+      throw new Error('Erreur inconnue lors de la création du blog');
     }
   }
 
@@ -214,10 +219,46 @@ export class BlogService {
     }
   }
 
+  static async updateBlog(id: string, blogData: Partial<BlogPost>) {
+    try {
+      await dbConnect();
+      const blog = await Blog.findByIdAndUpdate(
+        id,
+        { ...blogData, updatedAt: new Date() },
+        { new: true, runValidators: true }
+      ).lean();
+
+      if (!blog) {
+        throw new Error('Blog non trouvé');
+      }
+
+      return blog;
+    } catch (error) {
+      console.error('BlogService: Erreur lors de la mise à jour du blog:', error);
+      throw error;
+    }
+  }
+
   static async deleteBlog(slug: string) {
     try {
       await dbConnect();
       const blog = await Blog.findOneAndDelete({ slug });
+      
+      if (!blog) {
+        throw new Error('Blog non trouvé');
+      }
+
+      return blog;
+    } catch (error) {
+      console.error('BlogService: Erreur lors de la suppression du blog:', error);
+      throw error;
+    }
+  }
+
+  static async deleteBlog(id: string) {
+    try {
+      await dbConnect();
+      const blog = await Blog.findByIdAndDelete(id);
       
       if (!blog) {
         throw new Error('Blog non trouvé');
@@ -278,5 +319,22 @@ export class BlogService {
       console.error('BlogService: Erreur lors de la récupération des tags:', error);
       throw error;
     }
+  }
+
+  static async generateUniqueSlug(title: string) {
+    const baseSlug = title
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)/g, '');
+
+    let slug = baseSlug;
+    let counter = 1;
+
+    while (await Blog.findOne({ slug })) {
+      slug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+
+    return slug;
   }
 }
