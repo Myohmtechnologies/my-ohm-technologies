@@ -65,18 +65,29 @@ export async function POST(request: Request) {
 
   } catch (error) {
     console.error('Error creating calendar event:', error);
-    
-    // Gérer spécifiquement l'erreur d'authentification
-    if (error.response?.data?.error === 'invalid_grant') {
-      return NextResponse.json({ 
+
+    // Type guard to check if error is an object with response property
+    if (
+      error &&
+      typeof error === 'object' &&
+      'response' in error &&
+      error.response &&
+      typeof error.response === 'object' &&
+      'data' in error.response &&
+      error.response.data &&
+      typeof error.response.data === 'object' &&
+      'error' in error.response.data &&
+      error.response.data.error === 'invalid_grant'
+    ) {
+      return NextResponse.json({
         success: true,
         warning: 'Could not create calendar event due to authentication issue'
       });
     }
-    
-    return NextResponse.json(
-      { error: 'Failed to create calendar event' },
-      { status: 500 }
-    );
+
+    return NextResponse.json({ 
+      success: false,
+      error: 'Failed to create calendar event'
+    });
   }
 }
