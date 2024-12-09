@@ -10,9 +10,9 @@ export async function POST(req: Request) {
     const body = await req.json();
     
     // Validation des données
-    if (!body.name || !body.email || !body.phone || !body.logementType || !body.energyBill) {
+    if (!body.name || !body.email || !body.phone || !body.address || !body.city || !body.postalCode) {
       return NextResponse.json(
-        { error: 'Tous les champs sont requis' },
+        { error: 'Les champs nom, email, téléphone, adresse, ville et code postal sont requis' },
         { status: 400 }
       );
     }
@@ -24,9 +24,12 @@ export async function POST(req: Request) {
         name: body.name,
         email: body.email,
         phone: body.phone,
-        residentialStatus: body.residentialStatus || 'OWNER',
-        logementType: body.logementType,
-        energyBill: body.energyBill,
+        address: body.address,
+        city: body.city,
+        postalCode: body.postalCode,
+        projectType: body.projectType || 'SOLAR_PANELS',
+        source: body.source || 'WEBSITE',
+        notes: body.notes || '',
         createdAt: new Date(),
         status: 'NEW',
       });

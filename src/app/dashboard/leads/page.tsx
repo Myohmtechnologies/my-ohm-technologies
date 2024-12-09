@@ -6,6 +6,7 @@ import LeadsStats from '@/components/leads/LeadsStats';
 import LeadsFilters from '@/components/leads/LeadsFilters';
 import LeadsTable from '@/components/leads/LeadsTable';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { useRouter } from 'next/navigation';
 
 const TABS = [
   { name: 'Tous les prospects', value: 'ALL' },
@@ -20,6 +21,7 @@ const TABS = [
 ];
 
 export default function LeadsPage() {
+  const router = useRouter();
   const [leads, setLeads] = useState<Lead[]>([]);
   const [filteredLeads, setFilteredLeads] = useState<Lead[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -99,6 +101,7 @@ export default function LeadsPage() {
         <div className="mt-4 sm:mt-0">
           <button
             type="button"
+            onClick={() => router.push('/dashboard/leads/create')}
             className="inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
           >
             <PlusIcon className="-ml-0.5 mr-1.5 h-5 w-5" aria-hidden="true" />
