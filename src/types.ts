@@ -49,3 +49,17 @@ export interface LeadAction {
   notes?: string;
   nextAction?: NextAction;
 }
+
+export interface BlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  excerpt: string;
+  coverImage: string;
+  author: string;
+  tags: string[];
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
