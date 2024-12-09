@@ -3,25 +3,16 @@
 import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
-import PromoBanner from '../common/PromoBanner';
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isDashboard = pathname?.startsWith('/dashboard');
-  const isMerciPage = pathname === '/merci';
+  const hideHeaderAndFooter = pathname.startsWith('/dashboard') || pathname === '/merci' || pathname === '/login';
 
   return (
-    <>
-      {!isDashboard && !isMerciPage && (
-        <>
-          <Header />
-          <PromoBanner />
-        </>
-      )}
-      <main className={`${isDashboard ? 'min-h-screen' : ''}`}>
-        {children}
-      </main>
-      {!isDashboard && !isMerciPage && <Footer />}
-    </>
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
+      {!hideHeaderAndFooter && <Header />}
+      <main className="flex-grow overflow-x-hidden">{children}</main>
+      {!hideHeaderAndFooter && <Footer />}
+    </div>
   );
 }

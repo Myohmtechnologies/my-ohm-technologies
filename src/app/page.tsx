@@ -10,7 +10,7 @@ import { defaultRegion } from '@/config/seo';
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <HeroSection />
       <EconomicSection />
       <PremiumMaterialSection />

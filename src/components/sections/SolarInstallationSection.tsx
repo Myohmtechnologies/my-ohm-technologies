@@ -33,24 +33,24 @@ const SolarInstallationSection = () => {
   };
 
   return (
-    <section className="relative bg-gray-50 py-20 overflow-hidden">
+    <section className="relative bg-gray-50 py-16 sm:py-20 overflow-x-hidden">
       {/* Décoration d'arrière-plan */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#AFC97E] rounded-full blur-3xl"></div>
         <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-[#FFDF64] rounded-full blur-3xl"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
           {/* Section Image */}
           <motion.div
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="lg:w-1/2"
+            className="w-full lg:w-1/2"
           >
-            <div className="relative">
+            <div className="relative w-full">
               {/* Image principale */}
               <div className="overflow-hidden rounded-2xl shadow-xl">
                 <Image
@@ -58,7 +58,7 @@ const SolarInstallationSection = () => {
                   alt="Technicien en installation solaire"
                   width={600}
                   height={400}
-                  className="object-cover w-full h-[500px] transform hover:scale-105 transition-transform duration-700"
+                  className="object-cover w-full h-[300px] sm:h-[400px] lg:h-[500px] transform hover:scale-105 transition-transform duration-700"
                 />
               </div>
 
@@ -68,17 +68,17 @@ const SolarInstallationSection = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="absolute -bottom-6 -right-6 bg-white p-4 rounded-xl shadow-lg"
+                className="absolute -bottom-6 right-2 sm:right-4 lg:-right-6 bg-white p-2.5 sm:p-3 md:p-4 rounded-xl shadow-lg"
               >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-[#FFDF64] rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="p-1 sm:p-1.5 md:p-2 bg-[#FFDF64] rounded-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <p className="font-semibold text-gray-900">Garantie Décennale</p>
-                    <p className="text-sm text-gray-600">Installation certifiée</p>
+                    <p className="font-semibold text-gray-900 text-xs sm:text-sm md:text-base">Garantie Décennale</p>
+                    <p className="text-[10px] sm:text-xs md:text-sm text-gray-600">Installation certifiée</p>
                   </div>
                 </div>
               </motion.div>
