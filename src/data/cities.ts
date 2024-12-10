@@ -1,5 +1,21 @@
-export const cities = [
-  {
+export type City = {
+  name: string;
+  code: string;
+  population: number;
+  description: string;
+  solarAdvantages: string[];
+  keyPoints: string[];
+  reviews: {
+    author: string;
+    rating: number;
+    comment: string;
+    date: string;
+    location: string;
+  }[];
+};
+
+export const cities: Record<string, City> = {
+  manosque: {
     name: "Manosque",
     code: "04100",
     population: 21834,
@@ -42,4 +58,4 @@ export const cities = [
     ]
   },
   // ... autres villes ...
-];
+};
