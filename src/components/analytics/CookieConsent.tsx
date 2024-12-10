@@ -3,6 +3,18 @@
 import { useState, useEffect } from 'react';
 import { setCookieConsent, getCookieConsent } from '@/utils/cookies';
 
+declare global {
+  interface Window {
+    gtag: (
+      command: 'consent' | 'config' | 'event',
+      target: string,
+      params?: {
+        [key: string]: any;
+      }
+    ) => void;
+  }
+}
+
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
 
