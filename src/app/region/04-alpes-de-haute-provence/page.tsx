@@ -1,17 +1,54 @@
-'use client';
+import type { Metadata } from 'next';
+import ClientPage from './[city]/ClientPage';
 
-import { Metadata } from 'next';
-import { NextSeo } from 'next-seo';
-import Link from 'next/link';
+export const metadata: Metadata = {
+  title: 'Installation Panneaux Solaires Alpes-de-Haute-Provence (04) | MyOhm Technologies',
+  description: 'Expert en installation de panneaux solaires dans les Alpes-de-Haute-Provence. Profitez d\'un ensoleillement exceptionnel et réduisez vos factures d\'électricité. Devis gratuit.',
+  keywords: 'panneaux solaires, Alpes-de-Haute-Provence, 04, installation solaire, énergie solaire, MyOhm Technologies',
+};
 
-const cities = [
+export const cities = [
   {
-    name: 'Manosque',
-    code: '04100',
-    slug: 'manosque',
-    population: 21800,
-    description: 'Ville principale des Alpes-de-Haute-Provence, située au cœur de la région PACA',
-    solarAdvantages: ['Ensoleillement optimal', 'Nombreuses maisons individuelles', 'Proximité avec le CEA Cadarache']
+    name: "Manosque",
+    code: "04100",
+    population: 21834,
+    description: "Manosque, ville ensoleillée des Alpes-de-Haute-Provence, offre des conditions idéales pour l'installation de panneaux solaires. Avec plus de 300 jours de soleil par an, les habitants peuvent maximiser leur production d'énergie solaire.",
+    solarAdvantages: [
+      "Ensoleillement exceptionnel avec plus de 2800 heures par an",
+      "Climat méditerranéen favorable à la production solaire",
+      "Réduction significative des factures d'électricité",
+      "Valorisation immobilière importante",
+      "Contribution à la transition énergétique locale"
+    ],
+    keyPoints: [
+      "Économies moyennes de 60% sur la facture d'électricité",
+      "Installation en 2-3 jours",
+      "Garantie 25 ans sur les panneaux",
+      "Production optimale toute l'année"
+    ],
+    reviews: [
+      {
+        author: "Laurent D.",
+        rating: 5,
+        comment: "Installation impeccable sur notre villa. L'équipe a été très professionnelle et l'installation a été réalisée en 2 jours seulement. Nous sommes ravis des économies réalisées !",
+        date: "Novembre 2023",
+        location: "Quartier Les Oliviers"
+      },
+      {
+        author: "Marie P.",
+        rating: 5,
+        comment: "Excellent accompagnement de A à Z. Les panneaux s'intègrent parfaitement sur notre toit et la production est au rendez-vous.",
+        date: "Octobre 2023",
+        location: "Zone Pavillonnaire Sud"
+      },
+      {
+        author: "Thomas R.",
+        rating: 5,
+        comment: "Très satisfait de mon installation. Le suivi de production via l'application est un vrai plus. Je recommande vivement !",
+        date: "Septembre 2023",
+        location: "Lotissement Les Pins"
+      }
+    ]
   },
   {
     name: 'Forcalquier',
@@ -111,111 +148,12 @@ const cities = [
   }
 ];
 
-export const metadata: Metadata = {
-  title: 'Installation Panneaux Solaires Alpes-de-Haute-Provence (04) | MyOhm Technologies',
-  description: 'Expert en installation de panneaux solaires dans les Alpes-de-Haute-Provence. Profitez d\'un ensoleillement exceptionnel et réduisez vos factures d\'électricité. Devis gratuit.',
-  keywords: 'panneaux solaires, Alpes-de-Haute-Provence, 04, installation solaire, énergie solaire, MyOhm Technologies',
-};
-
-export default function AlpesDeHauteProvence() {
+export default function Page() {
   return (
-    <>
-      <NextSeo
-        title={metadata.title as string}
-        description={metadata.description as string}
-        canonical="https://www.myohm-technologies.fr/region/04-alpes-de-haute-provence"
-        openGraph={{
-          url: 'https://www.myohm-technologies.fr/region/04-alpes-de-haute-provence',
-          title: metadata.title as string,
-          description: metadata.description as string,
-          images: [
-            {
-              url: 'https://www.myohm-technologies.fr/images/regions/04-alpes-de-haute-provence.jpg',
-              width: 1200,
-              height: 630,
-              alt: 'Panneaux solaires dans les Alpes-de-Haute-Provence',
-            },
-          ],
-        }}
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'MyOhm Technologies - Alpes-de-Haute-Provence',
-            description: metadata.description,
-            url: 'https://www.myohm-technologies.fr/region/04-alpes-de-haute-provence',
-            areaServed: {
-              '@type': 'AdministrativeArea',
-              name: 'Alpes-de-Haute-Provence',
-              containsPlace: cities.map(city => ({
-                '@type': 'City',
-                name: city.name,
-                postalCode: city.code,
-              })),
-            },
-            serviceType: 'Installation de panneaux solaires',
-          }),
-        }}
-      />
-
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
-            Installation Panneaux Solaires dans les Alpes-de-Haute-Provence (04)
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Profitez d'un ensoleillement exceptionnel de plus de 300 jours par an pour votre installation solaire
-            dans les Alpes-de-Haute-Provence.
-          </p>
-        </section>
-
-        <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-            Nos zones d'intervention
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cities.map((city) => (
-              <Link
-                key={city.slug}
-                href={`/region/04-alpes-de-haute-provence/${city.slug}`}
-                className="block p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow"
-              >
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {city.name} ({city.code})
-                </h3>
-                <p className="text-gray-600 mb-4">{city.description}</p>
-                <ul className="text-sm text-gray-500">
-                  {city.solarAdvantages.map((advantage, index) => (
-                    <li key={index} className="mb-1">• {advantage}</li>
-                  ))}
-                </ul>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <section className="prose prose-lg max-w-none">
-          <h2>Pourquoi choisir l'énergie solaire dans les Alpes-de-Haute-Provence ?</h2>
-          <p>
-            Les Alpes-de-Haute-Provence bénéficient d'un ensoleillement exceptionnel avec plus de 300 jours
-            de soleil par an, ce qui en fait un territoire idéal pour l'installation de panneaux solaires.
-            Que vous soyez à Manosque, Forcalquier ou dans l'une des nombreuses communes du département,
-            vous pouvez profiter de conditions optimales pour votre installation photovoltaïque.
-          </p>
-          
-          <h3>Des avantages spécifiques à notre région</h3>
-          <ul>
-            <li>Un des meilleurs taux d'ensoleillement de France</li>
-            <li>Des aides régionales spécifiques pour la transition énergétique</li>
-            <li>Un habitat principalement constitué de maisons individuelles</li>
-            <li>Une expertise locale avec MyOhm Technologies</li>
-          </ul>
-        </section>
-      </main>
-    </>
+    <div>
+      {cities.map((city, index) => (
+        <ClientPage key={index} city={city} params={{ city: city.name.toLowerCase() }} />
+      ))}
+    </div>
   );
 }
