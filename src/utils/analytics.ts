@@ -1,7 +1,16 @@
 // Fonction pour envoyer des événements à Google Analytics
 export const trackEvent = (eventName: string, eventParams?: Record<string, any>) => {
   if (typeof window !== 'undefined' && (window as any).gtag) {
-    (window as any).gtag('event', eventName, eventParams);
+    try {
+      (window as any).gtag('event', eventName, {
+        ...eventParams,
+        timestamp: new Date().toISOString(),
+        debug_mode: process.env.NODE_ENV === 'development'
+      });
+    } catch (error) {
+      console.error('Error tracking event:', error);
+      technicalEvents.errorOccurred('analytics', `Failed to track event: ${eventName}`);
+    }
   }
 };
 
@@ -19,6 +28,15 @@ export const navigationEvents = {
     duration_seconds: seconds,
     page_path: pagePath,
     timestamp: new Date().toISOString(),
+  }),
+  notFoundError: (path: string, referrer: string) => trackEvent('404_error', {
+    path,
+    referrer,
+    timestamp: new Date().toISOString()
+  }),
+  internalSearch: (query: string, resultsCount: number) => trackEvent('internal_search', {
+    search_term: query,
+    results_count: resultsCount
   }),
 };
 
@@ -131,4 +149,62 @@ export const technicalEvents = {
     value,
     timestamp: new Date().toISOString(),
   }),
+  performanceMeasure: (metric: string, value: number) => trackEvent('performance_measure', {
+    metric_name: metric,
+    value,
+    page_path: window.location.pathname
+  }),
+  jsError: (error: Error, componentName?: string) => trackEvent('js_error', {
+    error_message: error.message,
+    error_stack: error.stack,
+    component: componentName,
+    page_path: window.location.pathname
+  })
+};
+
+// 8. Événements de conversion
+export const conversionEvents = {
+  leadGenerated: (source: string, value: number) => trackEvent('lead_generated', {
+    source,
+    value,
+    currency: 'EUR',
+    conversion: true
+  }),
+
+  quoteRequested: (serviceType: string, location: string) => trackEvent('quote_requested', {
+    service_type: serviceType,
+    location,
+    conversion: true
+  }),
+
+  projectStarted: (projectType: string, budget: number) => trackEvent('project_started', {
+    project_type: projectType,
+    budget,
+    currency: 'EUR',
+    conversion: true
+  }),
+
+  appointmentScheduled: (date: string, type: string) => trackEvent('appointment_scheduled', {
+    appointment_date: date,
+    appointment_type: type,
+    conversion: true
+  })
+};
+
+// 9. Événements de formulaire
+export const formEvents = {
+  formAbandoned: (formName: string, lastFieldCompleted: string) => trackEvent('form_abandoned', {
+    form_name: formName,
+    last_field: lastFieldCompleted,
+    time_spent: document.getElementById(formName)?.dataset.startTime 
+      ? Date.now() - parseInt(document.getElementById(formName)?.dataset.startTime || '0')
+      : 0
+  }),
+
+  formProgress: (formName: string, step: number, totalSteps: number) => trackEvent('form_progress', {
+    form_name: formName,
+    current_step: step,
+    total_steps: totalSteps,
+    progress_percentage: (step / totalSteps) * 100
+  })
 };
