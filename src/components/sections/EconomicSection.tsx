@@ -28,6 +28,12 @@ const EconomicSection = () => {
       title: "Valorisation de votre Patrimoine",
       bgColor: "bg-[#AFC97E]",
       description: "Augmentez la valeur de votre bien immobilier"
+    },
+    {
+      icon: "/images/energy-savings-icon.svg",
+      title: "Autonomie Énergétique",
+      bgColor: "bg-[#FFDF64]",
+      description: "Gagnez en indépendance énergétique avec votre installation solaire"
     }
   ];
 
@@ -101,15 +107,15 @@ const EconomicSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6"
         >
           {cards.map((card, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 w-full h-[320px] flex flex-col items-center justify-center"
             >
-              <div className={`w-24 h-24 mx-auto mb-6 ${card.bgColor} rounded-full p-5 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`w-24 h-24 mb-4 ${card.bgColor} rounded-full p-5 group-hover:scale-110 transition-transform duration-300`}>
                 <div className="relative w-full h-full">
                   <Image
                     src={card.icon}
@@ -119,10 +125,10 @@ const EconomicSection = () => {
                   />
                 </div>
               </div>
-              <h3 className="text-lg font-semibold text-center text-gray-900 mb-3 min-h-[3.5rem]">
+              <h3 className="text-base font-semibold text-center text-gray-900 mb-2 line-clamp-2">
                 {card.title}
               </h3>
-              <p className="text-gray-600 text-sm text-center">
+              <p className="text-gray-600 text-sm text-center line-clamp-3">
                 {card.description}
               </p>
             </motion.div>
