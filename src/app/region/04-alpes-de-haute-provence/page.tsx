@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <div>
-      {cities.map((city, index) => (
-        <ClientPage key={index} city={city} params={{ city: city.name.toLowerCase() }} />
+      {Object.entries(cities).map(([slug, city]) => (
+        <ClientPage key={slug} city={city} params={{ city: slug }} />
       ))}
     </div>
   );
