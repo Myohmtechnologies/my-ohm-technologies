@@ -2,5 +2,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://myohmtechnologies.com/sitemap.xml
+# Host
+Host: https://myohmtechnologies.fr
+
+# Sitemaps
+Sitemap: https://myohmtechnologies.fr/sitemap.xml
