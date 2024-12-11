@@ -1,8 +1,9 @@
 import { regions } from '@/config/seo';
 import { MetadataRoute } from 'next';
+import { cities } from '@/data/cities';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://myohm-technologies.fr';
+  const baseUrl = 'https://myohmtechnologies.fr';
 
   // Pages statiques principales
   const mainPages = [
@@ -28,6 +29,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  // Pages des villes
+  const cityPages = Object.entries(cities).map(([slug, city]) => ({
+    url: `${baseUrl}/region/04-alpes-de-haute-provence/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.85,
+  }));
+
   // Pages légales
   const legalPages = [
     '/mentions-legales',
@@ -41,5 +50,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.3,
   }));
 
-  return [...mainPages, ...regionPages, ...legalPages];
+  return [...mainPages, ...regionPages, ...cityPages, ...legalPages];
 }
