@@ -1,3 +1,3 @@
 export { default as GoogleAnalytics } from './GoogleAnalytics';
-export { GoogleTagManagerHead, GoogleTagManagerBody } from './GoogleTagManager';
-export { default as GoogleVerification } from './GoogleVerification';
+export { default as GoogleTagManagerBody } from './GoogleTagManagerBody';
+export { default as GoogleTagManagerHead } from './GoogleTagManagerHead';
