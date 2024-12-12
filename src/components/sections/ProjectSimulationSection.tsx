@@ -10,9 +10,9 @@ const SimulationSection = () => {
   };
 
   return (
-    <section className="bg-[#FFDF64] py-16 px-4" aria-label="Simulation de projet solaire">
+    <section className="w-full bg-[#FFDF64] py-16" aria-label="Simulation de projet solaire">
       <motion.div 
-        className="max-w-4xl mx-auto text-center space-y-8"
+        className="w-full max-w-7xl mx-auto text-center space-y-8 px-4 sm:px-6 lg:px-8"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

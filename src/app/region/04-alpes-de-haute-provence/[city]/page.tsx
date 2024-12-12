@@ -70,6 +70,7 @@ export default function Page({ params }: Props) {
     <>
       <SchemaOrg city={city} />
       <ClientPage city={city} params={params} />
+     
     </>
   );
 }

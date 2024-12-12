@@ -24,6 +24,28 @@ type CityData = {
   solarAdvantages: string[];
   keyPoints: string[];
   reviews: Review[];
+  solarInstallation: {
+    installationCostsTable: {
+      title: string;
+      headers: string[];
+      rows: {
+        power: string;
+        price: string;
+        type: string;
+        badge?: string;
+        description?: string;
+        highlight?: boolean;
+      }[];
+      notes: string[];
+      ctaText: string;
+    };
+    installers: {
+      name: string;
+      certifications: string[];
+      description: string;
+      experience: string;
+    }[];
+  };
 };
 
 export default function ClientPage({ 
@@ -344,13 +366,241 @@ export default function ClientPage({
                 ))}
               </div>
             </div>
+
+            {/* Coûts d'installation */}
+            <section className="bg-white py-12">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="my-8">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">{city.solarInstallation.installationCostsTable.title}</h2>
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200 bg-white shadow-lg rounded-lg">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          {city.solarInstallation.installationCostsTable.headers.map((header, index) => (
+                            <th
+                              key={index}
+                              className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                            >
+                              {header}
+                            </th>
+                          ))}
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Type de propriété
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                        {city.solarInstallation.installationCostsTable.rows.map((row, index) => (
+                          <tr key={index} className={`${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} ${row.highlight ? 'border-l-4 border-green-500' : ''}`}>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="flex flex-col">
+                                <div className="flex items-center">
+                                  <span className="text-sm font-medium text-gray-900">{row.power}</span>
+                                  {row.badge && (
+                                    <span className={`ml-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                      row.badge === 'Populaire' ? 'bg-green-100 text-green-800' :
+                                      row.badge === 'Économique' ? 'bg-blue-100 text-blue-800' :
+                                      'bg-yellow-100 text-yellow-800'
+                                    }`}>
+                                      {row.badge}
+                                    </span>
+                                  )}
+                                </div>
+                                {row.description && (
+                                  <span className="text-xs text-gray-500 mt-1">{row.description}</span>
+                                )}
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className="text-lg font-bold text-gray-900">{row.price}</span>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                              {row.type}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="mt-4 space-y-2">
+                    {city.solarInstallation.installationCostsTable.notes.map((note, index) => (
+                      <p key={index} className="text-sm text-gray-600 flex items-center">
+                        <span className="mr-2">•</span>
+                        {note}
+                      </p>
+                    ))}
+                  </div>
+                  <div className="mt-8 flex justify-center">
+                    <button
+                      onClick={() => setShowContactModal(true)}
+                      className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors duration-200"
+                    >
+                      {city.solarInstallation.installationCostsTable.ctaText}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Installateurs Section */}
+            <section className="bg-white py-16">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                    Qui sont les installateurs à {city.name} ?
+                  </h2>
+                  <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Découvrez notre réseau d'installateurs de panneaux solaires certifiés RGE à {city.name}. 
+                    Des experts qualifiés pour votre projet photovoltaïque.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {city.solarInstallation.installers.map((installer, index) => (
+                    <div key={index} className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                      <div className="flex items-start space-x-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900 mb-2">{installer.name}</h3>
+                          <div className="space-y-2">
+                            {installer.certifications.map((cert, idx) => (
+                              <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2">
+                                {cert}
+                              </span>
+                            ))}
+                          </div>
+                          <p className="mt-2 text-gray-600">{installer.description}</p>
+                          <div className="mt-4 flex items-center text-sm text-gray-500">
+                            <svg className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                            </svg>
+                            {installer.experience}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-12 text-center">
+                  <button
+                    onClick={() => setShowContactModal(true)}
+                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all"
+                  >
+                    Contacter un installateur
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            {/* Aides et Subventions Section */}
+            <section className="bg-gradient-to-b from-white to-gray-50 py-16">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                    Aides et subventions d'installation à {city.name}
+                  </h2>
+                  <p className="text-lg text-gray-600">
+                    Découvrez toutes les aides financières disponibles pour votre projet solaire
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  {/* Prime à l'autoconsommation */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
+                    <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4">
+                      <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Prime à l'autoconsommation</h3>
+                    <p className="text-gray-600 mb-4">
+                      Bénéficiez d'une prime gouvernementale pour votre installation en autoconsommation
+                    </p>
+                    <ul className="space-y-2">
+                      <li className="flex items-center justify-between">
+                        <span className='text-black'>6 kWc</span>
+                        <span className="font-bold text-green-600">1 140 €</span>
+                      </li>
+                      <li className="flex items-center justify-between">
+                        <span className='text-black'>9 kWc</span>
+                        <span className="font-bold text-green-600">1 710 €</span>
+                      </li>
+                      <li className="flex items-center justify-between">
+                        <span className='text-black'>12 kWc</span>
+                        <span className="font-bold text-green-600">2 280 €</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Tarif de rachat */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
+                    <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4">
+                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Tarif de rachat subventionné</h3>
+                    <p className="text-gray-600">
+                      Vendez votre surplus d'électricité à un tarif avantageux garanti par l'État pendant 20 ans. Un revenu complémentaire stable et prévisible.
+                    </p>
+                  </div>
+
+                  {/* TVA Réduite */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
+                    <div className="flex items-center justify-center w-12 h-12 bg-yellow-100 rounded-full mb-4">
+                      <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">TVA à 10%</h3>
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-gray-600">Au lieu de</span>
+                      <span className="line-through text-gray-400">20%</span>
+                    </div>
+                    <p className="text-gray-600">
+                      Profitez d'une TVA réduite sur l'installation de vos panneaux solaires, une économie immédiate de 10% sur votre investissement.
+                    </p>
+                  </div>
+
+                  {/* Exonération d'impôts */}
+                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
+                    <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-4">
+                      <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-4">Exonération d'impôts</h3>
+                    <p className="text-gray-600">
+                      Les revenus issus de la vente de votre électricité solaire sont exonérés d'impôts jusqu'à 3000€ par an. Un avantage fiscal significatif pour optimiser votre investissement.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-12 text-center">
+                  <button
+                    onClick={() => setShowContactModal(true)}
+                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all"
+                  >
+                    Calculer vos aides
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            {/* Simulation Section - Full Width */}
+            <div className="w-full -mx-4 sm:-mx-6 lg:-mx-8">
+              <SimulationSection />
+            </div>
           </div>
         </main>
 
-        {/* Simulation Section - Full Width */}
-        <div className="mt-16">
-          <SimulationSection />
-        </div>
       </div>
     </>
   );

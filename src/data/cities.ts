@@ -2,66 +2,198 @@ export type City = {
   name: string;
   code: string;
   population: number;
-  description: string;
   solarAdvantages: string[];
   keyPoints: string[];
   reviews: {
     author: string;
     rating: number;
-    comment: string;
     date: string;
+    comment: string;
     location: string;
   }[];
+  solarInstallation: {
+    installationCostsTable: {
+      title: string;
+      headers: string[];
+      rows: {
+        power: string;
+        price: string;
+        type: string;
+        badge: string;
+        highlight: boolean;
+        description: string;
+      }[];
+      notes: string[];
+      ctaText: string;
+    };
+    costs: {
+      power: string;
+      price: number;
+    }[];
+    installers: {
+      name: string;
+      certifications: string[];
+      description: string;
+      experience: string;
+    }[];
+    subsidies: {
+      autoconsumption: {
+        description: string;
+        rates: {
+          power: string;
+          amount: number;
+        }[];
+      };
+      buyback: {
+        description: string;
+        details: string[];
+      };
+      vat: {
+        description: string;
+        rate: number;
+        normalRate: number;
+      };
+      taxExemption: {
+        description: string;
+        details: string[];
+      };
+    };
+  };
 };
 
-export const cities: Record<string, City> = {
+export const cities: { [key: string]: City } = {
   manosque: {
     name: "Manosque",
-    code: "04100",
+    code: "04112",
     population: 21834,
-    description: "Manosque, ville ensoleillée des Alpes-de-Haute-Provence, offre des conditions idéales pour l'installation de panneaux solaires. Avec plus de 300 jours de soleil par an, les habitants peuvent maximiser leur production d'énergie solaire.",
     solarAdvantages: [
-      "Ensoleillement exceptionnel avec plus de 2800 heures par an",
-      "Climat méditerranéen favorable à la production solaire",
-      "Réduction significative des factures d'électricité",
-      "Valorisation immobilière importante",
-      "Contribution à la transition énergétique locale"
+      "Plus de 300 jours d'ensoleillement par an",
+      "Conditions climatiques optimales pour le solaire",
+      "Engagement fort dans la transition énergétique",
+      "Accompagnement local pour les démarches administratives",
+      "Réseau d'installateurs qualifiés"
     ],
     keyPoints: [
-      "Économies moyennes de 60% sur la facture d'électricité",
-      "Installation en 2-3 jours",
-      "Garantie 25 ans sur les panneaux",
-      "Production optimale toute l'année"
+      "Installation rapide en 1-2 jours",
+      "Garantie décennale sur l'installation",
+      "Maintenance préventive incluse",
+      "Monitoring de production en temps réel",
+      "Optimisation de l'autoconsommation"
     ],
     reviews: [
       {
-        author: "Laurent D.",
+        author: "Jean-Marc P.",
         rating: 5,
-        comment: "Installation impeccable sur notre villa. L'équipe a été très professionnelle et l'installation a été réalisée en 2 jours seulement. Nous sommes ravis des économies réalisées !",
-        date: "Novembre 2023",
-        location: "Quartier Les Oliviers"
+        date: "2023-11-15",
+        comment: "Installation impeccable, équipe professionnelle et réactive. Production solaire au-delà de nos attentes.",
+        location: "Manosque"
       },
       {
-        author: "Marie P.",
-        rating: 5,
-        comment: "Excellent accompagnement de A à Z. Les panneaux s'intègrent parfaitement sur notre toit et la production est au rendez-vous.",
-        date: "Octobre 2023",
-        location: "Zone Pavillonnaire Sud"
+        author: "Sophie L.",
+        rating: 4.5,
+        date: "2023-10-20",
+        comment: "Très satisfaite de mon installation solaire. Économies réelles sur ma facture d'électricité.",
+        location: "Manosque"
+      }
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
       },
-      {
-        author: "Thomas R.",
-        rating: 5,
-        comment: "Très satisfait de mon installation. Le suivi de production via l'application est un vrai plus. Je recommande vivement !",
-        date: "Septembre 2023",
-        location: "Lotissement Les Pins"
-      },
-    ]
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "Prime à l'autoconsommation pour les installations solaires",
+          rates: [
+            { power: "6 kWc", amount: 380 },
+            { power: "9 kWc", amount: 290 },
+            { power: "12 kWc", amount: 190 }
+          ]
+        },
+        buyback: {
+          description: "Tarif de rachat subventionné",
+          details: [
+            "Vente du surplus d'électricité à un tarif avantageux",
+            "Contrat de rachat sur 20 ans",
+            "Prix fixe garanti par l'État"
+          ]
+        },
+        vat: {
+          description: "TVA réduite sur l'installation",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Exonération d'impôts sur les revenus de la vente",
+          details: [
+            "Revenus de la vente d'électricité exonérés jusqu'à 3000€/an",
+            "Applicable pendant toute la durée du contrat de rachat"
+          ]
+        }
+      }
+    }
   },
   castellane: {
     name: "Castellane",
     code: "04120",
     population: 1500,
-    description: "Castellane, charmante commune des Alpes-de-Haute-Provence, bénéficie d'un ensoleillement optimal pour l'installation de panneaux solaires.",
     solarAdvantages: [
       "Excellent taux d'ensoleillement annuel",
       "Position géographique favorable",
@@ -89,13 +221,108 @@ export const cities: Record<string, City> = {
         date: "Décembre 2023",
         location: "Centre Historique"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   valensole: {
     name: "Valensole",
     code: "04210",
     population: 3300,
-    description: "Valensole, célèbre pour ses champs de lavande, profite d'un climat méditerranéen idéal pour l'énergie solaire.",
     solarAdvantages: [
       "Ensoleillement exceptionnel",
       "Terrain favorable aux installations solaires",
@@ -130,13 +357,108 @@ export const cities: Record<string, City> = {
         date: "Décembre 2023",
         location: "Chemin des Lavandes"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   saintLaurentDuVerdon: {
     name: "Saint-Laurent-du-Verdon",
     code: "04500",
     population: 100,
-    description: "Saint-Laurent-du-Verdon, petit village paisible, offre des conditions optimales pour l'exploitation de l'énergie solaire.",
     solarAdvantages: [
       "Exposition solaire privilégiée",
       "Cadre naturel préservé",
@@ -157,13 +479,108 @@ export const cities: Record<string, City> = {
         date: "Octobre 2023",
         location: "Route du Verdon"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   greouxLesBains: {
     name: "Gréoux-les-Bains",
     code: "04800",
     population: 2600,
-    description: "Gréoux-les-Bains, station thermale réputée, bénéficie d'un climat propice à l'exploitation de l'énergie solaire.",
     solarAdvantages: [
       "Fort potentiel solaire",
       "Économies d'énergie significatives",
@@ -191,13 +608,108 @@ export const cities: Record<string, City> = {
         date: "Novembre 2023",
         location: "Quartier Thermal"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   esparronDeVerdon: {
     name: "Esparron-de-Verdon",
     code: "04550",
     population: 450,
-    description: "Esparron-de-Verdon, situé près du lac, profite d'un ensoleillement remarquable pour les installations solaires.",
     solarAdvantages: [
       "Situation géographique avantageuse",
       "Production solaire optimisée",
@@ -232,13 +744,108 @@ export const cities: Record<string, City> = {
         date: "Octobre 2023",
         location: "Centre Village"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   saintEtienneLesOrgues: {
     name: "Saint-Étienne-les-Orgues",
     code: "04230",
     population: 1200,
-    description: "Saint-Étienne-les-Orgues bénéficie d'une exposition solaire exceptionnelle pour la production d'énergie photovoltaïque.",
     solarAdvantages: [
       "Ensoleillement optimal",
       "Conditions climatiques favorables",
@@ -266,13 +873,108 @@ export const cities: Record<string, City> = {
         date: "Novembre 2023",
         location: "Route de Lure"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   banon: {
     name: "Banon",
     code: "04150",
     population: 1000,
-    description: "Banon, village provençal de caractère, offre un cadre idéal pour l'installation de panneaux solaires.",
     solarAdvantages: [
       "Excellent taux d'ensoleillement",
       "Orientation favorable",
@@ -307,13 +1009,108 @@ export const cities: Record<string, City> = {
         date: "Octobre 2023",
         location: "Quartier du Château"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   simianelarotonde: {
     name: "Simiane-la-Rotonde",
     code: "04150",
     population: 600,
-    description: "Simiane-la-Rotonde, village médiéval perché, bénéficie d'une exposition solaire optimale.",
     solarAdvantages: [
       "Position géographique avantageuse",
       "Fort potentiel solaire",
@@ -334,13 +1131,108 @@ export const cities: Record<string, City> = {
         date: "Décembre 2023",
         location: "Place du Village"
       }
-    ]
+    ],
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
+      },
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "La prime à l'autoconsommation est une aide financière directe accordée par l'État pour encourager l'installation de panneaux solaires en autoconsommation. Cette prime est calculée en fonction de la puissance installée.",
+          rates: [
+            { power: "6 kWc", amount: 1140 },
+            { power: "9 kWc", amount: 1710 },
+            { power: "12 kWc", amount: 2280 }
+          ]
+        },
+        buyback: {
+          description: "Le tarif de rachat subventionné permet de vendre votre surplus d'électricité à un tarif avantageux garanti sur 20 ans",
+          details: [
+            "Contrat d'achat garanti sur 20 ans",
+            "Tarif préférentiel fixé par l'État",
+            "Revenus complémentaires garantis",
+            "Rachat du surplus de production"
+          ]
+        },
+        vat: {
+          description: "Bénéficiez d'une TVA réduite à 10% au lieu de 20% sur l'installation de vos panneaux solaires, une économie substantielle qui rend votre projet encore plus rentable",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Les revenus générés par la revente de votre électricité solaire sont exonérés d'impôts, rendant votre installation encore plus avantageuse financièrement",
+          details: [
+            "Exonération totale sur les revenus de la revente",
+            "Aucune déclaration nécessaire",
+            "Avantage fiscal garanti",
+            "Applicable dès la première année"
+          ]
+        }
+      }
+    }
   },
   saintMichelObservatoire: {
     name: "Saint-Michel-l'Observatoire",
     code: "04870",
     population: 1100,
-    description: "Saint-Michel-l'Observatoire, connu pour son ciel pur, offre des conditions idéales pour l'énergie solaire.",
     solarAdvantages: [
       "Ensoleillement exceptionnel",
       "Site privilégié",
@@ -368,306 +1260,99 @@ export const cities: Record<string, City> = {
         date: "Décembre 2023",
         location: "Chemin des Étoiles"
       }
-    ]
-  },
-  mane: {
-    name: "Mane",
-    code: "04300",
-    population: 1400,
-    description: "Mane, village provençal authentique, présente des conditions optimales pour l'énergie solaire.",
-    solarAdvantages: [
-      "Exposition solaire favorable",
-      "Rentabilité attractive",
-      "Impact écologique positif",
-      "Valorisation du patrimoine"
     ],
-    keyPoints: [
-      "Installation rapide",
-      "Équipements performants",
-      "Maintenance simplifiée",
-      "Suivi personnalisé"
-    ],
-    reviews: [
-      {
-        author: "Philippe D.",
-        rating: 5,
-        comment: "Très satisfait de l'installation. L'équipe a fait un travail remarquable.",
-        date: "Décembre 2023",
-        location: "Centre Village"
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation de panneaux solaires",
+        headers: ["Puissance de l'installation", "Prix de l'installation"],
+        rows: [
+          { 
+            power: "Installation de 3 kWc", 
+            price: "8 350 €", 
+            type: "Petit foyer",
+            badge: "Économique",
+            highlight: false,
+            description: "Idéal pour un couple ou une petite famille, cette installation couvre vos besoins essentiels en électricité."
+          },
+          { 
+            power: "Installation de 6 kWc", 
+            price: "12 780 €", 
+            type: "Maison familiale",
+            badge: "Populaire",
+            highlight: true,
+            description: "Notre option la plus populaire, parfaite pour une famille de 4 personnes avec une consommation moyenne."
+          },
+          { 
+            power: "Installation de 9 kWc", 
+            price: "17 210 €", 
+            type: "Grande propriété",
+            badge: "Meilleur rapport qualité/prix",
+            highlight: false,
+            description: "Solution optimale pour les grandes maisons ou les propriétés avec une consommation électrique importante."
+          }
+        ],
+        notes: [
+          "Prix TTC après déduction de la prime à l'autoconsommation",
+          "Installation complète clé en main",
+          "Garantie 20 ans sur les panneaux"
+        ],
+        ctaText: "Demander un devis gratuit"
       },
-      {
-        author: "Christine M.",
-        rating: 5,
-        comment: "Excellent service, installation parfaite. Je recommande !",
-        date: "Novembre 2023",
-        location: "Route de Forcalquier"
-      },
-      {
-        author: "Bernard P.",
-        rating: 5,
-        comment: "Travail soigné et équipe professionnelle. Très content !",
-        date: "Octobre 2023",
-        location: "Quartier du Château"
+      costs: [
+        { power: "3 kWc", price: 8350 },
+        { power: "6 kWc", price: 12780 },
+        { power: "9 kWc", price: 17210 }
+      ],
+      installers: [
+        {
+          name: "SolarTech Provence",
+          certifications: ["RGE QualiPV", "Qualibat"],
+          description: "Entreprise spécialisée dans l'installation de panneaux solaires depuis plus de 10 ans. Notre équipe de techniciens qualifiés assure une installation de qualité et un suivi personnalisé.",
+          experience: "Plus de 500 installations réalisées"
+        },
+        {
+          name: "Éco-Solaire Solutions",
+          certifications: ["RGE", "QualiPV"],
+          description: "Expert en solutions photovoltaïques, notre équipe de professionnels vous accompagne dans votre projet d'installation solaire avec un service clé en main.",
+          experience: "15 ans d'expertise"
+        },
+        {
+          name: "Provence Solar Experts",
+          certifications: ["RGE", "Qualibat", "QualiPV"],
+          description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
+          experience: "Plus de 1000 installations réussies"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "Prime à l'autoconsommation pour les installations solaires",
+          rates: [
+            { power: "6 kWc", amount: 380 },
+            { power: "9 kWc", amount: 290 },
+            { power: "12 kWc", amount: 190 }
+          ]
+        },
+        buyback: {
+          description: "Tarif de rachat subventionné",
+          details: [
+            "Vente du surplus d'électricité à un tarif avantageux",
+            "Contrat de rachat sur 20 ans",
+            "Prix fixe garanti par l'État"
+          ]
+        },
+        vat: {
+          description: "TVA réduite sur l'installation",
+          rate: 10,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Exonération d'impôts sur les revenus de la vente",
+          details: [
+            "Revenus de la vente d'électricité exonérés jusqu'à 3000€/an",
+            "Applicable pendant toute la durée du contrat de rachat"
+          ]
+        }
       }
-    ]
-  },
-  forcalquier: {
-    name: "Forcalquier",
-    code: "04300",
-    population: 4800,
-    description: "Forcalquier, cité de caractère, bénéficie d'un ensoleillement remarquable pour les installations solaires.",
-    solarAdvantages: [
-      "Fort potentiel solaire",
-      "Économies significatives",
-      "Solution écologique",
-      "Plus-value immobilière"
-    ],
-    keyPoints: [
-      "Installation professionnelle",
-      "Matériel haute qualité",
-      "Garanties constructeur",
-      "Service après-vente"
-    ],
-    reviews: [
-      {
-        author: "Isabelle M.",
-        rating: 5,
-        comment: "Installation rapide et soignée. Le rendement est excellent.",
-        date: "Novembre 2023",
-        location: "Citadelle"
-      },
-      {
-        author: "Robert L.",
-        rating: 5,
-        comment: "Très satisfait du service et de l'installation. Je recommande !",
-        date: "Décembre 2023",
-        location: "Centre-ville"
-      }
-    ]
-  },
-  volx: {
-    name: "Volx",
-    code: "04130",
-    population: 3100,
-    description: "Volx, commune dynamique, offre un cadre propice à l'installation de panneaux solaires.",
-    solarAdvantages: [
-      "Ensoleillement optimal",
-      "Rendement élevé",
-      "Économies durables",
-      "Impact environnemental positif"
-    ],
-    keyPoints: [
-      "Installation clé en main",
-      "Équipements certifiés",
-      "Suivi de production",
-      "Support technique"
-    ],
-    reviews: [
-      {
-        author: "Bernard L.",
-        rating: 5,
-        comment: "Équipe professionnelle et résultat impeccable. Je recommande !",
-        date: "Décembre 2023",
-        location: "Les Oliviers"
-      },
-      {
-        author: "Martine P.",
-        rating: 5,
-        comment: "Installation parfaite, équipe sérieuse et efficace.",
-        date: "Novembre 2023",
-        location: "Route de Manosque"
-      },
-      {
-        author: "Georges R.",
-        rating: 5,
-        comment: "Très content de mon installation. Service au top !",
-        date: "Octobre 2023",
-        location: "Quartier de la Gare"
-      }
-    ]
-  },
-  villeneuve: {
-    name: "Villeneuve",
-    code: "04180",
-    population: 4000,
-    description: "Villeneuve profite d'un climat méditerranéen idéal pour la production d'énergie solaire.",
-    solarAdvantages: [
-      "Position géographique favorable",
-      "Excellent rendement",
-      "Réduction des coûts",
-      "Solution durable"
-    ],
-    keyPoints: [
-      "Installation experte",
-      "Matériaux premium",
-      "Garanties étendues",
-      "Accompagnement personnalisé"
-    ],
-    reviews: [
-      {
-        author: "Sylvie P.",
-        rating: 5,
-        comment: "Installation parfaite et service client très réactif. Très satisfaite.",
-        date: "Novembre 2023",
-        location: "Centre-ville"
-      },
-      {
-        author: "Michel B.",
-        rating: 5,
-        comment: "Excellent travail, équipe professionnelle. Je recommande !",
-        date: "Décembre 2023",
-        location: "Route de Volx"
-      }
-    ]
-  },
-  sainteTulle: {
-    name: "Sainte-Tulle",
-    code: "04220",
-    population: 3300,
-    description: "Sainte-Tulle bénéficie d'une exposition solaire exceptionnelle pour les installations photovoltaïques.",
-    solarAdvantages: [
-      "Ensoleillement remarquable",
-      "Économies importantes",
-      "Démarche écologique",
-      "Rentabilité assurée"
-    ],
-    keyPoints: [
-      "Installation rapide",
-      "Équipements performants",
-      "Maintenance préventive",
-      "Service client réactif"
-    ],
-    reviews: [
-      {
-        author: "Robert C.",
-        rating: 5,
-        comment: "Excellent travail, équipe sérieuse. Les panneaux fonctionnent parfaitement.",
-        date: "Décembre 2023",
-        location: "Quartier Sud"
-      },
-      {
-        author: "Hélène M.",
-        rating: 5,
-        comment: "Installation soignée et équipe à l'écoute. Parfait !",
-        date: "Novembre 2023",
-        location: "Les Jardins"
-      },
-      {
-        author: "Patrick D.",
-        rating: 5,
-        comment: "Très satisfait du service et des résultats. Je recommande.",
-        date: "Octobre 2023",
-        location: "Avenue Principale"
-      }
-    ]
-  },
-  reillanne: {
-    name: "Reillanne",
-    code: "04110",
-    population: 1600,
-    description: "Reillanne, village perché de caractère, présente des conditions optimales pour l'énergie solaire.",
-    solarAdvantages: [
-      "Exposition solaire privilégiée",
-      "Fort potentiel énergétique",
-      "Économies substantielles",
-      "Impact écologique positif"
-    ],
-    keyPoints: [
-      "Installation sur-mesure",
-      "Matériel certifié",
-      "Suivi de production",
-      "Accompagnement complet"
-    ],
-    reviews: [
-      {
-        author: "Anne-Marie G.",
-        rating: 5,
-        comment: "Installation soignée et équipe à l'écoute. Très satisfaite du résultat.",
-        date: "Novembre 2023",
-        location: "Vieux Village"
-      },
-      {
-        author: "Jean-Claude F.",
-        rating: 5,
-        comment: "Service impeccable, installation parfaite. Je recommande !",
-        date: "Décembre 2023",
-        location: "Route de Céreste"
-      }
-    ]
-  },
-  pierrevert: {
-    name: "Pierrevert",
-    code: "04860",
-    population: 3800,
-    description: "Pierrevert offre un cadre idéal pour l'exploitation de l'énergie solaire avec son climat méditerranéen.",
-    solarAdvantages: [
-      "Ensoleillement optimal",
-      "Rendement élevé",
-      "Économies durables",
-      "Valorisation immobilière"
-    ],
-    keyPoints: [
-      "Installation professionnelle",
-      "Équipements premium",
-      "Garanties constructeur",
-      "Service après-vente dédié"
-    ],
-    reviews: [
-      {
-        author: "Jacques H.",
-        rating: 5,
-        comment: "Service impeccable et installation parfaite. Je recommande vivement.",
-        date: "Décembre 2023",
-        location: "Les Vignes"
-      },
-      {
-        author: "Marie-Claire B.",
-        rating: 5,
-        comment: "Très satisfaite de l'installation. Équipe professionnelle.",
-        date: "Novembre 2023",
-        location: "Centre-ville"
-      },
-      {
-        author: "Alain P.",
-        rating: 5,
-        comment: "Excellent travail et suivi parfait. Je recommande !",
-        date: "Octobre 2023",
-        location: "Route de Manosque"
-      }
-    ]
-  },
-  cereste: {
-    name: "Céreste",
-    code: "04280",
-    population: 1300,
-    description: "Céreste bénéficie d'un climat favorable pour maximiser la production d'énergie solaire.",
-    solarAdvantages: [
-      "Position géographique avantageuse",
-      "Fort potentiel solaire",
-      "Économies significatives",
-      "Solution écologique"
-    ],
-    keyPoints: [
-      "Installation clé en main",
-      "Matériaux haute qualité",
-      "Suivi personnalisé",
-      "Support technique continu"
-    ],
-    reviews: [
-      {
-        author: "Martine N.",
-        rating: 5,
-        comment: "Très satisfaite de l'installation. L'équipe a été efficace et professionnelle.",
-        date: "Novembre 2023",
-        location: "Centre Historique"
-      },
-      {
-        author: "Louis R.",
-        rating: 5,
-        comment: "Installation rapide et soignée. Excellent service !",
-        date: "Décembre 2023",
-        location: "Route d'Apt"
-      }
-    ]
+    }
   }
 };
