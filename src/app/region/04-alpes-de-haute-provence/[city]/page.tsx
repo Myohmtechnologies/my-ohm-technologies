@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!city) return {};
 
   const title = `Installation Panneaux Solaires ${city.name} (${city.code}) | MyOhm Technologies`;
-  const description = `Expert en installation de panneaux solaires à ${city.name}. ${city.description} Profitez d'une énergie propre et économique avec nos solutions photovoltaïques sur mesure.`;
+  const description = `Expert en installation de panneaux solaires à ${city.name}. ${city.seo.metaDescription} Profitez d'une énergie propre et économique avec nos solutions photovoltaïques sur mesure.`;
 
   return {
     title,
