@@ -595,9 +595,10 @@ export default function ClientPage({
             </section>
 
             {/* Simulation Section - Full Width */}
-            <div className="w-full -mx-4 sm:-mx-6 lg:-mx-8">
+            <div className="w-screen relative left-[50%] right-[50%] -mx-[50vw]">
               <SimulationSection />
             </div>
+
           </div>
         </main>
 

@@ -11,6 +11,17 @@ export type City = {
     comment: string;
     location: string;
   }[];
+  seo: {
+    title: string;
+    metaDescription: string;
+    keywords: string[];
+    images: {
+      url: string;
+      width: number;
+      height: number;
+      alt: string;
+    }[];
+  };
   solarInstallation: {
     installationCostsTable: {
       title: string;
@@ -96,6 +107,19 @@ export const cities: { [key: string]: City } = {
         location: "Manosque"
       }
     ],
+    seo: {
+      title: "Manosque : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Manosque. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Manosque", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/manosque-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Manosque"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -222,6 +246,19 @@ export const cities: { [key: string]: City } = {
         location: "Centre Historique"
       }
     ],
+    seo: {
+      title: "Castellane : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Castellane. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Castellane", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/castellane-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Castellane"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -358,6 +395,19 @@ export const cities: { [key: string]: City } = {
         location: "Chemin des Lavandes"
       }
     ],
+    seo: {
+      title: "Valensole : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Valensole. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Valensole", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/valensole-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Valensole"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -480,6 +530,19 @@ export const cities: { [key: string]: City } = {
         location: "Route du Verdon"
       }
     ],
+    seo: {
+      title: "Saint-Laurent-du-Verdon : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Saint-Laurent-du-Verdon. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Saint-Laurent-du-Verdon", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/saint-laurent-du-verdon-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Saint-Laurent-du-Verdon"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -609,6 +672,19 @@ export const cities: { [key: string]: City } = {
         location: "Quartier Thermal"
       }
     ],
+    seo: {
+      title: "Gréoux-les-Bains : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Gréoux-les-Bains. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Gréoux-les-Bains", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/greoux-les-bains-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Gréoux-les-Bains"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -745,6 +821,19 @@ export const cities: { [key: string]: City } = {
         location: "Centre Village"
       }
     ],
+    seo: {
+      title: "Esparron-de-Verdon : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Esparron-de-Verdon. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Esparron-de-Verdon", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/esparron-de-verdon-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Esparron-de-Verdon"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -874,6 +963,19 @@ export const cities: { [key: string]: City } = {
         location: "Route de Lure"
       }
     ],
+    seo: {
+      title: "Saint-Étienne-les-Orgues : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Saint-Étienne-les-Orgues. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Saint-Étienne-les-Orgues", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/saint-etienne-les-orgues-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Saint-Étienne-les-Orgues"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -1010,6 +1112,19 @@ export const cities: { [key: string]: City } = {
         location: "Quartier du Château"
       }
     ],
+    seo: {
+      title: "Banon : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Banon. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Banon", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/banon-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Banon"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -1132,6 +1247,19 @@ export const cities: { [key: string]: City } = {
         location: "Place du Village"
       }
     ],
+    seo: {
+      title: "Simiane-la-Rotonde : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Simiane-la-Rotonde. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Simiane-la-Rotonde", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/simiane-la-rotonde-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Simiane-la-Rotonde"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
@@ -1261,6 +1389,19 @@ export const cities: { [key: string]: City } = {
         location: "Chemin des Étoiles"
       }
     ],
+    seo: {
+      title: "Saint-Michel-l'Observatoire : installation solaire pour particuliers et professionnels",
+      metaDescription: "Découvrez les avantages de l'installation solaire à Saint-Michel-l'Observatoire. Économisez sur votre facture d'électricité et contribuez à la transition énergétique.",
+      keywords: ["installation solaire", "Saint-Michel-l'Observatoire", "énergie renouvelable", "économies d'énergie"],
+      images: [
+        {
+          url: "https://example.com/saint-michel-observatoire-solaire.jpg",
+          width: 800,
+          height: 600,
+          alt: "Installation solaire à Saint-Michel-l'Observatoire"
+        }
+      ]
+    },
     solarInstallation: {
       installationCostsTable: {
         title: "Coûts d'installation de panneaux solaires",
