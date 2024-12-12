@@ -58,6 +58,148 @@ type CityData = {
   };
 };
 
+const FAQSection = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqData = [
+    {
+      icon: "🏠",
+      question: "Pourquoi installer des panneaux solaires sur mon toit ?",
+      answer: "L'installation de panneaux photovoltaïques sur votre toit permet de produire de l'électricité solaire propre et de réduire vos factures énergétiques. C'est une solution durable et rentable qui contribue à la transition énergétique tout en augmentant la valeur de votre maison."
+    },
+    {
+      icon: "💸",
+      question: "Quelles sont les aides pour l'installation de panneaux solaires ?",
+      answer: "Des subventions, primes et des avantages fiscaux sont disponibles pour réduire le coût d'une installation photovoltaïque. En tant qu'installateurs RGE (Reconnu Garant de l'Environnement), nous vous accompagnons dans les démarches pour obtenir ces aides."
+    },
+    {
+      icon: "💰",
+      question: "Combien coûte une installation de panneaux photovoltaïques ?",
+      answer: "Le prix d'une installation dépend de plusieurs facteurs :\n\n- La puissance souhaitée en kWc\n- La configuration de votre toit\n- Les besoins spécifiques de votre maison ou entreprise\n\nNous proposons des estimations personnalisées pour garantir une solution adaptée à votre budget."
+    },
+    {
+      icon: "⚡",
+      question: "Quels sont les avantages de l'autoconsommation énergétique ?",
+      answer: "L'autoconsommation permet de consommer directement l'électricité produite par vos panneaux solaires. Cela offre :\n\n- Une réduction immédiate de vos factures énergétiques\n- Une indépendance énergétique accrue\n- La possibilité de revendre le surplus d'électricité solaire"
+    },
+    {
+      icon: "🌞",
+      question: "Que propose votre société pour les panneaux solaires à Manosque et alentours ?",
+      answer: "Notre entreprise spécialisée propose :\n\n- La pose de panneaux photovoltaïques adaptés aux besoins des particuliers, professionnels et collectivités\n- La maintenance et le dépannage de panneaux photovoltaïques\n- Des systèmes de stockage pour optimiser la production\n- Un accompagnement complet pour votre projet, depuis l'estimation jusqu'à la mise en service"
+    },
+    {
+      icon: "🔧",
+      question: "Quels produits utilisez-vous ?",
+      answer: "Nous travaillons avec des modules photovoltaïques de dernière génération, conformes aux normes strictes. Nos capteurs solaires garantissent une production fiable et optimale, même dans des conditions d'ensoleillement variables."
+    },
+    {
+      icon: "🏆",
+      question: "Pourquoi choisir un installateur RGE ?",
+      answer: "Un installateur RGE vous garantit une installation conforme aux normes en vigueur et l'éligibilité aux aides de l'État. Nos techniciens qualifiés réalisent des travaux durables et adaptés à chaque situation."
+    },
+    {
+      icon: "🏢",
+      question: "Quels sont les bénéfices de la transition énergétique pour les entreprises ?",
+      answer: "Pour les entreprises, la transition énergétique permet de :\n\n- Réduire les coûts énergétiques sur le long terme\n- Renforcer leur engagement envers l'environnement\n- Valoriser leur image auprès des clients et partenaires"
+    },
+    {
+      icon: "❄️",
+      question: "Proposez-vous des solutions de climatisation ou de chauffage solaire ?",
+      answer: "Oui, en complément de l'installation photovoltaïque, nous proposons des systèmes combinés avec des pompes à chaleur et des solutions de climatisation pour maximiser le confort et l'efficacité énergétique."
+    },
+    {
+      icon: "💡",
+      question: "Comment garantir la rentabilité de mon investissement ?",
+      answer: "Nos experts réalisent une étude complète de vos besoins pour concevoir un plan sur mesure. Grâce à une installation optimisée, une maintenance régulière, et les aides financières, vous bénéficiez d'un retour sur investissement rapide et durable."
+    },
+    {
+      icon: "📍",
+      question: "Où intervenez-vous ?",
+      answer: "Nous couvrons la ville de Manosque, les Alpes-de-Haute-Provence, ainsi que des villes comme Aix-en-Provence et Sainte-Tulle. Notre équipe intervient rapidement pour tous types de projets, du résidentiel à l'industriel."
+    }
+  ];
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section id="faq" className="bg-gradient-to-br from-blue-50 to-white py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12">
+          <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full mb-4">
+            <span className="font-medium">Vos Questions Fréquentes</span>
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Panneaux Solaires en Alpes-de-Haute-Provence
+          </h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            Découvrez tout ce que vous devez savoir sur l'installation de panneaux photovoltaïques dans votre région
+          </p>
+        </div>
+
+        <div className="space-y-4">
+          {faqData.map((faq, index) => (
+            <div 
+              key={index} 
+              className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden"
+            >
+              <div 
+                onClick={() => toggleFAQ(index)}
+                className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors"
+              >
+                <div className="flex items-center space-x-4">
+                  <span className="text-3xl">{faq.icon}</span>
+                  <h3 className="text-lg font-semibold text-gray-900">
+                    {faq.question}
+                  </h3>
+                </div>
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className={`h-6 w-6 text-gray-500 transition-transform ${openIndex === index ? 'rotate-180' : ''}`}
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+              {openIndex === index && (
+                <div className="px-6 pb-6 text-gray-600 whitespace-pre-line">
+                  {faq.answer}
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <div className="inline-flex items-center space-x-4 bg-yellow-100 px-6 py-3 rounded-full">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              className="h-8 w-8 text-yellow-600" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-lg font-medium text-yellow-900">
+              Une question ? Contactez nos experts
+            </span>
+            <Link 
+              href="/contact" 
+              className="ml-4 px-4 py-2 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors"
+            >
+              Contactez-nous
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function ClientPage({ 
   city, 
   params 
@@ -704,138 +846,7 @@ export default function ClientPage({
             </div>
 
             {/* FAQ Section */}
-            <section id="faq" className="bg-gradient-to-br from-blue-50 to-white py-16 px-4 sm:px-6 lg:px-8">
-              <div className="max-w-5xl mx-auto">
-                <div className="text-center mb-12">
-                  <div className="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full mb-4">
-                    <span className="font-medium">Vos Questions Fréquentes</span>
-                  </div>
-                  <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                    Panneaux Solaires en Alpes-de-Haute-Provence
-                  </h2>
-                  <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                    Découvrez tout ce que vous devez savoir sur l'installation de panneaux photovoltaïques dans votre région
-                  </p>
-                </div>
-
-                <div className="space-y-4">
-                  {[
-                    {
-                      icon: "🏠",
-                      question: "Pourquoi installer des panneaux solaires sur mon toit ?",
-                      answer: "L'installation de panneaux photovoltaïques sur votre toit permet de produire de l'électricité solaire propre et de réduire vos factures énergétiques. C'est une solution durable et rentable qui contribue à la transition énergétique tout en augmentant la valeur de votre maison."
-                    },
-                    {
-                      icon: "💸",
-                      question: "Quelles sont les aides pour l'installation de panneaux solaires ?",
-                      answer: "Des subventions, primes et des avantages fiscaux sont disponibles pour réduire le coût d'une installation photovoltaïque. En tant qu'installateurs RGE (Reconnu Garant de l'Environnement), nous vous accompagnons dans les démarches pour obtenir ces aides."
-                    },
-                    {
-                      icon: "💰",
-                      question: "Combien coûte une installation de panneaux photovoltaïques ?",
-                      answer: "Le prix d'une installation dépend de plusieurs facteurs :\n\n- La puissance souhaitée en kWc\n- La configuration de votre toit\n- Les besoins spécifiques de votre maison ou entreprise\n\nNous proposons des estimations personnalisées pour garantir une solution adaptée à votre budget."
-                    },
-                    {
-                      icon: "⚡",
-                      question: "Quels sont les avantages de l'autoconsommation énergétique ?",
-                      answer: "L'autoconsommation permet de consommer directement l'électricité produite par vos panneaux solaires. Cela offre :\n\n- Une réduction immédiate de vos factures énergétiques\n- Une indépendance énergétique accrue\n- La possibilité de revendre le surplus d'électricité solaire"
-                    },
-                    {
-                      icon: "🌞",
-                      question: "Que propose votre société pour les panneaux solaires à Manosque et alentours ?",
-                      answer: "Notre entreprise spécialisée propose :\n\n- La pose de panneaux photovoltaïques adaptés aux besoins des particuliers, professionnels et collectivités\n- La maintenance et le dépannage de panneaux photovoltaïques\n- Des systèmes de stockage pour optimiser la production\n- Un accompagnement complet pour votre projet, depuis l'estimation jusqu'à la mise en service"
-                    },
-                    {
-                      icon: "🔧",
-                      question: "Quels produits utilisez-vous ?",
-                      answer: "Nous travaillons avec des modules photovoltaïques de dernière génération, conformes aux normes strictes. Nos capteurs solaires garantissent une production fiable et optimale, même dans des conditions d'ensoleillement variables."
-                    },
-                    {
-                      icon: "🏆",
-                      question: "Pourquoi choisir un installateur RGE ?",
-                      answer: "Un installateur RGE vous garantit une installation conforme aux normes en vigueur et l'éligibilité aux aides de l'État. Nos techniciens qualifiés réalisent des travaux durables et adaptés à chaque situation."
-                    },
-                    {
-                      icon: "🏢",
-                      question: "Quels sont les bénéfices de la transition énergétique pour les entreprises ?",
-                      answer: "Pour les entreprises, la transition énergétique permet de :\n\n- Réduire les coûts énergétiques sur le long terme\n- Renforcer leur engagement envers l'environnement\n- Valoriser leur image auprès des clients et partenaires"
-                    },
-                    {
-                      icon: "❄️",
-                      question: "Proposez-vous des solutions de climatisation ou de chauffage solaire ?",
-                      answer: "Oui, en complément de l'installation photovoltaïque, nous proposons des systèmes combinés avec des pompes à chaleur et des solutions de climatisation pour maximiser le confort et l'efficacité énergétique."
-                    },
-                    {
-                      icon: "💡",
-                      question: "Comment garantir la rentabilité de mon investissement ?",
-                      answer: "Nos experts réalisent une étude complète de vos besoins pour concevoir un plan sur mesure. Grâce à une installation optimisée, une maintenance régulière, et les aides financières, vous bénéficiez d'un retour sur investissement rapide et durable."
-                    },
-                    {
-                      icon: "📍",
-                      question: "Où intervenez-vous ?",
-                      answer: "Nous couvrons la ville de Manosque, les Alpes-de-Haute-Provence, ainsi que des villes comme Aix-en-Provence et Sainte-Tulle. Notre équipe intervient rapidement pour tous types de projets, du résidentiel à l'industriel."
-                    }
-                  ].map((faq, index) => {
-                    const [isOpen, setIsOpen] = useState(false);
-                    return (
-                      <div 
-                        key={index} 
-                        className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden"
-                      >
-                        <div 
-                          onClick={() => setIsOpen(!isOpen)}
-                          className="flex items-center justify-between p-6 cursor-pointer hover:bg-gray-50 transition-colors"
-                        >
-                          <div className="flex items-center space-x-4">
-                            <span className="text-3xl">{faq.icon}</span>
-                            <h3 className="text-lg font-semibold text-gray-900">
-                              {faq.question}
-                            </h3>
-                          </div>
-                          <svg 
-                            xmlns="http://www.w3.org/2000/svg" 
-                            className={`h-6 w-6 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                            fill="none" 
-                            viewBox="0 0 24 24" 
-                            stroke="currentColor"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </div>
-                        {isOpen && (
-                          <div className="px-6 pb-6 text-gray-600 whitespace-pre-line">
-                            {faq.answer}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-12 text-center">
-                  <div className="inline-flex items-center space-x-4 bg-yellow-100 px-6 py-3 rounded-full">
-                    <svg 
-                      xmlns="http://www.w3.org/2000/svg" 
-                      className="h-8 w-8 text-yellow-600" 
-                      fill="none" 
-                      viewBox="0 0 24 24" 
-                      stroke="currentColor"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span className="text-lg font-medium text-yellow-900">
-                      Une question ? Contactez nos experts
-                    </span>
-                    <Link 
-                      href="/contact" 
-                      className="ml-4 px-4 py-2 bg-yellow-500 text-white rounded-full hover:bg-yellow-600 transition-colors"
-                    >
-                      Contactez-nous
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </section>
+            <FAQSection />
 
             {/* Social Media and Neighboring Cities Section */}
             <div className="mt-16 bg-gradient-to-br from-blue-50 to-white py-16 px-4 sm:px-6 lg:px-8 rounded-3xl shadow-xl">
