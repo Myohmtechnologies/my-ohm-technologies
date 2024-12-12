@@ -87,10 +87,13 @@ export default function ClientPage({
           name="description"
           content={city.seo.metaDescription}
         />
+        <meta 
+          name="keywords" 
+          content={`panneaux solaires ${city.name}, installation photovoltaïque, autoconsommation, transition énergétique, production kWh, onduleur, énergie renouvelable`} 
+        />
         <meta property="og:title" content={`Installation Panneaux Solaires ${city.name} (${city.code})`} />
         <meta property="og:description" content={city.seo.metaDescription} />
         <meta property="og:image" content={`https://www.myohm-technologies.fr/images/cities/${params.city}.jpg`} />
-        <meta name="keywords" content={`panneaux solaires ${city.name}, installation photovoltaïque, autoconsommation, transition énergétique, production kWh, onduleur, énergie renouvelable`}/>
       </Head>
 
       <div className="bg-white">
@@ -104,7 +107,7 @@ export default function ClientPage({
             className="object-cover"
             priority
             placeholder="blur"
-            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAMYAAAAAAIAAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANv/bAEMAFA4PEg8NFBIQEhcVFBgeMiEeHBwZJjItJjBHPDJCR0FRRFdtcm9dUUFuaWNtcW9yPT9CZkJxbXVtUWJGUGhTbv/bAEMBFRcXHhoeMyEhMFBzUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUP/AABEIAAYACgMBIgACEQEDEQH/xAAVAAEBAAAAAAAAAAAAAAAAAAAABf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AlgAH/9k="
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAMYAAAAAAIAAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANv/bAEMAFA4PEg8NFBIQEhcVFBgeMiEeHBwZJjItJjBHPDJCR0FRRFdtcm9dUUFuaWNtcW9yPT9CZkJxbXVtUWJGUGhTbv/bAEMBFRcXHhoeMyEhMFBzUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUP/AABEIAAYACgMBIgACEQEDEQH/xAAVAAEBAAAAAAAAAAAAAAAAAAAABf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AlgAH/9k="
             aria-label={`Paysage des Alpes-de-Haute-Provence représentant le contexte des installations solaires à ${city.name}`}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30" />
@@ -550,9 +553,154 @@ export default function ClientPage({
               </div>
             </section>
 
+            {/* Aides Financières de l'État */}
+            <div className="container mx-auto px-4 py-16">
+              <div className="bg-gradient-to-br from-blue-50 to-green-50 rounded-3xl shadow-xl overflow-hidden">
+                <div className="p-8 lg:p-12">
+                  <h2 className="text-3xl font-bold text-green-800 mb-8 text-center">
+                    Aides Financières de l'État pour Panneaux Solaires
+                  </h2>
+                  
+                  <div className="grid md:grid-cols-3 gap-6">
+                    {/* Prime à l'autoconsommation */}
+                    <div className="bg-white rounded-2xl p-6 shadow-md">
+                      <div className="flex items-center mb-4">
+                        <svg className="w-10 h-10 text-green-600 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M11.25 0l-10.25 10.25 4.25 4.25 6-6v15.5h4v-15.5l6 6 4.25-4.25z"/>
+                        </svg>
+                        <h3 className="text-xl font-semibold text-green-800">
+                          Prime à l'Autoconsommation
+                        </h3>
+                      </div>
+                      <ul className="space-y-2 text-gray-700">
+                        <li>• 6 kWc : <span className="font-bold text-green-600">1 140 €</span></li>
+                        <li>• 9 kWc : <span className="font-bold text-green-600">1 710 €</span></li>
+                        <li>• 12 kWc : <span className="font-bold text-green-600">2 280 €</span></li>
+                      </ul>
+                      <p className="text-xs italic text-gray-500 mt-4">
+                        Valable jusqu'au 31 octobre 2024
+                      </p>
+                    </div>
+
+                    {/* TVA Réduite */}
+                    <div className="bg-white rounded-2xl p-6 shadow-md">
+                      <div className="flex items-center mb-4">
+                        <svg className="w-10 h-10 text-blue-600 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 18h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z"/>
+                        </svg>
+                        <h3 className="text-xl font-semibold text-blue-800">
+                          TVA Réduite
+                        </h3>
+                      </div>
+                      <p className="text-gray-700">
+                        Taux réduit à <span className="font-bold text-blue-600">10%</span> 
+                        au lieu de 20% pour les installations
+                      </p>
+                      <ul className="text-sm text-gray-600 mt-4 space-y-2">
+                        <li>• Puissance ≤ 3 kWc</li>
+                        <li>• Maison achevée depuis 2 ans</li>
+                        <li>• Installation par professionnel RGE</li>
+                      </ul>
+                    </div>
+
+                    {/* Exonération Fiscale */}
+                    <div className="bg-white rounded-2xl p-6 shadow-md">
+                      <div className="flex items-center mb-4">
+                        <svg className="w-10 h-10 text-purple-600 mr-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.393 6.627-6.664 1.4 1.406-8 8z"/>
+                        </svg>
+                        <h3 className="text-xl font-semibold text-purple-800">
+                          Exonération Fiscale
+                        </h3>
+                      </div>
+                      <p className="text-gray-700">
+                        Revenus de vente d'électricité <span className="font-bold text-purple-600">non imposables</span>
+                      </p>
+                      <ul className="text-sm text-gray-600 mt-4 space-y-2">
+                        <li>• Installation de 3 kWc</li>
+                        <li>• Surplus d'électricité revendu</li>
+                        <li>• Aucune imposition sur les revenus</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="text-center mt-8">
+                    <p className="text-gray-600 mb-4 italic">
+                      Ces aides sont susceptibles d'évoluer. Vérifiez les conditions actuelles.
+                    </p>
+                    <button className="bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition-colors duration-300 shadow-lg">
+                      Consulter un expert
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Simulation Section - Full Width */}
             <div className="w-screen relative left-[50%] right-[50%] -mx-[50vw]">
               <SimulationSection />
+            </div>
+
+            {/* Simulation Financière */}
+            <div className="container mx-auto px-4 py-16">
+              <div className="bg-gradient-to-br from-blue-50/80 to-green-50/80 rounded-3xl shadow-2xl overflow-hidden">
+                <div className="grid md:grid-cols-2 gap-8 p-8 lg:p-12">
+                  <div className="space-y-6">
+                    <h2 className="text-3xl font-extrabold text-green-800 mb-4">
+                      Simulateur Économique Personnalisé
+                    </h2>
+                    <div className="bg-white/90 p-6 rounded-xl shadow-md">
+                      <h3 className="text-xl font-semibold text-blue-700 mb-4">
+                        Estimation de Votre Retour sur Investissement
+                      </h3>
+                      <ul className="space-y-3 text-gray-700">
+                        <li className="flex justify-between">
+                          <span className="font-medium">Investissement moyen</span>
+                          <span className="font-bold text-green-600">9 000€ - 15 000€</span>
+                        </li>
+                        <li className="flex justify-between">
+                          <span className="font-medium">Économie annuelle</span>
+                          <span className="font-bold text-green-600">300€ - 600€</span>
+                        </li>
+                        <li className="flex justify-between">
+                          <span className="font-medium">Temps de retour</span>
+                          <span className="font-bold text-green-600">10-15 ans</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div className="bg-white/90 p-6 rounded-xl shadow-md h-full">
+                      <h3 className="text-xl font-semibold text-green-700 mb-4">
+                        Potentiel de Production
+                      </h3>
+                      <div className="space-y-3 text-gray-700">
+                        <div className="flex justify-between items-center">
+                          <span>Production moyenne annuelle</span>
+                          <span className="font-bold text-green-600">3 500 - 4 500 kWh</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span>Équivalent consommation</span>
+                          <span className="font-bold text-green-600">40-50% de vos besoins</span>
+                        </div>
+                        <p className="text-xs italic text-gray-500 text-right mt-2">
+                          * Estimation pour installation 6-9 kWc
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-green-100/50 p-6 text-center">
+                  <p className="text-gray-700 mb-4">
+                    Simulation indicative. Chaque projet est unique.
+                  </p>
+                  <button className="bg-green-600 text-white px-8 py-3 rounded-full hover:bg-green-700 transition-colors duration-300 shadow-lg hover:shadow-xl">
+                    Demander une étude personnalisée
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* Social Media and Neighboring Cities Section */}
@@ -633,7 +781,7 @@ export default function ClientPage({
                         url: 'https://www.instagram.com/myohm.technologies', 
                         icon: (props: React.SVGProps<SVGSVGElement>) => (
                           <svg {...props} fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162S8.597 18.163 12 18.163s6.162-2.759 6.162-6.162S15.403 5.838 12 5.838zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1 17l-5-5.299 1.399-1.43 3.574 3.393 6.627-6.664 1.4 1.406-8 8z"/>
                           </svg>
                         ),
                         color: 'bg-pink-50 text-pink-600 hover:bg-pink-100'
