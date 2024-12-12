@@ -20,7 +20,17 @@ type CityData = {
   name: string;
   code: string;
   population: number;
-  description: string;
+  seo: {
+    title: string;
+    metaDescription: string;
+    keywords: string[];
+    images: {
+      url: string;
+      width: number;
+      height: number;
+      alt: string;
+    }[];
+  };
   solarAdvantages: string[];
   keyPoints: string[];
   reviews: Review[];
@@ -71,10 +81,10 @@ export default function ClientPage({
         <title>{`Installation Panneaux Solaires ${city.name} (${city.code}) | MyOhm Technologies`}</title>
         <meta
           name="description"
-          content={`Expert en installation de panneaux solaires à ${city.name}. Profitez d'un ensoleillement exceptionnel et réduisez vos factures d'électricité. Devis gratuit personnalisé.`}
+          content={city.seo.metaDescription}
         />
         <meta property="og:title" content={`Installation Panneaux Solaires ${city.name} (${city.code})`} />
-        <meta property="og:description" content={`Installation de panneaux solaires à ${city.name}. Profitez d'un ensoleillement exceptionnel.`} />
+        <meta property="og:description" content={city.seo.metaDescription} />
         <meta property="og:image" content={`https://www.myohm-technologies.fr/images/cities/${params.city}.jpg`} />
       </Head>
 
@@ -107,7 +117,7 @@ export default function ClientPage({
             {/* Description Section */}
             <div className="max-w-3xl mx-auto text-center mb-16">
               <p className="text-xl text-gray-600">
-                {city.description}
+                {city.seo.metaDescription}
               </p>
             </div>
 

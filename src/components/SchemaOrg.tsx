@@ -9,7 +9,7 @@ export default function SchemaOrg({ city }: SchemaOrgProps) {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: `MyOhm Technologies - Installation Panneaux Solaires ${city.name}`,
-    description: city.description,
+    description: city.seo.metaDescription,
     url: `https://myohmtechnologies.fr/region/04-alpes-de-haute-provence/${city.name.toLowerCase()}`,
     address: {
       '@type': 'PostalAddress',
