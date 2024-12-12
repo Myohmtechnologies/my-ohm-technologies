@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Head from 'next/head';
-import { SunIcon, HomeIcon, BanknotesIcon, StarIcon, BoltIcon, ChatBubbleLeftIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { SunIcon, HomeIcon, BanknotesIcon, StarIcon, BoltIcon, ChatBubbleLeftIcon, XMarkIcon, MapPinIcon, ShareIcon, MapIcon } from '@heroicons/react/24/outline';
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
 import SimulationSection from '@/components/sections/ProjectSimulationSection';
 import Link from 'next/link';
@@ -67,6 +67,10 @@ export default function ClientPage({
 }) {
   const [showContactModal, setShowContactModal] = useState(false);
 
+  const formatNumber = (num: number) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  };
+
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }).map((_, index) => (
       index < rating 
@@ -93,20 +97,30 @@ export default function ClientPage({
         <div className="relative h-[400px] w-full">
           <Image
             src="/images/regions/alpes-de-haute-provence-hero.webp"
-            alt="Alpes-de-Haute-Provence"
+            alt={`Paysage des Alpes-de-Haute-Provence - Contexte pour installations solaires à ${city.name}`}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover"
             priority
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gIoSUNDX1BST0ZJTEUAAQEAAAMYAAAAAAIAAABtbnRyUkdCIFhZWiAAAAAAAAAAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAAHRyWFlaAAABZAAAABRnWFlaAAABeAAAABRiWFlaAAABjAAAABRyVFJDAAABoAAAAChnVFJDAAABoAAAAChiVFJDAAABoAAAACh3dHB0AAAByAAAABRjcHJ0AAAB3AAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAFgAAAAcAHMAUgBHAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFhZWiAAAAAAAABvogAAOPUAAAOQWFlaIAAAAAAAAGKZAAC3hQAAGNpYWVogAAAAAAAAJKAAAA+EAAC2z3BhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABYWVogAAAAAAAA9tYAAQAAAADTLW1sdWMAAAAAAAAAAQAAAAxlblVTAAAAIAAAABwARwBvAG8AZwBsAGUAIABJAG4AYwAuACAAMgAwADEANv/bAEMAFA4PEg8NFBIQEhcVFBgeMiEeHBwZJjItJjBHPDJCR0FRRFdtcm9dUUFuaWNtcW9yPT9CZkJxbXVtUWJGUGhTbv/bAEMBFRcXHhoeMyEhMFBzUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUP/AABEIAAYACgMBIgACEQEDEQH/xAAVAAEBAAAAAAAAAAAAAAAAAAAABf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AlgAH/9k="
+            aria-label={`Paysage des Alpes-de-Haute-Provence représentant le contexte des installations solaires à ${city.name}`}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white px-4">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <h1 
+                className="text-4xl md:text-5xl font-bold mb-4"
+                aria-label={`Installation de panneaux solaires à ${city.name}`}
+              >
                 Installation Panneaux Solaires à {city.name}
               </h1>
-              <div className="flex items-center justify-center gap-2 text-lg">
+              <div 
+                className="flex items-center justify-center gap-2 text-lg"
+                aria-label={`Population de ${city.name}`}
+              >
                 <HomeIcon className="w-6 h-6" />
-                <span>{city.population.toLocaleString()} habitants</span>
+                <span>{formatNumber(city.population)} habitants</span>
               </div>
             </div>
           </div>
@@ -123,15 +137,33 @@ export default function ClientPage({
 
             {/* Avantages Section */}
             <div className="grid md:grid-cols-2 gap-8 mb-16">
-              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                  <SunIcon className="w-6 h-6 text-blue-600" />
+              <div 
+                className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
+                aria-labelledby="solar-advantages-title"
+              >
+                <h2 
+                  id="solar-advantages-title"
+                  className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2"
+                >
+                  <SunIcon 
+                    className="w-6 h-6 text-blue-600" 
+                    aria-hidden="true"
+                  />
                   Avantages solaires à {city.name}
                 </h2>
                 <ul className="space-y-4">
                   {city.solarAdvantages.map((advantage, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="text-blue-600 font-bold">•</span>
+                    <li 
+                      key={index} 
+                      className="flex items-start gap-3"
+                      aria-label={`Avantage ${index + 1}: ${advantage}`}
+                    >
+                      <span 
+                        className="text-blue-600 font-bold" 
+                        aria-hidden="true"
+                      >
+                        •
+                      </span>
                       <span className="text-gray-700">{advantage}</span>
                     </li>
                   ))}
@@ -140,8 +172,15 @@ export default function ClientPage({
 
               <div className="grid grid-cols-2 gap-4">
                 {city.keyPoints.slice(0, 4).map((point, index) => (
-                  <div key={index} className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
-                    <BanknotesIcon className="w-6 h-6 text-blue-600 mb-3" />
+                  <div 
+                    key={index} 
+                    className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow"
+                    aria-label={`Point clé ${index + 1}: ${point}`}
+                  >
+                    <BanknotesIcon 
+                      className="w-6 h-6 text-blue-600 mb-3" 
+                      aria-hidden="true"
+                    />
                     <p className="text-gray-700">{point}</p>
                   </div>
                 ))}
@@ -149,48 +188,106 @@ export default function ClientPage({
             </div>
 
             {/* Notre Engagement Section */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">
-                Notre Engagement pour {city.name}
-              </h2>
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <p className="text-gray-700 mb-6">
-                    En tant qu'expert local de l'installation de panneaux solaires à {city.name}, 
-                    nous connaissons parfaitement les spécificités de votre région. Notre équipe 
-                    vous accompagne dans toutes les étapes de votre projet.
-                  </p>
-                  <ul className="space-y-3">
-                    <li className="flex items-center gap-3">
-                      <span className="text-blue-600 font-bold">✓</span>
-                      <span className="text-gray-700">Étude personnalisée gratuite</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-blue-600 font-bold">✓</span>
-                      <span className="text-gray-700">Installation par des professionnels certifiés</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-blue-600 font-bold">✓</span>
-                      <span className="text-gray-700">Matériel de haute qualité garanti</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-blue-600 font-bold">✓</span>
-                      <span className="text-gray-700">Suivi et maintenance assurés</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="text-blue-600 font-bold">✓</span>
-                      <span className="text-gray-700">Accompagnement dans les démarches d'aides financières</span>
-                    </li>
-                  </ul>
+            <div className="mt-16">
+              <h2 className="text-2xl font-bold text-gray-900 mb-8">Notre Engagement pour Manosque</h2>
+
+              {/* Notre Engagement Section */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 mb-16">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                  Pourquoi choisir MyOhm Technologies à {city.name} ?
+                </h2>
+                
+                {/* Certifications */}
+                <div className="grid md:grid-cols-3 gap-8 mb-8">
+                  <div className="bg-gradient-to-br from-blue-50 to-white rounded-xl p-8 shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <span className="text-2xl font-bold text-blue-600">Q</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-blue-900 mb-3">QualiPV</h3>
+                      <div className="h-0.5 w-12 bg-blue-400 mb-4"></div>
+                      <p className="text-gray-700 text-center leading-relaxed">
+                        Certification attestant notre expertise dans l'installation photovoltaïque
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-green-50 to-white rounded-xl p-8 shadow-lg border border-green-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <span className="text-2xl font-bold text-green-600">Q</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-green-900 mb-3">Qualibat</h3>
+                      <div className="h-0.5 w-12 bg-green-400 mb-4"></div>
+                      <p className="text-gray-700 text-center leading-relaxed">
+                        Garantie de qualité et de professionnalisme dans le bâtiment
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-purple-50 to-white rounded-xl p-8 shadow-lg border border-purple-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="flex flex-col items-center">
+                      <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <span className="text-2xl font-bold text-purple-600">R</span>
+                      </div>
+                      <h3 className="text-xl font-bold text-purple-900 mb-3">RGE</h3>
+                      <div className="h-0.5 w-12 bg-purple-400 mb-4"></div>
+                      <p className="text-gray-700 text-center leading-relaxed">
+                        Reconnu Garant de l'Environnement pour vos aides financières
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div className="relative rounded-xl overflow-hidden aspect-w-4 aspect-h-3">
-                  <Image
-                    src="/images/solar-worker.jpg"
-                    alt="Installation de panneaux solaires"
-                    fill
-                   
-                    className="object-cover"
-                  />
+
+                {/* Points Forts */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg  text-black mb-2">Expertise Locale</h3>
+                      <p className="text-gray-600">Des installations réussies dans la ville de {city.name} et ses environs</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-black mb-2">Service Rapide</h3>
+                      <p className="text-gray-600">Prise en charge complète avec un suivi personnalisé</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-black mb-2">Qualité Garantie</h3>
+                      <p className="text-gray-600">Garantie décennale et suivi technique complet de votre installation</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-black mb-2">Matériel Premium</h3>
+                      <p className="text-gray-600">Utilisation exclusive de panneaux Photovoltaïque  Les Meilleur du marché</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -452,161 +549,121 @@ export default function ClientPage({
               </div>
             </section>
 
-            {/* Installateurs Section */}
-            <section className="bg-white py-16">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                    Qui sont les installateurs à {city.name} ?
-                  </h2>
-                  <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Découvrez notre réseau d'installateurs de panneaux solaires certifiés RGE à {city.name}. 
-                    Des experts qualifiés pour votre projet photovoltaïque.
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {city.solarInstallation.installers.map((installer, index) => (
-                    <div key={index} className="bg-gray-50 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                      <div className="flex items-start space-x-4">
-                        <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                            <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">{installer.name}</h3>
-                          <div className="space-y-2">
-                            {installer.certifications.map((cert, idx) => (
-                              <span key={idx} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 mr-2">
-                                {cert}
-                              </span>
-                            ))}
-                          </div>
-                          <p className="mt-2 text-gray-600">{installer.description}</p>
-                          <div className="mt-4 flex items-center text-sm text-gray-500">
-                            <svg className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            {installer.experience}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-12 text-center">
-                  <button
-                    onClick={() => setShowContactModal(true)}
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all"
-                  >
-                    Contacter un installateur
-                  </button>
-                </div>
-              </div>
-            </section>
-
-            {/* Aides et Subventions Section */}
-            <section className="bg-gradient-to-b from-white to-gray-50 py-16">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                    Aides et subventions d'installation à {city.name}
-                  </h2>
-                  <p className="text-lg text-gray-600">
-                    Découvrez toutes les aides financières disponibles pour votre projet solaire
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                  {/* Prime à l'autoconsommation */}
-                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
-                    <div className="flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-4">
-                      <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Prime à l'autoconsommation</h3>
-                    <p className="text-gray-600 mb-4">
-                      Bénéficiez d'une prime gouvernementale pour votre installation en autoconsommation
-                    </p>
-                    <ul className="space-y-2">
-                      <li className="flex items-center justify-between">
-                        <span className='text-black'>6 kWc</span>
-                        <span className="font-bold text-green-600">1 140 €</span>
-                      </li>
-                      <li className="flex items-center justify-between">
-                        <span className='text-black'>9 kWc</span>
-                        <span className="font-bold text-green-600">1 710 €</span>
-                      </li>
-                      <li className="flex items-center justify-between">
-                        <span className='text-black'>12 kWc</span>
-                        <span className="font-bold text-green-600">2 280 €</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* Tarif de rachat */}
-                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
-                    <div className="flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-4">
-                      <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Tarif de rachat subventionné</h3>
-                    <p className="text-gray-600">
-                      Vendez votre surplus d'électricité à un tarif avantageux garanti par l'État pendant 20 ans. Un revenu complémentaire stable et prévisible.
-                    </p>
-                  </div>
-
-                  {/* TVA Réduite */}
-                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
-                    <div className="flex items-center justify-center w-12 h-12 bg-yellow-100 rounded-full mb-4">
-                      <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">TVA à 10%</h3>
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-gray-600">Au lieu de</span>
-                      <span className="line-through text-gray-400">20%</span>
-                    </div>
-                    <p className="text-gray-600">
-                      Profitez d'une TVA réduite sur l'installation de vos panneaux solaires, une économie immédiate de 10% sur votre investissement.
-                    </p>
-                  </div>
-
-                  {/* Exonération d'impôts */}
-                  <div className="bg-white rounded-xl shadow-lg p-6 transform transition-all hover:scale-105">
-                    <div className="flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-4">
-                      <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">Exonération d'impôts</h3>
-                    <p className="text-gray-600">
-                      Les revenus issus de la vente de votre électricité solaire sont exonérés d'impôts jusqu'à 3000€ par an. Un avantage fiscal significatif pour optimiser votre investissement.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-12 text-center">
-                  <button
-                    onClick={() => setShowContactModal(true)}
-                    className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all"
-                  >
-                    Calculer vos aides
-                  </button>
-                </div>
-              </div>
-            </section>
-
             {/* Simulation Section - Full Width */}
             <div className="w-screen relative left-[50%] right-[50%] -mx-[50vw]">
               <SimulationSection />
+            </div>
+
+            {/* Social Media and Neighboring Cities Section */}
+            <div className="mt-16 bg-gradient-to-br from-blue-50 to-white py-16 px-4 sm:px-6 lg:px-8 rounded-3xl shadow-xl">
+              <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+                {/* Neighboring Cities */}
+                <div className="bg-white rounded-3xl p-8 shadow-lg border border-blue-100 transform transition-all hover:scale-[1.02]">
+                  <div className="flex items-center mb-6">
+                    <MapPinIcon className="w-8 h-8 text-blue-600 mr-3" />
+                    <h2 className="text-3xl font-bold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
+                      Nos Interventions Locales
+                    </h2>
+                  </div>
+                  <p className="text-gray-600 mb-6 text-lg">
+                    Découvrez nos services dans les villes voisines de {city.name}
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { name: 'Digne-les-Bains', code: '04000', distance: '45 km' },
+                      { name: 'Sisteron', code: '04200', distance: '35 km' },
+                      { name: 'Forcalquier', code: '04300', distance: '20 km' },
+                      { name: 'Castellane', code: '04120', distance: '55 km' }
+                    ].map((neighborCity) => (
+                      <Link 
+                        key={neighborCity.code} 
+                        href={`/region/04-alpes-de-haute-provence/${neighborCity.name.toLowerCase()}`} 
+                        className="block bg-blue-50 hover:bg-blue-100 rounded-xl p-4 text-center transition-all transform hover:scale-105 group"
+                      >
+                        <div className="flex flex-col items-center">
+                          <span className="text-blue-800 font-bold text-lg group-hover:text-blue-900">
+                            {neighborCity.name}
+                          </span>
+                          <span className="text-sm text-gray-500 mt-1 flex items-center">
+                            <MapIcon className="w-4 h-4 mr-1 text-blue-500" />
+                            {neighborCity.distance}
+                          </span>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Social Media Links */}
+                <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100 transform transition-all hover:scale-[1.02]">
+                  <div className="flex items-center mb-6">
+                    <ShareIcon className="w-8 h-8 text-purple-600 mr-3" />
+                    <h2 className="text-3xl font-bold text-gray-900 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-purple-400">
+                      Rejoignez-nous
+                    </h2>
+                  </div>
+                  <p className="text-gray-600 mb-6 text-lg">
+                    Suivez notre aventure solaire et restez connecté
+                  </p>
+                  <div className="grid grid-cols-2 gap-4">
+                    {[
+                      { 
+                        name: 'Facebook', 
+                        url: 'https://www.facebook.com/myohm.technologies', 
+                        icon: (props) => (
+                          <svg {...props} fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                          </svg>
+                        ),
+                        color: 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                      },
+                      { 
+                        name: 'LinkedIn', 
+                        url: 'https://www.linkedin.com/company/myohm-technologies', 
+                        icon: (props) => (
+                          <svg {...props} fill="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        ),
+                        color: 'bg-blue-50 text-blue-800 hover:bg-blue-100'
+                      },
+                      { 
+                        name: 'Instagram', 
+                        url: 'https://www.instagram.com/myohm.technologies', 
+                        icon: (props) => (
+                          <svg {...props} fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.148-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162S8.597 18.163 12 18.163s6.162-2.759 6.162-6.162S15.403 5.838 12 5.838zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                          </svg>
+                        ),
+                        color: 'bg-pink-50 text-pink-600 hover:bg-pink-100'
+                      },
+                      { 
+                        name: 'Twitter/X', 
+                        url: 'https://www.twitter.com/myohm_tech', 
+                        icon: (props) => (
+                          <svg {...props} fill="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.901 1.153h3.68l-8.04 9.557L24 22.846h-7.406l-5.8-7.584-6.638 7.584H1.474l8.659-9.928L0 1.153h7.594l5.243 6.932L18.901 1.153zm-2.101 19.694h2.039L7.233 3.259H5.065L16.8 20.847z" />
+                          </svg>
+                        ),
+                        color: 'bg-gray-50 text-black hover:bg-gray-100'
+                      }
+                    ].map((social) => (
+                      <Link 
+                        key={social.name} 
+                        href={social.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className={`flex items-center justify-center rounded-xl p-4 transition-all transform hover:scale-105 group ${social.color}`}
+                      >
+                        <social.icon className="w-6 h-6 mr-2 group-hover:scale-110 transition-transform" />
+                        <span className="font-semibold group-hover:text-opacity-80">
+                          {social.name}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>
