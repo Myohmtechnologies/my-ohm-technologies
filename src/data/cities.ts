@@ -103,7 +103,7 @@ export const cities: { [key: string]: City } = {
         author: "Sophie L.",
         rating: 4.5,
         date: "2023-10-20",
-        comment: "Très satisfaite de mon installation solaire. Économies réelles sur ma facture d'électricité.",
+        comment: "Très satisfaite top installateurs solaire. Économies réelles sur ma facture d'électricité.",
         location: "Manosque"
       }
     ],
@@ -1463,7 +1463,7 @@ export const cities: { [key: string]: City } = {
           description: "Top installateur de la région, notre entreprise combine expertise technique et service client premium. Nos techniciens qualifiés garantissent une installation optimale.",
           experience: "Plus de 1000 installations réussies"
         }
-      ],
+      },
       subsidies: {
         autoconsumption: {
           description: "Prime à l'autoconsommation pour les installations solaires",
@@ -1492,6 +1492,146 @@ export const cities: { [key: string]: City } = {
             "Revenus de la vente d'électricité exonérés jusqu'à 3000€/an",
             "Applicable pendant toute la durée du contrat de rachat"
           ]
+        }
+      }
+    }
+  },
+  oraison: {
+    name: "Oraison",
+    code: "04700",
+    population: 2500,
+    solarAdvantages: [
+      "Bon ensoleillement dans la région",
+      "Potentiel solaire intéressant",
+      "Commune rurale favorable aux énergies renouvelables"
+    ],
+    keyPoints: [
+      "Située dans les Alpes-de-Haute-Provence",
+      "Proximité de Digne-les-Bains",
+      "Territoire propice à l'installation de panneaux solaires"
+    ],
+    seo: {
+      title: "Panneaux solaires à Oraison - Solutions énergétiques durables",
+      metaDescription: "Découvrez les solutions de panneaux solaires adaptées à Oraison. Optimisez votre consommation d'énergie et réduisez votre empreinte carbone.",
+      keywords: ["panneaux solaires", "Oraison", "énergie renouvelable", "solaire"]
+    },
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation solaire à Oraison",
+        headers: ["Puissance", "Prix", "Type"],
+        rows: [
+          {
+            power: "3 kWc",
+            price: "9 000 €",
+            type: "Résidentiel",
+            badge: "Recommandé",
+            highlight: true,
+            description: "Installation idéale pour maison individuelle"
+          }
+        ],
+        notes: ["Prix indicatifs, hors aides et subventions"],
+        ctaText: "Demander un devis"
+      },
+      costs: [
+        { power: "3 kWc", price: 9000 }
+      ],
+      installers: [
+        {
+          name: "SolairePro Provence",
+          certifications: ["RGE", "Qualibat"],
+          description: "Installateur local spécialisé dans les solutions solaires",
+          experience: "10 ans"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "Prime à l'autoconsommation",
+          rates: [
+            { power: "3 kWc", amount: 1000 }
+          ]
+        },
+        buyback: {
+          description: "Rachat de l'électricité excédentaire",
+          details: ["Tarif garanti pendant 20 ans"]
+        },
+        vat: {
+          description: "TVA réduite pour les installations solaires",
+          rate: 5.5,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Exonération de taxe foncière",
+          details: ["Pendant 2 ans après l'installation"]
+        }
+      }
+    }
+  },
+  forcalquier: {
+    name: "Forcalquier",
+    code: "04300",
+    population: 4500,
+    solarAdvantages: [
+      "Excellente exposition solaire",
+      "Commune engagée dans la transition énergétique",
+      "Potentiel photovoltaïque élevé"
+    ],
+    keyPoints: [
+      "Située dans les Alpes-de-Haute-Provence",
+      "Chef-lieu de canton dynamique",
+      "Environnement propice aux énergies renouvelables"
+    ],
+    seo: {
+      title: "Panneaux solaires à Forcalquier - Solutions énergétiques innovantes",
+      metaDescription: "Trouvez les meilleures solutions de panneaux solaires à Forcalquier. Réduisez vos coûts énergétiques et contribuez à un avenir durable.",
+      keywords: ["panneaux solaires", "Forcalquier", "énergie verte", "photovoltaïque"]
+    },
+    solarInstallation: {
+      installationCostsTable: {
+        title: "Coûts d'installation solaire à Forcalquier",
+        headers: ["Puissance", "Prix", "Type"],
+        rows: [
+          {
+            power: "4 kWc",
+            price: "11 000 €",
+            type: "Résidentiel",
+            badge: "Recommandé",
+            highlight: true,
+            description: "Installation optimale pour maison individuelle"
+          }
+        ],
+        notes: ["Prix indicatifs, hors aides et subventions"],
+        ctaText: "Demander un devis"
+      },
+      costs: [
+        { power: "4 kWc", price: 11000 }
+      ],
+      installers: [
+        {
+          name: "EnergieVerte Alpes",
+          certifications: ["RGE", "Qualibat"],
+          description: "Expert local en solutions solaires",
+          experience: "12 ans"
+        }
+      ],
+      subsidies: {
+        autoconsumption: {
+          description: "Prime à l'autoconsommation",
+          rates: [
+            { power: "4 kWc", amount: 1200 }
+          ]
+        },
+        buyback: {
+          description: "Rachat de l'électricité excédentaire",
+          details: ["Tarif garanti pendant 20 ans"]
+        },
+        vat: {
+          description: "TVA réduite pour les installations solaires",
+          rate: 5.5,
+          normalRate: 20
+        },
+        taxExemption: {
+          description: "Exonération de taxe foncière",
+          details: ["Pendant 2 ans après l'installation"]
         }
       }
     }
