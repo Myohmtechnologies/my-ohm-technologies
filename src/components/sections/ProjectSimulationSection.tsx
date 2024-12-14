@@ -4,7 +4,11 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { simulatorEvents } from '@/utils/analytics';
 
-const SimulationSection = () => {
+interface SimulationSectionProps {
+  cityName?: string;
+}
+
+const SimulationSection = ({ cityName }: SimulationSectionProps) => {
   const handleSimulatorClick = () => {
     simulatorEvents.simulatorStart('homepage_cta');
   };

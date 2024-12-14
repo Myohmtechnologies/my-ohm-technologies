@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Head from 'next/head';
 import { SunIcon, HomeIcon, BanknotesIcon, StarIcon, BoltIcon, ChatBubbleLeftIcon, XMarkIcon, MapPinIcon, ShareIcon, MapIcon } from '@heroicons/react/24/outline';
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
-import SimulationSection from '@/components/sections/ProjectSimulationSection';
 import Link from 'next/link';
 import { useState } from 'react';
+import SimulationSection from '@/components/sections/ProjectSimulationSection';
 
 type Review = {
   author: string;
