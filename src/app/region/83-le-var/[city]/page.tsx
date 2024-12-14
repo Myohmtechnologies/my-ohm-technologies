@@ -8,14 +8,16 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  const varCities = cities.var || {};
-  return Object.keys(varCities).map((city) => ({
-    city: city,
-  }));
+  return Object.keys(cities)
+    .filter(key => key.startsWith('var_'))
+    .map((city) => ({
+      city: city.replace('var_', ''),
+    }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const city = cities.var?.[params.city];
+  const cityKey = `var_${params.city}`;
+  const city = cities[cityKey] as City | undefined;
   if (!city) return {};
 
   const title = `Installation Panneaux Solaires ${city.name} (${city.code}) | MyOhm Technologies`;
@@ -29,16 +31,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: 'website',
-      locale: 'fr_FR',
-      siteName: 'MyOhm Technologies',
-      images: [
-        {
-          url: '/images/solar-panels-og.jpg',
-          width: 1200,
-          height: 630,
-          alt: `Installation panneaux solaires à ${city.name}`,
-        },
-      ],
+      url: `https://www.myohmtech.fr/region/83-le-var/${params.city}`,
+      images: city.seo.images,
     },
     twitter: {
       card: 'summary_large_image',
@@ -64,11 +58,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function Page({ params }: Props) {
-  const city = cities.var?.[params.city];
+  const cityKey = `var_${params.city}`;
+  const city = cities[cityKey] as City;
   
   if (!city) {
-    return <div>Ville non trouvée</div>;
+    return null;
   }
 
-  return <ClientPage city={city} params={params} />;
+  return <ClientPage city={city} />;
 }

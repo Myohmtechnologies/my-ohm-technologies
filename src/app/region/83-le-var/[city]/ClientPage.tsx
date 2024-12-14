@@ -3,86 +3,15 @@
 
 import Image from 'next/image';
 import Head from 'next/head';
-import { SunIcon, HomeIcon, BanknotesIcon, StarIcon, BoltIcon, ChatBubbleLeftIcon, XMarkIcon, MapPinIcon, ShareIcon, MapIcon } from '@heroicons/react/24/outline';
-import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
+import { SunIcon, ChatBubbleLeftIcon, XMarkIcon, MapPinIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import { useState } from 'react';
 import SimulationSection from '@/components/sections/ProjectSimulationSection';
+import { City } from '@/data/cities';
+import FAQSection from '@/components/sections/FAQSection';
 
-type Review = {
-  author: string;
-  rating: number;
-  date: string;
-  comment: string;
-  location: string;
-};
-
-type CityData = {
-  name: string;
-  code: string;
-  population: number;
-  seo: {
-    title: string;
-    metaDescription: string;
-    keywords: string[];
-    images: {
-      url: string;
-      width: number;
-      height: number;
-      alt: string;
-    }[];
-  };
-  solarAdvantages: string[];
-  keyPoints: string[];
-  reviews?: Review[];
-  solarInstallation: {
-    installationCostsTable: {
-      title: string;
-      headers: string[];
-      rows: {
-        power: string;
-        price: string;
-        type: string;
-        badge?: string;
-        description?: string;
-        highlight?: boolean;
-      }[];
-      notes: string[];
-      ctaText: string;
-    };
-    costs: {
-      power: string;
-      price: number;
-    }[];
-    installers: {
-      name: string;
-      certifications: string[];
-      description: string;
-      experience: string;
-    }[];
-    subsidies: {
-      autoconsumption: {
-        description: string;
-        rates: {
-          power: string;
-          amount: number;
-        }[];
-      };
-      buyback: {
-        description: string;
-        details: string[];
-      };
-      vat: {
-        description: string;
-        rate: number;
-        normalRate: number;
-      };
-      taxExemption: {
-        description: string;
-        details: string[];
-      };
-    };
-  };
+type Props = {
+  city: City;
 };
 
 function FAQSection() {
@@ -128,13 +57,7 @@ function FAQSection() {
   );
 }
 
-export default function ClientPage({ 
-  city, 
-  params 
-}: { 
-  city: CityData; 
-  params: { city: string; }; 
-}) {
+export default function ClientPage({ city }: Props) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
