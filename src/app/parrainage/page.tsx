@@ -55,7 +55,7 @@ export default function ParrainagePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <span>500€ de réduction sur votre prochaine installation</span>
+                    <span>300€ de réduction sur votre prochaine installation</span>
                   </li>
                   <li className="flex items-center bg-gray-50 p-4 rounded-lg">
                     <span className="flex-shrink-0 w-8 h-8 bg-[#AFC97E] rounded-full flex items-center justify-center mr-4">
@@ -86,7 +86,7 @@ export default function ParrainagePage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <span>300€ de réduction sur votre installation</span>
+                    <span>200€ de réduction sur votre installation</span>
                   </li>
                   <li className="flex items-center bg-gray-50 p-4 rounded-lg">
                     <span className="flex-shrink-0 w-8 h-8 bg-[#FFDF64] rounded-full flex items-center justify-center mr-4">
