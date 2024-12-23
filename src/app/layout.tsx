@@ -9,8 +9,30 @@ import ClientLayout from '@/components/layout/ClientLayout';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'My Ohm Technologies - Installation de Panneaux Solaires',
-  description: 'Expert en installation de panneaux solaires pour particuliers et professionnels. Devis gratuit et étude personnalisée de votre projet.',
+  metadataBase: new URL('https://www.myohmtechnologies.com'),
+  title: 'MY OHM Technologies - Solutions Solaires Innovantes',
+  description: 'MY OHM Technologies propose des solutions solaires sur mesure pour les particuliers et les entreprises. Réduisez votre empreinte carbone et maîtrisez votre consommation énergétique.',
+  openGraph: {
+    title: 'MY OHM Technologies - Solutions Solaires Innovantes',
+    description: 'MY OHM Technologies propose des solutions solaires sur mesure pour les particuliers et les entreprises.',
+    url: 'https://www.myohmtechnologies.com',
+    siteName: 'MY OHM Technologies',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'fr_FR',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MY OHM Technologies - Solutions Solaires Innovantes',
+    description: 'MY OHM Technologies propose des solutions solaires sur mesure pour les particuliers et les entreprises.',
+    images: ['/images/og-image.jpg'],
+  },
   verification: {
     google: 'bshllqo6MIhoBv2oLuo-5lh9FzoXSYWFaQmCOzx62rA',
   },
