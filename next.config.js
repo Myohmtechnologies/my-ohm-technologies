@@ -2,9 +2,6 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Désactiver le prérendu des pages statiques
-  output: 'standalone',
-
   // Configuration webpack pour gérer les modules
   webpack: (config, { isServer }) => {
     // Configuration pour ignorer certains warnings
@@ -15,8 +12,7 @@ const nextConfig = {
     // Ignorer les warnings spécifiques
     config.ignoreWarnings = [
       /node:internal/,
-      /punycode/,
-      /useContext/
+      /punycode/
     ];
 
     return config;
@@ -51,11 +47,6 @@ const nextConfig = {
         permanent: false
       }
     ];
-  },
-
-  // Désactiver le prérendu de certaines pages
-  experimental: {
-    staticPageGenerationTimeout: 0,
   }
 };
 
