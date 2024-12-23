@@ -3,11 +3,9 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'standalone',
   
-  // Configuration expérimentale
+  // Supprimer les options expérimentales non supportées
   experimental: {
-    serverActions: true,
-    optimizePackageImports: ['@heroicons/react'],
-    fallbackModuleResolution: true,
+    // Serveur Actions sont maintenant activées par défaut
   },
 
   // Configuration Webpack personnalisée
@@ -26,9 +24,6 @@ const nextConfig = {
       net: false, 
       tls: false 
     };
-
-    // Optimisation des imports
-    config.resolve.extensions.push('.js', '.jsx', '.ts', '.tsx');
 
     return config;
   },
@@ -56,12 +51,7 @@ const nextConfig = {
         source: '/:path*',
         headers: [
           { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
-          { key: 'X-Content-Type-Options', value: 'nosniff' },
-          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
-          { 
-            key: 'Content-Security-Policy', 
-            value: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
-          }
+          { key: 'X-Content-Type-Options', value: 'nosniff' }
         ]
       }
     ];
@@ -69,20 +59,11 @@ const nextConfig = {
 
   // Options de build
   typescript: {
-    ignoreBuildErrors: false,  // Activé pour détecter les erreurs
+    ignoreBuildErrors: false
   },
   eslint: {
-    ignoreDuringBuilds: false,  // Activé pour détecter les erreurs
-  },
-
-  // Optimisation des images
-  images: {
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-  },
-
-  // Configuration de la génération statique
-  staticPageGenerationTimeout: 60,
+    ignoreDuringBuilds: false
+  }
 };
 
 module.exports = nextConfig;

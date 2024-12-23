@@ -25,7 +25,7 @@ export default function GlobalError({
             
             {error.digest && (
               <div className="bg-red-50 p-3 rounded-lg mb-6 text-sm text-gray-600">
-                <p>Code d'erreur système : {error.digest}</p>
+                <p>Code d&apos;erreur système : {error.digest}</p>
               </div>
             )}
             
@@ -34,7 +34,7 @@ export default function GlobalError({
                 onClick={() => reset()}
                 className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors flex items-center space-x-2"
               >
-                <span>Réinitialiser l'Application</span>
+                <span>Réinitialiser l&apos;Application</span>
               </button>
               <Link 
                 href="/" 

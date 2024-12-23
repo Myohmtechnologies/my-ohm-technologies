@@ -12,7 +12,7 @@ export default function NotFound() {
         </div>
         <h2 className="text-3xl font-bold text-blue-600 mb-4">Page Non Trouvée</h2>
         <p className="text-gray-700 mb-6">
-          La page que vous recherchez n'existe pas ou a été déplacée.
+          La page que vous recherchez n&apos;existe pas ou a été déplacée.
         </p>
         
         <div className="flex justify-center space-x-4">
@@ -31,7 +31,7 @@ export default function NotFound() {
         </div>
         
         <div className="mt-6 text-xs text-gray-500">
-          <p>Besoin d'aide ? Contactez notre support.</p>
+          <p>Besoin d&apos;aide ? Contactez notre support.</p>
           <p>support@myohmtechnologies.com</p>
         </div>
       </div>

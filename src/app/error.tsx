@@ -12,11 +12,7 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log l'erreur côté client
     console.error('Erreur inattendue :', error);
-    
-    // Potentiel envoi à un service de monitoring
-    // Par exemple : reportErrorToService(error);
   }, [error]);
 
   return (
@@ -32,7 +28,7 @@ export default function Error({
         
         {error.digest && (
           <div className="bg-red-50 p-3 rounded-lg mb-6 text-sm text-gray-600">
-            <p>Code d'erreur : {error.digest}</p>
+            <p>Code d&apos;erreur : {error.digest}</p>
           </div>
         )}
         
