@@ -1,14 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { SearchIcon } from '@heroicons/react/24/solid';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-blue-50 to-blue-100 p-4">
       <div className="bg-white shadow-2xl rounded-2xl p-10 max-w-md w-full text-center border-2 border-blue-200">
         <div className="flex justify-center mb-6">
-          <SearchIcon className="w-16 h-16 text-blue-500" />
+          <MagnifyingGlassIcon className="w-16 h-16 text-blue-500" />
         </div>
         <h2 className="text-3xl font-bold text-blue-600 mb-4">Page Non Trouvée</h2>
         <p className="text-gray-700 mb-6">
