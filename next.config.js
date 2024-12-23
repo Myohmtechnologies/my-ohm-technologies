@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     remotePatterns: [
       {
@@ -12,27 +14,42 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     formats: ['image/webp'],
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-    
+  webpack(config, { isServer }) {
     // Ignore punycode deprecation warnings
     config.ignoreWarnings = [
       { module: /node:punycode/ },
     ];
-    
+
+    // Handle SVG imports
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
+    // Resolve package.json issues
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+      };
+    }
+
     return config;
   },
   typescript: {
-    // Ignore ESLint warnings during build
+    // Ignore build errors
     ignoreBuildErrors: true,
   },
   eslint: {
     // Ignore ESLint warnings during build
     ignoreDuringBuilds: true,
   },
-}
+  // Disable server-side rendering for problematic pages
+  experimental: {
+    serverComponentsExternalPackages: ['punycode'],
+  },
+};
 
 module.exports = nextConfig;
