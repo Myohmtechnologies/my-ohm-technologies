@@ -36,8 +36,8 @@ const SolarInstallationSection = () => {
     <section className="relative bg-gray-50 py-16 sm:py-20">
       {/* Décoration d'arrière-plan */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute -top-20 -right-20 w-96 h-96 bg-[#AFC97E] rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-[#FFDF64] rounded-full blur-3xl"></div>
+        <div className="absolute -top-20 -right-20 w-96 h-96 bg-AFC97E rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-FFDF64 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +71,7 @@ const SolarInstallationSection = () => {
                 className="absolute -bottom-6 right-2 sm:right-4 lg:-right-6 bg-white p-2.5 sm:p-3 md:p-4 rounded-xl shadow-lg"
               >
                 <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="p-1 sm:p-1.5 md:p-2 bg-[#FFDF64] rounded-lg">
+                  <div className="p-1 sm:p-1.5 md:p-2 bg-FFDF64 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -93,8 +93,8 @@ const SolarInstallationSection = () => {
             viewport={{ once: true, amount: 0.1 }}
             className="lg:w-1/2 w-full px-2 sm:px-0"
           >
-            <p className="text-[#AFC97E] font-medium mb-4 tracking-wider">
-              L'ÉNERGIE SOLAIRE À VOTRE PORTÉE
+            <p className="text-AFC97E font-medium mb-4 tracking-wider">
+              L&apos;ÉNERGIE SOLAIRE À VOTRE PORTÉE
             </p>
 
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
@@ -103,8 +103,8 @@ const SolarInstallationSection = () => {
 
             <p className="text-gray-600 mb-8">
               Nous proposons des solutions solaires abordables avec des équipements de haute qualité. 
-              Notre équipe d'experts vous accompagne à chaque étape, de l'étude personnalisée à 
-              l'installation finale, en passant par toutes les démarches administratives.
+              Notre équipe d&apos;experts vous accompagne à chaque étape, de l&apos;étude personnalisée à 
+              l&apos;installation finale, en passant par toutes les démarches administratives.
             </p>
 
             {/* Statistiques */}
@@ -170,7 +170,7 @@ const SolarInstallationSection = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="#"
-                className="group inline-flex items-center bg-[#FFDF64] text-gray-900 font-medium py-3 px-6 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
+                className="group inline-flex items-center bg-FFDF64 text-gray-900 font-medium py-3 px-6 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
               >
                 VOIR NOS CERTIFICATIONS
                 <svg

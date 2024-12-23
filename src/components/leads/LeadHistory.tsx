@@ -62,7 +62,7 @@ export default function LeadHistory({ leadId }: LeadHistoryProps) {
   if (isLoading) {
     return (
       <div className="py-4 text-center text-gray-500">
-        Chargement de l'historique...
+        Chargement de l&apos;historique...
       </div>
     );
   }

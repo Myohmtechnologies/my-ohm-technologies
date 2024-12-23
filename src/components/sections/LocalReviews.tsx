@@ -43,7 +43,7 @@ const LocalReviews = ({ region }: Props) => {
                 </div>
                 <div className="flex gap-1">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <StarIcon key={i} className="w-5 h-5 text-[#FFDF64]" />
+                    <StarIcon key={i} className="w-5 h-5 text-FFDF64" />
                   ))}
                   {[...Array(5 - testimonial.rating)].map((_, i) => (
                     <StarIcon key={i} className="w-5 h-5 text-gray-300" />

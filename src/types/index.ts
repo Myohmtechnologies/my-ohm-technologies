@@ -119,7 +119,7 @@ export const REQUIRED_ACTIONS: Record<LeadStatus, string[]> = {
   [LeadStatus.MEETING_SCHEDULED]: ['TECHNICAL_VISIT'],
   [LeadStatus.TECHNICAL_VISIT]: ['CONTRACT'],
   [LeadStatus.CONTRACT_SIGNED]: ['INSTALLATION'],
-  [LeadStatus.INSTALLATION]: [],
+  [LeadStatus.INSTALLATION]: ['INSTALLATION_COMPLETE'],
   [LeadStatus.COMPLETED]: [],
   [LeadStatus.NOT_INTERESTED]: []
 };

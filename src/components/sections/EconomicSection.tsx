@@ -7,32 +7,32 @@ const EconomicSection = () => {
   const cards = [
     {
       icon: "/images/icone-soleil.svg",
-      title: "Avec + 300 jours d'ensoleillements",
-      bgColor: "bg-[#FFDF64]",
-      description: "Profitez d'un ensoleillement optimal en région PACA"
+      title: "Avec + 300 jours d&apos;ensoleillements",
+      bgColor: "bg-FFDF64",
+      description: "Profitez d&apos;un ensoleillement optimal en région PACA"
     },
     {
       icon: "/images/icone-portefeuille.svg",
-      title: "Jusqu'à 80% d'économie sur vos factures d'électricité",
-      bgColor: "bg-[#AFC97E]",
+      title: "Jusqu&apos;à 80% d&apos;économie sur vos factures d&apos;électricité",
+      bgColor: "bg-AFC97E",
       description: "Réduisez significativement vos dépenses énergétiques"
     },
     {
       icon: "/images/icone-energie.svg",
       title: "Une énergie verte et renouvelable",
-      bgColor: "bg-[#FFDF64]",
+      bgColor: "bg-FFDF64",
       description: "Contribuez activement à la transition écologique"
     },
     {
       icon: "/images/icone-valorisation.svg",
       title: "Valorisation de votre Patrimoine",
-      bgColor: "bg-[#AFC97E]",
+      bgColor: "bg-AFC97E",
       description: "Augmentez la valeur de votre bien immobilier"
     },
     {
       icon: "/images/energy-savings-icon.svg",
       title: "Autonomie Énergétique",
-      bgColor: "bg-[#FFDF64]",
+      bgColor: "bg-FFDF64",
       description: "Gagnez en indépendance énergétique avec votre installation solaire"
     }
   ];
@@ -63,10 +63,10 @@ const EconomicSection = () => {
 
   return (
     <section className="relative bg-gray-50 py-20 overflow-hidden">
-      {/* Décoration d'arrière-plan */}
+      {/* Décoration d&apos;arrière-plan */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#FFDF64] rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#AFC97E] rounded-full blur-3xl"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-FFDF64 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-AFC97E rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -75,9 +75,9 @@ const EconomicSection = () => {
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[#AFC97E] font-medium mb-4 tracking-wider"
+            className="text-AFC97E font-medium mb-4 tracking-wider"
           >
-            ÉCONOMISEZ AUJOURD'HUI, PROTÉGEZ DEMAIN
+            ÉCONOMISEZ AUJOURD&apos;HUI, PROTÉGEZ DEMAIN
           </motion.p>
 
           <motion.h2 
@@ -98,7 +98,7 @@ const EconomicSection = () => {
             className="text-gray-600 text-lg"
           >
             Équipez votre maison de panneaux solaires pour réduire votre facture
-            d'électricité et agir positivement pour la transition écologique.
+            d&apos;électricité et agir positivement pour la transition écologique.
           </motion.p>
         </div>
 
@@ -115,7 +115,7 @@ const EconomicSection = () => {
               variants={cardVariants}
               className="group bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 w-full h-[320px] flex flex-col items-center justify-center"
             >
-              <div className={`w-24 h-24 mb-4 ${card.bgColor} rounded-full p-5 group-hover:scale-110 transition-transform duration-300`}>
+              <div className="w-24 h-24 mb-4 ${card.bgColor} rounded-full p-5 group-hover:scale-110 transition-transform duration-300">
                 <div className="relative w-full h-full">
                   <Image
                     src={card.icon}

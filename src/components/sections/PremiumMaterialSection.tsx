@@ -39,8 +39,8 @@ const PremiumMaterialSection = () => {
     <section className="relative bg-gray-50 py-20 overflow-hidden">
       {/* Décoration d'arrière-plan */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-[#FFDF64] rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#AFC97E] rounded-full blur-3xl"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-FFDF64 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-AFC97E rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,7 +53,7 @@ const PremiumMaterialSection = () => {
             viewport={{ once: true }}
             className="lg:w-1/2"
           >
-            <p className="text-[#AFC97E] font-medium mb-4 tracking-wider">
+            <p className="text-AFC97E font-medium mb-4 tracking-wider">
               SÉCURITÉ ET RENDEMENT AU SOMMET
             </p>
 
@@ -64,11 +64,11 @@ const PremiumMaterialSection = () => {
             <div className="space-y-6 text-gray-600 mb-8">
               <p>
                 Nous travaillons exclusivement avec les marques de panneaux solaires et
-                d'onduleurs les plus fiables du monde.
+                d&apos;onduleurs les plus fiables du monde.
               </p>
               <p>
                 Notre sélection est basée sur le classement Bloomberg New Energy Finance
-                et les retours d'expérience des investisseurs professionnels qui évaluent
+                et les retours d&apos;expérience des investisseurs professionnels qui évaluent
                 minutieusement les risques et la performance de chaque marque.
               </p>
             </div>
@@ -84,7 +84,7 @@ const PremiumMaterialSection = () => {
                   transition={{ delay: index * 0.2 }}
                   className="flex items-start space-x-4"
                 >
-                  <div className="flex-shrink-0 w-10 h-10 bg-[#AFC97E]/10 rounded-full flex items-center justify-center text-lg">
+                  <div className="flex-shrink-0 w-10 h-10 bg-AFC97E/10 rounded-full flex items-center justify-center text-lg">
                     {feature.icon}
                   </div>
                   <div>
@@ -97,7 +97,7 @@ const PremiumMaterialSection = () => {
 
             <Link
               href="/simulator"
-              className="group inline-flex items-center bg-[#FFDF64] text-gray-900 font-medium py-3 px-8 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
+              className="group inline-flex items-center bg-FFDF64 text-gray-900 font-medium py-3 px-8 rounded-full shadow-md hover:shadow-xl transition-all duration-300"
             >
               SIMULER VOTRE PROJET
               <svg
@@ -127,7 +127,7 @@ const PremiumMaterialSection = () => {
           >
             <div className="relative">
               {/* Image principale */}
-              <div className="bg-[#F5F5F0] p-8 rounded-2xl shadow-lg">
+              <div className="bg-F5F5F0 p-8 rounded-2xl shadow-lg">
                 <Image
                   src="/images/pv.png"
                   alt="Panneaux solaires premium"
@@ -145,7 +145,7 @@ const PremiumMaterialSection = () => {
                 transition={{ delay: 0.3 }}
                 className="absolute bottom-4 right-4 bg-white px-6 py-3 rounded-xl shadow-lg"
               >
-                <p className="text-[#AFC97E] font-semibold text-lg">425 - 500 W</p>
+                <p className="text-AFC97E font-semibold text-lg">425 - 500 W</p>
                 <p className="text-gray-800">MY OHM Technologies</p>
               </motion.div>
 

@@ -100,15 +100,15 @@ export default function GuideModal({ isOpen, onClose }: GuideModalProps) {
                 
                 {isSuccess ? (
                   <div className="mt-4">
-                    <div className="rounded-md bg-[#AFC97E]/10 p-4">
+                    <div className="rounded-md bg-AFC97E/10 p-4">
                       <div className="flex">
                         <div className="flex-shrink-0">
-                          <svg className="h-5 w-5 text-[#AFC97E]" viewBox="0 0 20 20" fill="currentColor">
+                          <svg className="h-5 w-5 text-AFC97E" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                         </div>
                         <div className="ml-3">
-                          <p className="text-sm font-medium text-[#AFC97E]">
+                          <p className="text-sm font-medium text-AFC97E">
                             Votre guide a été envoyé avec succès !
                           </p>
                         </div>
@@ -124,7 +124,7 @@ export default function GuideModal({ isOpen, onClose }: GuideModalProps) {
                       <input
                         type="text"
                         {...register('fullName', { required: 'Ce champ est requis' })}
-                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#AFC97E] focus:ring-[#AFC97E] sm:text-sm text-black placeholder-black/60 ${
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-AFC97E focus:ring-AFC97E sm:text-sm text-black placeholder-black/60 ${
                           errors.fullName ? 'border-red-500' : ''
                         }`}
                         placeholder="Votre nom complet"
@@ -147,7 +147,7 @@ export default function GuideModal({ isOpen, onClose }: GuideModalProps) {
                             message: 'Adresse email invalide',
                           },
                         })}
-                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#AFC97E] focus:ring-[#AFC97E] sm:text-sm text-black placeholder-black/60 ${
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-AFC97E focus:ring-AFC97E sm:text-sm text-black placeholder-black/60 ${
                           errors.email ? 'border-red-500' : ''
                         }`}
                         placeholder="votre@email.com"
@@ -170,7 +170,7 @@ export default function GuideModal({ isOpen, onClose }: GuideModalProps) {
                             message: 'Numéro de téléphone invalide',
                           },
                         })}
-                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#AFC97E] focus:ring-[#AFC97E] sm:text-sm text-black placeholder-black/60 ${
+                        className={`mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-AFC97E focus:ring-AFC97E sm:text-sm text-black placeholder-black/60 ${
                           errors.phone ? 'border-red-500' : ''
                         }`}
                         placeholder="06 12 34 56 78"
@@ -202,7 +202,7 @@ export default function GuideModal({ isOpen, onClose }: GuideModalProps) {
                         className={`w-full inline-flex justify-center rounded-md border border-transparent px-4 py-2 text-sm font-medium text-white shadow-sm ${
                           isLoading
                             ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-[#AFC97E] hover:bg-[#AFC97E]/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#AFC97E]'
+                            : 'bg-AFC97E hover:bg-AFC97E/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-AFC97E'
                         }`}
                       >
                         {isLoading ? (

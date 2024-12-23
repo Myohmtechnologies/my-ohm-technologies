@@ -135,8 +135,8 @@ const MobileMenu = ({ isOpen, onClose }: MobileMenuProps) => {
           <Link 
             href="/simulator"
             onClick={onClose}
-            className="inline-flex items-center justify-center w-full px-6 py-3 border border-black rounded-full 
-                     text-sm font-semibold text-black bg-white hover:bg-gray-50 
+            className="inline-flex items-center justify-center w-full px-6 py-3 border  rounded-full 
+                     text-sm font-semibold text-black bg-gradient-to-br from-ffeb99 to-ffb700 backdrop-blur-lg hover:bg-gray-50 
                      transition-colors duration-200 group"
           >
             <span>MON ETUDE GRATUITE</span>

@@ -8,7 +8,7 @@ interface BlogHeadProps {
 
 const BlogHead = ({ title, description, mainImage }: BlogHeadProps) => {
   return (
-    <section className="bg-[#FFDF64] py-16">
+    <section className="bg-FFDF64 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-8">
         {/* Text Content */}
         <div className="lg:w-1/2">

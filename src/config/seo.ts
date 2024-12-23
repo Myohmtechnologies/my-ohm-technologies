@@ -31,7 +31,7 @@ export const defaultMetadata = {
     card: 'summary_large_image',
     title: 'MY OHM Technologies | Installation de Panneaux Solaires',
     description: 'Expert en installation de panneaux solaires en France. Solutions photovoltaïques sur-mesure.',
-    images: ['/images/twitter-image.jpg'],
+    images: '/images/twitter-image.jpg',
   },
   robots: {
     index: true,

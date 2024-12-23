@@ -302,7 +302,7 @@ export default function CreateProjectPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="bg-[#6C8D2F] text-white px-6 py-2 rounded-md hover:bg-[#557021] transition-colors disabled:opacity-50"
+            className="bg-6C8D2F text-white px-6 py-2 rounded-md hover:bg-557021 transition-colors disabled:opacity-50"
           >
             {isLoading ? 'Création en cours...' : 'Créer la réalisation'}
           </button>

@@ -47,7 +47,7 @@ export default function ShareButtons({ url, title }: Props) {
           href={link.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-600 hover:text-[#AFC97E] transition-colors"
+          className="text-gray-600 hover:text-AFC97E transition-colors"
           aria-label={`Partager sur ${link.name}`}
         >
           {link.icon}

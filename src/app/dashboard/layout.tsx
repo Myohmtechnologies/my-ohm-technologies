@@ -9,8 +9,6 @@ import {
   HomeIcon,
   CalendarIcon,
   UsersIcon,
-  FolderIcon,
-  ChartBarIcon,
   Cog6ToothIcon,
   DocumentTextIcon,
   PhotoIcon,
@@ -60,7 +58,7 @@ export default function DashboardLayout({
                     className={`
                       flex items-center px-4 py-3 text-sm font-medium rounded-md
                       ${pathname === item.href
-                        ? 'bg-gray-100 text-[#6C8D2F]'
+                        ? 'bg-gray-100 text-6C8D2F'
                         : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                       }
                     `}
@@ -86,7 +84,7 @@ export default function DashboardLayout({
                 className={`
                   flex items-center px-4 py-3 text-sm font-medium rounded-md
                   ${pathname === item.href
-                    ? 'bg-gray-100 text-[#6C8D2F]'
+                    ? 'bg-gray-100 text-6C8D2F'
                     : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                   }
                 `}

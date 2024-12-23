@@ -42,7 +42,7 @@ export default function GoogleAnalytics() {
             debug_mode: ${isDebug},
             send_page_view: true,
             linker: {
-              domains: ['myohmtechnologies.com']
+              domains: 'myohmtechnologies.com'
             }
           });
 

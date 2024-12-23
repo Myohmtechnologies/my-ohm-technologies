@@ -20,28 +20,28 @@ const RegionStats = ({ region }: Props) => {
       value: region.sunshineHours,
       unit: 'h/an',
       label: 'd\'ensoleillement',
-      color: 'text-[#FFDF64]'
+      color: 'text-FFDF64'
     },
     {
       icon: BoltIcon,
       value: region.stats.solarPotential,
       unit: 'kWh/kWc',
       label: 'de production moyenne',
-      color: 'text-[#AFC97E]'
+      color: 'text-AFC97E'
     },
     {
       icon: HomeIcon,
       value: region.stats.installedCapacity,
       unit: 'MW',
       label: 'de puissance installée',
-      color: 'text-[#7EB6C9]'
+      color: 'text-7EB6C9'
     },
     {
       icon: UsersIcon,
       value: region.stats.population.toLocaleString('fr-FR'),
       unit: '',
       label: 'habitants',
-      color: 'text-[#C97E7E]'
+      color: 'text-C97E7E'
     }
   ];
 
@@ -78,8 +78,8 @@ const RegionStats = ({ region }: Props) => {
               transition={{ delay: index * 0.1 }}
               className="bg-white p-6 rounded-lg shadow-sm"
             >
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${stat.color} bg-opacity-10`}>
-                <stat.icon className={`w-6 h-6 ${stat.color}`} />
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${stat.color} bg-opacity-10">
+                <stat.icon className="w-6 h-6 ${stat.color}" />
               </div>
               <div className="space-y-1">
                 <div className="flex items-baseline">

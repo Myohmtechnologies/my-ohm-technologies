@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { MongoClient } from 'mongodb';
 import { clientPromise } from '@/lib/mongodb';
+import { Lead } from '@/types';
 
 export async function POST(req: Request) {
   try {
@@ -39,7 +39,7 @@ export async function POST(req: Request) {
       { status: 201 }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Erreur lors de la création du lead:', error);
     return NextResponse.json(
       { error: 'Une erreur est survenue lors de l\'enregistrement de vos informations' },
@@ -52,7 +52,7 @@ export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db('myohm');
-    
+
     const leads = await db
       .collection('leads')
       .find({})
@@ -60,7 +60,7 @@ export async function GET() {
       .toArray();
     
     return NextResponse.json({ leads });
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Database Error:', error);
     return NextResponse.json(
       { error: 'Failed to fetch leads' },

@@ -1,63 +1,45 @@
-import { City } from '@/data/cities';
-
 type SchemaOrgProps = {
-  city: City;
+  name: string;
+  description?: string;
+  image?: string;
 };
 
-export default function SchemaOrg({ city }: SchemaOrgProps) {
-  const schema = {
+export function SchemaOrg({
+  name,
+  description = 'Solar panel installation services',
+  image = '/images/logo.png'
+}: SchemaOrgProps) {
+  const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: `MyOhm Technologies - Installation Panneaux Solaires ${city.name}`,
-    description: city.seo.metaDescription,
-    url: `https://myohmtechnologies.fr/region/04-alpes-de-haute-provence/${city.name.toLowerCase()}`,
+    name,
+    description,
+    image,
+    url: 'https://myohmtechnologies.fr',
+    telephone: '+33 9 87 65 43 21',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: city.name,
-      postalCode: city.code,
-      addressCountry: 'FR',
+      streetAddress: '123 Rue de la Technologie',
+      addressLocality: 'Paris',
+      postalCode: '75001',
+      addressCountry: 'FR'
     },
     geo: {
       '@type': 'GeoCoordinates',
-      // Vous pouvez ajouter les coordonnées exactes si vous les avez
+      latitude: 48.8566,
+      longitude: 2.3522
     },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '5',
-      reviewCount: city.reviews.length.toString(),
-    },
-    review: city.reviews.map(review => ({
-      '@type': 'Review',
-      author: {
-        '@type': 'Person',
-        name: review.author,
-      },
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: review.rating,
-      },
-      datePublished: review.date,
-      reviewBody: review.comment,
-    })),
     areaServed: {
-      '@type': 'City',
-      name: city.name,
-      '@id': `https://www.wikidata.org/wiki/${city.name}`,
+      '@type': 'Country',
+      name: 'France'
     },
-    priceRange: '€€€',
-    image: [
-      'https://myohmtechnologies.fr/images/installation-panneaux-solaires.jpg',
-    ],
-    telephone: '+33 4 XX XX XX XX', // Remplacez par votre vrai numéro
-    openingHours: 'Mo-Fr 08:00-18:00',
-    paymentAccepted: 'Cash, Credit Card',
-    currenciesAccepted: 'EUR',
+    serviceType: 'Solar Panel Installation'
   };
 
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
     />
   );
 }

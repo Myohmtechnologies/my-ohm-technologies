@@ -14,7 +14,7 @@ const SimulationSection = ({ cityName }: SimulationSectionProps) => {
   };
 
   return (
-    <section className="w-full bg-[#FFDF64] py-16" aria-label="Simulation de projet solaire">
+    <section className="w-full bg-FFDF64 py-16" aria-label="Simulation de projet solaire">
       <motion.div 
         className="w-full max-w-7xl mx-auto text-center space-y-8 px-4 sm:px-6 lg:px-8"
         initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ const SimulationSection = ({ cityName }: SimulationSectionProps) => {
       >
         <div className="space-y-2">
           <h2 className="text-2xl md:text-4xl text-black font-bold uppercase text-center leading-tight">
-            Simuler votre projet en 2 minute et obtenez votre devis sous 24h
+            Simuler votre projet en moins 1 minute et obtenez votre devis sous 24h
           </h2>
           <p className="text-xl md:text-2xl text-black font-bold uppercase">
             Étude gratuite avis d&apos;experts
@@ -38,7 +38,7 @@ const SimulationSection = ({ cityName }: SimulationSectionProps) => {
           <Link 
             href="/simulator"
             onClick={handleSimulatorClick}
-            className="bg-[#15171A] text-white px-4 md:px-8 py-3 md:py-4 rounded font-bold hover:bg-opacity-90 transition-all uppercase text-sm md:text-base w-full md:w-auto inline-block mx-4"
+            className="bg-15171A text-white px-4 md:px-8 py-3 md:py-4 rounded font-bold hover:bg-opacity-90 transition-all uppercase text-sm md:text-base w-full md:w-auto inline-block mx-4"
             role="button"
             aria-label="Accéder au simulateur d'économie"
           >

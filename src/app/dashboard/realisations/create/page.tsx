@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function CreateRealisationPage() {
   const router = useRouter();
@@ -55,7 +56,7 @@ export default function CreateRealisationPage() {
       }
 
       let mainImageUrl = '';
-      let secondaryImageUrls: string[] = [];
+      const secondaryImageUrls: string[] = [];
 
       // Upload de l'image principale
       const mainImageFormData = new FormData();
@@ -155,7 +156,7 @@ export default function CreateRealisationPage() {
                 name="title"
                 id="title"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -168,7 +169,7 @@ export default function CreateRealisationPage() {
                 name="location"
                 id="location"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -181,7 +182,7 @@ export default function CreateRealisationPage() {
                 id="description"
                 rows={3}
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -195,7 +196,7 @@ export default function CreateRealisationPage() {
                 id="puissance"
                 step="0.1"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -207,7 +208,7 @@ export default function CreateRealisationPage() {
                 name="clientType"
                 id="clientType"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               >
                 <option value="Particulier">Particulier</option>
                 <option value="Professionnel">Professionnel</option>
@@ -223,7 +224,7 @@ export default function CreateRealisationPage() {
                 name="completionDate"
                 id="completionDate"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -237,7 +238,7 @@ export default function CreateRealisationPage() {
                 id="surface"
                 step="0.1"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -250,7 +251,7 @@ export default function CreateRealisationPage() {
                 name="orientation"
                 id="orientation"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -263,7 +264,7 @@ export default function CreateRealisationPage() {
                 name="pannels"
                 id="pannels"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -276,7 +277,7 @@ export default function CreateRealisationPage() {
                 name="production"
                 id="production"
                 required
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
               />
             </div>
 
@@ -309,9 +310,9 @@ export default function CreateRealisationPage() {
                       <div className="flex text-sm text-gray-600">
                         <label
                           htmlFor="mainImage"
-                          className="relative cursor-pointer rounded-md font-medium text-[#6C8D2F] hover:text-[#5a7526] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#6C8D2F]"
+                          className="relative cursor-pointer rounded-md font-medium text-6C8D2F hover:text-5a7526 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-6C8D2F"
                         >
-                          <span>Télécharger l'image principale</span>
+                          <span>Télécharger l&apos;image principale</span>
                           <input
                             id="mainImage"
                             name="mainImage"
@@ -329,10 +330,12 @@ export default function CreateRealisationPage() {
                         </label>
                       </div>
                       <p className="text-xs text-gray-500">
-                        PNG, JPG, GIF jusqu'à 10MB
+                        PNG, JPG, GIF jusqu&apos;à 10MB
                       </p>
                       {mainImagePreview && (
-                        <img
+                        <Image
+                          width={40}
+                          height={40} 
                           src={mainImagePreview}
                           alt="Image principale"
                           className="mt-4 h-40 w-40 rounded-md object-cover"
@@ -366,7 +369,7 @@ export default function CreateRealisationPage() {
                       <div className="flex text-sm text-gray-600">
                         <label
                           htmlFor="secondaryImages"
-                          className="relative cursor-pointer rounded-md font-medium text-[#6C8D2F] hover:text-[#5a7526] focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#6C8D2F]"
+                          className="relative cursor-pointer rounded-md font-medium text-6C8D2F hover:text-5a7526 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-6C8D2F"
                         >
                           <span>Télécharger les images secondaires</span>
                           <input
@@ -387,10 +390,12 @@ export default function CreateRealisationPage() {
                         </label>
                       </div>
                       <p className="text-xs text-gray-500">
-                        PNG, JPG, GIF jusqu'à 10MB
+                        PNG, JPG, GIF jusqu&apos;à 10MB
                       </p>
                       {secondaryImagePreviews.map((preview, index) => (
-                        <img
+                        <Image
+                          width={200}
+                          height={200}
                           key={index}
                           src={preview}
                           alt={`Image secondaire ${index + 1}`}
@@ -407,14 +412,14 @@ export default function CreateRealisationPage() {
           <div className="flex justify-end space-x-3">
             <Link
               href="/dashboard/realisations"
-              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-6C8D2F"
             >
               Annuler
             </Link>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5a7526] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+              className="inline-flex justify-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-6C8D2F hover:bg-5a7526 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-6C8D2F"
             >
               {isSubmitting ? 'Création...' : 'Créer la réalisation'}
             </button>

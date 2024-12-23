@@ -10,8 +10,8 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 bg-white z-40 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="mx-auto ">
+        <div className="flex justify-around items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image 
@@ -47,8 +47,8 @@ const Header = () => {
           <div className="hidden md:block flex-shrink-0">
             <Link
               href="/simulator"
-              className="inline-flex items-center px-6 py-2.5 border border-black rounded-full 
-                       text-sm font-semibold text-black bg-white hover:bg-gray-50 
+              className="inline-flex items-center px-6 py-2.5 rounded-full 
+                       text-sm font-semibold text-black bg-gradient-to-br from-ffeb99 to-ffb700 backdrop-blur-lg hover:bg-gray-50 
                        transition-colors duration-200 group"
             >
               <span>MON ETUDE GRATUITE</span>

@@ -76,7 +76,7 @@ export default function ImageUpload({ onUpload, value, loading = false }: ImageU
 
       {loading && (
         <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#6C8D2F]"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-6C8D2F"></div>
         </div>
       )}
 

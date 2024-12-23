@@ -57,7 +57,7 @@ export default function EditBlogPage({ params }: { params: { id: string } }) {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-white">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#6C8D2F]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-6C8D2F"></div>
       </div>
     );
   }

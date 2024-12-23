@@ -78,7 +78,7 @@ export default function RealisationsPage() {
         <h1 className="text-2xl font-bold text-gray-900">Nos Réalisations</h1>
         <Link
           href="/dashboard/realisations/create"
-          className="inline-flex items-center px-4 py-2 bg-[#AFC97E] text-white rounded-lg hover:bg-[#AFC97E]/90 transition-colors"
+          className="inline-flex items-center px-4 py-2 bg-AFC97E text-white rounded-lg hover:bg-AFC97E/90 transition-colors"
         >
           <PlusIcon className="w-5 h-5 mr-2" />
           Nouvelle Réalisation
@@ -124,7 +124,7 @@ export default function RealisationsPage() {
               <div className="bg-gray-50 px-4 py-4 sm:px-6 flex justify-end space-x-3">
                 <Link
                   href={`/dashboard/realisations/edit/${realisation._id}`}
-                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-[#6C8D2F] bg-[#6C8D2F]/10 hover:bg-[#6C8D2F]/20"
+                  className="inline-flex items-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-6C8D2F bg-6C8D2F/10 hover:bg-6C8D2F/20"
                 >
                   <PencilIcon className="-ml-0.5 mr-2 h-4 w-4" />
                   Modifier

@@ -8,8 +8,7 @@ import {
   PencilIcon, 
   TrashIcon,
   TagIcon,
-  ClockIcon,
-  UserIcon
+  ClockIcon
 } from '@heroicons/react/24/outline';
 import type { BlogPost } from '@/services/blogService';
 
@@ -76,7 +75,7 @@ export default function BlogDashboardPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#6C8D2F]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-6C8D2F"></div>
       </div>
     );
   }
@@ -95,7 +94,7 @@ export default function BlogDashboardPage() {
         <h1 className="text-2xl font-bold text-gray-900">Gestion des Articles</h1>
         <Link 
           href="/dashboard/blog/create" 
-          className="flex items-center gap-2 bg-[#6C8D2F] text-white px-4 py-2 rounded-lg hover:bg-[#5a7526] transition-colors"
+          className="flex items-center gap-2 bg-6C8D2F text-white px-4 py-2 rounded-lg hover:bg-5a7526 transition-colors"
         >
           <PlusIcon className="h-5 w-5" />
           Nouvel Article
@@ -109,7 +108,7 @@ export default function BlogDashboardPage() {
             onClick={() => setSelectedTag(null)}
             className={`px-3 py-1 rounded-full text-sm ${
               selectedTag === null
-                ? 'bg-[#6C8D2F] text-white'
+                ? 'bg-6C8D2F text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
             }`}
           >
@@ -121,7 +120,7 @@ export default function BlogDashboardPage() {
               onClick={() => setSelectedTag(tag)}
               className={`px-3 py-1 rounded-full text-sm ${
                 selectedTag === tag
-                  ? 'bg-[#6C8D2F] text-white'
+                  ? 'bg-6C8D2F text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
               }`}
             >

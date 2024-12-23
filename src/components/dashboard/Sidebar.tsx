@@ -52,14 +52,14 @@ export default function Sidebar() {
                   className={`
                     group flex items-center px-4 py-3 text-sm font-medium rounded-md
                     ${isActive
-                      ? 'bg-gray-100 text-[#6C8D2F]'
+                      ? 'bg-gray-100 text-6C8D2F'
                       : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                     }
                   `}
                 >
                   <item.icon
                     className={`mr-3 h-6 w-6 flex-shrink-0 ${
-                      isActive ? 'text-[#6C8D2F]' : 'text-gray-400 group-hover:text-gray-500'
+                      isActive ? 'text-6C8D2F' : 'text-gray-400 group-hover:text-gray-500'
                     }`}
                   />
                   {item.name}

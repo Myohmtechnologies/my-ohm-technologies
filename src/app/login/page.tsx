@@ -106,7 +106,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 appearance-none rounded-lg border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm transition-colors focus:border-[#AFC97E] focus:outline-none focus:ring-[#AFC97E] sm:text-sm"
+                  className="block w-full pl-10 appearance-none rounded-lg border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm transition-colors focus:border-AFC97E focus:outline-none focus:ring-AFC97E sm:text-sm"
                   placeholder="votreemail@exemple.com"
                 />
               </div>
@@ -128,7 +128,7 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 appearance-none rounded-lg border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm transition-colors focus:border-[#AFC97E] focus:outline-none focus:ring-[#AFC97E] sm:text-sm"
+                  className="block w-full pl-10 appearance-none rounded-lg border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm transition-colors focus:border-AFC97E focus:outline-none focus:ring-AFC97E sm:text-sm"
                   placeholder="••••••••"
                 />
               </div>
@@ -140,7 +140,7 @@ export default function LoginPage() {
                 whileTap={{ scale: 0.98 }}
                 type="submit"
                 disabled={loading}
-                className="flex w-full justify-center items-center rounded-lg bg-[#AFC97E] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#89A65D] focus:outline-none focus:ring-2 focus:ring-[#AFC97E] focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex w-full justify-center items-center rounded-lg bg-AFC97E px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-89A65D focus:outline-none focus:ring-2 focus:ring-AFC97E focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? (
                   <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">

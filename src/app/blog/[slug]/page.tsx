@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation';
-import Header from '@/components/layout/Header';
 import BlogHead from '@/components/sections/BlogHead';
 import BlogSection from '@/components/sections/BlogSection';
 import { BlogService } from '@/services/blogService';
@@ -7,6 +6,11 @@ import { Metadata } from 'next';
 
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+interface BlogSection {
+  title: string;
+  content: string;
 }
 
 async function getBlogPost(params: Promise<{ slug: string }>) {
@@ -70,7 +74,7 @@ export default async function BlogDetailPage({ params }: Props) {
           {/* Blog Meta */}
           <div className="container mx-auto px-4 py-6">
             <div className="flex items-center text-gray-600 gap-4">
-              <span className="inline-block bg-[#6C8D2F] text-white px-4 py-1 rounded-full text-sm">
+              <span className="inline-block bg-6C8D2F text-white px-4 py-1 rounded-full text-sm">
                 {blog.category}
               </span>
               <span>My Ohm Technologies</span>

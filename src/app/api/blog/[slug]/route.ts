@@ -1,112 +1,75 @@
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { BlogService } from '@/services/blogService';
-import type { BlogPost } from '@/types';
+import { isDashboardRequest } from '@/lib/auth';
 
-interface Params {
-  params: {
-    slug: string;
-  };
-}
-
-// Fonction utilitaire pour vérifier si la requête provient du dashboard
-const isDashboardRequest = (request: NextRequest) => {
-  const referer = request.headers.get('referer');
-  return referer?.includes('/dashboard');
-};
-
-// GET /api/blog/[slug]
+// Récupérer un blog spécifique
 export async function GET(
-  request: NextRequest,
-  { params }: Params
+  request: NextRequest, 
+  { params }: { params: { slug: string } }
 ) {
-  if (!isDashboardRequest(request)) {
-    return NextResponse.json(
-      { error: 'Accès non autorisé' },
-      { status: 403 }
-    );
-  }
-
   try {
-    const blog = await BlogService.getBlogBySlug(params.slug);
+    const { slug } = params;
+    const blog = await BlogService.getBlogBySlug(slug);
+
     if (!blog) {
-      return NextResponse.json(
-        { error: 'Blog not found' },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: 'Blog non trouvé' }, { status: 404 });
     }
+
     return NextResponse.json(blog);
   } catch (error) {
-    console.error('Error in getBlogBySlug:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch blog' },
-      { status: 500 }
-    );
+    console.error('Erreur lors de la récupération du blog:', error);
+    return NextResponse.json({ message: 'Erreur serveur' }, { status: 500 });
   }
 }
 
-// PUT /api/blog/[slug]
+// Mettre à jour un blog
 export async function PUT(
-  request: NextRequest,
-  { params }: Params
+  request: NextRequest, 
+  { params }: { params: { slug: string } }
 ) {
-  if (!isDashboardRequest(request)) {
-    return NextResponse.json(
-      { error: 'Accès non autorisé' },
-      { status: 403 }
-    );
-  }
-
   try {
-    const body = await request.json();
-    const blog = await BlogService.updateBlog(params.slug, body);
-    return NextResponse.json({ 
-      message: 'Article mis à jour avec succès',
-      blog 
-    });
-  } catch (error) {
-    console.error('Error in updateBlog:', error);
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 400 }
-      );
+    // Vérifier si c'est une requête du dashboard
+    if (!isDashboardRequest(request)) {
+      return NextResponse.json({ message: 'Non autorisé' }, { status: 403 });
     }
-    return NextResponse.json(
-      { error: 'Une erreur est survenue lors de la mise à jour de l\'article' },
-      { status: 500 }
-    );
+
+    const { slug } = params;
+    const updateData = await request.json();
+
+    const updatedBlog = await BlogService.updateBlogBySlug(slug, updateData);
+
+    if (!updatedBlog) {
+      return NextResponse.json({ message: 'Blog non trouvé' }, { status: 404 });
+    }
+
+    return NextResponse.json(updatedBlog);
+  } catch (error) {
+    console.error('Erreur lors de la mise à jour du blog:', error);
+    return NextResponse.json({ message: 'Erreur serveur' }, { status: 500 });
   }
 }
 
-// DELETE /api/blog/[slug]
+// Supprimer un blog
 export async function DELETE(
-  request: NextRequest,
-  { params }: Params
+  request: NextRequest, 
+  { params }: { params: { slug: string } }
 ) {
-  if (!isDashboardRequest(request)) {
-    return NextResponse.json(
-      { error: 'Accès non autorisé' },
-      { status: 403 }
-    );
-  }
-
   try {
-    await BlogService.deleteBlog(params.slug);
-    return NextResponse.json({ 
-      message: 'Article supprimé avec succès' 
-    });
-  } catch (error) {
-    console.error('Error in deleteBlog:', error);
-    if (error instanceof Error) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: 400 }
-      );
+    // Vérifier si c'est une requête du dashboard
+    if (!isDashboardRequest(request)) {
+      return NextResponse.json({ message: 'Non autorisé' }, { status: 403 });
     }
-    return NextResponse.json(
-      { error: 'Une erreur est survenue lors de la suppression de l\'article' },
-      { status: 500 }
-    );
+
+    const { slug } = params;
+    const deletedBlog = await BlogService.deleteBlogBySlug(slug);
+
+    if (!deletedBlog) {
+      return NextResponse.json({ message: 'Blog non trouvé' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: 'Blog supprimé avec succès' });
+  } catch (error) {
+    console.error('Erreur lors de la suppression du blog:', error);
+    return NextResponse.json({ message: 'Erreur serveur' }, { status: 500 });
   }
 }

@@ -1,8 +1,22 @@
 import { Project } from '@/models/Project';
-import dbConnect from '@/lib/mongodb';
+import { dbConnect } from '@/lib/mongodb';
+
+interface ProjectData {
+  title: string;
+  description?: string;
+  status?: 'draft' | 'active' | 'completed';
+  clientName?: string;
+  location?: string;
+  installationDetails?: {
+    panelType?: string;
+    capacity?: number;
+    orientation?: string;
+  };
+  // Ajoutez d'autres champs selon vos besoins
+}
 
 export class ProjectService {
-  static async createProject(projectData: any) {
+  static async createProject(projectData: ProjectData) {
     try {
       await dbConnect();
       const project = new Project(projectData);
@@ -34,7 +48,7 @@ export class ProjectService {
     }
   }
 
-  static async updateProject(id: string, projectData: any) {
+  static async updateProject(id: string, projectData: Partial<ProjectData>) {
     try {
       await dbConnect();
       return await Project.findByIdAndUpdate(id, projectData, { new: true });

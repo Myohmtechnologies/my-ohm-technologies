@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useImageUpload } from '@/hooks/useImageUpload';
 import ImageUpload from '@/components/ImageUpload';
 import { 
-  PhotoIcon, 
   PlusIcon,
   XMarkIcon,
   TrashIcon
@@ -39,7 +38,7 @@ const commonTags = [
 
 export default function CreateBlogPostPage() {
   const router = useRouter();
-  const { uploadImage: uploadImageToCloud, isUploading, error: uploadError } = useImageUpload();
+  const { uploadImage: uploadImageToCloud, isUploading } = useImageUpload();
   const [loading, setLoading] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [newTag, setNewTag] = useState('');
@@ -219,7 +218,7 @@ export default function CreateBlogPostPage() {
                       ...formData,
                       title: e.target.value
                     })}
-                    className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-6C8D2F focus:border-6C8D2F block w-full sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -242,7 +241,7 @@ export default function CreateBlogPostPage() {
                       ...formData,
                       description: e.target.value
                     })}
-                    className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-6C8D2F focus:border-6C8D2F block w-full sm:text-sm border-gray-300 rounded-md"
                   />
                 </div>
               </div>
@@ -263,7 +262,7 @@ export default function CreateBlogPostPage() {
                       ...formData,
                       category: e.target.value
                     })}
-                    className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                    className="shadow-sm focus:ring-6C8D2F focus:border-6C8D2F block w-full sm:text-sm border-gray-300 rounded-md"
                   >
                     {categories.map((category) => (
                       <option key={category} value={category}>
@@ -296,7 +295,7 @@ export default function CreateBlogPostPage() {
                     {selectedTags.map((tag) => (
                       <span
                         key={tag}
-                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-[#6C8D2F] text-white"
+                        className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-6C8D2F text-white"
                       >
                         {tag}
                         <button
@@ -315,13 +314,13 @@ export default function CreateBlogPostPage() {
                       value={newTag}
                       onChange={(e) => setNewTag(e.target.value)}
                       placeholder="Ajouter un tag"
-                      className="shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                      className="shadow-sm focus:ring-6C8D2F focus:border-6C8D2F block w-full sm:text-sm border-gray-300 rounded-md"
                     />
                     <button
                       type="button"
                       onClick={() => handleTagAdd(newTag)}
                       disabled={selectedTags.length >= 5}
-                      className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+                      className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-6C8D2F hover:bg-5A7427 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-6C8D2F"
                     >
                       <PlusIcon className="h-4 w-4 mr-2" />
                       Ajouter
@@ -385,7 +384,7 @@ export default function CreateBlogPostPage() {
                         required
                         value={section.title}
                         onChange={(e) => updateSection(index, 'title', e.target.value)}
-                        className="mt-1 shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 shadow-sm focus:ring-6C8D2F focus:border-6C8D2F block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -398,7 +397,7 @@ export default function CreateBlogPostPage() {
                         rows={4}
                         value={section.description}
                         onChange={(e) => updateSection(index, 'description', e.target.value)}
-                        className="mt-1 shadow-sm focus:ring-[#6C8D2F] focus:border-[#6C8D2F] block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="mt-1 shadow-sm focus:ring-6C8D2F focus:border-6C8D2F block w-full sm:text-sm border-gray-300 rounded-md"
                       />
                     </div>
 
@@ -420,7 +419,7 @@ export default function CreateBlogPostPage() {
                 <button
                   type="button"
                   onClick={addSection}
-                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+                  className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-6C8D2F hover:bg-5A7427 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-6C8D2F"
                 >
                   <PlusIcon className="h-4 w-4 mr-2" />
                   Ajouter une section
@@ -435,14 +434,14 @@ export default function CreateBlogPostPage() {
             <button
               type="button"
               onClick={() => router.push('/dashboard/blog')}
-              className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+              className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-6C8D2F"
             >
               Annuler
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5A7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-6C8D2F hover:bg-5A7427 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-6C8D2F disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? 'Création...' : 'Créer l\'article'}
             </button>

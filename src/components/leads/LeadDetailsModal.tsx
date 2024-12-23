@@ -160,7 +160,7 @@ export default function LeadDetailsModal({ isOpen, onClose, lead }: LeadDetailsM
                         <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
                           <dt className="text-sm font-medium leading-6 text-gray-900">Statut actuel</dt>
                           <dd className="mt-1 text-sm leading-6 sm:col-span-2 sm:mt-0">
-                            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${STATUS_COLORS[lead.status]}`}>
+                            <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${STATUS_COLORS[lead.status]}">
                               {STATUS_LABELS[lead.status]}
                             </span>
                           </dd>
@@ -195,7 +195,7 @@ export default function LeadDetailsModal({ isOpen, onClose, lead }: LeadDetailsM
                             {isLoading ? (
                               <div className="text-center py-4">
                                 <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-green-500 border-r-transparent"></div>
-                                <div className="mt-2 text-sm text-gray-500">Chargement de l'historique...</div>
+                                <div className="mt-2 text-sm text-gray-500">Chargement de l&apos;historique...</div>
                               </div>
                             ) : actions.length > 0 ? (
                               <div className="flow-root">
@@ -211,7 +211,7 @@ export default function LeadDetailsModal({ isOpen, onClose, lead }: LeadDetailsM
                                         ) : null}
                                         <div className="relative flex space-x-3">
                                           <div>
-                                            <span className={`h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white ${STATUS_COLORS[action.status]}`}>
+                                            <span className="h-8 w-8 rounded-full flex items-center justify-center ring-8 ring-white ${STATUS_COLORS[action.status]}">
                                               <span className="text-xs font-medium">{action.status.charAt(0)}</span>
                                             </span>
                                           </div>

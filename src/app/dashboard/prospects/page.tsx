@@ -14,7 +14,7 @@ export default function ProspectsPage() {
         </div>
         <Link
           href="/dashboard/prospects/create"
-          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#6C8D2F] hover:bg-[#5a7427] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#6C8D2F]"
+          className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-6C8D2F hover:bg-5a7427 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-6C8D2F"
         >
           Nouveau prospect
         </Link>

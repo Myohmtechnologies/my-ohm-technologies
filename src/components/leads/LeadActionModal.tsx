@@ -221,7 +221,7 @@ export default function LeadActionModal({ isOpen, onClose, lead, onStatusChange 
                       <div>
                         <label className="text-sm font-medium text-gray-700">Statut actuel</label>
                         <div className="mt-1">
-                          <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${STATUS_COLORS[lead.status]}`}>
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${STATUS_COLORS[lead.status]}">
                             {STATUS_LABELS[lead.status]}
                           </span>
                         </div>

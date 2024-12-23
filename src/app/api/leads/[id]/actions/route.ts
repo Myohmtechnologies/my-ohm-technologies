@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { clientPromise } from '@/lib/mongodb';
-import { LeadAction, LeadStatus } from '@/types';
+import { LeadAction } from '@/types';
 import { ObjectId } from 'mongodb';
 
 // GET /api/leads/[id]/actions
@@ -11,18 +11,18 @@ export async function GET(
   try {
     const client = await clientPromise;
     const db = client.db('myohm');
-    
-    const actions = await db
-      .collection('lead_actions')
-      .find({ leadId: params.id })
+    const collection = db.collection('lead_actions');
+
+    const actions = await collection
+      .find({ leadId: new ObjectId(params.id) })
       .sort({ date: -1 })
       .toArray();
     
-    return NextResponse.json({ actions });
+    return NextResponse.json(actions);
   } catch (error) {
     console.error('Database Error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch actions' },
+      { error: 'Failed to retrieve lead actions' }, 
       { status: 500 }
     );
   }

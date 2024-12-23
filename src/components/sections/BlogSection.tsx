@@ -65,7 +65,7 @@ const BlogSection = ({ sections, tableOfContents }: BlogSectionProps) => {
                 <a
                   key={index}
                   href={`#${item.id}`}
-                  className="block text-gray-600 hover:text-[#6C8D2F] transition-colors"
+                  className="block text-gray-600 hover:text-6C8D2F transition-colors"
                 >
                   {item.title}
                 </a>
@@ -74,23 +74,23 @@ const BlogSection = ({ sections, tableOfContents }: BlogSectionProps) => {
           </div>
 
           {/* CTA Card */}
-          <div className="bg-[#6C8D2F] text-white p-6 rounded-xl">
+          <div className="bg-6C8D2F text-white p-6 rounded-xl">
             <h3 className="text-xl font-bold mb-4">
-              Prêt à passer à l'énergie solaire ?
+              Prêt à passer à l&apos;énergie solaire ?
             </h3>
             <ul className="space-y-3 mb-6">
               <li className="flex items-center gap-2">
-                <CheckIcon className="h-5 w-5 text-[#FFDF64]" />
+                <CheckIcon className="h-5 w-5 text-FFDF64" />
                 <span>Estimation en 2 min</span>
               </li>
               <li className="flex items-center gap-2">
-                <CheckIcon className="h-5 w-5 text-[#FFDF64]" />
+                <CheckIcon className="h-5 w-5 text-FFDF64" />
                 <span>Gratuit et sans engagement</span>
               </li>
             </ul>
             <Link
               href="/contact"
-              className="block text-center bg-white text-[#6C8D2F] py-3 px-6 rounded-lg font-semibold hover:bg-[#FFDF64] transition-colors"
+              className="block text-center bg-white text-6C8D2F py-3 px-6 rounded-lg font-semibold hover:bg-FFDF64 transition-colors"
             >
               VOUS AVEZ UN PROJET
             </Link>

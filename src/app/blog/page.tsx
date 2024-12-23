@@ -1,6 +1,5 @@
 'use client';
 
-import Header from '@/components/layout/Header';
 import BlogHeader from '@/components/sections/BlogHeader';
 import BlogCard from '@/components/sections/BlogCard';
 import { useEffect, useState } from 'react';
@@ -34,7 +33,7 @@ export default function BlogPage() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-gradient-to-br from-f2f6fa to-e3e9f0">
       <main className="flex-grow">
         <div className="-mt-4">
           <BlogHeader />
@@ -43,7 +42,7 @@ export default function BlogPage() {
         <div className="container mx-auto px-4 py-12">
           {loading ? (
             <div className="flex justify-center items-center">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#6C8D2F]"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-FFDF64"></div>
             </div>
           ) : blogs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -59,9 +58,15 @@ export default function BlogPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <h2 className="text-2xl font-semibold text-gray-600">Aucun article disponible pour le moment</h2>
-              <p className="mt-2 text-gray-500">Revenez bientôt pour découvrir nos nouveaux articles !</p>
+            <div className="text-center py-12 bg-white rounded-2xl shadow-lg p-8 mx-auto max-w-xl">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Aucun article disponible</h2>
+              <p className="text-gray-700 mb-6">Revenez bientôt pour découvrir nos nouveaux articles !</p>
+              <a 
+                href="/" 
+                className="bg-gradient-to-br from-ffeb99 to-ffb700 text-black font-bold py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Retour à l&apos;accueil
+              </a>
             </div>
           )}
         </div>

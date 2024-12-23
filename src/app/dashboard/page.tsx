@@ -24,7 +24,7 @@ const DashboardPage = () => {
                 onClick={() => setView('timeGridDay')}
                 className={`px-4 py-2 rounded-lg transition-colors ${
                   view === 'timeGridDay'
-                    ? 'bg-[#AFC97E] text-white'
+                    ? 'bg-AFC97E text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -34,7 +34,7 @@ const DashboardPage = () => {
                 onClick={() => setView('timeGridWeek')}
                 className={`px-4 py-2 rounded-lg transition-colors ${
                   view === 'timeGridWeek'
-                    ? 'bg-[#AFC97E] text-white'
+                    ? 'bg-AFC97E text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -44,7 +44,7 @@ const DashboardPage = () => {
                 onClick={() => setView('dayGridMonth')}
                 className={`px-4 py-2 rounded-lg transition-colors ${
                   view === 'dayGridMonth'
-                    ? 'bg-[#AFC97E] text-white'
+                    ? 'bg-AFC97E text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >

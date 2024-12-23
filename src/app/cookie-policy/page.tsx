@@ -1,6 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
 export const metadata = {
   title: 'Politique des Cookies | MyOhm Technologies',
   description: 'Politique des cookies de MyOhm Technologies - Installation de panneaux solaires photovoltaïques',

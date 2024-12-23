@@ -105,7 +105,7 @@ export default function ImageUpload({ currentImage, onImageSelected, label = "Im
       {/* Indicateur de chargement */}
       {uploading && (
         <div className="flex justify-center">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#6C8D2F]"></div>
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-6C8D2F"></div>
         </div>
       )}
     </div>

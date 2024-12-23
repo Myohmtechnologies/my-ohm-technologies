@@ -17,7 +17,7 @@ export default function Breadcrumbs({ items }: Props) {
         <li>
           <Link
             href="/"
-            className="text-gray-600 hover:text-[#AFC97E] transition-colors"
+            className="text-gray-600 hover:text-AFC97E transition-colors"
           >
             <HomeIcon className="w-5 h-5" />
           </Link>
@@ -26,11 +26,11 @@ export default function Breadcrumbs({ items }: Props) {
           <li key={item.href} className="flex items-center">
             <ChevronRightIcon className="w-4 h-4 text-gray-500 mx-1" />
             {index === items.length - 1 ? (
-              <span className="text-[#AFC97E] font-medium">{item.name}</span>
+              <span className="text-AFC97E font-medium">{item.name}</span>
             ) : (
               <Link
                 href={item.href}
-                className="text-gray-600 hover:text-[#AFC97E] transition-colors"
+                className="text-gray-600 hover:text-AFC97E transition-colors"
               >
                 {item.name}
               </Link>

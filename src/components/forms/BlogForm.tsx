@@ -87,7 +87,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
           id="title"
           value={formData.title}
           onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F]"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F"
           required
         />
       </div>
@@ -103,7 +103,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
           value={formData.description}
           onChange={handleInputChange}
           rows={4}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F]"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F"
           required
         />
       </div>
@@ -127,7 +127,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
           id="category"
           value={formData.category}
           onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F]"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F"
         >
           <option value="solaire">Solaire</option>
           <option value="energie">Énergie</option>
@@ -147,7 +147,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
           id="status"
           value={formData.status}
           onChange={handleInputChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F]"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F"
         >
           <option value="draft">Brouillon</option>
           <option value="published">Publié</option>
@@ -162,7 +162,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
           <button
             type="button"
             onClick={addSection}
-            className="px-4 py-2 text-sm font-medium text-white bg-[#6C8D2F] rounded-md hover:bg-[#557021]"
+            className="px-4 py-2 text-sm font-medium text-white bg-6C8D2F rounded-md hover:bg-557021"
           >
             Ajouter une section
           </button>
@@ -187,7 +187,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
                 type="text"
                 value={section.title}
                 onChange={(e) => handleSectionChange(index, 'title', e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F]"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F"
                 required
               />
             </div>
@@ -198,7 +198,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
                 value={section.description}
                 onChange={(e) => handleSectionChange(index, 'description', e.target.value)}
                 rows={3}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F]"
+                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F"
                 required
               />
             </div>
@@ -219,7 +219,7 @@ export default function BlogForm({ initialData, onSubmit }: BlogFormProps) {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full px-4 py-2 text-sm font-medium text-white bg-[#6C8D2F] rounded-md hover:bg-[#557021] ${
+          className={`w-full px-4 py-2 text-sm font-medium text-white bg-6C8D2F rounded-md hover:bg-557021 ${
             loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
         >

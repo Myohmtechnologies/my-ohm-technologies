@@ -1,4 +1,4 @@
-import dbConnect from '@/lib/mongodb';
+import { dbConnect } from '@/lib/mongodb';
 import Blog from '@/models/Blog';
 
 export interface BlogSection {
@@ -144,9 +144,12 @@ export class BlogService {
   static async getBlogBySlug(slug: string) {
     try {
       await dbConnect();
-      return await Blog.findOne({ slug }).lean();
+
+      const blog = await Blog.findOne({ slug });
+
+      return blog ? blog.toObject() : null;
     } catch (error) {
-      console.error('BlogService: Erreur lors de la récupération du blog:', error);
+      console.error('Erreur lors de la récupération du blog:', error);
       throw error;
     }
   }
@@ -202,6 +205,44 @@ export class BlogService {
       return deletedBlog;
     } catch (error) {
       console.error('Error in deleteBlog:', error);
+      throw error;
+    }
+  }
+
+  static async updateBlogBySlug(slug: string, updateData: Partial<BlogPost>) {
+    try {
+      await dbConnect();
+
+      // Trouver le blog par son slug
+      const blog = await Blog.findOne({ slug });
+
+      if (!blog) {
+        return null; // Blog non trouvé
+      }
+
+      // Mettre à jour les champs
+      Object.assign(blog, updateData);
+      blog.updatedAt = new Date();
+
+      // Sauvegarder et retourner le blog mis à jour
+      await blog.save();
+      return blog.toObject();
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour du blog:', error);
+      throw error;
+    }
+  }
+
+  static async deleteBlogBySlug(slug: string) {
+    try {
+      await dbConnect();
+
+      // Supprimer le blog et retourner le blog supprimé
+      const deletedBlog = await Blog.findOneAndDelete({ slug });
+
+      return deletedBlog;
+    } catch (error) {
+      console.error('Erreur lors de la suppression du blog:', error);
       throw error;
     }
   }

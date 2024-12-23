@@ -1,6 +1,3 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
 export const metadata = {
   title: 'Politique de Confidentialité | MyOhm Technologies',
   description: 'Politique de confidentialité de MyOhm Technologies - Installation de panneaux solaires photovoltaïques',

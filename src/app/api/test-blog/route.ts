@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { dbConnect } from '@/lib/mongodb';
 import { BlogService } from '@/services/blogService';
-import dbConnect from '@/lib/mongodb';
 
 export async function GET(request: NextRequest) {
   try {
@@ -145,7 +145,7 @@ export async function PATCH(request: NextRequest) {
     let result;
     
     switch (action) {
-      case 'status':
+      case 'status': {
         const data = await request.json();
         const { status } = data;
         
@@ -158,6 +158,7 @@ export async function PATCH(request: NextRequest) {
         
         result = await BlogService.updateBlogStatus(slug, status);
         break;
+      }
         
       default:
         return NextResponse.json(

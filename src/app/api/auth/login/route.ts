@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import * as jose from 'jose';
-import { cookies } from 'next/headers';
 
 const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;

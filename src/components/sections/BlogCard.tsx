@@ -12,21 +12,21 @@ interface BlogCardProps {
 const BlogCard = ({ title, description, image, category = 'Blog', slug }: BlogCardProps) => {
   return (
     <Link href={`/blog/${slug}`} className="block">
-      <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-[1.02]">
+      <div className="bg-white rounded-2xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl">
         {/* Image Section */}
         <div className="relative w-full h-48">
           <Image
             src={image}
             alt={title}
             fill
-            className="object-cover rounded-t-lg"
+            className="object-cover"
           />
         </div>
 
         {/* Content Section */}
         <div className="p-6">
           {/* Category */}
-          <p className="text-xs font-semibold text-[#6C8D2F] mb-2 uppercase">{category}</p>
+          <p className="text-xs font-semibold text-FFDF64 mb-2 uppercase">{category}</p>
 
           {/* Title */}
           <h3 className="text-lg font-bold text-gray-900 mb-4">{title}</h3>
@@ -38,7 +38,7 @@ const BlogCard = ({ title, description, image, category = 'Blog', slug }: BlogCa
 
           {/* Read More */}
           <div className="mt-4">
-            <span className="text-sm font-medium text-[#6C8D2F] hover:text-[#557021] transition">
+            <span className="text-sm font-medium text-AFC97E hover:text-FFDF64 transition-colors">
               Lire la suite →
             </span>
           </div>

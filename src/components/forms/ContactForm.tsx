@@ -93,7 +93,7 @@ const ContactForm = () => {
             required
             value={formData.name}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
           />
         </div>
 
@@ -108,7 +108,7 @@ const ContactForm = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
           />
         </div>
 
@@ -122,7 +122,7 @@ const ContactForm = () => {
             id="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
           />
         </div>
 
@@ -136,7 +136,7 @@ const ContactForm = () => {
             required
             value={formData.subject}
             onChange={handleChange}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
           >
             <option value="">Sélectionnez un sujet</option>
             <option value="devis">Demande de devis</option>
@@ -158,7 +158,7 @@ const ContactForm = () => {
           rows={4}
           value={formData.message}
           onChange={handleChange}
-          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#6C8D2F] focus:ring-[#6C8D2F] sm:text-sm"
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-6C8D2F focus:ring-6C8D2F sm:text-sm"
         />
       </div>
 
@@ -200,7 +200,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex justify-center rounded-md border border-transparent bg-[#6C8D2F] py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-[#5A7526] focus:outline-none focus:ring-2 focus:ring-[#6C8D2F] focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="inline-flex justify-center rounded-md border border-transparent bg-6C8D2F py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-5A7526 focus:outline-none focus:ring-2 focus:ring-6C8D2F focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isSubmitting ? 'Envoi en cours...' : 'Envoyer'}
         </button>

@@ -133,7 +133,7 @@ export default function GuideForm() {
       </div>
 
       <p className="mt-2 text-xs text-gray-500 text-center">
-        En soumettant ce formulaire, vous acceptez d'être recontacté par notre équipe pour discuter de votre projet solaire.
+        En soumettant ce formulaire, vous acceptez d&apos;être recontacté par notre équipe pour discuter de votre projet solaire.
       </p>
     </form>
   );

@@ -2,13 +2,13 @@ import Link from 'next/link';
 
 const SolarChoiceSection = () => {
   return (
-    <div className="bg-[#FFDF64] py-16 rounded-lg">
+    <div className="bg-gradient-to-br from-ffeb99 to-ffb700 py-16 rounded-2xl shadow-lg">
       <div className="max-w-4xl mx-auto text-center px-4">
         {/* Title */}
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+        <h2 className="text-3xl font-bold text-black mb-4">
           Passez au solaire avec OHM Technologies
         </h2>
-        <p className="text-gray-800 mb-8">
+        <p className="text-black/80 mb-8">
           Sélectionnez votre situation pour voir vos économies:
         </p>
 
@@ -17,12 +17,12 @@ const SolarChoiceSection = () => {
           {/* Option 1: Maison */}
           <Link
             href="/simulateur?type=maison"
-            className="flex items-center bg-white rounded-full px-6 py-4 shadow-md hover:shadow-lg transition-shadow group"
+            className="flex items-center bg-white rounded-full px-6 py-4 shadow-lg hover:shadow-xl transition-shadow group"
           >
-            <div className="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+            <div className="w-12 h-12 bg-FFDF64/20 rounded-full flex items-center justify-center mr-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-900"
+                className="h-6 w-6 text-FFDF64"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -36,20 +36,20 @@ const SolarChoiceSection = () => {
               </svg>
             </div>
             <div>
-              <div className="font-semibold text-gray-900">Une maison</div>
-              <div className="text-sm text-green-700">Suivant</div>
+              <div className="font-semibold text-black">Une maison</div>
+              <div className="text-sm text-AFC97E">Suivant</div>
             </div>
           </Link>
 
           {/* Option 2: Appartement */}
           <Link
             href="/simulateur?type=appartement"
-            className="flex items-center bg-white rounded-full px-6 py-4 shadow-md hover:shadow-lg transition-shadow group"
+            className="flex items-center bg-white rounded-full px-6 py-4 shadow-lg hover:shadow-xl transition-shadow group"
           >
-            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+            <div className="w-12 h-12 bg-AFC97E/20 rounded-full flex items-center justify-center mr-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 text-gray-900"
+                className="h-6 w-6 text-AFC97E"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -63,18 +63,18 @@ const SolarChoiceSection = () => {
               </svg>
             </div>
             <div>
-              <div className="font-semibold text-gray-900">Un appartement</div>
-              <div className="text-sm text-green-700">Suivant</div>
+              <div className="font-semibold text-black">Un appartement</div>
+              <div className="text-sm text-FFDF64">Suivant</div>
             </div>
           </Link>
         </div>
 
         {/* Features */}
-        <div className="flex justify-center gap-6 text-sm text-gray-800">
+        <div className="flex justify-center gap-6 text-sm text-black/80">
           <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 mr-2 text-green-600"
+              className="w-5 h-5 mr-2 text-AFC97E"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -91,7 +91,7 @@ const SolarChoiceSection = () => {
           <div className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 mr-2 text-green-600"
+              className="w-5 h-5 mr-2 text-AFC97E"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

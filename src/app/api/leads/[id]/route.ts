@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { clientPromise } from '@/lib/mongodb';
 import { ObjectId } from 'mongodb';
+import { Lead } from '@/types';
 
 export async function PUT(
   request: Request,
