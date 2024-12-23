@@ -1,40 +1,38 @@
 'use client';
 
 import Link from 'next/link';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 
 export default function Error() {
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-red-50 to-red-100 p-4">
-      <div className="bg-white shadow-2xl rounded-2xl p-10 max-w-md w-full text-center border-2 border-red-200">
-        <div className="flex justify-center mb-6">
-          <ExclamationTriangleIcon className="w-16 h-16 text-red-500" />
-        </div>
-        <h2 className="text-3xl font-bold text-red-600 mb-4">Erreur Inattendue</h2>
-        <p className="text-gray-700 mb-6">
-          Une erreur est survenue. Veuillez réessayer ultérieurement.
-        </p>
-        
-        <div className="flex justify-center space-x-4">
+    <html lang="fr">
+      <body>
+        <div style={{
+          display: 'flex', 
+          flexDirection: 'column', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100vh', 
+          fontFamily: 'Arial, sans-serif',
+          backgroundColor: '#f0f2f5'
+        }}>
+          <h1 style={{color: '#dc2626', fontSize: '3rem', marginBottom: '1rem'}}>500</h1>
+          <p style={{color: '#4b5563', fontSize: '1.25rem', marginBottom: '2rem'}}>
+            Erreur serveur interne
+          </p>
           <Link 
             href="/" 
-            className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors flex items-center space-x-2"
+            style={{
+              backgroundColor: '#dc2626', 
+              color: 'white', 
+              padding: '10px 20px', 
+              borderRadius: '5px', 
+              textDecoration: 'none'
+            }}
           >
-            <span>Retour Accueil</span>
-          </Link>
-          <Link 
-            href="/contact" 
-            className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors flex items-center space-x-2"
-          >
-            <span>Contactez Support</span>
+            Retour à l&apos;accueil
           </Link>
         </div>
-        
-        <div className="mt-6 text-xs text-gray-500">
-          <p>Si le problème persiste, contactez notre support.</p>
-          <p>support@myohmtechnologies.com</p>
-        </div>
-      </div>
-    </div>
+      </body>
+    </html>
   );
 }
