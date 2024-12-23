@@ -102,15 +102,18 @@ const HeroSection = () => {
         <div className='relative h-[60vh] md:h-screen min-h-[400px] w-full overflow-hidden'>
           <div className="absolute inset-0 rounded-b-[50px] overflow-hidden">
             <video 
-              src="/videos/hero-background-optimized.mp4" 
+              src="/images/video-hero-section.mp4"
+              poster="/images/video-hero-section-poster.jpg"
               autoPlay 
               loop 
               muted 
               playsInline
-              preload="metadata"
-              className="object-cover w-full h-full"
+              preload="none"
+              className="w-full h-full object-cover"
+              aria-hidden="true"
             >
-              Votre navigateur ne supporte pas la vidéo.
+              <source src="/images/video-hero-section.mp4" type="video/mp4" />
+              <source src="/images/video-hero-section.webm" type="video/webm" />
             </video>
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
