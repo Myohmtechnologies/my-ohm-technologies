@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
 
 export default function Error({
   error,
@@ -11,29 +12,47 @@ export default function Error({
   reset: () => void;
 }) {
   useEffect(() => {
-    console.error('Unexpected Error:', error);
+    // Log l'erreur côté client
+    console.error('Erreur inattendue :', error);
+    
+    // Potentiel envoi à un service de monitoring
+    // Par exemple : reportErrorToService(error);
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-4">
-      <div className="bg-white shadow-md rounded-lg p-8 max-w-md w-full text-center">
-        <h2 className="text-3xl font-bold text-red-600 mb-4">Erreur Inattendue</h2>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-red-50 to-red-100 p-4">
+      <div className="bg-white shadow-2xl rounded-2xl p-10 max-w-md w-full text-center border-2 border-red-200">
+        <div className="flex justify-center mb-6">
+          <ExclamationTriangleIcon className="w-16 h-16 text-red-500" />
+        </div>
+        <h2 className="text-3xl font-bold text-red-600 mb-4">Oops ! Une Erreur est Survenue</h2>
         <p className="text-gray-700 mb-6">
-          Une erreur est survenue. Veuillez réessayer ou contacter le support.
+          Nous sommes désolés pour la gêne occasionnée. Une erreur technique est apparue.
         </p>
+        
+        {error.digest && (
+          <div className="bg-red-50 p-3 rounded-lg mb-6 text-sm text-gray-600">
+            <p>Code d'erreur : {error.digest}</p>
+          </div>
+        )}
+        
         <div className="flex justify-center space-x-4">
           <button
             onClick={() => reset()}
-            className="bg-primary-500 text-white px-4 py-2 rounded-md hover:bg-primary-600 transition-colors"
+            className="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors flex items-center space-x-2"
           >
-            Réessayer
+            <span>Réessayer</span>
           </button>
           <Link 
             href="/" 
-            className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors"
+            className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors flex items-center space-x-2"
           >
-            Retour à l&apos;accueil
+            <span>Retour Accueil</span>
           </Link>
+        </div>
+        
+        <div className="mt-6 text-xs text-gray-500">
+          <p>Si le problème persiste, contactez notre support technique.</p>
         </div>
       </div>
     </div>
