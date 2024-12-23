@@ -1,37 +1,41 @@
 'use client';
 
-import Link from 'next/link';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/solid';
-
 export default function GlobalError() {
   return (
     <html lang="fr">
-      <body>
+      <body style={{
+        fontFamily: 'Arial, sans-serif',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        margin: 0,
+        backgroundColor: '#f4f4f4'
+      }}>
         <div style={{
-          display: 'flex', 
-          flexDirection: 'column', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          height: '100vh', 
-          fontFamily: 'Arial, sans-serif',
-          backgroundColor: '#f0f2f5'
+          textAlign: 'center',
+          padding: '20px',
+          borderRadius: '10px',
+          backgroundColor: 'white',
+          boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
         }}>
-          <h1 style={{color: '#7f1d1d', fontSize: '3rem', marginBottom: '1rem'}}>Erreur Système</h1>
-          <p style={{color: '#4b5563', fontSize: '1.25rem', marginBottom: '2rem'}}>
-            Un problème technique est survenu
+          <h1 style={{ color: '#d32f2f', marginBottom: '15px' }}>Erreur Système</h1>
+          <p style={{ color: '#666', marginBottom: '20px' }}>
+            Un problème technique majeur est survenu. Veuillez réessayer plus tard.
           </p>
-          <Link 
+          <a 
             href="/" 
             style={{
-              backgroundColor: '#7f1d1d', 
-              color: 'white', 
-              padding: '10px 20px', 
-              borderRadius: '5px', 
-              textDecoration: 'none'
+              display: 'inline-block',
+              backgroundColor: '#d32f2f',
+              color: 'white',
+              padding: '10px 20px',
+              textDecoration: 'none',
+              borderRadius: '5px'
             }}
           >
             Retour à l&apos;accueil
-          </Link>
+          </a>
         </div>
       </body>
     </html>

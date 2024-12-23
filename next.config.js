@@ -25,6 +25,13 @@ const nextConfig = {
       tls: false 
     };
 
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        punycode: false
+      };
+    }
+
     return config;
   },
 
@@ -63,6 +70,9 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: false
+  },
+  env: {
+    NODE_OPTIONS: '--no-deprecation'
   }
 };
 
