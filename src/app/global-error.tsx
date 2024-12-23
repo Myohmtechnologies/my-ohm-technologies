@@ -2,7 +2,12 @@
 
 export default function GlobalError() {
   return (
-    <html lang="fr">
+    <html>
+      <head>
+        <title>Erreur Système</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body style={{
         fontFamily: 'Arial, sans-serif',
         display: 'flex',
@@ -15,13 +20,13 @@ export default function GlobalError() {
         <div style={{
           textAlign: 'center',
           padding: '20px',
-          borderRadius: '10px',
           backgroundColor: 'white',
+          borderRadius: '10px',
           boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
         }}>
           <h1 style={{ color: '#d32f2f', marginBottom: '15px' }}>Erreur Système</h1>
           <p style={{ color: '#666', marginBottom: '20px' }}>
-            Un problème technique majeur est survenu. Veuillez réessayer plus tard.
+            Un problème technique majeur est survenu
           </p>
           <a 
             href="/" 

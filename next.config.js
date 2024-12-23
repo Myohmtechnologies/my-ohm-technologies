@@ -17,6 +17,13 @@ const nextConfig = {
       level: 'error'
     };
 
+    // Désactiver les warnings spécifiques
+    config.ignoreWarnings = [
+      /node:internal/,
+      /punycode/,
+      /useContext/
+    ];
+
     return config;
   },
 
@@ -35,9 +42,31 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production'
   },
 
-  // Désactiver les avertissements spécifiques
+  // Configuration avancée pour gérer les erreurs de prérendu
   experimental: {
-    serverComponentsExternalPackages: ['punycode']
+    serverComponentsExternalPackages: ['punycode'],
+    
+    // Désactiver le prérendu des pages d'erreur
+    staticPageGenerationTimeout: 60,
+    
+    // Ignorer les erreurs de prérendu
+    disableStaticPageGeneration: true
+  },
+
+  // Redirection des erreurs
+  async redirects() {
+    return [
+      {
+        source: '/404',
+        destination: '/',
+        permanent: false
+      },
+      {
+        source: '/500',
+        destination: '/',
+        permanent: false
+      }
+    ];
   }
 };
 

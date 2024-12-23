@@ -4,7 +4,12 @@ import Link from 'next/link';
 
 export default function NotFound() {
   return (
-    <html lang="fr">
+    <html>
+      <head>
+        <title>Page Non Trouvée</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body style={{
         fontFamily: 'Arial, sans-serif',
         display: 'flex',
@@ -17,13 +22,13 @@ export default function NotFound() {
         <div style={{
           textAlign: 'center',
           padding: '20px',
-          borderRadius: '10px',
           backgroundColor: 'white',
+          borderRadius: '10px',
           boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
         }}>
-          <h1 style={{ color: '#d32f2f', marginBottom: '15px' }}>Page Non Trouvée</h1>
+          <h1 style={{ color: '#d32f2f', marginBottom: '15px' }}>404</h1>
           <p style={{ color: '#666', marginBottom: '20px' }}>
-            La page que vous recherchez n&apos;existe pas ou a été déplacée.
+            Page non trouvée
           </p>
           <Link 
             href="/" 
