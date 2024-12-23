@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Configuration webpack pour gérer les modules problématiques
+  // Désactiver le prérendu des pages statiques
+  output: 'standalone',
+
+  // Configuration webpack pour gérer les modules
   webpack: (config, { isServer }) => {
     // Configuration pour ignorer certains warnings
     config.infrastructureLogging = {
@@ -34,7 +37,7 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production'
   },
 
-  // Désactiver le prérendu des pages d'erreur
+  // Redirection des pages d'erreur
   async redirects() {
     return [
       {
@@ -48,6 +51,11 @@ const nextConfig = {
         permanent: false
       }
     ];
+  },
+
+  // Désactiver le prérendu de certaines pages
+  experimental: {
+    staticPageGenerationTimeout: 0,
   }
 };
 
