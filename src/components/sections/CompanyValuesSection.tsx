@@ -1,35 +1,33 @@
-"use client";
+'use client';
 
-import Image from "next/image";
+import React from 'react';
 import { 
+  LightBulbIcon, 
   HeartIcon, 
-  GlobeEuropeAfricaIcon, 
-  LightBulbIcon,
-  StarIcon
+  ShieldCheckIcon,
+  StarIcon,
+  GlobeEuropeAfricaIcon 
 } from '@heroicons/react/24/solid';
 
-const companyValues = [
-  {
-    title: "Engagement Écologique",
-    description: "Notre mission : contribuer activement à la transition énergétique en proposant des solutions solaires durables et responsables.",
-    icon: GlobeEuropeAfricaIcon,
-    image: "/images/values/ecological.jpg"
-  },
-  {
-    title: "Innovation Constante",
-    description: "Nous investissons continuellement dans la recherche et le développement pour offrir les technologies solaires les plus avancées.",
-    icon: LightBulbIcon,
-    image: "/images/values/innovation.jpg"
-  },
-  {
-    title: "Satisfaction Client",
-    description: "Un accompagnement personnalisé, transparent et de qualité, de l'étude initiale jusqu'à la maintenance de votre installation.",
-    icon: HeartIcon,
-    image: "/images/values/customer-satisfaction.jpg"
-  }
-];
+const CompanyValuesSection = () => {
+  const values = [
+    {
+      icon: LightBulbIcon,
+      title: 'Innovation',
+      description: 'Nous restons à la pointe des technologies solaires, en recherchant constamment les solutions les plus efficaces et durables.'
+    },
+    {
+      icon: HeartIcon,
+      title: 'Engagement Écologique',
+      description: 'Notre mission est de contribuer activement à la transition énergétique et à la préservation de notre environnement.'
+    },
+    {
+      icon: ShieldCheckIcon,
+      title: 'Satisfaction Client',
+      description: 'Nous plaçons la satisfaction de nos clients au cœur de notre démarche, avec un accompagnement personnalisé et de qualité.'
+    }
+  ];
 
-export default function CompanyValuesSection() {
   return (
     <section className="py-16 px-4 md:px-8 lg:px-12 bg-gradient-to-br from-f2f6fa to-e3e9f0 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
@@ -48,34 +46,20 @@ export default function CompanyValuesSection() {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {companyValues.map((value, index) => (
+          {values.map((value, index) => (
             <div 
               key={index} 
-              className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-2xl border border-gray-100 transition-all duration-300 hover:scale-[1.02] hover:shadow-3xl group"
+              className="bg-white rounded-2xl p-6 shadow-lg transform transition-all duration-300 hover:scale-105 hover:shadow-xl text-center"
             >
-              <div className="relative mb-6 rounded-xl overflow-hidden h-48">
-                <Image 
-                  src={value.image} 
-                  alt={value.title} 
-                  fill 
-                  style={{ objectFit: 'cover' }}
-                  className="transition-transform duration-300 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-black/20"></div>
+              <div className="flex justify-center mb-4">
+                <value.icon className="h-12 w-12 text-primary-500 mb-4" />
               </div>
-
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center space-x-4">
-                  <value.icon className="w-10 h-10 text-FFDF64 group-hover:animate-pulse" />
-                  <h3 className="text-2xl font-semibold text-gray-800">{value.title}</h3>
-                </div>
-              </div>
-
-              <div className="bg-f9fafb p-4 rounded-lg border border-gray-200 mb-4">
-                <p className="text-gray-700 leading-relaxed text-sm">
-                  {value.description}
-                </p>
-              </div>
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {value.title}
+              </h3>
+              <p className="text-gray-600 text-base">
+                {value.description}
+              </p>
             </div>
           ))}
         </div>
@@ -114,4 +98,6 @@ export default function CompanyValuesSection() {
       </div>
     </section>
   );
-}
+};
+
+export default CompanyValuesSection;
