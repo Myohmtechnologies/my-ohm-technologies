@@ -2,21 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Configuration pour gérer les erreurs de prérendu
-  experimental: {
-    // Ignorer les erreurs de prérendu
-    staticPageGenerationTimeout: 120, // Augmenter le timeout
-    missingSuspenseBoundaryError: 'warn', // Transformer les erreurs en warnings
-  },
-
   // Configuration webpack pour gérer les modules problématiques
   webpack: (config, { isServer }) => {
-    // Désactiver les avertissements spécifiques
+    // Configuration pour ignorer certains warnings
     config.infrastructureLogging = {
       level: 'error'
     };
 
-    // Ignorer certains warnings
+    // Ignorer les warnings spécifiques
     config.ignoreWarnings = [
       /node:internal/,
       /punycode/,
@@ -26,30 +19,33 @@ const nextConfig = {
     return config;
   },
 
-  // Configuration TypeScript et ESLint
+  // Configuration TypeScript
   typescript: {
     ignoreBuildErrors: true
   },
-  
+
+  // Configuration ESLint
   eslint: {
     ignoreDuringBuilds: true
   },
 
-  // Compiler
+  // Configuration de compilation
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production'
   },
 
   // Désactiver le prérendu des pages d'erreur
-  async rewrites() {
+  async redirects() {
     return [
       {
         source: '/404',
-        destination: '/'
+        destination: '/',
+        permanent: false
       },
       {
         source: '/500',
-        destination: '/'
+        destination: '/',
+        permanent: false
       }
     ];
   }
