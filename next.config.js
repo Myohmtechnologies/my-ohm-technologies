@@ -2,9 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   
-  // Configuration webpack pour gérer les modules
-  webpack: (config, { isServer }) => {
-    // Configuration pour ignorer certains warnings
+  // Désactiver le prérendu statique
+  output: 'standalone',
+
+  // Configuration webpack minimale
+  webpack: (config) => {
     config.infrastructureLogging = {
       level: 'error'
     };
@@ -12,7 +14,8 @@ const nextConfig = {
     // Ignorer les warnings spécifiques
     config.ignoreWarnings = [
       /node:internal/,
-      /punycode/
+      /punycode/,
+      /useContext/
     ];
 
     return config;
@@ -28,24 +31,11 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
 
-  // Configuration de compilation
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production'
-  },
-
-  // Redirection des pages d'erreur
-  async redirects() {
+  // Désactiver le prérendu des pages d'erreur
+  async rewrites() {
     return [
-      {
-        source: '/404',
-        destination: '/',
-        permanent: false
-      },
-      {
-        source: '/500',
-        destination: '/',
-        permanent: false
-      }
+      { source: '/404', destination: '/' },
+      { source: '/500', destination: '/' }
     ];
   }
 };
